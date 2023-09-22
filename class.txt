@@ -1,3 +1,4 @@
 CLass abc() {
 	System.out.println("Test");
+	Scanner in = new Scanner(System.in);
 }
