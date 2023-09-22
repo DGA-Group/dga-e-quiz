@@ -1,0 +1,3 @@
+CLass abc() {
+	System.out.println("Test");
+}
