@@ -1,3 +1,4 @@
-CLass abc() {
+Class abc() {
 	System.out.println("Test");
+	System.out.println("gg");
 }
