@@ -1,0 +1,21 @@
+.left-bar {
+    -fx-background-color: #0A1F34;
+    -fx-border-color: #000;
+    -fx-border-width: 0.4px 0px 0.4px 0.4px;
+}
+
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFF;
+    -fx-alignment: left;
+    -fx-padding: 0px 0px 0px 30px;
+    -fx-font-size: 18px;
+}
+
+.nav-btn:hover {
+    -fx-background-color: #1E3348;
+}
+
+.main-pane{
+    -fx-fit-to-height: true;
+}
