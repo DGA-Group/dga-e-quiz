@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.equiz.controller.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.homeController">
    <children>
       <BorderPane prefHeight="480.0" prefWidth="854.0">
          <left>
@@ -21,18 +21,18 @@
                      <children>
                         <ImageView fitHeight="76.0" fitWidth="140.0" layoutX="57.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/logo.png" />
+                              <Image url="@../image/logo.png" />
                            </image>
                         </ImageView>
                      </children>
                   </AnchorPane>
                   <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="206.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Home" textAlignment="CENTER">
-                     <graphic>
-                        <FontIcon iconColor="WHITE" iconLiteral="fth-home" />
-                     </graphic>
                      <VBox.margin>
                         <Insets />
-                     </VBox.margin></Button>
+                     </VBox.margin>
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fth-home" />
+                     </graphic></Button>
                   <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Dictionary" textAlignment="CENTER">
                      <graphic>
                         <FontIcon iconColor="WHITE" iconLiteral="fth-book" />
@@ -55,9 +55,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane prefHeight="431.0" prefWidth="649.0" visible="false" />
                         <Pane layoutX="-5.0" layoutY="-7.0" prefHeight="438.0" prefWidth="654.0" />
-                        <Pane layoutX="-5.0" layoutY="-5.0" prefHeight="437.0" prefWidth="654.0" />
                      </children>
                   </AnchorPane>
                </center>
