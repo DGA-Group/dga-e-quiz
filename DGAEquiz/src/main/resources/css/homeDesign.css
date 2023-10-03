@@ -7,7 +7,7 @@
 .nav-btn {
     -fx-background-color: transparent;
     -fx-text-fill: #FFF;
-    -fx-alignment: left;
+    -fx-alignment: CENTER_LEFT;
     -fx-padding: 0px 0px 0px 30px;
     -fx-font-size: 18px;
 }
