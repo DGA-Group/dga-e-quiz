@@ -1,4 +1,4 @@
 package com.dga.equiz.controller;
 
-public class campaignController {
+public class CampaignController {
 }

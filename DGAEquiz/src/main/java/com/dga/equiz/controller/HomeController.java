@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class homeController implements Initializable {
+public class HomeController implements Initializable {
 
     @FXML
     private VBox campaginList;
@@ -24,9 +24,9 @@ public class homeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
-            Node root = FXMLLoader.load(Main.class.getResource("/view/campaign.fxml"));
-            Node root2 = FXMLLoader.load(Main.class.getResource("/view/campaign.fxml"));
-            Node root3 = FXMLLoader.load(Main.class.getResource("/view/campaign.fxml"));
+            Node root = FXMLLoader.load(Main.class.getResource("/view/CampaignView.fxml"));
+            Node root2 = FXMLLoader.load(Main.class.getResource("/view/CampaignView.fxml"));
+            Node root3 = FXMLLoader.load(Main.class.getResource("/view/CampaignView.fxml"));
 
             campaginList.getChildren().add(root);
             campaginList.getChildren().add(root2);
