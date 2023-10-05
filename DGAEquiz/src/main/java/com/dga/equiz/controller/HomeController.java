@@ -21,6 +21,9 @@ public class HomeController implements Initializable {
     @FXML
     private VBox campaginList;
 
+    @FXML
+    private AnchorPane campaignOption;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try{
