@@ -1,8 +1,8 @@
-package com.dga.equiz.controller;
+package com.dga.equiz.controller.home;
 
-import com.dga.equiz.model.EquizUtils;
-import com.dga.equiz.model.Home;
-import com.dga.equiz.model.NodeObject;
+import com.dga.equiz.utils.EquizUtils;
+import com.dga.equiz.model.home.Home;
+import com.dga.equiz.model.nodeObject.NodeObject;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
@@ -22,10 +22,10 @@ public final class HomeController implements Initializable {
 
     //region FXML Reference
     @FXML
-    private VBox campaginList;
+    private AnchorPane panelHome;
 
     @FXML
-    private AnchorPane campaignOption;
+    private VBox vBCampaignList;
     //endregion
 
     //region MVC
@@ -34,22 +34,17 @@ public final class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(instance == null){
-            instance = new HomeController();
-        }
+        instance = this;
+        System.gc();
 
         try{
             for(int i = 0; i < 3; i++) {
-                NodeObject root = EquizUtils.Instantiate("/view/CampaignView.fxml");
-                campaginList.getChildren().add(root.getNode());
+                NodeObject root = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml");
+                vBCampaignList.getChildren().add(root.getNode());
             }
 
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    public void setCampaignOption(boolean isVisible) {
-        campaignOption.setVisible(isVisible);
     }
 }

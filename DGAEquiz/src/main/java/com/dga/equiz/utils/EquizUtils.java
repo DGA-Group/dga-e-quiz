@@ -1,6 +1,7 @@
-package com.dga.equiz.model;
+package com.dga.equiz.utils;
 
 import com.dga.equiz.Main;
+import com.dga.equiz.model.nodeObject.NodeObject;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 
