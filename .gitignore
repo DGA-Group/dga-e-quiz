@@ -57,3 +57,6 @@ replay_pid*
 
 ### Mac OS ###
 .DS_Store
+
+# special files
+DGAEQuiz/src/main/java/com/dga/equiz/utils/SecretKey.java
