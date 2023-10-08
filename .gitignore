@@ -10,6 +10,7 @@ out/
 target/
 !**/src/main/**/out/
 !**/src/test/**/out/
+DGAEQuiz/src/META-INF/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
