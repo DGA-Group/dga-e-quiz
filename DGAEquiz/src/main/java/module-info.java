@@ -15,6 +15,8 @@ module dgaequiz{
     opens com.dga.equiz.model.campaign;
     exports com.dga.equiz.model.nodeObject;
     opens com.dga.equiz.model.nodeObject;
+    exports com.dga.equiz.model.word;
+    opens com.dga.equiz.model.word;
 
     requires javafx.base;
     requires javafx.graphics;
@@ -23,4 +25,8 @@ module dgaequiz{
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
     requires jackson.annotations;
+    requires java.sql;
+    requires com.fasterxml.jackson.databind;
+    requires okhttp;
+    requires com.fasterxml.jackson.core;
 }

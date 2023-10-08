@@ -14,8 +14,6 @@ public final class CampaignPickerController implements Initializable {
     }
     //endregion
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         instance = this;

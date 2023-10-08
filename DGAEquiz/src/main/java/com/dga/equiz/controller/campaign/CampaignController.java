@@ -1,10 +1,10 @@
 package com.dga.equiz.controller.campaign;
 
-import com.dga.equiz.controller.MyApplicationController;
+import com.dga.equiz.controller.home.HomeController;
 
 public class CampaignController {
 
     public void onClickOpenCampaign() {
-        MyApplicationController.getInstance().openCampaignPicker();
+        HomeController.getInstance().openCampaignPicker();
     }
 }

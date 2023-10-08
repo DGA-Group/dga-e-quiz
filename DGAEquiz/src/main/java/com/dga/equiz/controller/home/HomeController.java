@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -28,9 +29,8 @@ public final class HomeController implements Initializable {
     private VBox vBCampaignList;
     //endregion
 
-    //region MVC
     private final Home homeModel = new Home();
-    //endregion
+    private NodeObject campaignPickerView = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -38,13 +38,28 @@ public final class HomeController implements Initializable {
         System.gc();
 
         try{
-            for(int i = 0; i < 3; i++) {
-                NodeObject root = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml");
-                vBCampaignList.getChildren().add(root.getNode());
-            }
+            init();
 
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void init() throws IOException {
+        // Add campaign picker panel to home.
+        campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml");
+        panelHome.getChildren().add(campaignPickerView.getNode());
+        campaignPickerView.hide();
+
+        // Add campaign to to home
+        for(int i = 0; i < 2; i++){
+            NodeObject node = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml");
+            vBCampaignList.getChildren().add(node.getNode());
+        }
+        vBCampaignList.setVisible(true);
+    }
+
+    public void openCampaignPicker(){
+        campaignPickerView.setVisible(true);
     }
 }
