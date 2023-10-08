@@ -16,7 +16,8 @@ public final class HomeController implements Initializable {
 
     //region Singleton
     private static HomeController instance;
-    public static HomeController getInstance(){
+
+    public static HomeController getInstance() {
         return instance;
     }
     //endregion
@@ -31,16 +32,17 @@ public final class HomeController implements Initializable {
 
     private final Home homeModel = new Home();
     private NodeObject campaignPickerView = null;
+    private NodeObject learnView = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         instance = this;
         System.gc();
 
-        try{
+        try {
             init();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -51,15 +53,24 @@ public final class HomeController implements Initializable {
         panelHome.getChildren().add(campaignPickerView.getNode());
         campaignPickerView.hide();
 
+        // Add learn panel to home.
+        learnView = EquizUtils.Instantiate("/view/learn/LearnView.fxml");
+        panelHome.getChildren().add(learnView.getNode());
+        learnView.hide();
+
         // Add campaign to to home
-        for(int i = 0; i < 2; i++){
+        for (int i = 0; i < 2; i++) {
             NodeObject node = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml");
             vBCampaignList.getChildren().add(node.getNode());
         }
         vBCampaignList.setVisible(true);
     }
 
-    public void openCampaignPicker(){
-        campaignPickerView.setVisible(true);
+    public void openCampaignPicker() {
+        campaignPickerView.show();
+    }
+
+    public void openLearnPanel() {
+        learnView.show();
     }
 }

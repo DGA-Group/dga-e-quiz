@@ -17,6 +17,10 @@ module dgaequiz{
     opens com.dga.equiz.model.nodeObject;
     exports com.dga.equiz.model.word;
     opens com.dga.equiz.model.word;
+    exports com.dga.equiz.controller.learn;
+    opens com.dga.equiz.controller.learn;
+    exports com.dga.equiz.controller.question;
+    opens com.dga.equiz.controller.question;
 
     requires javafx.base;
     requires javafx.graphics;

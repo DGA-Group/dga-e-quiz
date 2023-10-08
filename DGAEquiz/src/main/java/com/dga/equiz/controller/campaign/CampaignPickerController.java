@@ -1,5 +1,6 @@
 package com.dga.equiz.controller.campaign;
 
+import com.dga.equiz.controller.home.HomeController;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -18,5 +19,9 @@ public final class CampaignPickerController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         instance = this;
         System.gc();
+    }
+
+    public void onClickOpenLearnPanel(){
+        HomeController.getInstance().openLearnPanel();
     }
 }
