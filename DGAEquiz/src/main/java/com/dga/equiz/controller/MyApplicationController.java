@@ -17,14 +17,6 @@ import java.util.ResourceBundle;
 
 public class MyApplicationController implements Initializable {
 
-    //region Singleton
-    private static MyApplicationController instance;
-
-    public static MyApplicationController getInstance() {
-        return instance;
-    }
-    //endregion
-
     //region FXML Reference
     @FXML
     private AnchorPane panelHolder;
@@ -38,32 +30,39 @@ public class MyApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        instance = this;
-        System.gc();
+        setupHomeView();
+        setupDictionaryView();
+        setupProfileView();
 
-        // Initialize program here.
+        // Set default panel to home
+        currentPanel = homeView;
+    }
+
+    private void setupHomeView() {
+        // Add home panel to application.
         try {
-            this.init();
+            homeView = EquizUtils.Instantiate("/view/home/HomeView.fxml");
+            panelHolder.getChildren().add(homeView.getNode());
+            homeView.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    /**
-     * Initialize everything here before run the application.
-     *
-     * @throws IOException Throw exception if cannot initialize.
-     */
-    private void init() throws IOException {
-        // Add home panel to application.
-        homeView = EquizUtils.Instantiate("/view/home/HomeView.fxml");
-        panelHolder.getChildren().add(homeView.getNode());
-        homeView.show();
+    private void setupDictionaryView() {
+        try {
+            // Load dictionary here.
+        } catch (Exception e) {
 
-        // Add more panel here.
+        }
+    }
 
-        // Set default panel to home
-        currentPanel = homeView;
+    private void setupProfileView() {
+        try {
+            // Load profile here.
+        } catch (Exception e) {
+
+        }
     }
 
     private void switchToPanel(NodeObject panel) {

@@ -1,10 +1,12 @@
 package com.dga.equiz.controller.campaign;
 
-import com.dga.equiz.controller.home.HomeController;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 
 public class CampaignController {
 
-    public void onClickOpenCampaign() {
-        HomeController.getInstance().openCampaignPicker();
-    }
+    //region FXML Reference
+    @FXML
+    public Button startCampaign;
+    //endregion
 }

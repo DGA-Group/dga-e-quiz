@@ -1,3 +1,10 @@
+/* import font */
+
+
+@font-face {
+    src: url("../font/Feather.ttf");
+}
+
 .info-box {
     -fx-background-radius: 20px;
     -fx-border-radius: 10px;
@@ -16,16 +23,34 @@
     -fx-indeterminate-bar-flip: true;
     -fx-indeterminate-bar-animation-time: 2;
 }
+
 .progress-bar > .bar {
     -fx-background-color: #009571;
     -fx-background-insets: 3 3 4 3;
     -fx-background-radius: 2;
     -fx-padding: 0.75em;
 }
+
 .progress-bar:indeterminate > .bar {
     -fx-background-color: #009571;
 }
+
 .progress-bar > .track {
     -fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
     -fx-background-radius: 4, 3, 2; /* 10, 9, 8 */
+}
+
+.campaign-item {
+    -fx-background-color: #00AF85;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.button-learn {
+    -fx-background-color: #FFF;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 20px;
+    -fx-text-fill: #58CC02;
+    -fx-font-family: "Feather Bold";
+    -fx-font-size: 50px;
 }
