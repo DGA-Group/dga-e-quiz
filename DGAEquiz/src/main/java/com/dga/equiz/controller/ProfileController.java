@@ -9,7 +9,7 @@ import javafx.scene.shape.Circle;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class profileController implements Initializable {
+public class ProfileController implements Initializable {
     @FXML
     private Circle circle;
 
