@@ -10,6 +10,7 @@ out/
 target/
 !**/src/main/**/out/
 !**/src/test/**/out/
+DGAEQuiz/src/META-INF/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
@@ -56,3 +57,6 @@ replay_pid*
 
 ### Mac OS ###
 .DS_Store
+
+# special files
+DGAEQuiz/src/main/java/com/dga/equiz/utils/SecretKey.java
