@@ -12,4 +12,5 @@ module dgaequiz{
     requires javafx.fxml;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
+    requires org.controlsfx.controls;
 }
