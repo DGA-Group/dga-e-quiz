@@ -1,23 +1,29 @@
 package com.dga.equiz;
 
+import com.dga.equiz.utils.EquizUtils;
+import com.dga.equiz.model.nodeObject.NodeObject;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.lang.reflect.Field;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
         try{
-            Parent root = FXMLLoader.load(getClass().getResource("/view/profile.fxml"));
-            Scene scene = new Scene(root);
+            NodeObject root = EquizUtils.Instantiate("/view/MyApplication.fxml");
+            Scene scene = new Scene((Parent) root.getNode());
             stage.setScene(scene);
             stage.show();
         }catch (Exception e){
             e.printStackTrace();
         }
+
+
     }
 
     public static void main(String[] args) {

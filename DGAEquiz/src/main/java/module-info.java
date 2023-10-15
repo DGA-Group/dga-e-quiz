@@ -1,9 +1,19 @@
 module dgaequiz{
     exports com.dga.equiz;
     exports com.dga.equiz.controller;
-    exports com.dga.equiz.model;
     opens com.dga.equiz;
     opens com.dga.equiz.controller;
+    exports com.dga.equiz.utils;
+    opens com.dga.equiz.utils;
+    exports com.dga.equiz.controller.campaign;
+    opens com.dga.equiz.controller.campaign;
+    exports com.dga.equiz.model.nodeObject;
+    opens com.dga.equiz.model.nodeObject;
+    exports com.dga.equiz.model.word;
+    opens com.dga.equiz.model.word;
+    exports com.dga.equiz.controller.question;
+    opens com.dga.equiz.controller.question;
+    exports com.dga.equiz.model;
     opens com.dga.equiz.model;
 
     requires javafx.base;
@@ -12,4 +22,10 @@ module dgaequiz{
     requires javafx.fxml;
     requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
+    requires org.controlsfx.controls;
+    requires jackson.annotations;
+    requires java.sql;
+    requires com.fasterxml.jackson.databind;
+    requires okhttp;
+    requires com.fasterxml.jackson.core;
 }
