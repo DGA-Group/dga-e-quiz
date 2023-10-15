@@ -1,10 +1,9 @@
-package com.dga.equiz.controller.home;
+package com.dga.equiz.controller;
 
 import com.dga.equiz.controller.campaign.CampaignController;
 import com.dga.equiz.controller.campaign.CampaignPickerController;
-import com.dga.equiz.controller.learn.LearnController;
 import com.dga.equiz.utils.EquizUtils;
-import com.dga.equiz.model.home.Home;
+import com.dga.equiz.model.Home;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -52,7 +51,7 @@ public class HomeController implements Initializable {
     private void setupLearnView() {
         // Add learn panel to home.
         try {
-            learnView = EquizUtils.Instantiate("/view/learn/LearnView.fxml");
+            learnView = EquizUtils.Instantiate("/view/LearnView.fxml");
             panelHome.getChildren().add(learnView.getNode());
             LearnController controller = learnView.getController();
             controller.buttonClose.setOnAction(hideLearnView);

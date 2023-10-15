@@ -1,4 +1,4 @@
-package com.dga.equiz.controller.learn;
+package com.dga.equiz.controller;
 
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.EquizUtils;

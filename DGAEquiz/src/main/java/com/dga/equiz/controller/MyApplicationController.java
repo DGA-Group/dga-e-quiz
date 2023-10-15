@@ -1,18 +1,13 @@
 package com.dga.equiz.controller;
 
 import com.dga.equiz.model.nodeObject.NodeObject;
-import com.dga.equiz.utils.DBHelper;
 import com.dga.equiz.utils.EquizUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Dictionary;
 import java.util.ResourceBundle;
 
 public class MyApplicationController implements Initializable {
@@ -41,7 +36,7 @@ public class MyApplicationController implements Initializable {
     private void setupHomeView() {
         // Add home panel to application.
         try {
-            homeView = EquizUtils.Instantiate("/view/home/HomeView.fxml");
+            homeView = EquizUtils.Instantiate("/view/HomeView.fxml");
             panelHolder.getChildren().add(homeView.getNode());
             homeView.show();
         } catch (Exception e) {
@@ -52,8 +47,11 @@ public class MyApplicationController implements Initializable {
     private void setupDictionaryView() {
         try {
             // Load dictionary here.
+            dictionaryView = EquizUtils.Instantiate("/view/DictionaryView.fxml");
+            panelHolder.getChildren().add(dictionaryView.getNode());
+            dictionaryView.hide();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 

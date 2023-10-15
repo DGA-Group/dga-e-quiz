@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="430.0" prefWidth="648.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.learn.LearnController">
+<AnchorPane prefHeight="430.0" prefWidth="648.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
    <children>
       <ProgressBar fx:id="pgbarLessonProgress" layoutX="165.0" layoutY="25.0" prefHeight="18.0" prefWidth="317.0" progress="0.67" />
       <Button fx:id="buttonClose" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0">

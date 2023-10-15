@@ -7,20 +7,14 @@ module dgaequiz{
     opens com.dga.equiz.utils;
     exports com.dga.equiz.controller.campaign;
     opens com.dga.equiz.controller.campaign;
-    exports com.dga.equiz.controller.home;
-    opens com.dga.equiz.controller.home;
-    exports com.dga.equiz.model.home;
-    opens com.dga.equiz.model.home;
-    exports com.dga.equiz.model.campaign;
-    opens com.dga.equiz.model.campaign;
     exports com.dga.equiz.model.nodeObject;
     opens com.dga.equiz.model.nodeObject;
     exports com.dga.equiz.model.word;
     opens com.dga.equiz.model.word;
-    exports com.dga.equiz.controller.learn;
-    opens com.dga.equiz.controller.learn;
     exports com.dga.equiz.controller.question;
     opens com.dga.equiz.controller.question;
+    exports com.dga.equiz.model;
+    opens com.dga.equiz.model;
 
     requires javafx.base;
     requires javafx.graphics;
