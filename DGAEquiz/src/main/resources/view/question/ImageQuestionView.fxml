@@ -8,25 +8,24 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="268.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.ImageQuestionController">
    <children>
-      <Label layoutX="19.0" layoutY="7.0" prefHeight="18.0" prefWidth="488.0" text="Chọn câu trả lời đúng">
+      <Label fx:id="labelQuestion" layoutX="19.0" layoutY="7.0" prefHeight="18.0" prefWidth="488.0" text="Chọn câu trả lời đúng">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="214.0" fitWidth="224.0" layoutX="14.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imageView" fitHeight="214.0" fitWidth="224.0" layoutX="14.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/bird.png" />
          </image>
       </ImageView>
       <VBox alignment="CENTER" layoutX="263.0" layoutY="41.0" prefHeight="214.0" prefWidth="274.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption3" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption4" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
          </children>
       </VBox>
    </children>

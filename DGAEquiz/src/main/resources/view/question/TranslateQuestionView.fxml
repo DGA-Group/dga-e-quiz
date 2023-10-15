@@ -6,10 +6,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="268.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.TranslateQuestionController">
    <children>
-      <Label layoutX="24.0" layoutY="14.0" prefHeight="18.0" prefWidth="488.0" text="Chọn câu trả lời đúng">
+      <Label fx:id="labelQuestion" layoutX="24.0" layoutY="14.0" prefHeight="18.0" prefWidth="488.0" text="Chọn câu trả lời đúng">
          <font>
             <Font size="18.0" />
          </font>
