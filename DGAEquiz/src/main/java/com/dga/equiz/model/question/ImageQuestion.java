@@ -27,7 +27,7 @@ public class ImageQuestion extends Question {
     }
 
     @Override
-    public boolean isCorrect(byte answer) {
-        return (this.correctAnswer == answer);
+    public boolean isCorrect() {
+        return (this.correctAnswer == this.chosenAnswer);
     }
 }

@@ -6,23 +6,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="268.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.FillQuestionController">
    <children>
-      <Label layoutX="29.0" layoutY="17.0" prefHeight="18.0" prefWidth="488.0" text="Chọn câu trả lời đúng">
+      <Label fx:id="labelQuestion" layoutX="29.0" layoutY="17.0" prefHeight="18.0" prefWidth="488.0" text="Chọn câu trả lời đúng">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <VBox alignment="CENTER" layoutX="273.0" layoutY="51.0" prefHeight="214.0" prefWidth="274.0" spacing="20.0">
+      <VBox alignment="CENTER" layoutX="273.0" layoutY="27.0" prefHeight="214.0" prefWidth="274.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption3" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption4" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
          </children>
       </VBox>
-      <Label alignment="TOP_LEFT" contentDisplay="TOP" layoutX="29.0" layoutY="67.0" prefHeight="181.0" prefWidth="196.0" text="The __ jump over the lazy fox. and then running to the field with alot of grass then laying down." wrapText="true">
+      <Label fx:id="labelContext" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="29.0" layoutY="67.0" prefHeight="181.0" prefWidth="196.0" text="The __ jump over the lazy fox. and then running to the field with alot of grass then laying down." wrapText="true">
          <font>
             <Font size="16.0" />
          </font>

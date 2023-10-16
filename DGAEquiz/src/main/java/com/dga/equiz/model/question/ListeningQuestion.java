@@ -1,6 +1,7 @@
 package com.dga.equiz.model.question;
 
 public class ListeningQuestion extends Question {
+
     private final String audioSrc;                    // Audio URL source.
     private final String[] options = new String[3];   // Options range from 1 to 2.
 
@@ -15,8 +16,16 @@ public class ListeningQuestion extends Question {
         this.options[2] = option2;
     }
 
+    public String getAudioSrc() {
+        return audioSrc;
+    }
+
+    public String[] getOptions() {
+        return options;
+    }
+
     @Override
-    public boolean isCorrect(byte answer) {
-        return (this.correctAnswer == answer);
+    public boolean isCorrect() {
+        return (this.correctAnswer == this.chosenAnswer);
     }
 }

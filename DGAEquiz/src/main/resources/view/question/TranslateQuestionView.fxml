@@ -15,13 +15,13 @@
       </Label>
       <VBox alignment="CENTER" layoutX="268.0" layoutY="41.0" prefHeight="214.0" prefWidth="274.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption3" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption4" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
          </children>
       </VBox>
-      <Label layoutX="39.0" layoutY="131.0" prefHeight="34.0" prefWidth="182.0" text="Incomprehensibilities">
+      <Label fx:id="labelWord" layoutX="39.0" layoutY="131.0" prefHeight="34.0" prefWidth="182.0" text="Incomprehensibilities">
          <font>
             <Font size="18.0" />
          </font>

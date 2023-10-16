@@ -5,6 +5,7 @@ public abstract class Question {
     protected final long id;            // Question id.
     protected final String question;    // Question content.
     protected final byte correctAnswer; // Answer range from 1 to 4.
+    protected byte chosenAnswer;
 
     public Question(long id, String question, byte correctAnswer) {
         this.id = id;
@@ -24,5 +25,5 @@ public abstract class Question {
         return correctAnswer;
     }
 
-    public abstract boolean isCorrect(byte answer);
+    public abstract boolean isCorrect();
 }

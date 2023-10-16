@@ -17,8 +17,16 @@ public class FillQuestion extends Question {
         this.options[4] = option4;
     }
 
+    public String getContext() {
+        return context;
+    }
+
+    public String[] getOptions() {
+        return options;
+    }
+
     @Override
-    public boolean isCorrect(byte answer) {
-        return (this.correctAnswer == answer);
+    public boolean isCorrect() {
+        return (this.correctAnswer == this.chosenAnswer);
     }
 }
