@@ -1,6 +1,7 @@
 package com.dga.equiz.controller;
 
 import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.EquizUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +26,7 @@ public class MyApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ApplicationData.getInstance().loadAllData();
         setupHomeView();
         setupDictionaryView();
         setupProfileView();
@@ -46,7 +48,6 @@ public class MyApplicationController implements Initializable {
 
     private void setupDictionaryView() {
         try {
-            // Load dictionary here.
             dictionaryView = EquizUtils.Instantiate("/view/DictionaryView.fxml");
             panelHolder.getChildren().add(dictionaryView.getNode());
             dictionaryView.hide();

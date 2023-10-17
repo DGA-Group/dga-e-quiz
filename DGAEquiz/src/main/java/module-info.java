@@ -28,4 +28,5 @@ module dgaequiz{
     requires com.fasterxml.jackson.databind;
     requires okhttp;
     requires com.fasterxml.jackson.core;
+    requires javafx.media;
 }

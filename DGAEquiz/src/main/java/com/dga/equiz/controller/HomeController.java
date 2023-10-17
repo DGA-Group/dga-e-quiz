@@ -2,6 +2,8 @@ package com.dga.equiz.controller;
 
 import com.dga.equiz.controller.campaign.CampaignController;
 import com.dga.equiz.controller.campaign.CampaignPickerController;
+import com.dga.equiz.model.Campaign;
+import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.model.Home;
 import com.dga.equiz.model.nodeObject.NodeObject;
@@ -13,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
@@ -27,6 +30,8 @@ public class HomeController implements Initializable {
     private final Home homeModel = new Home();
     private NodeObject campaignPickerView = null;
     private NodeObject learnView = null;
+
+    //region Event
     private final EventHandler<ActionEvent> showLearnView = new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent actionEvent) {
@@ -40,12 +45,25 @@ public class HomeController implements Initializable {
             learnView.hide();
         }
     };
+    private final EventHandler<ActionEvent> showCampaignPickerView = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent actionEvent) {
+            campaignPickerView.show();
+        }
+    };
+    //endregion
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setupHome();
         setupCampaignPickerView();
         setupCampaignList();
         setupLearnView();
+    }
+
+    private void setupHome() {
+
     }
 
     private void setupLearnView() {
@@ -79,15 +97,17 @@ public class HomeController implements Initializable {
     private void setupCampaignList() {
         try {
             // Add campaign to to home
-            for (int i = 0; i < 2; i++) {
+            Map<Long, Campaign> campaignData = ApplicationData.getInstance().getCampaignData();
+            for (var campaign : campaignData.values()) {
                 NodeObject node = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml");
+
                 CampaignController controller = node.getController();
-                controller.startCampaign.setOnAction(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        campaignPickerView.show();
-                    }
-                });
+                String title = campaign.getTitle();
+                String description = campaign.getDescription();
+                controller.setupCampaign(title, description);
+
+                controller.startCampaign.setOnAction(showCampaignPickerView);
+
                 vBCampaignList.getChildren().add(node.getNode());
             }
             vBCampaignList.setVisible(true);
