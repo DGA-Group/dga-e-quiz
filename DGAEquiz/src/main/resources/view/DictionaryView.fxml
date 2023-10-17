@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="430.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.HomeController">
+<AnchorPane prefHeight="430.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.DictionaryController">
    <children>
       <TextField fx:id="words" alignment="TOP_LEFT" layoutX="72.0" layoutY="17.0" prefHeight="25.0" prefWidth="504.0" promptText="Word" />
       <FontIcon iconColor="#469dc9" iconLiteral="fth-search" iconSize="15" layoutX="59.0" layoutY="36.0" selectionEnd="15" text="" wrappingWidth="25.0" />

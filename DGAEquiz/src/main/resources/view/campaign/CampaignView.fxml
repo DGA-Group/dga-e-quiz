@@ -20,15 +20,15 @@
             </ImageView>
             <AnchorPane layoutX="40.0" layoutY="184.0" prefHeight="200.0" prefWidth="394.0" style="-fx-background-color: #009571;" styleClass="info-box" stylesheets="@../../css/learnDesign.css">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutY="1.0" prefHeight="38.0" prefWidth="396.0" text="Phần 1: Bước vào hành trình" textAlignment="CENTER" wrapText="true" />
                   <Button fx:id="startCampaign" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="137.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="243.0" styleClass="ok-btn" stylesheets="@../../css/learnDesign.css" text="BẮT ĐẦU" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="100.0" prefHeight="18.0" prefWidth="396.0" text="Khởi động cùng một số cụm từ và ngữ pháp cơ bản" textAlignment="CENTER" />
                   <ProgressBar layoutX="97.0" layoutY="71.0" prefWidth="200.0" progress="0.29" stylesheets="@../../css/learnDesign.css" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="18.0" prefWidth="396.0" text="0 / 4 Bài" textAlignment="CENTER" />
+                  <Label fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="1.0" prefHeight="38.0" prefWidth="396.0" text="Phần 1: Bước vào hành trình" textAlignment="CENTER" wrapText="true" />
+                  <Label fx:id="labelDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="100.0" prefHeight="18.0" prefWidth="396.0" text="Khởi động cùng một số cụm từ và ngữ pháp cơ bản" textAlignment="CENTER" />
                </children>
             </AnchorPane>
          </children>
