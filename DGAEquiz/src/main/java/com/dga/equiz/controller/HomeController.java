@@ -27,7 +27,7 @@ public class HomeController implements Initializable {
     private VBox vBCampaignList;
     //endregion
 
-    private final Home homeModel = new Home();
+    private Home homeModel = new Home();
     private NodeObject campaignPickerView = null;
     private NodeObject learnView = null;
 
@@ -37,12 +37,6 @@ public class HomeController implements Initializable {
         public void handle(ActionEvent actionEvent) {
             learnView.show();
             campaignPickerView.hide();
-        }
-    };
-    private final EventHandler<ActionEvent> hideLearnView = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            learnView.hide();
         }
     };
     private final EventHandler<ActionEvent> showCampaignPickerView = new EventHandler<ActionEvent>() {
@@ -57,8 +51,8 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupHome();
-        setupCampaignPickerView();
         setupCampaignList();
+        setupCampaignPickerView();
         setupLearnView();
     }
 
@@ -66,13 +60,34 @@ public class HomeController implements Initializable {
 
     }
 
+    private void setupCampaignList() {
+        try {
+            // Add campaign to to home
+            Map<Long, Campaign> campaignData = ApplicationData.getInstance().getCampaignData();
+            for (var campaign : campaignData.values()) {
+                NodeObject node = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml", vBCampaignList);
+                CampaignController controller = node.getController();
+                controller.setCampaignModel(campaign);
+                controller.setupCampaign(campaign);
+                controller.buttonStartCampaign.setOnAction((ActionEvent event) -> {
+                    LearnController learnController = learnView.getController();
+                    learnController.setLesson(campaign.getLesson());
+                });
+            }
+            vBCampaignList.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setupLearnView() {
         // Add learn panel to home.
         try {
-            learnView = EquizUtils.Instantiate("/view/LearnView.fxml");
-            panelHome.getChildren().add(learnView.getNode());
+            learnView = EquizUtils.Instantiate("/view/LearnView.fxml", panelHome);
             LearnController controller = learnView.getController();
-            controller.buttonClose.setOnAction(hideLearnView);
+            controller.buttonClose.setOnAction((ActionEvent event) -> {
+                learnView.hide();
+            });
             learnView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,37 +97,17 @@ public class HomeController implements Initializable {
     private void setupCampaignPickerView() {
         try {
             // Add campaign picker panel to home.
-            campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml");
-            panelHome.getChildren().add(campaignPickerView.getNode());
+            campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml", panelHome);
             CampaignPickerController controller = campaignPickerView.getController();
-            controller.buttonLearn.setOnAction(showLearnView);
-            controller.buttonRevise.setOnAction(showLearnView);
+
+            controller.buttonLearn.setOnAction((ActionEvent event) -> {
+                learnView.show();
+            });
+
             campaignPickerView.hide();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }
-
-    private void setupCampaignList() {
-        try {
-            // Add campaign to to home
-            Map<Long, Campaign> campaignData = ApplicationData.getInstance().getCampaignData();
-            for (var campaign : campaignData.values()) {
-                NodeObject node = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml");
-
-                CampaignController controller = node.getController();
-                String title = campaign.getTitle();
-                String description = campaign.getDescription();
-                controller.setupCampaign(title, description);
-
-                controller.startCampaign.setOnAction(showCampaignPickerView);
-
-                vBCampaignList.getChildren().add(node.getNode());
-            }
-            vBCampaignList.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

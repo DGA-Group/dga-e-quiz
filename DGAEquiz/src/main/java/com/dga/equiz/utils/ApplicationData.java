@@ -60,36 +60,14 @@ public class ApplicationData {
     }
 
     public void loadAllData() {
-        loadAllCampaign();
-        loadAllLesson();
         loadAllImageQuestion();
         loadAllListeningQuestion();
         loadAllFillQuestion();
         loadAllTranslateQuestion();
-    }
 
-    public void loadAllCampaign() {
-        String sqlQuery = "SELECT * FROM `campaign`";
-        try {
-            ResultSet resultSet = DBHelper.query(sqlQuery);
-            while (resultSet.next()) {
-                long campaignNumber = resultSet.getLong(1);
-                String title = resultSet.getString(2);
-                String description = resultSet.getString(3);
-                Campaign newCampaign = new Campaign(campaignNumber, title, description);
-                campaignData.put(campaignNumber, newCampaign);
-            }
-        } catch (Exception e) {
-            System.out.println("===========================");
-            System.out.println("Unable to load all campaign");
-            System.out.println("===========================");
-            e.printStackTrace();
-        }
-
-    }
-
-    public void loadAllLesson() {
-
+        // Load these after load all question
+        loadAllLesson();
+        loadAllCampaign();
     }
 
     public void loadAllImageQuestion() {
@@ -190,5 +168,29 @@ public class ApplicationData {
             System.out.println("=====================================");
             e.printStackTrace();
         }
+    }
+
+    public void loadAllLesson() {
+
+    }
+
+    public void loadAllCampaign() {
+        String sqlQuery = "SELECT * FROM `campaign`";
+        try {
+            ResultSet resultSet = DBHelper.query(sqlQuery);
+            while (resultSet.next()) {
+                long campaignNumber = resultSet.getLong(1);
+                String title = resultSet.getString(2);
+                String description = resultSet.getString(3);
+                Campaign newCampaign = new Campaign(campaignNumber, title, description);
+                campaignData.put(campaignNumber, newCampaign);
+            }
+        } catch (Exception e) {
+            System.out.println("===========================");
+            System.out.println("Unable to load all campaign");
+            System.out.println("===========================");
+            e.printStackTrace();
+        }
+
     }
 }

@@ -1,5 +1,7 @@
 package com.dga.equiz.controller.question;
 
+import com.dga.equiz.model.question.ImageQuestion;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,14 +29,39 @@ public class ImageQuestionController {
     public Button buttonOption4;
     //endregion
 
-    public void setupImageQuestion(String question, String imageSrc, String option1,
-                                   String option2, String option3, String option4) {
-        this.labelQuestion.setText(question);
-        this.imageView.setImage(new Image(imageSrc));
-        this.buttonOption1.setText(option1);
-        this.buttonOption2.setText(option2);
-        this.buttonOption3.setText(option3);
-        this.buttonOption4.setText(option4);
+    private ImageQuestion imageQuestionModel;
+
+    public void setImageQuestionModel(ImageQuestion imageQuestionModel) {
+        this.imageQuestionModel = imageQuestionModel;
+    }
+
+    public void setupImageQuestion(ImageQuestion imageQuestionModel) {
+        this.labelQuestion.setText(imageQuestionModel.getQuestion());
+        this.imageView.setImage(new Image(imageQuestionModel.getImageSrc()));
+        String[] options = imageQuestionModel.getOptions();
+        this.buttonOption1.setText(options[1]);
+        this.buttonOption2.setText(options[2]);
+        this.buttonOption3.setText(options[3]);
+        this.buttonOption4.setText(options[4]);
+        setupButtonFunction();
+    }
+
+    private void setupButtonFunction() {
+        this.buttonOption1.setOnAction((ActionEvent event) -> {
+            this.imageQuestionModel.setChosenAnswer((byte) 1);
+        });
+
+        this.buttonOption2.setOnAction((ActionEvent event) -> {
+            this.imageQuestionModel.setChosenAnswer((byte) 2);
+        });
+
+        this.buttonOption3.setOnAction((ActionEvent event) -> {
+            this.imageQuestionModel.setChosenAnswer((byte) 3);
+        });
+
+        this.buttonOption4.setOnAction((ActionEvent event) -> {
+            this.imageQuestionModel.setChosenAnswer((byte) 4);
+        });
     }
 
 }

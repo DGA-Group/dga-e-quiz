@@ -27,7 +27,7 @@
 .progress-bar > .bar {
     -fx-background-color: #009571;
     -fx-background-insets: 3 3 4 3;
-    -fx-background-radius: 2;
+    -fx-background-radius: 2px;
     -fx-padding: 0.75em;
 }
 

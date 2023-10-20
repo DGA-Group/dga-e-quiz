@@ -1,10 +1,14 @@
 package com.dga.equiz.controller.question;
 
+import com.dga.equiz.model.question.FillQuestion;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class FillQuestionController {
+
+    //region FXML Reference
     @FXML
     public Label labelQuestion;
 
@@ -22,15 +26,42 @@ public class FillQuestionController {
 
     @FXML
     public Button buttonOption4;
+    //endregion
 
-    public void setupFillQuestion(String question, String context, String option1,
-                             String option2, String option3, String option4) {
-        this.labelQuestion.setText(question);
-        this.labelContext.setText(context);
-        this.buttonOption1.setText(option1);
-        this.buttonOption2.setText(option2);
-        this.buttonOption3.setText(option3);
-        this.buttonOption4.setText(option4);
+    private FillQuestion fillQuestionModel;
+
+    public void setFillQuestionModel(FillQuestion fillQuestionModel) {
+        this.fillQuestionModel = fillQuestionModel;
     }
+
+    public void setupFillQuestion(FillQuestion fillQuestionModel) {
+        this.labelQuestion.setText(fillQuestionModel.getQuestion());
+        this.labelContext.setText(fillQuestionModel.getContext());
+        String[] options = fillQuestionModel.getOptions();
+        this.buttonOption1.setText(options[1]);
+        this.buttonOption2.setText(options[2]);
+        this.buttonOption3.setText(options[3]);
+        this.buttonOption4.setText(options[4]);
+        setupButtonFunction();
+    }
+
+    private void setupButtonFunction() {
+        this.buttonOption1.setOnAction((ActionEvent event) -> {
+            this.fillQuestionModel.setChosenAnswer((byte) 1);
+        });
+
+        this.buttonOption2.setOnAction((ActionEvent event) -> {
+            this.fillQuestionModel.setChosenAnswer((byte) 2);
+        });
+
+        this.buttonOption3.setOnAction((ActionEvent event) -> {
+            this.fillQuestionModel.setChosenAnswer((byte) 3);
+        });
+
+        this.buttonOption4.setOnAction((ActionEvent event) -> {
+            this.fillQuestionModel.setChosenAnswer((byte) 4);
+        });
+    }
+
 
 }

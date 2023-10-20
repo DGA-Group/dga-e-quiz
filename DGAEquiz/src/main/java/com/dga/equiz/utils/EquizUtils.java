@@ -10,6 +10,7 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,6 +32,12 @@ public class EquizUtils {
 
         // Create and return a NodeObject containing the Node and FXMLLoader
         return new NodeObject(node, fxmlLoader);
+    }
+
+    public static NodeObject Instantiate(String path, Pane parent) throws IOException {
+        NodeObject nodeObject = Instantiate(path);
+        parent.getChildren().add(nodeObject.getNode());
+        return nodeObject;
     }
 
     /**

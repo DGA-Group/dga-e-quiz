@@ -1,5 +1,7 @@
 package com.dga.equiz.controller.campaign;
 
+import com.dga.equiz.model.Lesson;
+import com.dga.equiz.model.Revision;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,8 +18,20 @@ public class CampaignPickerController implements Initializable {
     public Button buttonRevise;
     //endregion
 
+    private Lesson lesson;
+    private Revision revision;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
+    public void setRevision(Revision revision) {
+        this.revision = revision;
+    }
+
 }

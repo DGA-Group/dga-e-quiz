@@ -25,5 +25,11 @@ public class Campaign {
         return description;
     }
 
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
 
+    public Lesson getLesson() {
+        return lesson;
+    }
 }

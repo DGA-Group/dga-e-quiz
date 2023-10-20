@@ -20,7 +20,7 @@
             </ImageView>
             <AnchorPane layoutX="40.0" layoutY="184.0" prefHeight="200.0" prefWidth="394.0" style="-fx-background-color: #009571;" styleClass="info-box" stylesheets="@../../css/learnDesign.css">
                <children>
-                  <Button fx:id="startCampaign" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="137.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="243.0" styleClass="ok-btn" stylesheets="@../../css/learnDesign.css" text="BẮT ĐẦU" textAlignment="CENTER">
+                  <Button fx:id="buttonStartCampaign" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="137.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="243.0" styleClass="ok-btn" stylesheets="@../../css/learnDesign.css" text="BẮT ĐẦU" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
