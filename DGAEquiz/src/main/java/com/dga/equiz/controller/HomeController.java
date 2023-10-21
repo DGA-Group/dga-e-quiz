@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -28,6 +29,7 @@ public class HomeController implements Initializable {
     //endregion
 
     private Home homeModel = new Home();
+    private NodeObject currentPanel = null;
     private NodeObject campaignPickerView = null;
     private NodeObject learnView = null;
 
@@ -72,6 +74,7 @@ public class HomeController implements Initializable {
                 controller.buttonStartCampaign.setOnAction((ActionEvent event) -> {
                     LearnController learnController = learnView.getController();
                     learnController.setLesson(campaign.getLesson());
+                    switchToPanel(campaignPickerView);
                 });
             }
             vBCampaignList.setVisible(true);
@@ -86,7 +89,7 @@ public class HomeController implements Initializable {
             learnView = EquizUtils.Instantiate("/view/LearnView.fxml", panelHome);
             LearnController controller = learnView.getController();
             controller.buttonClose.setOnAction((ActionEvent event) -> {
-                learnView.hide();
+                switchToPanel(null);
             });
             learnView.hide();
         } catch (Exception e) {
@@ -101,13 +104,24 @@ public class HomeController implements Initializable {
             CampaignPickerController controller = campaignPickerView.getController();
 
             controller.buttonLearn.setOnAction((ActionEvent event) -> {
-                learnView.show();
+                switchToPanel(learnView);
             });
 
             campaignPickerView.hide();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    private void switchToPanel(NodeObject panel) {
+        if (currentPanel != null) {
+            currentPanel.setVisible(false);
+        }
+
+        currentPanel = panel;
+
+        if (currentPanel != null) {
+            currentPanel.setVisible(true);
+        }
     }
 }

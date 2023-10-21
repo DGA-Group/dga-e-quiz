@@ -6,6 +6,7 @@ import com.dga.equiz.model.question.FillQuestion;
 import com.dga.equiz.model.question.ImageQuestion;
 import com.dga.equiz.model.question.ListeningQuestion;
 import com.dga.equiz.model.question.TranslateQuestion;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
@@ -27,20 +28,13 @@ public class ApplicationData {
     }
 
     private Map<Long, Campaign> campaignData = new HashMap<Long, Campaign>();
-    private Map<Long, Lesson> lessonData = new HashMap<Long, Lesson>();
     private Map<Long, ImageQuestion> imageQuestionData = new HashMap<Long, ImageQuestion>();
     private Map<Long, ListeningQuestion> listeningQuestionData = new HashMap<Long, ListeningQuestion>();
     private Map<Long, FillQuestion> fillQuestionData = new HashMap<Long, FillQuestion>();
-
-
     private Map<Long, TranslateQuestion> translateQuestionData = new HashMap<Long, TranslateQuestion>();
 
     public Map<Long, Campaign> getCampaignData() {
         return campaignData;
-    }
-
-    public Map<Long, Lesson> getLessonData() {
-        return lessonData;
     }
 
     public Map<Long, ImageQuestion> getImageQuestionData() {
@@ -66,7 +60,6 @@ public class ApplicationData {
         loadAllTranslateQuestion();
 
         // Load these after load all question
-        loadAllLesson();
         loadAllCampaign();
     }
 
@@ -170,20 +163,18 @@ public class ApplicationData {
         }
     }
 
-    public void loadAllLesson() {
-
-    }
-
     public void loadAllCampaign() {
         String sqlQuery = "SELECT * FROM `campaign`";
         try {
             ResultSet resultSet = DBHelper.query(sqlQuery);
             while (resultSet.next()) {
-                long campaignNumber = resultSet.getLong(1);
+                long id = resultSet.getLong(1);
                 String title = resultSet.getString(2);
                 String description = resultSet.getString(3);
-                Campaign newCampaign = new Campaign(campaignNumber, title, description);
-                campaignData.put(campaignNumber, newCampaign);
+                String lesson_data = resultSet.getString(4);
+                Lesson lesson = new ObjectMapper().readValue(lesson_data, Lesson.class);
+                Campaign newCampaign = new Campaign(id, title, description, lesson);
+                campaignData.put(id, newCampaign);
             }
         } catch (Exception e) {
             System.out.println("===========================");

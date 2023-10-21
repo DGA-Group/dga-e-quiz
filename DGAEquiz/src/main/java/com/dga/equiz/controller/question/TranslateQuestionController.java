@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class TranslateQuestionController {
+public class TranslateQuestionController implements QuestionController{
     //region FXML Reference
     @FXML
     public Label labelQuestion;
@@ -62,4 +62,10 @@ public class TranslateQuestionController {
             this.translateQuestionModel.setChosenAnswer((byte) 4);
         });
     }
+
+    @Override
+    public boolean isCorrect(){
+        return translateQuestionModel.isCorrect();
+    }
+
 }

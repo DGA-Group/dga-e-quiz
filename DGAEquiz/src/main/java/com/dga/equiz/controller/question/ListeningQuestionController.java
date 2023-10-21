@@ -1,17 +1,14 @@
 package com.dga.equiz.controller.question;
 
-import com.dga.equiz.model.question.ImageQuestion;
 import com.dga.equiz.model.question.ListeningQuestion;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class ListeningQuestionController {
+public class ListeningQuestionController implements QuestionController{
     //region FXML Reference
     @FXML
     public Label labelQuestion;
@@ -58,9 +55,16 @@ public class ListeningQuestionController {
     }
 
     public void playAudio() {
-        this.mediaPlayer.stop();
+        if (this.mediaPlayer != null) {
+            this.mediaPlayer.stop();
+        }
         this.mediaPlayer = new MediaPlayer(this.sound);
         this.mediaPlayer.play();
+    }
+
+    @Override
+    public boolean isCorrect(){
+        return listeningQuestionModel.isCorrect();
     }
 
 }

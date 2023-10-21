@@ -4,8 +4,6 @@ import com.dga.equiz.utils.DBHelper;
 import org.junit.jupiter.api.Test;
 
 import java.sql.ResultSet;
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,7 +51,7 @@ public class DBHelperTest {
 
         Map<Long, Campaign> campaignData = ApplicationData.getInstance().getCampaignData();
         for (var campaign : campaignData.values()) {
-            System.out.println("Campaign number: " + campaign.getCampaignNumber());
+            System.out.println("Campaign number: " + campaign.getId());
             System.out.println("\tCampaign title: " + campaign.getTitle());
             System.out.println("\tCampaign description: " + campaign.getDescription());
             success = true;

@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class ImageQuestionController {
+public class ImageQuestionController implements QuestionController{
     //region FXML Reference
     @FXML
     public Label labelQuestion;
@@ -64,4 +64,8 @@ public class ImageQuestionController {
         });
     }
 
+    @Override
+    public boolean isCorrect(){
+        return imageQuestionModel.isCorrect();
+    }
 }

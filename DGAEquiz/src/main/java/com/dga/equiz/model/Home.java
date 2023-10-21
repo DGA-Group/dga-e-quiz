@@ -16,6 +16,6 @@ public class Home {
     }
 
     public void removeCampaign(long campaignNumber) {
-        campaigns.removeIf(campaign -> campaign.getCampaignNumber() == campaignNumber);
+        campaigns.removeIf(campaign -> campaign.getId() == campaignNumber);
     }
 }

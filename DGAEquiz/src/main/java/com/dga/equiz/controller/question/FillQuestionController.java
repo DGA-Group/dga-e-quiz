@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class FillQuestionController {
+public class FillQuestionController implements QuestionController{
 
     //region FXML Reference
     @FXML
@@ -63,5 +63,9 @@ public class FillQuestionController {
         });
     }
 
+    @Override
+    public boolean isCorrect(){
+        return fillQuestionModel.isCorrect();
+    }
 
 }

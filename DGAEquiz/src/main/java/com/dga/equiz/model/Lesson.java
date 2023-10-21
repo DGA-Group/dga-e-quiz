@@ -1,64 +1,57 @@
 package com.dga.equiz.model;
 
-import com.dga.equiz.model.question.*;
-import com.dga.equiz.utils.ApplicationData;
-import com.dga.equiz.utils.ApplicationEnum.QuestionType;
-
-import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Lesson {
-    private final long lessonNumber;
-    private List<Question> questions = new ArrayList<Question>();
+    private List<Long> image_questions_id;
+    private List<Long> fill_questions_id;
+    private List<Long> listening_questions_id;
+    private List<Long> translate_questions_id;
 
-    public Lesson(long lessonNumber) {
-        this.lessonNumber = lessonNumber;
+    public Lesson() {
+
     }
 
-    public void addQuestion(QuestionType type, long questionId) {
-        switch (type) {
-            case FillQuestion: {
-                FillQuestion newQuestion = ApplicationData.getInstance().getFillQuestionData().get(questionId);
-                if (newQuestion == null) {
-                    System.out.println("Unable to add to lesson, fill question id: " + questionId);
-                    break;
-                }
-                questions.add(newQuestion);
-            }
-            break;
-            case ImageQuestion: {
-                ImageQuestion newQuestion = ApplicationData.getInstance().getImageQuestionData().get(questionId);
-                if (newQuestion == null) {
-                    System.out.println("Unable to add to lesson, image question id: " + questionId);
-                    break;
-                }
-                questions.add(newQuestion);
-            }
-            break;
-            case ListeningQuestion: {
-                ListeningQuestion newQuestion = ApplicationData.getInstance().getListeningQuestionData().get(questionId);
-                if (newQuestion == null) {
-                    System.out.println("Unable to add to lesson, listening question id: " + questionId);
-                    break;
-                }
-                questions.add(newQuestion);
-            }
-            break;
-            case TranslateQuestion: {
-                TranslateQuestion newQuestion = ApplicationData.getInstance().getTranslateQuestionData().get(questionId);
-                if (newQuestion == null) {
-                    System.out.println("Unable to add to lesson, translate question id: " + questionId);
-                    break;
-                }
-                questions.add(newQuestion);
-            }
-            break;
-            default:
-                break;
-        }
+    public Lesson(List<Long> image_questions_id, List<Long> fill_questions_id,
+                  List<Long> listening_questions_id, List<Long> translate_questions_id) {
+        this.image_questions_id = image_questions_id;
+        this.fill_questions_id = fill_questions_id;
+        this.listening_questions_id = listening_questions_id;
+        this.translate_questions_id = translate_questions_id;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
+    public List<Long> getImage_questions_id() {
+        return image_questions_id;
+    }
+
+    public void setImage_questions_id(List<Long> image_questions_id) {
+        this.image_questions_id = image_questions_id;
+    }
+
+    public List<Long> getFill_questions_id() {
+        return fill_questions_id;
+    }
+
+    public void setFill_questions_id(List<Long> fill_questions_id) {
+        this.fill_questions_id = fill_questions_id;
+    }
+
+    public List<Long> getListening_questions_id() {
+        return listening_questions_id;
+    }
+
+    public void setListening_questions_id(List<Long> listening_questions_id) {
+        this.listening_questions_id = listening_questions_id;
+    }
+
+    public List<Long> getTranslate_questions_id() {
+        return translate_questions_id;
+    }
+
+    public void setTranslate_questions_id(List<Long> translate_questions_id) {
+        this.translate_questions_id = translate_questions_id;
     }
 }
