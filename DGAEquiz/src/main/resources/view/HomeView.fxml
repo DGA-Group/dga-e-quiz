@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="panelHome" prefHeight="430.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.HomeController">
    <children>
-      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" prefHeight="440.4" prefWidth="658.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="10.0" prefHeight="430.0" prefWidth="648.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <VBox fx:id="vBCampaignList" alignment="TOP_CENTER" prefHeight="430.0" prefWidth="648.0" style="-fx-background-color: #FF00FF;" />
+            <VBox fx:id="vBCampaignList" alignment="TOP_CENTER" prefHeight="430.0" prefWidth="648.0" spacing="50.0" style="-fx-background-color: #FF00FF;">
+               <padding>
+                  <Insets bottom="30.0" top="20.0" />
+               </padding></VBox>
          </content>
       </ScrollPane>
    </children>

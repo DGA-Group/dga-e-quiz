@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="268.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.FillQuestionController">
-   <children>
-      <Label fx:id="labelQuestion" layoutX="29.0" layoutY="17.0" prefHeight="18.0" prefWidth="488.0" text="Chọn câu trả lời đúng">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.FillQuestionController">
+   <top>
+      <Label fx:id="labelQuestion" prefHeight="27.0" prefWidth="603.0" text="Chọn câu trả lời đúng" BorderPane.alignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
       </Label>
-      <VBox alignment="CENTER" layoutX="273.0" layoutY="27.0" prefHeight="214.0" prefWidth="274.0" spacing="20.0">
+   </top>
+   <right>
+      <VBox alignment="CENTER" prefHeight="214.0" prefWidth="274.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
             <Button fx:id="buttonOption2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
             <Button fx:id="buttonOption3" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
             <Button fx:id="buttonOption4" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
          </children>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
       </VBox>
-      <Label fx:id="labelContext" alignment="TOP_LEFT" contentDisplay="TOP" layoutX="29.0" layoutY="67.0" prefHeight="181.0" prefWidth="196.0" text="The __ jump over the lazy fox. and then running to the field with alot of grass then laying down." wrapText="true">
+   </right>
+   <center>
+      <Label fx:id="labelContext" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="202.0" prefWidth="258.0" text="The __ jump over the lazy fox. and then running to the field with alot of grass then laying down." wrapText="true" BorderPane.alignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-   </children>
-</AnchorPane>
+   </center>
+</BorderPane>

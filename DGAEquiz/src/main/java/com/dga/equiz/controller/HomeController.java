@@ -4,6 +4,7 @@ import com.dga.equiz.controller.campaign.CampaignController;
 import com.dga.equiz.controller.campaign.CampaignPickerController;
 import com.dga.equiz.model.Campaign;
 import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.model.Home;
 import com.dga.equiz.model.nodeObject.NodeObject;
@@ -11,7 +12,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -86,7 +86,7 @@ public class HomeController implements Initializable {
     private void setupLearnView() {
         // Add learn panel to home.
         try {
-            learnView = EquizUtils.Instantiate("/view/LearnView.fxml", panelHome);
+            learnView = EquizUtils.Instantiate("/view/LearnView.fxml", panelHome, AnchorType.FitToParent);
             LearnController controller = learnView.getController();
             controller.buttonClose.setOnAction((ActionEvent event) -> {
                 switchToPanel(null);
@@ -100,7 +100,7 @@ public class HomeController implements Initializable {
     private void setupCampaignPickerView() {
         try {
             // Add campaign picker panel to home.
-            campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml", panelHome);
+            campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml", panelHome, AnchorType.FitToParent);
             CampaignPickerController controller = campaignPickerView.getController();
 
             controller.buttonLearn.setOnAction((ActionEvent event) -> {

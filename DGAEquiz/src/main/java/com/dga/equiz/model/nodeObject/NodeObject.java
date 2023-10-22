@@ -20,6 +20,10 @@ public class NodeObject {
         return node;
     }
 
+    public void setNode(Node node) {
+        this.node = node;
+    }
+
     public <T> T getController() {
         return fxmlLoader.getController();
     }

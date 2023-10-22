@@ -9,8 +9,12 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import com.dga.equiz.utils.ApplicationEnum.AnchorType;
+import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.util.List;
@@ -40,6 +44,37 @@ public class EquizUtils {
         return nodeObject;
     }
 
+    public static NodeObject Instantiate(String path, Pane parent, AnchorType anchorType) throws IOException {
+        NodeObject nodeObject = Instantiate(path);
+        Node node = nodeObject.getNode();
+
+        switch (anchorType) {
+            case FitToParent:
+                fitNodeToParent(node);
+                break;
+            case Center:
+                centerNodeToParent(node);
+                break;
+            default:
+                break;
+        }
+
+        parent.getChildren().add(node);
+
+        return nodeObject;
+    }
+
+    private static void fitNodeToParent(Node node) {
+        AnchorPane.setTopAnchor(node, 0.0);
+        AnchorPane.setRightAnchor(node, 0.0);
+        AnchorPane.setLeftAnchor(node, 0.0);
+        AnchorPane.setBottomAnchor(node, 0.0);
+    }
+
+    private static void centerNodeToParent(Node node) {
+        StackPane.setAlignment(node, Pos.CENTER);
+    }
+
     /**
      * Makes an HTTP API call to the specified URL using the GET method and returns the response.
      *
@@ -63,7 +98,7 @@ public class EquizUtils {
 
     /**
      * Fetches information about a target word from an online dictionary API.
-     *
+     * <p>
      * This method sends a GET request to an online dictionary API using the provided
      * target word and retrieves information about the word. The response from the API
      * is deserialized into a list of Word objects.
@@ -83,7 +118,8 @@ public class EquizUtils {
         Response response = APICall(apiCall);
 
         // Deserialize the JSON response into a List of Word objects
-        List<Word> wordList = mapper.readValue(response.body().byteStream(), new TypeReference<List<Word>>() {});
+        List<Word> wordList = mapper.readValue(response.body().byteStream(), new TypeReference<List<Word>>() {
+        });
 
         return wordList;
     }
@@ -94,7 +130,7 @@ public class EquizUtils {
      *
      * @param word The input word for which to fetch suggested or related words.
      * @return A List of Word objects containing suggested words or related words for
-     *         the input word.
+     * the input word.
      * @throws IOException If there is an issue with the network communication or data reading.
      */
     public static List<Word> FetchSuggestWordFromDictionary(String word) throws IOException {
@@ -108,7 +144,8 @@ public class EquizUtils {
         Response response = APICall(apiCall);
 
         // Deserialize the JSON response into a List of Word objects
-        List<Word> wordList = mapper.readValue(response.body().byteStream(), new TypeReference<List<Word>>() {});
+        List<Word> wordList = mapper.readValue(response.body().byteStream(), new TypeReference<List<Word>>() {
+        });
 
         return wordList;
     }

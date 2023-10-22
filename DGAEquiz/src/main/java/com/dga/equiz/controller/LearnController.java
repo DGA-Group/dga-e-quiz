@@ -3,17 +3,15 @@ package com.dga.equiz.controller;
 import com.dga.equiz.controller.question.*;
 import com.dga.equiz.model.Lesson;
 import com.dga.equiz.model.nodeObject.NodeObject;
-import com.dga.equiz.model.question.Question;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.EquizUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 
 import java.net.URL;
 import java.util.Collections;
@@ -30,7 +28,7 @@ public class LearnController implements Initializable {
     public Button buttonClose;
 
     @FXML
-    public AnchorPane panelQuestion;
+    public StackPane paneQuestion;
 
     @FXML
     public Label labelComment;
@@ -61,7 +59,7 @@ public class LearnController implements Initializable {
 
     public void setLesson(Lesson lesson) {
         linkedListQuestions.clear();
-        panelQuestion.getChildren().removeAll();
+        paneQuestion.getChildren().removeAll();
         List<Long> image_questions_id = lesson.getImage_questions_id();
         for (var questionId : image_questions_id) {
             addImageQuestion(questionId);
@@ -87,7 +85,6 @@ public class LearnController implements Initializable {
             currentQuestion = linkedListQuestions.getFirst();
             currentQuestion.show();
         }
-
     }
 
     private void addImageQuestion(long id) {
@@ -99,7 +96,7 @@ public class LearnController implements Initializable {
                 return;
             }
 
-            NodeObject newQuestion = EquizUtils.Instantiate("/view/question/ImageQuestionView.fxml", panelQuestion);
+            NodeObject newQuestion = EquizUtils.Instantiate("/view/question/ImageQuestionView.fxml", paneQuestion);
 
             ImageQuestionController controller = newQuestion.getController();
             controller.setImageQuestionModel(imageQuestion);
@@ -124,7 +121,7 @@ public class LearnController implements Initializable {
                 return;
             }
 
-            NodeObject newQuestion = EquizUtils.Instantiate("/view/question/ListeningQuestionView.fxml", panelQuestion);
+            NodeObject newQuestion = EquizUtils.Instantiate("/view/question/ListeningQuestionView.fxml", paneQuestion);
 
             ListeningQuestionController controller = newQuestion.getController();
             controller.setListeningQuestionModel(listeningQuestion);
@@ -149,7 +146,7 @@ public class LearnController implements Initializable {
                 return;
             }
 
-            NodeObject newQuestion = EquizUtils.Instantiate("/view/question/FillQuestionView.fxml", panelQuestion);
+            NodeObject newQuestion = EquizUtils.Instantiate("/view/question/FillQuestionView.fxml", paneQuestion);
 
             FillQuestionController controller = newQuestion.getController();
             controller.setFillQuestionModel(fillQuestion);
@@ -174,7 +171,7 @@ public class LearnController implements Initializable {
                 return;
             }
 
-            NodeObject newQuestion = EquizUtils.Instantiate("/view/question/TranslateQuestionView.fxml", panelQuestion);
+            NodeObject newQuestion = EquizUtils.Instantiate("/view/question/TranslateQuestionView.fxml", paneQuestion);
 
             TranslateQuestionController controller = newQuestion.getController();
             controller.setTranslateQuestionModel(translateQuestion);
@@ -209,7 +206,7 @@ public class LearnController implements Initializable {
 
     private void checkAnswer() {
         QuestionController controller = currentQuestion.getController();
-        if(!controller.isCorrect()){
+        if (!controller.isCorrect()) {
             linkedListQuestions.addLast(currentQuestion);
             System.out.println("Sai roi");
             return;
