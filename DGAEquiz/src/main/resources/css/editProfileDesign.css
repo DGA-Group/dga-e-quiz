@@ -1,19 +1,23 @@
 @font-face {
-    src: url("../font/Signika.ttf");
-}
-@font-face {
     src: url("../font/Signika-Bold.ttf");
+}
+
+.text-input {
+    -fx-background-radius: 30;
+    -fx-background-color: #F5F8FA;
+}
+
+.save-button {
+    -fx-background-radius: 15;
+    -fx-background-color: #FFC75A;
+    -fx-text-fill: white;
+    -fx-font-family: "Signika";
 }
 
 .primary-color {
     -fx-background-color: #B4DDD3;
 }
-.button {
-    -fx-background-radius: 20;
-    -fx-background-color: #FFC75A;
-    -fx-text-fill: white;
-    -fx-font-family: "Signika";
-}
+
 .font-label {
     -fx-font-family: "Signika";
 }
