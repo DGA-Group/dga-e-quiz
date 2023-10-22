@@ -2,13 +2,13 @@ package com.dga.equiz.controller;
 
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
-import java.util.Dictionary;
 import java.util.ResourceBundle;
 
 public class MyApplicationController implements Initializable {
@@ -38,8 +38,7 @@ public class MyApplicationController implements Initializable {
     private void setupHomeView() {
         // Add home panel to application.
         try {
-            homeView = EquizUtils.Instantiate("/view/HomeView.fxml");
-            panelHolder.getChildren().add(homeView.getNode());
+            homeView = EquizUtils.Instantiate("/view/HomeView.fxml", panelHolder, AnchorType.FitToParent);
             homeView.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,8 +58,12 @@ public class MyApplicationController implements Initializable {
     private void setupProfileView() {
         try {
             // Load profile here.
-        } catch (Exception e) {
+            profileView = EquizUtils.Instantiate("/view/ProfileContainerView.fxml");
+            panelHolder.getChildren().add(profileView.getNode());
 
+            profileView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

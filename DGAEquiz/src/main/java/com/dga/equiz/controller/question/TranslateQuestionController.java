@@ -1,10 +1,14 @@
 package com.dga.equiz.controller.question;
 
+import com.dga.equiz.model.question.ImageQuestion;
+import com.dga.equiz.model.question.TranslateQuestion;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class TranslateQuestionController {
+public class TranslateQuestionController implements QuestionController{
+    //region FXML Reference
     @FXML
     public Label labelQuestion;
 
@@ -22,14 +26,46 @@ public class TranslateQuestionController {
 
     @FXML
     public Button buttonOption4;
+    //endregion
 
-    public void setupTranslateQuestion(String question, String context, String option1,
-                                  String option2, String option3, String option4) {
-        this.labelQuestion.setText(question);
-        this.labelWord.setText(context);
-        this.buttonOption1.setText(option1);
-        this.buttonOption2.setText(option2);
-        this.buttonOption3.setText(option3);
-        this.buttonOption4.setText(option4);
+    private TranslateQuestion translateQuestionModel;
+
+    public void setTranslateQuestionModel(TranslateQuestion translateQuestionModel) {
+        this.translateQuestionModel = translateQuestionModel;
     }
+
+    public void setupTranslateQuestion(TranslateQuestion translateQuestionModel) {
+        this.labelQuestion.setText(translateQuestionModel.getQuestion());
+        this.labelWord.setText(translateQuestionModel.getContext());
+        String[] options = translateQuestionModel.getOptions();
+        this.buttonOption1.setText(options[1]);
+        this.buttonOption2.setText(options[2]);
+        this.buttonOption3.setText(options[3]);
+        this.buttonOption4.setText(options[4]);
+        setupButtonFunction();
+    }
+
+    private void setupButtonFunction() {
+        this.buttonOption1.setOnAction((ActionEvent event) -> {
+            this.translateQuestionModel.setChosenAnswer((byte) 1);
+        });
+
+        this.buttonOption2.setOnAction((ActionEvent event) -> {
+            this.translateQuestionModel.setChosenAnswer((byte) 2);
+        });
+
+        this.buttonOption3.setOnAction((ActionEvent event) -> {
+            this.translateQuestionModel.setChosenAnswer((byte) 3);
+        });
+
+        this.buttonOption4.setOnAction((ActionEvent event) -> {
+            this.translateQuestionModel.setChosenAnswer((byte) 4);
+        });
+    }
+
+    @Override
+    public boolean isCorrect(){
+        return translateQuestionModel.isCorrect();
+    }
+
 }

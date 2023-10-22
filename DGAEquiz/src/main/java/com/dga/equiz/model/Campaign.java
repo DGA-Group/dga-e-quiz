@@ -1,20 +1,21 @@
 package com.dga.equiz.model;
 
 public class Campaign {
-    private final long campaignNumber;
+    private final long id;
     private final String title;
     private final String description;
-    private Lesson lesson;
+    private final Lesson lesson;
     private Revision revision;
 
-    public Campaign(long campaignNumber, String title, String description) {
-        this.campaignNumber = campaignNumber;
+    public Campaign(long id, String title, String description, Lesson lesson) {
+        this.id = id;
         this.title = title;
         this.description = description;
+        this.lesson = lesson;
     }
 
-    public long getCampaignNumber() {
-        return campaignNumber;
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -25,5 +26,7 @@ public class Campaign {
         return description;
     }
 
-
+    public Lesson getLesson() {
+        return lesson;
+    }
 }

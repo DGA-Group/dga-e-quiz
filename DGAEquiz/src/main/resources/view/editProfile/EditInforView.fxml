@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="648.0" styleClass="primary-color" stylesheets="@../../css/editProfileDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.editProfile.EditInforController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" prefHeight="36.0" prefWidth="565.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Profile Setting">
+         <font>
+            <Font name="System Bold Italic" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonBack" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="24.0" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css">
+         <graphic>
+            <FontIcon iconColor="#f5f8fa" iconLiteral="fth-rotate-ccw" iconSize="30" wrappingWidth="31.0" />
+         </graphic>
+      </Button>
+      <VBox layoutX="1.0" layoutY="56.0" prefHeight="178.0" prefWidth="648.0" spacing="20.0">
+         <children>
+            <Label prefHeight="11.0" prefWidth="648.0" text="Profile Details">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="648.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="155.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Name :">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="70.0" />
+                     </padding>
+                  </Label>
+                  <Pane prefHeight="35.0" prefWidth="87.0" />
+                  <TextField prefHeight="27.0" prefWidth="356.0" styleClass="text-input" stylesheets="@../../css/editProfileDesign.css" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="40.0" prefHeight="35.0" prefWidth="648.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="155.0" text="Mail :">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="70.0" />
+                     </padding>
+                  </Label>
+                  <Pane prefHeight="35.0" prefWidth="87.0" />
+                  <TextField prefHeight="27.0" prefWidth="356.0" styleClass="text-input" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="75.0" prefHeight="35.0" prefWidth="648.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="185.0" text="Date of Birth :">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="70.0" />
+                     </padding>
+                  </Label>
+                  <Pane prefHeight="35.0" prefWidth="59.0" />
+                  <DatePicker prefWidth="356.0" styleClass="text-input" stylesheets="@../../css/editProfileDesign.css" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox layoutX="1.0" layoutY="234.0" prefHeight="138.0" prefWidth="648.0" spacing="20.0">
+         <children>
+            <Label prefHeight="16.0" prefWidth="648.0" text="Contact">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="35.0" prefWidth="648.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="155.0" text="Phone :">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="70.0" />
+                     </padding>
+                  </Label>
+                  <Pane prefHeight="35.0" prefWidth="87.0" />
+                  <TextField prefHeight="27.0" prefWidth="356.0" styleClass="text-input" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="40.0" prefHeight="35.0" prefWidth="648.0">
+               <children>
+                  <Label prefHeight="26.0" prefWidth="155.0" text="Github :">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <padding>
+                        <Insets left="70.0" />
+                     </padding>
+                  </Label>
+                  <Pane prefHeight="35.0" prefWidth="87.0" />
+                  <TextField prefHeight="27.0" prefWidth="356.0" styleClass="text-input" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Button fx:id="saveButton" layoutX="411.0" layoutY="385.0" mnemonicParsing="false" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css" text="Save">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

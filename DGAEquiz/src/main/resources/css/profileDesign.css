@@ -1,0 +1,19 @@
+@font-face {
+    src: url("../font/Signika.ttf");
+}
+@font-face {
+    src: url("../font/Signika-Bold.ttf");
+}
+
+.primary-color {
+    -fx-background-color: #B4DDD3;
+}
+.button {
+    -fx-background-radius: 20;
+    -fx-background-color: #FFC75A;
+    -fx-text-fill: white;
+    -fx-font-family: "Signika";
+}
+.font-label {
+    -fx-font-family: "Signika";
+}

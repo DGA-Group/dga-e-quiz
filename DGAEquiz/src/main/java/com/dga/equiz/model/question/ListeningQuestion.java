@@ -25,6 +25,11 @@ public class ListeningQuestion extends Question {
     }
 
     @Override
+    public void setChosenAnswer(byte chosenAnswer) {
+        this.chosenAnswer = chosenAnswer;
+    }
+
+    @Override
     public boolean isCorrect() {
         return (this.correctAnswer == this.chosenAnswer);
     }

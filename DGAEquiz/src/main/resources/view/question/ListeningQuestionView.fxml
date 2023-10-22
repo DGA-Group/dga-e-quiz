@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="268.0" prefWidth="556.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.ListeningQuestionController">
-   <children>
-      <Label fx:id="labelQuestion" layoutX="29.0" layoutY="17.0" prefHeight="18.0" prefWidth="488.0" text="Chọn câu trả lời đúng">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <VBox alignment="CENTER" layoutX="249.0" layoutY="43.0" prefHeight="181.0" prefWidth="274.0" spacing="20.0">
-         <children>
-            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="59.0" prefWidth="274.0" text="Answer" />
-            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="72.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="274.0" text="Answer" />
-         </children>
-      </VBox>
-      <Button fx:id="buttonPlaySound" layoutX="55.0" layoutY="84.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.ListeningQuestionController">
+   <center>
+      <Button fx:id="buttonPlaySound" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <graphic>
             <FontIcon iconLiteral="fth-volume-2" iconSize="70" />
          </graphic>
       </Button>
-   </children>
-</AnchorPane>
+   </center>
+   <right>
+      <VBox alignment="CENTER" prefHeight="181.0" prefWidth="274.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="59.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="72.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="274.0" text="Answer" />
+         </children>
+         <BorderPane.margin>
+            <Insets right="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+   <top>
+      <Label fx:id="labelQuestion" prefHeight="34.0" prefWidth="556.0" text="Chọn câu trả lời đúng" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </Label>
+   </top>
+</BorderPane>

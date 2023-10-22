@@ -4,6 +4,7 @@ import com.dga.equiz.controller.campaign.CampaignController;
 import com.dga.equiz.controller.campaign.CampaignPickerController;
 import com.dga.equiz.model.Campaign;
 import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.model.Home;
 import com.dga.equiz.model.nodeObject.NodeObject;
@@ -27,7 +28,8 @@ public class HomeController implements Initializable {
     private VBox vBCampaignList;
     //endregion
 
-    private final Home homeModel = new Home();
+    private Home homeModel = new Home();
+    private NodeObject currentPanel = null;
     private NodeObject campaignPickerView = null;
     private NodeObject learnView = null;
 
@@ -37,12 +39,6 @@ public class HomeController implements Initializable {
         public void handle(ActionEvent actionEvent) {
             learnView.show();
             campaignPickerView.hide();
-        }
-    };
-    private final EventHandler<ActionEvent> hideLearnView = new EventHandler<ActionEvent>() {
-        @Override
-        public void handle(ActionEvent actionEvent) {
-            learnView.hide();
         }
     };
     private final EventHandler<ActionEvent> showCampaignPickerView = new EventHandler<ActionEvent>() {
@@ -57,8 +53,8 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupHome();
-        setupCampaignPickerView();
         setupCampaignList();
+        setupCampaignPickerView();
         setupLearnView();
     }
 
@@ -66,13 +62,35 @@ public class HomeController implements Initializable {
 
     }
 
+    private void setupCampaignList() {
+        try {
+            // Add campaign to to home
+            Map<Long, Campaign> campaignData = ApplicationData.getInstance().getCampaignData();
+            for (var campaign : campaignData.values()) {
+                NodeObject node = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml", vBCampaignList);
+                CampaignController controller = node.getController();
+                controller.setCampaignModel(campaign);
+                controller.setupCampaign(campaign);
+                controller.buttonStartCampaign.setOnAction((ActionEvent event) -> {
+                    LearnController learnController = learnView.getController();
+                    learnController.setLesson(campaign.getLesson());
+                    switchToPanel(campaignPickerView);
+                });
+            }
+            vBCampaignList.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setupLearnView() {
         // Add learn panel to home.
         try {
-            learnView = EquizUtils.Instantiate("/view/LearnView.fxml");
-            panelHome.getChildren().add(learnView.getNode());
+            learnView = EquizUtils.Instantiate("/view/LearnView.fxml", panelHome, AnchorType.FitToParent);
             LearnController controller = learnView.getController();
-            controller.buttonClose.setOnAction(hideLearnView);
+            controller.buttonClose.setOnAction((ActionEvent event) -> {
+                switchToPanel(null);
+            });
             learnView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,37 +100,28 @@ public class HomeController implements Initializable {
     private void setupCampaignPickerView() {
         try {
             // Add campaign picker panel to home.
-            campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml");
-            panelHome.getChildren().add(campaignPickerView.getNode());
+            campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml", panelHome, AnchorType.FitToParent);
             CampaignPickerController controller = campaignPickerView.getController();
-            controller.buttonLearn.setOnAction(showLearnView);
-            controller.buttonRevise.setOnAction(showLearnView);
+
+            controller.buttonLearn.setOnAction((ActionEvent event) -> {
+                switchToPanel(learnView);
+            });
+
             campaignPickerView.hide();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    private void setupCampaignList() {
-        try {
-            // Add campaign to to home
-            Map<Long, Campaign> campaignData = ApplicationData.getInstance().getCampaignData();
-            for (var campaign : campaignData.values()) {
-                NodeObject node = EquizUtils.Instantiate("/view/campaign/CampaignView.fxml");
+    private void switchToPanel(NodeObject panel) {
+        if (currentPanel != null) {
+            currentPanel.setVisible(false);
+        }
 
-                CampaignController controller = node.getController();
-                String title = campaign.getTitle();
-                String description = campaign.getDescription();
-                controller.setupCampaign(title, description);
+        currentPanel = panel;
 
-                controller.startCampaign.setOnAction(showCampaignPickerView);
-
-                vBCampaignList.getChildren().add(node.getNode());
-            }
-            vBCampaignList.setVisible(true);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (currentPanel != null) {
+            currentPanel.setVisible(true);
         }
     }
 }

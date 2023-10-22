@@ -25,5 +25,7 @@ public abstract class Question {
         return correctAnswer;
     }
 
+    public abstract void setChosenAnswer(byte chosenAnswer);
+
     public abstract boolean isCorrect();
 }
