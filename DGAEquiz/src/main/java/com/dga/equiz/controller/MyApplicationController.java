@@ -58,8 +58,12 @@ public class MyApplicationController implements Initializable {
     private void setupProfileView() {
         try {
             // Load profile here.
-        } catch (Exception e) {
+            profileView = EquizUtils.Instantiate("/view/ProfileContainerView.fxml");
+            panelHolder.getChildren().add(profileView.getNode());
 
+            profileView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

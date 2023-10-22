@@ -15,6 +15,8 @@ module dgaequiz{
     opens com.dga.equiz.controller.question;
     exports com.dga.equiz.model;
     opens com.dga.equiz.model;
+    exports com.dga.equiz.controller.editProfile;
+    opens com.dga.equiz.controller.editProfile;
 
     requires javafx.base;
     requires javafx.graphics;

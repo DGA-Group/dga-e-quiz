@@ -29,7 +29,7 @@ public class DBHelperTest {
     @Test
     void test2() {
         // This situation the table is invalid "account" instead of "accout".
-        String sqlTestQuery = "SELECT * FROM accout";
+        String sqlTestQuery = "SELECT * FROM account";
         try {
             ResultSet resultSet = DBHelper.query(sqlTestQuery);
             while (resultSet.next()) {
