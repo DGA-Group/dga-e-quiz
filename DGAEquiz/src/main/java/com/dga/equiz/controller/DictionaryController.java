@@ -1,14 +1,18 @@
 package com.dga.equiz.controller;
 import  java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Definition;
 import com.dga.equiz.model.word.Meaning;
 import com.dga.equiz.model.word.Phonetic;
 import com.dga.equiz.model.word.Word;
 import com.dga.equiz.utils.EquizUtils;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import  javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,12 +20,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+import org.kordamp.ikonli.javafx.FontIcon;
+
 public class DictionaryController implements Initializable {
     @FXML
     private  AnchorPane root;
     @FXML
-    private  TextField words;
+    private  TextField searchingField;
 
     @FXML
     private Label labelMeaning;
@@ -32,12 +41,37 @@ public class DictionaryController implements Initializable {
     @FXML
     private Button buttonSearch;
     @FXML
-    private VBox vBox;
+    private VBox wordsBox;
+
+    private List<String> suggesstions = new ArrayList<String>();
+
     public  void onStartup() throws IOException{
-        TextFields.bindAutoCompletion(words,"hihaha"
-                );
+        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(searchingField,suggesstions);
+        autoCompletionBinding.setPrefWidth(searchingField.getPrefWidth());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            String selectedWord = event.getCompletion();
+        });
+        searchingField.textProperty().addListener((obs, oldText, newText) -> {
+            TextFields.bindAutoCompletion(searchingField,"");
+            suggesstions.clear();
+            suggesstions.addAll(getYourSuggestedWords());
+            TextFields.bindAutoCompletion(searchingField,suggesstions);
+        });
     }
 
+   private List<String> getYourSuggestedWords() {
+        try {
+            List<String> suggestedWords = new ArrayList<>();
+            List<Word> inputSuggestWord = EquizUtils.FetchSuggestWordFromDictionary(searchingField.getText());
+            for (var word : inputSuggestWord) {
+                suggestedWords.add(word.getWord());
+            }
+            return suggestedWords;
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Không thể tải danh sách từ khóa gợi ý.");
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -46,55 +80,36 @@ public class DictionaryController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+    public void onClickSearch() throws IOException {
+        wordsBox.getChildren().clear();
+        String inputWord = searchingField.getText();
 
-    public void onClickSearch(){
-        String inputWord = words.getText();
-        try {
             List<Word> resWord = EquizUtils.FetchWordFromDictionary(inputWord);
-            for(var wor : resWord) {
-                Label phoneticLabel = new Label();
-                Label wordLabel = new Label();
-                vBox.getChildren().add(wordLabel);
-                vBox.getChildren().add(phoneticLabel);
-                wordLabel.setText(wor.getWord() + ":" + "\n");
-                phoneticLabel.setText(wor.getPhonetic() + "\t");
-                List<Phonetic> phonetics = wor.getPhonetics();
+            for (var wor : resWord) {
+                NodeObject wordView = EquizUtils.Instantiate("/view/WordView.fxml");
+                wordsBox.getChildren().add(wordView.getNode());
+                WordController controller = wordView.getController();
                 List<Meaning> meanings = wor.getMeanings();
-                for (var phoneText : phonetics){
-                    Label textLabel = new Label();
-                    vBox.getChildren().add(textLabel);
-                    textLabel.setText("text   "+ phoneText.getText());
-                }
-                for (var mean : meanings) {
-                    Label meaningLabel = new Label();
-                    Label partOfspeechLabel = new Label();
-                    vBox.getChildren().add(meaningLabel);
-                    vBox.getChildren().add(partOfspeechLabel);
-                    meaningLabel.setText("meanings : [  ");
-                    partOfspeechLabel.setText("Part of speech:  " + mean.getPartOfSpeech());
-                    List<Definition> definitions = mean.getDefinitions();
-                    for (var def : definitions){
-                        Label definitionsLabel = new Label();
-                        Label synonymLabel = new Label();
-                        Label antonymLabel = new Label();
-                        Label exampleLabel = new Label();
-                        vBox.getChildren().add(definitionsLabel);
-                        vBox.getChildren().add(synonymLabel);
-                        vBox.getChildren().add(antonymLabel);
-                        vBox.getChildren().add(exampleLabel);
-                        definitionsLabel.setText("Definition:  " + def.getDefinition());
-                        synonymLabel.setText("Synonym:  "+ def.getSynonyms());
-                        antonymLabel.setText("Antonym:  " + def.getAntonyms());
-                        exampleLabel.setText("Example:  " + def.getExample());
+                List<Phonetic> phonetics = wor.getPhonetics();
+                String pathOfSpeech = "";
+                String pathOfAudio = "";
+                for (var mean : meanings){
+                    if (!mean.getPartOfSpeech().isEmpty()){
+                        pathOfSpeech += mean.getPartOfSpeech();
+                        break;
                     }
-
                 }
+                for (var phone : phonetics){
+                    if(!phone.getAudio().isEmpty()){
+                        pathOfAudio += phone.getAudio();
+                        break;
+                    }
+                }
+                if (pathOfSpeech.isEmpty() || pathOfAudio.isEmpty()){
+                    return;
+                }
+                controller.setupWordView(wor,wor.getWord(), pathOfSpeech, wor.getPhonetic(), pathOfAudio);
             }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-
 
 
 

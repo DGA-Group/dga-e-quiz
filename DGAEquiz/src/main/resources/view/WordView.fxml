@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<AnchorPane prefHeight="599.0" prefWidth="591.0" styleClass="tab-pane-wordPane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
+   <children>
+      <VBox fx:id="vBox" layoutX="4.0" layoutY="3.0" prefHeight="594.0" prefWidth="600.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css">
+         <children>
+            <Label fx:id="labelWord" prefHeight="46.0" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelPartOfSpeech" prefHeight="30.0" prefWidth="241.0" styleClass="label-labelPartOfSpeech" stylesheets="@../css/wordDesign.css" text="PartofSpeech">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelTextOfPhonetic" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="523.0" text="textOfphonetic">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <graphic>
+                  <Button fx:id="buttonPlaySound" mnemonicParsing="false" textAlignment="CENTER">
+                     <graphic>
+                        <FontIcon iconLiteral="fth-volume-2" />
+                     </graphic>
+                  </Button>
+               </graphic>
+            </Label>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

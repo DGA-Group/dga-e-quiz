@@ -1,0 +1,15 @@
+.tab-pane-wordPane {
+    -fx-background-radius: 40;
+    -fx-background-color: #F5F8FA;
+}
+.scroll-pane {
+    -fx-background-radius: 40;
+    -fx-background-color: #F5F8FA;
+}
+.label-labelPartOfSpeech {
+    -fx-font-style: italic;
+    -fx-font-family: "Times New Roman";
+}
+.label-labelWeight {
+    -fx-font-weight: bold;
+}
