@@ -59,7 +59,7 @@ public class LearnController implements Initializable {
 
     public void setLesson(Lesson lesson) {
         linkedListQuestions.clear();
-        paneQuestion.getChildren().removeAll();
+        paneQuestion.getChildren().clear();
         List<Long> image_questions_id = lesson.getImage_questions_id();
         for (var questionId : image_questions_id) {
             addImageQuestion(questionId);
