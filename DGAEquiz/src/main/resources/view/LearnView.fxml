@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane prefHeight="430.0" prefWidth="648.0" style="-fx-background-color: #F5F8FA;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
+<BorderPane prefHeight="430.0" prefWidth="648.0" style="-fx-background-color: #F6FCFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
    <top>
-      <AnchorPane prefHeight="62.0" prefWidth="648.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="62.0" prefWidth="648.0" styleClass="upper" stylesheets="@../css/learnDesign.css" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_CENTER" layoutX="128.0" layoutY="9.0" prefHeight="21.0" prefWidth="391.0" spacing="200.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="9.0">
                <children>
@@ -63,6 +63,12 @@
       </AnchorPane>
    </bottom>
    <center>
-      <StackPane fx:id="paneQuestion" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <StackPane fx:id="paneQuestion" prefHeight="281.0" prefWidth="648.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="10.0" />
+         </padding></StackPane>
    </center>
 </BorderPane>

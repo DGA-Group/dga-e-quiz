@@ -22,45 +22,53 @@
     darkblue: #5D8DBF;
     midnightblue: #444766;
     progressbartrack: #E8F1FA;
+    lightred: #FFBFBF;
 }
 
+/* ===================================== Button ===================================== */
 .button {
     -fx-font-family: "Signika-Bold";
     -fx-font-size: 16px;
-    -fx-text-fill: whitesmoke;
+    -fx-text-fill: #F5F8FA;
     -fx-border-radius: 15px;
     -fx-background-radius: 15px;
     -fx-stroke-width: 5px, 5px, 5px, 0px;
-    -fx-background-color: goldenrod;
-    -fx-effect: dropshadow(gaussian, godenrod10, 20, 0, 0, 0);
+    -fx-background-color: #FFC75A;
+    -fx-effect: dropshadow(gaussian, #FBD48C, 20, 0, 0, 0);
 }
 
 .button:pressed {
     -fx-translate-y: 2px;
 }
 
-.progress-bar {
-    -fx-indeterminate-bar-length: 60;
-    -fx-indeterminate-bar-escape: true;
-    -fx-indeterminate-bar-flip: true;
-    -fx-indeterminate-bar-animation-time: 2;
+.button:disabled {
+    -fx-background-color: #C4C4C4;
 }
 
-.progress-bar > .track {
-    -fx-background-color: progressbartrack;
-    -fx-background-insets: 0;
-    -fx-background-radius: 6px;
+.button-correct-answer {
+    -fx-font-family: "Signika-Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #F5F8FA;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-stroke-width: 5px, 5px, 5px, 0px;
+    -fx-background-color: #B4DDD3;
+    -fx-effect: dropshadow(gaussian, #C8EAE2, 20, 0, 0, 0);
+    -fx-translate-y: 2px;
+    -fx-alignment: CENTER;
 }
 
-.progress-bar > .bar {
-    -fx-background-color: lightskyblue;
-    -fx-background-insets: 0;
-    -fx-background-radius: 6px;
-    -fx-padding: 0.4em;
-}
-
-.progress-bar:disabled {
-    -fx-opacity: 0.4;
+.button-wrong-answer {
+    -fx-font-family: "Signika-Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #000000;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-stroke-width: 5px, 5px, 5px, 0px;
+    -fx-background-color: #FFBFBF;
+    -fx-effect: dropshadow(gaussian, #D8ADAD, 20, 0, 0, 0);
+    -fx-translate-y: 2px;
+    -fx-alignment: CENTER;
 }
 
 .button-close {
@@ -71,19 +79,51 @@
     -fx-translate-y: 2px;
 }
 
-.label-content {
-    -fx-font-family: "Signika SemiBold";
-    -fx-font-size: 16px;
+/* ===================================== ProgressBar ===================================== */
+.progress-bar {
+    -fx-indeterminate-bar-length: 60;
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
 }
 
-.footer {
-    -fx-background-color: #B4DDD3;
-    -fx-background-radius: 15% 15% 0% 0%;
+.progress-bar > .track {
+    -fx-background-color: #E8F1FA;
+    -fx-background-insets: 0;
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #95CBF8;
+    -fx-background-insets: 0;
+    -fx-padding: 0.4%;
+}
+
+.progress-bar:disabled {
+    -fx-opacity: 0.4;
 }
 
 .progress-label {
     -fx-font-family: "Signika Light";
     -fx-font-size: 13px;
+}
+
+/* ===================================== Label ===================================== */
+.label-content {
+    -fx-font-family: "Signika SemiBold";
+    -fx-font-size: 16px;
+}
+
+/* ===================================== Pane ===================================== */
+.upper {
+    -fx-background-color: #C9E6FF;
+    -fx-background-radius: 0% 0% 5% 5%;
+}
+
+.footer {
+    -fx-background-color: #B4DDD3;
+    -fx-background-radius: 15% 15% 0% 0%;
 }
 
 .message-pane-correct {
@@ -96,4 +136,10 @@
 
 .message-border {
     -fx-background-radius: 15% 15% 0% 0%;
+}
+
+.question-pane {
+    -fx-background-color: #C9E6FF;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
 }

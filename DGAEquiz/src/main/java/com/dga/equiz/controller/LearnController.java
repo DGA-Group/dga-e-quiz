@@ -97,6 +97,9 @@ public class LearnController implements Initializable {
 
         // Reset view
         paneMessageHolder.setVisible(false);
+        buttonSubmit.setDisable(true);
+        buttonSubmit.setVisible(true);
+        buttonContinue.setVisible(false);
         pgbarLessonProgress.setProgress(0);
         labelPercent.setText("0%");
 
@@ -121,6 +124,7 @@ public class LearnController implements Initializable {
             ImageQuestionController controller = newQuestion.getController();
             controller.setImageQuestionModel(imageQuestion);
             controller.setupImageQuestion(imageQuestion);
+            controller.buttonSubmit = this.buttonSubmit;
 
             newQuestion.hide();
             linkedListQuestions.add(newQuestion);
@@ -146,6 +150,7 @@ public class LearnController implements Initializable {
             ListeningQuestionController controller = newQuestion.getController();
             controller.setListeningQuestionModel(listeningQuestion);
             controller.setupListeningQuestion(listeningQuestion);
+            controller.buttonSubmit = this.buttonSubmit;
 
             newQuestion.hide();
             linkedListQuestions.add(newQuestion);
@@ -171,6 +176,7 @@ public class LearnController implements Initializable {
             FillQuestionController controller = newQuestion.getController();
             controller.setFillQuestionModel(fillQuestion);
             controller.setupFillQuestion(fillQuestion);
+            controller.buttonSubmit = this.buttonSubmit;
 
             newQuestion.hide();
             linkedListQuestions.add(newQuestion);
@@ -196,6 +202,7 @@ public class LearnController implements Initializable {
             TranslateQuestionController controller = newQuestion.getController();
             controller.setTranslateQuestionModel(translateQuestion);
             controller.setupTranslateQuestion(translateQuestion);
+            controller.buttonSubmit = this.buttonSubmit;
 
             newQuestion.hide();
             linkedListQuestions.add(newQuestion);
@@ -213,8 +220,11 @@ public class LearnController implements Initializable {
             return;
         }
 
-        currentQuestion.hide();
+        QuestionController controller = currentQuestion.getController();
+        controller.resetChosenAnswer();
+        buttonSubmit.setDisable(true);
 
+        currentQuestion.hide();
         currentQuestion = linkedListQuestions.getFirst();
         currentQuestion.show();
     }
@@ -227,28 +237,25 @@ public class LearnController implements Initializable {
         } else {
             handleWrongAnswer();
         }
+
+        if (!linkedListQuestions.isEmpty()) {
+            linkedListQuestions.removeFirst();
+        }
+        updateView();
     }
 
     private void handleCorrectAnswer() {
         EquizUtils.setStyle(paneMessageHolder, "message-pane-correct", "message-border");
         labelComment.setText("Đúng rùi bạn nhỏ, cố gắng lên nữa he!");
-
-        // Remove question.
-        if (!linkedListQuestions.isEmpty()) {
-            linkedListQuestions.removeFirst();
-        }
     }
 
     private void handleWrongAnswer() {
         EquizUtils.setStyle(paneMessageHolder, "message-pane-wrong", "message-border");
         labelComment.setText("Ầu nầu sai rồi, hãy làm lại nhé!");
-
-
-        // Add current question to linked list tail and remove question.
         linkedListQuestions.addLast(currentQuestion);
-        if (!linkedListQuestions.isEmpty()) {
-            linkedListQuestions.removeFirst();
-        }
+
+        QuestionController controller = currentQuestion.getController();
+        controller.handleWrongAnswer();
     }
 
     private void switchButton() {
@@ -258,6 +265,10 @@ public class LearnController implements Initializable {
         this.buttonContinue.setVisible(toggleButtonContinue);
         this.buttonSubmit.setVisible(toggleButtonSubmit);
 
+       /* if (this.buttonSubmit.isVisible()) {
+            this.buttonSubmit.setDisable(true);
+        }*/
+
         boolean panelMessageVisible = this.paneMessageHolder.isVisible();
         this.paneMessageHolder.setVisible(!panelMessageVisible);
     }
@@ -265,9 +276,11 @@ public class LearnController implements Initializable {
     private void updateView() {
         double currentQuestionCount = totalQuestionCount - linkedListQuestions.size();
         double progressValue = currentQuestionCount / totalQuestionCount;
-        int percent = (int)(progressValue * 100);
+        int percent = (int) (progressValue * 100);
         pgbarLessonProgress.setProgress(progressValue);
         labelPercent.setText(String.valueOf(percent) + '%');
 
     }
+
+    // TODO: Reset answer of question
 }
