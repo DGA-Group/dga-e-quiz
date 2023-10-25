@@ -1,13 +1,42 @@
-.info-box {
-    -fx-background-radius: 20px;
-    -fx-border-radius: 10px;
+@font-face {
+    src: url("../font/Signika-Light.ttf");
 }
 
-.ok-btn {
-    -fx-background-color: #FFF;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 20px;
-    -fx-text-fill: #00AF85;
+@font-face {
+    src: url("../font/Signika-Bold.ttf");
+}
+
+@font-face {
+    src: url("../font/Signika-SemiBold.ttf");
+}
+
+.root {
+    black: #000000;
+    white: #FFFFFF;
+    whitesmoke: #F5F8FA;
+    lightskyblue: #C9E6FF;
+    aquamarine: #B4DDD3;
+    goldenrod: #FFC75A;
+    godenrod10: #FFC75A 10%;
+    lightgray: #C4C4C4;
+    darkblue: #5D8DBF;
+    midnightblue: #444766;
+    progressbartrack: #E8F1FA;
+}
+
+.button {
+    -fx-font-family: "Signika-Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: whitesmoke;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-stroke-width: 5px, 5px, 5px, 0px;
+    -fx-background-color: goldenrod;
+    -fx-effect: dropshadow(gaussian, godenrod10, 20, 0, 0, 0);
+}
+
+.button:pressed {
+    -fx-translate-y: 2px;
 }
 
 .progress-bar {
@@ -17,33 +46,54 @@
     -fx-indeterminate-bar-animation-time: 2;
 }
 
-.progress-bar > .bar {
-    -fx-background-color: #009571;
-    -fx-background-insets: 3 3 4 3;
-    -fx-background-radius: 2px;
-    -fx-padding: 0.75em;
-}
-
-.progress-bar:indeterminate > .bar {
-    -fx-background-color: #009571;
-}
-
 .progress-bar > .track {
-    -fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
-    -fx-background-radius: 4, 3, 2; /* 10, 9, 8 */
+    -fx-background-color: progressbartrack;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6px;
 }
 
-.campaign-item {
-    -fx-background-color: #00AF85;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
+.progress-bar > .bar {
+    -fx-background-color: lightskyblue;
+    -fx-background-insets: 0;
+    -fx-background-radius: 6px;
+    -fx-padding: 0.4em;
 }
 
-.button-learn {
-    -fx-background-color: #FFF;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 20px;
-    -fx-text-fill: #58CC02;
-    -fx-font-family: "Feather Bold";
-    -fx-font-size: 50px;
+.progress-bar:disabled {
+    -fx-opacity: 0.4;
+}
+
+.button-close {
+    -fx-background-color: transparent;
+}
+
+.button-close:pressed {
+    -fx-translate-y: 2px;
+}
+
+.label-content {
+    -fx-font-family: "Signika SemiBold";
+    -fx-font-size: 16px;
+}
+
+.footer {
+    -fx-background-color: #B4DDD3;
+    -fx-background-radius: 15% 15% 0% 0%;
+}
+
+.progress-label {
+    -fx-font-family: "Signika Light";
+    -fx-font-size: 13px;
+}
+
+.message-pane-correct {
+    -fx-background-color: #B4DDD3;
+}
+
+.message-pane-wrong {
+    -fx-background-color: #FFBFBF;
+}
+
+.message-border {
+    -fx-background-radius: 15% 15% 0% 0%;
 }

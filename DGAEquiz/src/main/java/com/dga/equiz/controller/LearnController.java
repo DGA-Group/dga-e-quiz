@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
@@ -38,21 +39,30 @@ public class LearnController implements Initializable {
 
     @FXML
     public Button buttonContinue;
+
+    @FXML
+    public AnchorPane paneMessageHolder;
+
+    @FXML
+    public Label labelPercent;
     //endregion
 
     private NodeObject currentQuestion;
     private LinkedList<NodeObject> linkedListQuestions = new LinkedList<NodeObject>();
+    private double totalQuestionCount = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.buttonContinue.setOnAction((ActionEvent event) -> {
             nextQuestion();
             switchButton();
+            updateView();
         });
 
         this.buttonSubmit.setOnAction((ActionEvent event) -> {
             checkAnswer();
             switchButton();
+            updateView();
         });
 
     }
@@ -79,12 +89,22 @@ public class LearnController implements Initializable {
 
         if (linkedListQuestions.isEmpty()) {
             System.out.println("There is no question in this campaign!");
-        } else {
-            // Show the first question.
-            Collections.shuffle(linkedListQuestions);
-            currentQuestion = linkedListQuestions.getFirst();
-            currentQuestion.show();
+            return;
         }
+
+        // Reset variable
+        totalQuestionCount = linkedListQuestions.size();
+
+        // Reset view
+        paneMessageHolder.setVisible(false);
+        pgbarLessonProgress.setProgress(0);
+        labelPercent.setText("0%");
+
+        // Show the first question.
+        Collections.shuffle(linkedListQuestions);
+        currentQuestion = linkedListQuestions.getFirst();
+        currentQuestion.show();
+
     }
 
     private void addImageQuestion(long id) {
@@ -189,16 +209,11 @@ public class LearnController implements Initializable {
 
     private void nextQuestion() {
         if (linkedListQuestions.isEmpty()) {
+            System.out.println("Chuc mung ban da hoan thanh khoa hoc!");
             return;
         }
 
         currentQuestion.hide();
-        linkedListQuestions.removeFirst();
-
-        if (linkedListQuestions.isEmpty()) {
-            System.out.println("Chuc mung ban da hoan thanh khoa hoc!");
-            return;
-        }
 
         currentQuestion = linkedListQuestions.getFirst();
         currentQuestion.show();
@@ -206,13 +221,34 @@ public class LearnController implements Initializable {
 
     private void checkAnswer() {
         QuestionController controller = currentQuestion.getController();
-        if (!controller.isCorrect()) {
-            linkedListQuestions.addLast(currentQuestion);
-            System.out.println("Sai roi");
-            return;
-        }
 
-        System.out.println("Dung roi");
+        if (controller.isCorrect()) {
+            handleCorrectAnswer();
+        } else {
+            handleWrongAnswer();
+        }
+    }
+
+    private void handleCorrectAnswer() {
+        EquizUtils.setStyle(paneMessageHolder, "message-pane-correct", "message-border");
+        labelComment.setText("Đúng rùi bạn nhỏ, cố gắng lên nữa he!");
+
+        // Remove question.
+        if (!linkedListQuestions.isEmpty()) {
+            linkedListQuestions.removeFirst();
+        }
+    }
+
+    private void handleWrongAnswer() {
+        EquizUtils.setStyle(paneMessageHolder, "message-pane-wrong", "message-border");
+        labelComment.setText("Ầu nầu sai rồi, hãy làm lại nhé!");
+
+
+        // Add current question to linked list tail and remove question.
+        linkedListQuestions.addLast(currentQuestion);
+        if (!linkedListQuestions.isEmpty()) {
+            linkedListQuestions.removeFirst();
+        }
     }
 
     private void switchButton() {
@@ -221,5 +257,17 @@ public class LearnController implements Initializable {
 
         this.buttonContinue.setVisible(toggleButtonContinue);
         this.buttonSubmit.setVisible(toggleButtonSubmit);
+
+        boolean panelMessageVisible = this.paneMessageHolder.isVisible();
+        this.paneMessageHolder.setVisible(!panelMessageVisible);
+    }
+
+    private void updateView() {
+        double currentQuestionCount = totalQuestionCount - linkedListQuestions.size();
+        double progressValue = currentQuestionCount / totalQuestionCount;
+        int percent = (int)(progressValue * 100);
+        pgbarLessonProgress.setProgress(progressValue);
+        labelPercent.setText(String.valueOf(percent) + '%');
+
     }
 }

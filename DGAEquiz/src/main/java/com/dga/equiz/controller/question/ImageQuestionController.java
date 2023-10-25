@@ -7,14 +7,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
-public class ImageQuestionController implements QuestionController{
+public class ImageQuestionController implements QuestionController {
     //region FXML Reference
     @FXML
     public Label labelQuestion;
 
     @FXML
-    public ImageView imageView;
+    public Rectangle imageFrame;
 
     @FXML
     public Button buttonOption1;
@@ -37,7 +39,8 @@ public class ImageQuestionController implements QuestionController{
 
     public void setupImageQuestion(ImageQuestion imageQuestionModel) {
         this.labelQuestion.setText(imageQuestionModel.getQuestion());
-        this.imageView.setImage(new Image(imageQuestionModel.getImageSrc()));
+        Image questionImage = new Image(imageQuestionModel.getImageSrc());
+        this.imageFrame.setFill(new ImagePattern(questionImage));
         String[] options = imageQuestionModel.getOptions();
         this.buttonOption1.setText(options[1]);
         this.buttonOption2.setText(options[2]);
@@ -65,7 +68,7 @@ public class ImageQuestionController implements QuestionController{
     }
 
     @Override
-    public boolean isCorrect(){
+    public boolean isCorrect() {
         return imageQuestionModel.isCorrect();
     }
 }

@@ -8,8 +8,8 @@
    <children>
       <HBox alignment="CENTER" prefHeight="430.0" prefWidth="648.0" spacing="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="buttonLearn" mnemonicParsing="false" prefHeight="222.0" prefWidth="195.0" styleClass="button-learn" stylesheets="@../../css/learnDesign.css" text="Học" />
-            <Button fx:id="buttonRevise" mnemonicParsing="false" prefHeight="222.0" prefWidth="195.0" styleClass="button-learn" stylesheets="@../../css/learnDesign.css" text="Ôn" />
+            <Button fx:id="buttonLearn" mnemonicParsing="false" prefHeight="222.0" prefWidth="195.0" styleClass="button-learn" stylesheets="@../../css/campaignDesign.css" text="Học" />
+            <Button fx:id="buttonRevise" mnemonicParsing="false" prefHeight="222.0" prefWidth="195.0" styleClass="button-learn" stylesheets="@../../css/campaignDesign.css" text="Ôn" />
          </children>
       </HBox>
    </children>
