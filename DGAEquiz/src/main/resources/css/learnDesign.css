@@ -26,7 +26,7 @@
 }
 
 /* ===================================== Button ===================================== */
-.button {
+.learn-button {
     -fx-font-family: "Signika-Bold";
     -fx-font-size: 16px;
     -fx-text-fill: #F5F8FA;
@@ -35,14 +35,19 @@
     -fx-stroke-width: 5px, 5px, 5px, 0px;
     -fx-background-color: #FFC75A;
     -fx-effect: dropshadow(gaussian, #FBD48C, 20, 0, 0, 0);
+    -fx-alignment: CENTER;
 }
 
-.button:pressed {
+.learn-button:pressed {
     -fx-translate-y: 2px;
 }
 
-.button:disabled {
+.learn-button:disabled {
     -fx-background-color: #C4C4C4;
+}
+
+.learn-button:hover {
+    -fx-background-color: #FFDB99;
 }
 
 .button-correct-answer {
@@ -71,11 +76,11 @@
     -fx-alignment: CENTER;
 }
 
-.button-close {
+.button-close-learn {
     -fx-background-color: transparent;
 }
 
-.button-close:pressed {
+.button-close-learn:pressed {
     -fx-translate-y: 2px;
 }
 
@@ -85,8 +90,8 @@
     -fx-indeterminate-bar-escape: true;
     -fx-indeterminate-bar-flip: true;
     -fx-indeterminate-bar-animation-time: 2;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
 }
 
 .progress-bar > .track {
@@ -117,8 +122,9 @@
 
 /* ===================================== Pane ===================================== */
 .upper {
-    -fx-background-color: #C9E6FF;
+    -fx-background-color: #F5F8FA;
     -fx-background-radius: 0% 0% 5% 5%;
+    -fx-effect: dropshadow(gaussian, #E3F2FF, 10, 0, 0, 15);
 }
 
 .footer {
@@ -139,7 +145,7 @@
 }
 
 .question-pane {
-    -fx-background-color: #C9E6FF;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
+    -fx-background-color: #F5F8FA;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
 }

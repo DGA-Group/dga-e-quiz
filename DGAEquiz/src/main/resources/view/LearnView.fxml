@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane prefHeight="430.0" prefWidth="648.0" style="-fx-background-color: #F6FCFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
+<BorderPane prefHeight="430.0" prefWidth="648.0" style="-fx-background-color: #E3F2FF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
    <top>
       <AnchorPane prefHeight="62.0" prefWidth="648.0" styleClass="upper" stylesheets="@../css/learnDesign.css" BorderPane.alignment="CENTER">
          <children>
@@ -23,10 +23,10 @@
             </HBox>
             <HBox alignment="CENTER" layoutY="28.0" prefHeight="26.0" prefWidth="648.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
                <children>
-                  <ProgressBar fx:id="pgbarLessonProgress" prefHeight="18.0" prefWidth="384.0" progress="0.47" styleClass="root" stylesheets="@../css/learnDesign.css" />
+                  <ProgressBar fx:id="pgbarLessonProgress" prefHeight="18.0" prefWidth="384.0" progress="0.47" stylesheets="@../css/learnDesign.css" />
                </children>
             </HBox>
-            <Button fx:id="buttonClose" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="button-close" stylesheets="@../css/learnDesign.css">
+            <Button fx:id="buttonClose" layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="40.0" styleClass="button-close-learn" stylesheets="@../css/learnDesign.css">
                <graphic>
                   <FontIcon iconLiteral="fth-x" iconSize="30" />
                </graphic>
@@ -49,8 +49,8 @@
             </AnchorPane>
             <StackPane alignment="BOTTOM_CENTER" prefHeight="102.4" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="buttonSubmit" mnemonicParsing="false" prefHeight="40.0" prefWidth="390.0" styleClass="root" stylesheets="@../css/learnDesign.css" text="KIỂM TRA" />
-                  <Button fx:id="buttonContinue" mnemonicParsing="false" prefHeight="40.0" prefWidth="390.0" styleClass="root" stylesheets="@../css/learnDesign.css" text="TIẾP TỤC" visible="false" />
+                  <Button fx:id="buttonSubmit" mnemonicParsing="false" prefHeight="40.0" prefWidth="390.0" styleClass="learn-button" stylesheets="@../css/learnDesign.css" text="KIỂM TRA" />
+                  <Button fx:id="buttonContinue" mnemonicParsing="false" prefHeight="40.0" prefWidth="390.0" styleClass="learn-button" stylesheets="@../css/learnDesign.css" text="TIẾP TỤC" visible="false" />
                </children>
                <opaqueInsets>
                   <Insets />

@@ -79,7 +79,7 @@ public class ImageQuestionController implements QuestionController {
 
     private void changeChosenButtonStyle(Button button) {
         if (this.currentButton != null) {
-            EquizUtils.setStyle(this.currentButton, "button");
+            EquizUtils.setStyle(this.currentButton, "learn-button");
         }
         this.currentButton = button;
         EquizUtils.setStyle(this.currentButton, "button-correct-answer");
@@ -103,6 +103,6 @@ public class ImageQuestionController implements QuestionController {
     @Override
     public void resetChosenAnswer() {
         this.imageQuestionModel.setChosenAnswer((byte) -1);
-        EquizUtils.setStyle(this.currentButton, "button");
+        EquizUtils.setStyle(this.currentButton, "learn-button");
     }
 }

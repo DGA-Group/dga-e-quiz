@@ -4,9 +4,16 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+import javafx.event.Event;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +23,18 @@ public class MyApplicationController implements Initializable {
     //region FXML Reference
     @FXML
     private AnchorPane panelHolder;
+
+    @FXML
+    private Button btnClose;
+
+    @FXML
+    private Button btnMaximize;
+
+    @FXML
+    private Button btnMinimize;
+
+    @FXML
+    private HBox hboxUpperBar;
     //endregion
 
     private NodeObject homeView = null;
@@ -23,6 +42,8 @@ public class MyApplicationController implements Initializable {
     private NodeObject profileView = null;
 
     private NodeObject currentPanel = null;
+    private static double xOffset = 0;
+    private static double yOffset = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -33,6 +54,30 @@ public class MyApplicationController implements Initializable {
 
         // Set default panel to home
         currentPanel = homeView;
+    }
+
+    public void setupButton(Stage stage) {
+        this.btnClose.setOnAction((ActionEvent event) -> {
+            stage.close();
+        });
+
+        this.btnMaximize.setOnAction((ActionEvent event) -> {
+            stage.setMaximized(!stage.isMaximized());
+        });
+
+        this.btnMinimize.setOnAction((ActionEvent event) -> {
+            stage.setIconified(true);
+        });
+
+        this.hboxUpperBar.setOnMousePressed(event -> {
+            xOffset = stage.getX() - event.getScreenX();
+            yOffset = stage.getY() - event.getScreenY();
+        });
+
+        this.hboxUpperBar.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() + xOffset);
+            stage.setY(event.getScreenY() + yOffset);
+        });
     }
 
     private void setupHomeView() {

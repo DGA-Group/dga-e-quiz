@@ -21,10 +21,10 @@
    <right>
       <VBox alignment="CENTER" prefHeight="214.0" prefWidth="274.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="root" stylesheets="@../../css/learnDesign.css" text="Answer" />
-            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="root" stylesheets="@../../css/learnDesign.css" text="Answer" />
-            <Button fx:id="buttonOption3" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="root" stylesheets="@../../css/learnDesign.css" text="Answer" />
-            <Button fx:id="buttonOption4" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="root" stylesheets="@../../css/learnDesign.css" text="Answer" />
+            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
+            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
+            <Button fx:id="buttonOption3" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
+            <Button fx:id="buttonOption4" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
          </children>
          <BorderPane.margin>
             <Insets right="10.0" />
