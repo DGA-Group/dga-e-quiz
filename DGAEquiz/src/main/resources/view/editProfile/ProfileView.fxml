@@ -23,15 +23,15 @@
                   <FontIcon iconColor="WHITE" iconLiteral="fth-camera" text="" />
                </graphic>
             </Button>
-            <Label fx:id="nameLabel" alignment="CENTER" layoutX="437.0" layoutY="228.0" prefHeight="23.0" prefWidth="162.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Name" textFill="#f5f8fa">
+            <Label fx:id="labelName" alignment="CENTER" layoutX="397.0" layoutY="228.0" prefHeight="26.0" prefWidth="222.0" styleClass="font-family" stylesheets="@../../css/editProfileDesign.css" text="Name" textFill="#5d8bdf">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <Line endX="107.0" layoutX="512.0" layoutY="259.0" startX="-100.0" stroke="#f5f8fa" />
-            <Label alignment="CENTER" layoutX="114.0" layoutY="14.0" prefHeight="72.0" prefWidth="82.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Level" textFill="#f5f8fa">
+            <Label fx:id="labelLevel" alignment="CENTER" layoutX="114.0" layoutY="14.0" prefHeight="72.0" prefWidth="82.0" styleClass="font-family" stylesheets="@../../css/editProfileDesign.css" text="Level" textFill="#5d8bdf">
                <font>
-                  <Font name="System Bold" size="30.0" />
+                  <Font name="System Bold" size="35.0" />
                </font>
             </Label>
             <ProgressBar layoutX="55.0" layoutY="77.0" prefHeight="25.0" prefWidth="222.0" progress="0.0" />
@@ -39,7 +39,7 @@
                <children>
                   <HBox prefHeight="40.0" prefWidth="389.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="82.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Mail : " textFill="#f5f8fa">
+                        <Label prefHeight="40.0" prefWidth="82.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Mail : " textFill="#5d8bdf">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -47,12 +47,12 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="mailLabel" prefHeight="50.0" prefWidth="308.0" />
+                        <Label fx:id="labelMail" prefHeight="50.0" prefWidth="308.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" />
                      </children>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="389.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="227.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Date of Birth : " textFill="#f5f8fa">
+                        <Label prefHeight="40.0" prefWidth="227.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Date of Birth : " textFill="#5d8bdf">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -60,12 +60,12 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="dobLabel" prefHeight="50.0" prefWidth="308.0" />
+                        <Label fx:id="labelDOB" prefHeight="50.0" prefWidth="308.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" />
                      </children>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="50.0" prefHeight="40.0" prefWidth="389.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="106.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Phone : " textFill="#f5f8fa">
+                        <Label prefHeight="40.0" prefWidth="106.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Phone : " textFill="#5d8bdf">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -73,12 +73,12 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="phoneLabel" prefHeight="50.0" prefWidth="308.0" />
+                        <Label fx:id="labelPhone" prefHeight="50.0" prefWidth="308.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" />
                      </children>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="90.0" prefHeight="40.0" prefWidth="389.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="118.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Github : " textFill="#f5f8fa">
+                        <Label prefHeight="40.0" prefWidth="118.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="Github : " textFill="#5d8bdf">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -86,12 +86,12 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="githubLabel" prefHeight="50.0" prefWidth="308.0" />
+                        <Label fx:id="labelGithub" prefHeight="50.0" prefWidth="308.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" />
                      </children>
                   </HBox>
                   <HBox layoutX="10.0" layoutY="130.0" prefHeight="40.0" prefWidth="389.0">
                      <children>
-                        <Label prefHeight="40.0" prefWidth="118.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="ID : " textFill="#f5f8fa">
+                        <Label prefHeight="40.0" prefWidth="118.0" styleClass="font-label" stylesheets="@../../css/profileDesign.css" text="ID : " textFill="#5d8bdf">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -99,7 +99,7 @@
                               <Insets left="20.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="idLabel" prefHeight="50.0" prefWidth="308.0" />
+                        <Label fx:id="labelID" prefHeight="50.0" prefWidth="308.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" />
                      </children>
                   </HBox>
                </children>

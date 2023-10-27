@@ -43,12 +43,12 @@ public class ProfileContainerController implements Initializable {
         profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml");
         paneDefault.getChildren().add(profileView.getNode());
         profileView.show();
-        editInforView = EquizUtils.Instantiate("/view/editProfile/EditInforView.fxml");
-        paneDefault.getChildren().add(editInforView.getNode());
-        editInforView.hide();
         editSelectView = EquizUtils.Instantiate("/view/editProfile/EditSelectView.fxml");
         paneDefault.getChildren().add(editSelectView.getNode());
         editSelectView.hide();
+        editInforView = EquizUtils.Instantiate("/view/editProfile/EditInforView.fxml");
+        paneDefault.getChildren().add(editInforView.getNode());
+        editInforView.hide();
         editAccView = EquizUtils.Instantiate("/view/editProfile/EditAccView.fxml");
         paneDefault.getChildren().add(editAccView.getNode());
         editAccView.hide();

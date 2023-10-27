@@ -5,9 +5,19 @@
 .text-input {
     -fx-background-radius: 30;
     -fx-background-color: #F5F8FA;
+    -fx-font-family: "Signika";
 }
 
 .save-button {
+    -fx-font-size: 20px;
+    -fx-background-radius: 15;
+    -fx-background-color: #FFC75A;
+    -fx-text-fill: white;
+    -fx-font-family: "Signika";
+}
+
+.save-button:hover {
+    -fx-font-size: 12px;
     -fx-background-radius: 15;
     -fx-background-color: #FFC75A;
     -fx-text-fill: white;
@@ -19,5 +29,10 @@
 }
 
 .font-label {
+    -fx-font-family: "Signika";
+    -fx-font-size: 20px;
+    -fx-text-fill: #444766;
+}
+.font-family {
     -fx-font-family: "Signika";
 }

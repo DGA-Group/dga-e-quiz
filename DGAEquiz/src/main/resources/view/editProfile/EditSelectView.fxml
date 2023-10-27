@@ -12,12 +12,12 @@
    <children>
       <VBox layoutX="74.0" layoutY="80.0" prefHeight="270.0" prefWidth="513.0" spacing="30.0">
          <children>
-            <Label alignment="CENTER" prefHeight="61.0" prefWidth="513.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="What would you want to change?" textFill="#f5f8fa">
+            <Label alignment="CENTER" prefHeight="61.0" prefWidth="513.0" styleClass="font-family" stylesheets="@../../css/editProfileDesign.css" text="What would you want to change?" textFill="#444766">
                <font>
-                  <Font size="20.0" />
+                  <Font size="30.0" />
                </font>
             </Label>
-            <Button fx:id="buttonPassword" alignment="CENTER" layoutX="160.0" layoutY="71.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="228.0" text="Password" textFill="#f5f8fa">
+            <Button fx:id="buttonPassword" alignment="CENTER" layoutX="160.0" layoutY="71.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="228.0" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css" text="Password" textFill="#f5f8fa">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -25,7 +25,7 @@
                   <Insets left="150.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="buttonInfor" alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="228.0" text="Information" textFill="#f5f8fa">
+            <Button fx:id="buttonInfor" alignment="CENTER" mnemonicParsing="false" prefHeight="55.0" prefWidth="228.0" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css" text="Information" textFill="#f5f8fa">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

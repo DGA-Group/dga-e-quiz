@@ -14,9 +14,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="648.0" styleClass="primary-color" stylesheets="@../../css/editProfileDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.editProfile.EditInforController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" prefHeight="36.0" prefWidth="565.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Profile Setting">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="83.0" prefHeight="66.0" prefWidth="565.0" styleClass="font-family" stylesheets="@../../css/editProfileDesign.css" text="Profile Setting" textFill="#444766">
          <font>
-            <Font name="System Bold Italic" size="25.0" />
+            <Font size="35.0" />
          </font>
       </Label>
       <Button fx:id="buttonBack" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="24.0" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css">
@@ -26,9 +26,9 @@
       </Button>
       <VBox layoutX="1.0" layoutY="56.0" prefHeight="178.0" prefWidth="648.0" spacing="20.0">
          <children>
-            <Label prefHeight="11.0" prefWidth="648.0" text="Profile Details">
+            <Label prefHeight="11.0" prefWidth="648.0" styleClass="font-family" stylesheets="@../../css/editProfileDesign.css" text="Profile Details" textFill="#444766">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
                <padding>
                   <Insets left="30.0" />
@@ -45,12 +45,12 @@
                      </padding>
                   </Label>
                   <Pane prefHeight="35.0" prefWidth="87.0" />
-                  <TextField prefHeight="27.0" prefWidth="356.0" styleClass="text-input" stylesheets="@../../css/editProfileDesign.css" />
+                  <TextField fx:id="tfName" prefHeight="27.0" prefWidth="356.0" promptText="Enter your name" styleClass="font-family" stylesheets="@../../css/editProfileDesign.css" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="40.0" prefHeight="35.0" prefWidth="648.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="155.0" text="Mail :">
+                  <Label prefHeight="26.0" prefWidth="155.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Mail :">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -59,12 +59,12 @@
                      </padding>
                   </Label>
                   <Pane prefHeight="35.0" prefWidth="87.0" />
-                  <TextField prefHeight="27.0" prefWidth="356.0" styleClass="text-input" />
+                  <TextField fx:id="tfMail" prefHeight="27.0" prefWidth="356.0" promptText="Enter your mail" styleClass="font-family" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="75.0" prefHeight="35.0" prefWidth="648.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="185.0" text="Date of Birth :">
+                  <Label prefHeight="26.0" prefWidth="193.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Date of Birth :">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -72,17 +72,17 @@
                         <Insets left="70.0" />
                      </padding>
                   </Label>
-                  <Pane prefHeight="35.0" prefWidth="59.0" />
-                  <DatePicker prefWidth="356.0" styleClass="text-input" stylesheets="@../../css/editProfileDesign.css" />
+                  <Pane prefHeight="33.0" prefWidth="52.0" />
+                  <DatePicker fx:id="date" prefHeight="33.0" prefWidth="356.0" promptText="Pick your birthday" styleClass="text-input" stylesheets="@../../css/editProfileDesign.css" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <VBox layoutX="1.0" layoutY="234.0" prefHeight="138.0" prefWidth="648.0" spacing="20.0">
+      <VBox layoutX="1.0" layoutY="246.0" prefHeight="133.0" prefWidth="648.0" spacing="20.0">
          <children>
-            <Label prefHeight="16.0" prefWidth="648.0" text="Contact">
+            <Label prefHeight="27.0" prefWidth="648.0" text="Contact" textFill="#444766">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
                <padding>
                   <Insets left="30.0" />
@@ -90,7 +90,7 @@
             </Label>
             <HBox prefHeight="35.0" prefWidth="648.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="155.0" text="Phone :">
+                  <Label prefHeight="26.0" prefWidth="155.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Phone :">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -99,12 +99,12 @@
                      </padding>
                   </Label>
                   <Pane prefHeight="35.0" prefWidth="87.0" />
-                  <TextField prefHeight="27.0" prefWidth="356.0" styleClass="text-input" />
+                  <TextField fx:id="tfPhone" prefHeight="27.0" prefWidth="356.0" promptText="Enter your phone" styleClass="font-family" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="40.0" prefHeight="35.0" prefWidth="648.0">
                <children>
-                  <Label prefHeight="26.0" prefWidth="155.0" text="Github :">
+                  <Label prefHeight="26.0" prefWidth="155.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Github :">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -113,12 +113,12 @@
                      </padding>
                   </Label>
                   <Pane prefHeight="35.0" prefWidth="87.0" />
-                  <TextField prefHeight="27.0" prefWidth="356.0" styleClass="text-input" />
+                  <TextField fx:id="tfGithub" prefHeight="27.0" prefWidth="356.0" promptText="Enter your github link" styleClass="font-family" />
                </children>
             </HBox>
          </children>
       </VBox>
-      <Button fx:id="saveButton" layoutX="411.0" layoutY="385.0" mnemonicParsing="false" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css" text="Save">
+      <Button fx:id="buttonSave" layoutX="411.0" layoutY="385.0" mnemonicParsing="false" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css" text="Save">
          <font>
             <Font size="15.0" />
          </font>
