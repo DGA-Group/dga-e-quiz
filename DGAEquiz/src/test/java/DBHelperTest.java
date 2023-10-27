@@ -13,7 +13,7 @@ public class DBHelperTest {
     void test1() {
         String sqlTestQuery = "SELECT * FROM account";
         try {
-            ResultSet resultSet = DBHelper.query(sqlTestQuery);
+            ResultSet resultSet = DBHelper.executeQuery(sqlTestQuery);
             while (resultSet.next()) {
                 System.out.println("Record " + resultSet.getInt(1) + " : \n"
                         + "     Username : " + resultSet.getString(2) + "\n"
@@ -31,7 +31,7 @@ public class DBHelperTest {
         // This situation the table is invalid "account" instead of "accout".
         String sqlTestQuery = "SELECT * FROM account";
         try {
-            ResultSet resultSet = DBHelper.query(sqlTestQuery);
+            ResultSet resultSet = DBHelper.executeQuery(sqlTestQuery);
             while (resultSet.next()) {
                 System.out.println("Record " + resultSet.getInt(1) + " : \n"
                         + "     Username : " + resultSet.getString(2) + "\n"

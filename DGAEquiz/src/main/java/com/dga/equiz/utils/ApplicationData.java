@@ -8,9 +8,13 @@ import com.dga.equiz.model.question.ListeningQuestion;
 import com.dga.equiz.model.question.TranslateQuestion;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class ApplicationData {
 
@@ -65,8 +69,13 @@ public class ApplicationData {
 
     public void loadAllImageQuestion() {
         String sqlQuery = "SELECT * FROM `image_question`";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
         try {
-            ResultSet resultSet = DBHelper.query(sqlQuery);
+            resultSet = DBHelper.executeQuery(sqlQuery);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
             while (resultSet.next()) {
                 long questionId = resultSet.getLong(1);
                 String question = resultSet.getString(2);
@@ -85,13 +94,24 @@ public class ApplicationData {
             System.out.println("Unable to load all image question");
             System.out.println("===========================");
             e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet,statement,connection);
+            } catch (SQLException e) {
+                System.out.println("Unable to close connection!");
+            }
         }
     }
 
     public void loadAllListeningQuestion() {
         String sqlQuery = "SELECT * FROM `listening_question`";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
         try {
-            ResultSet resultSet = DBHelper.query(sqlQuery);
+            resultSet = DBHelper.executeQuery(sqlQuery);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
             while (resultSet.next()) {
                 long questionId = resultSet.getLong(1);
                 String question = resultSet.getString(2);
@@ -110,13 +130,24 @@ public class ApplicationData {
             System.out.println("Unable to load all listening question");
             System.out.println("=====================================");
             e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            } catch (SQLException e) {
+                System.out.println("Unable to close connection!");
+            }
         }
     }
 
     public void loadAllFillQuestion() {
         String sqlQuery = "SELECT * FROM `fill_question`";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
         try {
-            ResultSet resultSet = DBHelper.query(sqlQuery);
+            resultSet = DBHelper.executeQuery(sqlQuery);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
             while (resultSet.next()) {
                 long questionId = resultSet.getLong(1);
                 String question = resultSet.getString(2);
@@ -135,13 +166,24 @@ public class ApplicationData {
             System.out.println("Unable to load all fill question");
             System.out.println("================================");
             e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            } catch (SQLException e) {
+                System.out.println("Unable to close connection!");
+            }
         }
     }
 
     public void loadAllTranslateQuestion() {
         String sqlQuery = "SELECT * FROM `translate_question`";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
         try {
-            ResultSet resultSet = DBHelper.query(sqlQuery);
+            resultSet = DBHelper.executeQuery(sqlQuery);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
             while (resultSet.next()) {
                 long questionId = resultSet.getLong(1);
                 String question = resultSet.getString(2);
@@ -160,13 +202,24 @@ public class ApplicationData {
             System.out.println("Unable to load all translate question");
             System.out.println("=====================================");
             e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            } catch (SQLException e) {
+                System.out.println("Unable to close connection!");
+            }
         }
     }
 
     public void loadAllCampaign() {
         String sqlQuery = "SELECT * FROM `campaign`";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
         try {
-            ResultSet resultSet = DBHelper.query(sqlQuery);
+            resultSet = DBHelper.executeQuery(sqlQuery);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
             while (resultSet.next()) {
                 long id = resultSet.getLong(1);
                 String title = resultSet.getString(2);
@@ -181,7 +234,14 @@ public class ApplicationData {
             System.out.println("Unable to load all campaign");
             System.out.println("===========================");
             e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            } catch (SQLException e) {
+                System.out.println("Unable to close connection!");
+            }
         }
-
     }
+
+
 }

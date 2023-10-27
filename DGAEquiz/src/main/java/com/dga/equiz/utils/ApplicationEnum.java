@@ -30,6 +30,7 @@ public class ApplicationEnum {
         public static final String DarkBlue = "#5D8DBF";       // Xanh lam tối 1%
         public static final String MidnightBlue = "#444766";    // Xanh lam đêm 1%
         public static final String Black = "#000000";           // Đen 1%
+        public static final String LightRed = "#FFBFBF";
     }
 
 

@@ -8,19 +8,19 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.ListeningQuestionController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="556.0" style="-fx-background-color: #F5F8FA;" styleClass="question-pane" stylesheets="@../../css/learnDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.ListeningQuestionController">
    <center>
-      <Button fx:id="buttonPlaySound" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <Button fx:id="buttonPlaySound" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" BorderPane.alignment="CENTER">
          <graphic>
-            <FontIcon iconLiteral="fth-volume-2" iconSize="70" />
+            <FontIcon iconColor="WHITE" iconLiteral="fth-volume-2" iconSize="70" />
          </graphic>
       </Button>
    </center>
    <right>
       <VBox alignment="CENTER" prefHeight="181.0" prefWidth="274.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="59.0" prefWidth="274.0" text="Answer" />
-            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="72.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="59.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
+            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="72.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
          </children>
          <BorderPane.margin>
             <Insets right="10.0" />
@@ -28,7 +28,7 @@
       </VBox>
    </right>
    <top>
-      <Label fx:id="labelQuestion" prefHeight="34.0" prefWidth="556.0" text="Chọn câu trả lời đúng" BorderPane.alignment="CENTER">
+      <Label fx:id="labelQuestion" prefHeight="34.0" prefWidth="556.0" styleClass="label-content" stylesheets="@../../css/learnDesign.css" text="Chọn câu trả lời đúng" BorderPane.alignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>

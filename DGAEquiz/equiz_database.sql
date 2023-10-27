@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th10 16, 2023 lúc 05:42 PM
+-- Thời gian đã tạo: Th10 24, 2023 lúc 10:51 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -40,7 +40,11 @@ CREATE TABLE `account` (
 INSERT INTO `account` (`id`, `username`, `password`) VALUES
 (1, 'Duong', '1234'),
 (2, 'Tuan Anh', '1334'),
-(3, 'Giang', '1239');
+(3, 'Giang', '1239'),
+(4, 'Hoan', '1876'),
+(5, 'TuanDuong', '1351253'),
+(6, 'TuanDuong', '1351253'),
+(7, 'TuanDuong', '1351253');
 
 -- --------------------------------------------------------
 
@@ -51,18 +55,19 @@ INSERT INTO `account` (`id`, `username`, `password`) VALUES
 CREATE TABLE `campaign` (
   `id` bigint(11) NOT NULL,
   `title` text DEFAULT NULL,
-  `description` text DEFAULT NULL
+  `description` text DEFAULT NULL,
+  `lesson_data` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `campaign`
 --
 
-INSERT INTO `campaign` (`id`, `title`, `description`) VALUES
-(1, 'Phần 1: Sưu tầm tranh', 'Bài học này chứa rất nhiều thông tin về tranh vẽ'),
-(2, 'Phần 2: Thế giới động vật', 'Bài học này sẽ cho các bé tìm hiểu về thế giới động vật'),
-(3, 'Phần 3: Chiến tranh trung cổ', 'Trong khoá này các bé sẽ học về các sự kiện trung cổ'),
-(4, 'Phần 4: Cuộc chiến đông âu', 'Hãy tự tìm hiểu qua bài học này nhé!');
+INSERT INTO `campaign` (`id`, `title`, `description`, `lesson_data`) VALUES
+(1, 'Phần 1: Sưu tầm tranh', 'Bài học này chứa rất nhiều thông tin về tranh vẽ', '{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),
+(2, 'Phần 2: Thế giới động vật', 'Bài học này sẽ cho các bé tìm hiểu về thế giới động vật', '{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),
+(3, 'Phần 3: Chiến tranh trung cổ', 'Trong khoá này các bé sẽ học về các sự kiện trung cổ', '{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),
+(4, 'Phần 4: Cuộc chiến đông âu', 'Hãy tự tìm hiểu qua bài học này nhé!', '{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}');
 
 -- --------------------------------------------------------
 
@@ -210,7 +215,7 @@ ALTER TABLE `translate_question`
 -- AUTO_INCREMENT cho bảng `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `campaign`

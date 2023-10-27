@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="478.0" styleClass="campaign-item" stylesheets="@../../css/learnDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.CampaignController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="478.0" styleClass="campaign-item" stylesheets="@../../css/campaignDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.CampaignController">
    <children>
       <ImageView fitHeight="337.0" fitWidth="215.0" layoutX="131.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../image/duolingo_holding_map.PNG" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="40.0" layoutY="184.0" prefHeight="200.0" prefWidth="394.0" style="-fx-background-color: #009571;" styleClass="info-box" stylesheets="@../../css/learnDesign.css">
+      <AnchorPane layoutX="40.0" layoutY="184.0" prefHeight="200.0" prefWidth="394.0" style="-fx-background-color: #009571;" styleClass="info-box" stylesheets="@../../css/campaignDesign.css">
          <children>
-            <Button fx:id="buttonStartCampaign" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="137.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="243.0" styleClass="ok-btn" stylesheets="@../../css/learnDesign.css" text="BẮT ĐẦU" textAlignment="CENTER">
+            <Button fx:id="buttonStartCampaign" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="137.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="243.0" styleClass="ok-btn" stylesheets="@../../css/campaignDesign.css" text="BẮT ĐẦU" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <ProgressBar layoutX="97.0" layoutY="71.0" prefWidth="200.0" progress="0.29" stylesheets="@../../css/learnDesign.css" />
+            <ProgressBar layoutX="97.0" layoutY="71.0" prefWidth="200.0" progress="0.29" stylesheets="@../../css/campaignDesign.css" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="18.0" prefWidth="396.0" text="0 / 4 Bài" textAlignment="CENTER" />
             <Label fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="1.0" prefHeight="38.0" prefWidth="396.0" text="Phần 1: Bước vào hành trình" textAlignment="CENTER" wrapText="true" />
             <Label fx:id="labelDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="100.0" prefHeight="18.0" prefWidth="396.0" text="Khởi động cùng một số cụm từ và ngữ pháp cơ bản" textAlignment="CENTER" />
