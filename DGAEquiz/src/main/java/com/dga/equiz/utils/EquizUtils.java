@@ -150,4 +150,10 @@ public class EquizUtils {
         return wordList;
     }
 
+    public static void setStyle(Node node, String... styles) {
+        node.getStyleClass().clear();
+        for (String style : styles) {
+            node.getStyleClass().add(style);
+        }
+    }
 }

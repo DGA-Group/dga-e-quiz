@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="556.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.FillQuestionController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="556.0" styleClass="question-pane" stylesheets="@../../css/learnDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.FillQuestionController">
    <top>
-      <Label fx:id="labelQuestion" prefHeight="27.0" prefWidth="603.0" text="Chọn câu trả lời đúng" BorderPane.alignment="CENTER">
+      <Label fx:id="labelQuestion" prefHeight="27.0" prefWidth="603.0" styleClass="label-content" stylesheets="@../../css/learnDesign.css" text="Chọn câu trả lời đúng" BorderPane.alignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
@@ -21,10 +21,10 @@
    <right>
       <VBox alignment="CENTER" prefHeight="214.0" prefWidth="274.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button fx:id="buttonOption3" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
-            <Button fx:id="buttonOption4" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" text="Answer" />
+            <Button fx:id="buttonOption1" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
+            <Button fx:id="buttonOption2" layoutX="10.0" layoutY="100.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
+            <Button fx:id="buttonOption3" layoutX="10.0" layoutY="128.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
+            <Button fx:id="buttonOption4" layoutX="10.0" layoutY="155.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="274.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Answer" />
          </children>
          <BorderPane.margin>
             <Insets right="10.0" />
@@ -32,7 +32,7 @@
       </VBox>
    </right>
    <center>
-      <Label fx:id="labelContext" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="202.0" prefWidth="258.0" text="The __ jump over the lazy fox. and then running to the field with alot of grass then laying down." wrapText="true" BorderPane.alignment="CENTER">
+      <Label fx:id="labelContext" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="202.0" prefWidth="258.0" styleClass="label-content" stylesheets="@../../css/learnDesign.css" text="The __ jump over the lazy fox. and then running to the field with alot of grass then laying down." wrapText="true" BorderPane.alignment="CENTER">
          <font>
             <Font size="16.0" />
          </font>
