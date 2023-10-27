@@ -23,9 +23,9 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonSearch" layoutX="531.0" layoutY="35.0" mnemonicParsing="false" onAction="#onClickSearch" prefHeight="32.0" prefWidth="51.0" styleClass="button-searchButton" stylesheets="@../css/dictionaryDesign.css" textAlignment="CENTER">
+            <Button fx:id="buttonSearch" layoutX="531.0" layoutY="35.0" mnemonicParsing="false" onAction="#onClickSearch" onKeyPressed="#onEnterSearch" prefHeight="32.0" prefWidth="51.0" styleClass="button-searchButton" stylesheets="@../css/dictionaryDesign.css" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="45.0" fitWidth="45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" styleClass="button-searchButton">
+                  <ImageView fitHeight="45.0" fitWidth="45.0" nodeOrientation="INHERIT" onKeyPressed="#onEnterSearch" pickOnBounds="true" preserveRatio="true" styleClass="button-searchButton">
                      <image>
                         <Image url="@../../../../../../183-1830820_mouse-scroll-icon-search-icon-png-circle%20after%20fix.png" />
                      </image>

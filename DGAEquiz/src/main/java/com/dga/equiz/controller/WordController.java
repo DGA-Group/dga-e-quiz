@@ -44,52 +44,66 @@ public class WordController {
             }
         });
         int i = 0;
-        while(word.getMeanings().get(i).getDefinitions().isEmpty()){
+        while (word.getMeanings().get(i).getDefinitions().isEmpty()) {
             i++;
         }
         List<Definition> definitions = word.getMeanings().get(i).getDefinitions();
+        int cntEx = 0;
+        int cntDef = 0;
         for (var def : definitions) {
             Label definitionsLabel = new Label();
             vBox.getChildren().add(definitionsLabel);
             definitionsLabel.setWrapText(true);
             definitionsLabel.setText("Definition:  " + def.getDefinition());
             if (def.getExample() == null) {
-
-            }
-            else {
+                cntDef++;
+            } else {
                 Label exampleLabel = new Label();
                 vBox.getChildren().add(exampleLabel);
                 exampleLabel.setWrapText(true);
                 exampleLabel.setText("Example:  " + def.getExample());
+                cntEx++;
+                cntDef++;
+            }
+            if (cntEx == 4 || cntDef == 4) {
+                break;
             }
         }
         Label synonymLabel = new Label();
         Label antonymLabel = new Label();
         vBox.getChildren().add(synonymLabel);
         vBox.getChildren().add(antonymLabel);
-        if (word.getMeanings().get(i).getSynonyms().isEmpty()){
-            synonymLabel.setText("Synonyms:");
-        }
-        else {
-            String synonyms = "Synonyms:  ";
-            int sideOfSynonyms = word.getMeanings().get(i).getSynonyms().size();
-            for (int j = 0; j < sideOfSynonyms-1; j++){
-                synonyms += word.getMeanings().get(i).getSynonyms().get(j) + ",";
+        String synonyms = "";
+        for (int k = 0; k < word.getMeanings().size(); k++) {
+            if (!word.getMeanings().get(k).getSynonyms().isEmpty()) {
+                int sideOfSynonyms = word.getMeanings().get(k).getSynonyms().size();
+                for (int j = 0; j < sideOfSynonyms; j++) {
+                    synonyms += word.getMeanings().get(k).getSynonyms().get(j) + ",";
+                }
             }
-            synonymLabel.setText(synonyms + word.getMeanings().get(i).getSynonyms().get(sideOfSynonyms-1)+".");
         }
-        if (word.getMeanings().get(i).getAntonyms().isEmpty()){
-            antonymLabel.setText("Antonyms:");
-        }
-        else {
-            String antonyms = "Antonyms:  ";
-            int sideOfAntonyms = word.getMeanings().get(i).getAntonyms().size();
-            for (int j = 0; j < sideOfAntonyms-1; j++){
-                antonyms += word.getMeanings().get(i).getAntonyms().get(j) + ",";
-            }
-            antonymLabel.setText(antonyms + word.getMeanings().get(i).getAntonyms().get(sideOfAntonyms-1)+".");
+        if (synonyms.length() > 0) {
+            synonyms = synonyms.substring(0, synonyms.length() - 1) + '.';
         }
 
+        synonymLabel.setText("Synonyms : " + synonyms);
+        synonymLabel.setWrapText(true);
+        String antonyms = "";
+        for (int k = 0; k < word.getMeanings().size(); k++) {
+            if (!word.getMeanings().get(k).getAntonyms().isEmpty()) {
+                int sideOfSynonyms = word.getMeanings().get(k).getAntonyms().size();
+                for (int j = 0; j < sideOfSynonyms; j++) {
+                    antonyms += word.getMeanings().get(k).getAntonyms().get(j) + ",";
+                }
+            }
+        }
+        if (antonyms.length() > 1) {
+            antonyms = antonyms.substring(0, antonyms.length() - 1) + '.';
+        }
+
+        antonymLabel.setText("Antonyms : "+ antonyms);
+        antonymLabel.setWrapText(true);
     }
 }
+
 

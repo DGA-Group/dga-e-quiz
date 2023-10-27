@@ -1,6 +1,5 @@
 .button-searchButton {
     -fx-background-color: transparent;
-
 }
 .textField-searchBar {
     -fx-text-fill: black;
@@ -8,7 +7,7 @@
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-border-width: 4;
-    -fx-border-color: #31B2B0;
+    -fx-border-color: #5D8BDF;
     -fx-font-style: italic;
     -fx-font-family: "Times New Roman";
     -fx-alignment: center-left;
@@ -16,9 +15,9 @@
 }
 .tab-pane {
     -fx-background-radius: 0px 0px 20px 20px;
-    -fx-background-color: B4DDD3;
+    -fx-background-color: #444766;
 
 }
 .scroll-pane {
-    -fx-background-color: #C4C4C4;
+    -fx-background-color: #C9E6FF;
 }
