@@ -5,8 +5,10 @@ import com.dga.equiz.controller.editProfile.EditInforController;
 import com.dga.equiz.controller.editProfile.EditSelectController;
 import com.dga.equiz.controller.editProfile.ProfileController;
 import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,6 +29,8 @@ public class ProfileContainerController implements Initializable {
 
     private NodeObject profileView;
 
+    private NodeObject loginView;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -40,15 +44,27 @@ public class ProfileContainerController implements Initializable {
 
     // add 4 pane to container.
     public void addPane() throws IOException {
-        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml");
-        paneDefault.getChildren().add(profileView.getNode());
-        profileView.show();
+        loginView = EquizUtils.Instantiate("/view/login/Login.fxml",paneDefault, AnchorType.FitToParent);
+        loginView.show();
+        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
+        profileView.hide();
+//        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
+//        profileView.show();
         editSelectView = EquizUtils.Instantiate("/view/editProfile/EditSelectView.fxml");
         paneDefault.getChildren().add(editSelectView.getNode());
         editSelectView.hide();
-        editInforView = EquizUtils.Instantiate("/view/editProfile/EditInforView.fxml");
-        paneDefault.getChildren().add(editInforView.getNode());
+        editInforView = EquizUtils.Instantiate("/view/editProfile/EditInforView.fxml", paneDefault, AnchorType.FitToParent);
         editInforView.hide();
+        EditInforController controller = editInforView.getController();
+        controller.onCompleteSave.add(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                editInforView.setVisible(false);
+                profileView.setVisible(true);
+            }
+        });
+
+
         editAccView = EquizUtils.Instantiate("/view/editProfile/EditAccView.fxml");
         paneDefault.getChildren().add(editAccView.getNode());
         editAccView.hide();

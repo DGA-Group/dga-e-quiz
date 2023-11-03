@@ -1,7 +1,11 @@
 package com.dga.equiz.controller.editProfile;
 
+import com.dga.equiz.controller.ProfileContainerController;
+import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.DBHelper;
+import javafx.collections.MapChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,6 +16,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -37,6 +43,8 @@ public class EditInforController implements Initializable {
 
     @FXML
     public DatePicker date;
+
+    public List<EventHandler<ActionEvent>> onCompleteSave = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,11 +73,13 @@ public class EditInforController implements Initializable {
         buttonSave.setOnAction((ActionEvent e) -> {
             try {
                 changeDatabase(id);
+                for(var event : onCompleteSave){
+                    event.handle(e);
+                }
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
-
     }
 
     public void changeDatabase(int id) throws SQLException {
