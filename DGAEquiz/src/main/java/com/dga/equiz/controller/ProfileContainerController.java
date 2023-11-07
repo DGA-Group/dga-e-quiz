@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
@@ -30,6 +31,7 @@ public class ProfileContainerController implements Initializable {
     private NodeObject profileView;
 
     private NodeObject loginView;
+//    public static NodeObject loginView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,10 +46,11 @@ public class ProfileContainerController implements Initializable {
 
     // add 4 pane to container.
     public void addPane() throws IOException {
-        loginView = EquizUtils.Instantiate("/view/login/Login.fxml",paneDefault, AnchorType.FitToParent);
-        loginView.show();
+
         profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
         profileView.hide();
+        loginView = EquizUtils.Instantiate("/view/login/Login.fxml",paneDefault, AnchorType.FitToParent);
+        loginView.show();
 //        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
 //        profileView.show();
         editSelectView = EquizUtils.Instantiate("/view/editProfile/EditSelectView.fxml");
@@ -55,6 +58,7 @@ public class ProfileContainerController implements Initializable {
         editSelectView.hide();
         editInforView = EquizUtils.Instantiate("/view/editProfile/EditInforView.fxml", paneDefault, AnchorType.FitToParent);
         editInforView.hide();
+
         EditInforController controller = editInforView.getController();
         controller.onCompleteSave.add(new EventHandler<ActionEvent>() {
             @Override
@@ -100,4 +104,8 @@ public class ProfileContainerController implements Initializable {
         Button buttonBack3 = controllerAcc.buttonBack;
         changeButton(buttonBack3, editAccView, editSelectView);
     }
+
+//    public static void setVisiableNEW() {
+//        loginView.setVisible(true);
+//    }
 }

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -29,7 +30,12 @@
                   <VBox prefHeight="185.0" prefWidth="324.0" spacing="15.0" BorderPane.alignment="CENTER">
                      <children>
                         <TextField fx:id="tfLogin_username" promptText="Username" />
-                        <TextField fx:id="tfLogin_password" promptText="Password" />
+                        <Pane prefHeight="85.0" prefWidth="324.0">
+                           <children>
+                              <PasswordField fx:id="tfLogin_password" prefHeight="25.0" prefWidth="324.0" promptText="Password" />
+                              <TextField fx:id="tfLogin_showPass" prefHeight="25.0" prefWidth="324.0" promptText="Password" />
+                           </children>
+                        </Pane>
                         <HBox prefHeight="30.0" prefWidth="324.0">
                            <children>
                               <Label fx:id="labelLogin_WrongPass" prefHeight="17.0" prefWidth="134.0" text="Wrong password" />
@@ -82,6 +88,9 @@
                      <right>
                         <Button fx:id="buttonRegister_next" mnemonicParsing="false" prefHeight="51.0" prefWidth="130.0" text="NEXT" BorderPane.alignment="CENTER" />
                      </right>
+                     <top>
+                        <Label fx:id="labelRegister_atlert" alignment="CENTER" prefHeight="29.0" prefWidth="324.0" text="Please enter Username and Password to create an account" BorderPane.alignment="CENTER" />
+                     </top>
                   </BorderPane>
                </bottom>
                <center>
@@ -158,9 +167,12 @@
                   </BorderPane>
                </bottom>
             </BorderPane>
-            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0" visible="false">
                <top>
-                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="324.0" text="FORGOT PASSWORD" BorderPane.alignment="CENTER" />
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="324.0" text="FORGOT PASSWORD" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font></Label>
                </top>
                <center>
                   <VBox alignment="CENTER" prefHeight="214.0" prefWidth="324.0" spacing="20.0" BorderPane.alignment="CENTER">
