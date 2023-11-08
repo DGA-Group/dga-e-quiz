@@ -168,8 +168,6 @@ public class LoginController implements Initializable {
         paneLogin.setVisible(true);
         initlabel();
         initButton();
-
-
     }
 
     public void initButton() {

@@ -47,20 +47,23 @@ public class ProfileContainerController implements Initializable {
     // add 4 pane to container.
     public void addPane() throws IOException {
 
-        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
-        profileView.hide();
-        loginView = EquizUtils.Instantiate("/view/login/Login.fxml",paneDefault, AnchorType.FitToParent);
-        loginView.show();
 //        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
-//        profileView.show();
+//        profileView.hide();
+//        loginView = EquizUtils.Instantiate("/view/login/Login.fxml",paneDefault, AnchorType.FitToParent);
+//        loginView.show();
+        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
+        profileView.show();
         editSelectView = EquizUtils.Instantiate("/view/editProfile/EditSelectView.fxml");
         paneDefault.getChildren().add(editSelectView.getNode());
         editSelectView.hide();
         editInforView = EquizUtils.Instantiate("/view/editProfile/EditInforView.fxml", paneDefault, AnchorType.FitToParent);
         editInforView.hide();
+        editAccView = EquizUtils.Instantiate("/view/editProfile/EditAccView.fxml");
+        paneDefault.getChildren().add(editAccView.getNode());
+        editAccView.hide();
 
-        EditInforController controller = editInforView.getController();
-        controller.onCompleteSave.add(new EventHandler<ActionEvent>() {
+        EditInforController controller1 = editInforView.getController();
+        controller1.onCompleteSave.add(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 editInforView.setVisible(false);
@@ -68,10 +71,14 @@ public class ProfileContainerController implements Initializable {
             }
         });
 
-
-        editAccView = EquizUtils.Instantiate("/view/editProfile/EditAccView.fxml");
-        paneDefault.getChildren().add(editAccView.getNode());
-        editAccView.hide();
+        EditAccController controller2 = editAccView.getController();
+        controller2.onCompleteSave.add(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                editAccView.setVisible(false);
+                profileView.setVisible(true);
+            }
+        });
     }
 
     // add change function to a specific button.
@@ -104,8 +111,4 @@ public class ProfileContainerController implements Initializable {
         Button buttonBack3 = controllerAcc.buttonBack;
         changeButton(buttonBack3, editAccView, editSelectView);
     }
-
-//    public static void setVisiableNEW() {
-//        loginView.setVisible(true);
-//    }
 }
