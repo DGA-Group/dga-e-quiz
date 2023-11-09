@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Definition;
@@ -12,6 +14,7 @@ import com.dga.equiz.model.word.Meaning;
 import com.dga.equiz.model.word.Phonetic;
 import com.dga.equiz.model.word.Word;
 import com.dga.equiz.utils.EquizUtils;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -46,44 +49,49 @@ public class DictionaryController implements Initializable {
     @FXML
     private VBox wordsBox;
 
-    private List<String> suggesstions = new ArrayList<String>();
+    private CopyOnWriteArrayList<String> suggesstions = new CopyOnWriteArrayList<>();
 
-    public void onStartup() throws IOException {
-        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(searchingField, suggesstions);
-        autoCompletionBinding.setPrefWidth(searchingField.getPrefWidth());
-        autoCompletionBinding.setOnAutoCompleted(event -> {
-            String selectedWord = event.getCompletion();
-        });
+    private CompletableFuture<List<Word>> currentSuggestionTask = CompletableFuture.completedFuture(new ArrayList<>());
+
+    public void onStartup() {
+        TextFields.bindAutoCompletion(searchingField, suggesstions);
+        /*List<String> possibleSuggestions = Arrays.asList(
+                "C", "C#", "C++", "F#", "GoLang",
+                "Dart", "Java", "JavaScript", "Kotlin", "PHP",
+                "Python", "R", "Swift", "Visual Basic .NET"
+        );
+
+        Callback<AutoCompletionBinding.ISuggestionRequest, Collection<String>> suggestionProvider =
+                request -> possibleSuggestions.stream()
+                        .filter(suggestion -> suggestion.toLowerCase().contains(request.getUserText().toLowerCase()))
+                        .toList();*/
         searchingField.textProperty().addListener((obs, oldText, newText) -> {
-            TextFields.bindAutoCompletion(searchingField, "");
-            suggesstions.clear();
-            suggesstions.addAll(getYourSuggestedWords());
-            TextFields.bindAutoCompletion(searchingField, suggesstions);
+            currentSuggestionTask.cancel(true); // Hủy luồng trước khi bắt đầu một luồng mới
+            currentSuggestionTask = CompletableFuture.supplyAsync(() -> {
+                try {
+                    return EquizUtils.FetchSuggestWordFromDictionary(newText);
+                } catch (IOException e) {
+                    throw new RuntimeException("Không thể tải danh sách từ khóa gợi ý.", e);
+                }
+            }).exceptionally(ex -> {
+                ex.printStackTrace();
+                return new ArrayList<>(); // Trả về danh sách trống nếu có lỗi
+            });
+            currentSuggestionTask.thenAcceptAsync(suggestedWords -> Platform.runLater(() -> {
+                suggesstions.clear();
+                for (Word word : suggestedWords) {
+                    suggesstions.add(word.getWord());
+                }
+                TextFields.bindAutoCompletion(searchingField, suggesstions);
+            }));
         });
     }
 
-    private List<String> getYourSuggestedWords() {
-        try {
-            List<String> suggestedWords = new ArrayList<>();
-            List<Word> inputSuggestWord = EquizUtils.FetchSuggestWordFromDictionary(searchingField.getText());
-            for (var word : inputSuggestWord) {
-                suggestedWords.add(word.getWord());
-            }
-            return suggestedWords;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Không thể tải danh sách từ khóa gợi ý.");
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            onStartup();
-            onEnterSearch();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        onStartup();
+        onEnterSearch();
     }
 
     public void onEnterSearch() {
@@ -102,10 +110,28 @@ public class DictionaryController implements Initializable {
     }
 
     public void onClickSearch() throws IOException {
-        wordsBox.getChildren().clear();
-        String inputWord = searchingField.getText();
+        String inputWord = searchingField.getText().trim();
+        CompletableFuture.supplyAsync(() -> {
+            try {
+                return EquizUtils.FetchWordFromDictionary(inputWord);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }).thenAcceptAsync(words -> Platform.runLater(() -> {
+            try {
+                displayWords(words);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }))
+                .exceptionally(ex -> {
+                    ex.printStackTrace();
+                    return null;
+                });
+    }
 
-        List<Word> resWord = EquizUtils.FetchWordFromDictionary(inputWord);
+    private void displayWords(List<Word> resWord) throws IOException {
+        wordsBox.getChildren().clear();
         for (var wor : resWord) {
             NodeObject wordView = EquizUtils.Instantiate("/view/WordView.fxml");
             wordsBox.getChildren().add(wordView.getNode());
@@ -114,13 +140,13 @@ public class DictionaryController implements Initializable {
             List<Phonetic> phonetics = wor.getPhonetics();
             String pathOfSpeech = "";
             String pathOfAudio = "";
-            for (var mean : meanings) {
+            for (Meaning mean : meanings) {
                 if (!mean.getPartOfSpeech().isEmpty()) {
                     pathOfSpeech += mean.getPartOfSpeech();
                     break;
                 }
             }
-            for (var phone : phonetics) {
+            for (Phonetic phone : phonetics) {
                 if (!phone.getAudio().isEmpty()) {
                     pathOfAudio += phone.getAudio();
                     break;
