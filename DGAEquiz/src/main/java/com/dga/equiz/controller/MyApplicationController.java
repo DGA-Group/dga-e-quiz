@@ -40,6 +40,7 @@ public class MyApplicationController implements Initializable {
     private NodeObject homeView = null;
     private NodeObject dictionaryView = null;
     private NodeObject profileView = null;
+    private NodeObject gameView = null;
 
     private NodeObject currentPanel = null;
     private static double xOffset = 0;
@@ -51,6 +52,7 @@ public class MyApplicationController implements Initializable {
         setupHomeView();
         setupDictionaryView();
         setupProfileView();
+        setupGameView();
 
         // Set default panel to home
         currentPanel = homeView;
@@ -112,6 +114,16 @@ public class MyApplicationController implements Initializable {
         }
     }
 
+    private void setupGameView() {
+        try {
+            // Load profile here.
+            gameView = EquizUtils.Instantiate("/view/game/LobbyView.fxml", panelHolder, AnchorType.FitToParent);
+            gameView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void switchToPanel(NodeObject panel) {
         if (currentPanel != null) {
             currentPanel.setVisible(false);
@@ -134,5 +146,9 @@ public class MyApplicationController implements Initializable {
 
     public void onClickSwitchToProfile() {
         switchToPanel(profileView);
+    }
+
+    public void onClickSwitchToGame() {
+        switchToPanel(gameView);
     }
 }

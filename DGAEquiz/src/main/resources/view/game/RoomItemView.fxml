@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.RoomItemController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0">
+         <children>
+            <Label fx:id="lbRoomId" alignment="CENTER" prefHeight="67.0" prefWidth="180.0" text="2202" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="180.0">
+         <children>
+            <Label fx:id="lbRoomName" alignment="CENTER" prefHeight="50.0" prefWidth="246.0" text="Phong cua Duong" />
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="190.0" layoutY="10.0" prefHeight="200.0" prefWidth="180.0">
+         <children>
+            <Label fx:id="lbNumberOfPlayer" alignment="CENTER" prefHeight="50.0" prefWidth="261.0" text="2/10" />
+         </children>
+      </VBox>
+      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="78.0" text="Join" />
+   </children>
+   <padding>
+      <Insets left="20.0" right="10.0" />
+   </padding>
+</HBox>

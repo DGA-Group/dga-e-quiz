@@ -41,6 +41,11 @@
                   <FontIcon iconColor="WHITE" iconLiteral="fth-settings" />
                </graphic>
             </Button>
+            <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Game" textAlignment="CENTER">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" />
+               </graphic>
+            </Button>
          </children>
          <opaqueInsets>
             <Insets />
