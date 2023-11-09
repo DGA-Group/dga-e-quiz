@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.login.LoginController">
+   <right>
+      <StackPane fx:id="stackPane" prefHeight="430.0" prefWidth="324.0" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0" visible="false">
+               <top>
+                  <Label alignment="CENTER" prefHeight="121.0" prefWidth="324.0" text="HI!" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <VBox prefHeight="185.0" prefWidth="324.0" spacing="15.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="tfLogin_username" promptText="Username" />
+                        <Pane prefHeight="85.0" prefWidth="324.0">
+                           <children>
+                              <PasswordField fx:id="tfLogin_password" prefHeight="25.0" prefWidth="324.0" promptText="Password" />
+                              <TextField fx:id="tfLogin_showPass" prefHeight="25.0" prefWidth="324.0" promptText="Password" />
+                           </children>
+                        </Pane>
+                        <HBox prefHeight="30.0" prefWidth="324.0">
+                           <children>
+                              <Label fx:id="labelLogin_WrongPass" prefHeight="17.0" prefWidth="134.0" text="Wrong password" />
+                              <Pane prefHeight="25.0" prefWidth="77.0" />
+                              <Button fx:id="buttonLogin_ForgotPass" mnemonicParsing="false" text="Forgot Password" />
+                           </children>
+                        </HBox>
+                        <CheckBox fx:id="checkLogin_pass" mnemonicParsing="false" prefHeight="17.0" prefWidth="405.0" text="SHOW PASSWORD" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="33.0" prefWidth="64.0" />
+                              <Button fx:id="buttonLogin_login" mnemonicParsing="false" prefHeight="37.0" prefWidth="206.0" text="LOG IN" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </center>
+               <bottom>
+                  <VBox prefHeight="114.0" prefWidth="324.0" spacing="10.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane prefHeight="40.0" prefWidth="324.0" />
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="324.0" text="Register Account">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Label>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Pane prefHeight="73.0" prefWidth="65.0" />
+                              <Button fx:id="buttonLogin_signUp" mnemonicParsing="false" prefHeight="33.0" prefWidth="206.0" text="SIGN UP" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </bottom>
+            </BorderPane>
+            <BorderPane fx:id="paneRegister" prefHeight="513.0" prefWidth="353.0" visible="false">
+               <top>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="320.0" text="CREATE ACCOUNT" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </top>
+               <bottom>
+                  <BorderPane prefHeight="84.0" prefWidth="324.0" BorderPane.alignment="CENTER">
+                     <left>
+                        <Button fx:id="buttonRegister_back" mnemonicParsing="false" prefHeight="51.0" prefWidth="130.0" text="BACK" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Button fx:id="buttonRegister_next" mnemonicParsing="false" prefHeight="51.0" prefWidth="130.0" text="NEXT" BorderPane.alignment="CENTER" />
+                     </right>
+                     <top>
+                        <Label fx:id="labelRegister_atlert" alignment="CENTER" prefHeight="29.0" prefWidth="324.0" text="Please enter Username and Password to create an account" BorderPane.alignment="CENTER" />
+                     </top>
+                  </BorderPane>
+               </bottom>
+               <center>
+                  <VBox fx:id="vboxInfor" prefHeight="328.0" prefWidth="324.0" spacing="20.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="tfRegister_username" promptText="Username" />
+                        <TextField fx:id="tfRegister_pass" layoutX="10.0" layoutY="27.0" promptText="Password" />
+                        <TextField fx:id="tfRegister_name" layoutX="10.0" layoutY="69.0" promptText="Your Name" />
+                        <TextField fx:id="tfRegister_mail" layoutX="10.0" layoutY="111.0" promptText="Your Mail" />
+                        <TextField fx:id="tfRegister_phone" layoutX="10.0" layoutY="153.0" promptText="Phone Number" />
+                        <TextField fx:id="tfRegister_github" layoutX="10.0" layoutY="195.0" promptText="Github Link" />
+                        <DatePicker fx:id="dateRegister_dob" prefHeight="25.0" prefWidth="1044.0" promptText="Date Of Birth" />
+                     </children>
+                  </VBox>
+               </center>
+            </BorderPane>
+            <BorderPane fx:id="paneConfirmAcc" layoutX="10.0" layoutY="10.0" prefHeight="513.0" prefWidth="353.0" visible="false">
+               <top>
+                  <Label alignment="CENTER" prefHeight="70.0" prefWidth="320.0" text="OPEN YOUR MAIL" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <VBox prefHeight="236.0" prefWidth="324.0" spacing="20.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="336.0" text="Confirm Code">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="33.0" prefWidth="324.0" spacing="10.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="200.0" />
+                              <TextField fx:id="tfAcc_code1" />
+                              <TextField fx:id="tfAcc_code2" />
+                              <TextField fx:id="tfAcc_code3" />
+                              <TextField fx:id="tfAcc_code4" />
+                              <Pane layoutX="253.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                        <TextField fx:id="tfAcc_confirmPass" prefHeight="25.0" prefWidth="201.0" promptText="Confirm your password" />
+                        <CheckBox fx:id="checkAcc_showAcc" mnemonicParsing="false" prefHeight="17.0" prefWidth="347.0" text="Show password">
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </CheckBox>
+                        <CheckBox fx:id="checkAcc_agree" mnemonicParsing="false" prefHeight="17.0" prefWidth="347.0" text="I agree to all of the developer's terms">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="30.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                     </children>
+                  </VBox>
+               </center>
+               <bottom>
+                  <BorderPane prefHeight="128.0" prefWidth="324.0" BorderPane.alignment="CENTER">
+                     <right>
+                        <Button fx:id="buttonAcc_go" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Go To App" BorderPane.alignment="CENTER" />
+                     </right>
+                     <left>
+                        <Button fx:id="buttonAcc_back" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Back" BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </bottom>
+            </BorderPane>
+            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0" visible="false">
+               <top>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="324.0" text="FORGOT PASSWORD" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font></Label>
+               </top>
+               <center>
+                  <VBox alignment="CENTER" prefHeight="214.0" prefWidth="324.0" spacing="20.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <TextField fx:id="tfForgot_mail" promptText="Your Mail" />
+                        <TextField fx:id="tfForgot_Npass" promptText="New Password" />
+                        <TextField fx:id="tfForgot_confNpass" promptText="Confirm New Password" />
+                     </children>
+                  </VBox>
+               </center>
+               <bottom>
+                  <BorderPane prefHeight="130.0" prefWidth="324.0" BorderPane.alignment="CENTER">
+                     <right>
+                        <Button fx:id="buttonForgot_go" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Go" BorderPane.alignment="CENTER" />
+                     </right>
+                     <left>
+                        <Button fx:id="buttonForgot_back" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Back" BorderPane.alignment="CENTER" />
+                     </left>
+                  </BorderPane>
+               </bottom>
+            </BorderPane>
+            <BorderPane fx:id="paneConfirmPass" layoutX="10.0" layoutY="10.0" prefHeight="513.0" prefWidth="353.0" visible="false">
+               <top>
+                  <Label alignment="CENTER" prefHeight="70.0" prefWidth="320.0" text="OPEN YOUR MAIL" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </top>
+               <center>
+                  <VBox prefHeight="151.0" prefWidth="324.0" spacing="20.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="336.0" text="Confirm Code">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="33.0" prefWidth="324.0" spacing="10.0">
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="200.0" />
+                              <TextField fx:id="tfPass_code1" />
+                              <TextField fx:id="tfPass_code2" />
+                              <TextField fx:id="tfPass_code3" />
+                              <TextField fx:id="tfPass_code4" />
+                              <Pane layoutX="253.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </center>
+               <bottom>
+                  <BorderPane prefHeight="209.0" prefWidth="324.0" BorderPane.alignment="CENTER">
+                     <center>
+                        <Button fx:id="buttonPass_go" mnemonicParsing="false" prefHeight="62.0" prefWidth="191.0" text="Let's Go to App" BorderPane.alignment="CENTER" />
+                     </center>
+                     <top>
+                        <VBox prefHeight="67.0" prefWidth="324.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="17.0" prefWidth="333.0" text="You have a good memory" />
+                              <Label alignment="CENTER" prefHeight="17.0" prefWidth="463.0" text="Don't forget your password again ;)" />
+                           </children>
+                        </VBox>
+                     </top>
+                  </BorderPane>
+               </bottom>
+            </BorderPane>
+         </children>
+      </StackPane>
+   </right>
+   <center>
+      <Pane prefHeight="430.0" prefWidth="324.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

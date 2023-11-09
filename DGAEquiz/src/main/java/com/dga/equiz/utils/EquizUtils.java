@@ -11,6 +11,7 @@ import com.squareup.okhttp.Response;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
@@ -155,5 +156,14 @@ public class EquizUtils {
         for (String style : styles) {
             node.getStyleClass().add(style);
         }
+    }
+
+    // Print the Alert to the screen when you receive an ERROR!
+    public static void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Username Alert");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

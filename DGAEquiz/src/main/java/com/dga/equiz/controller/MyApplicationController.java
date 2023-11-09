@@ -105,9 +105,8 @@ public class MyApplicationController implements Initializable {
     private void setupProfileView() {
         try {
             // Load profile here.
-            profileView = EquizUtils.Instantiate("/view/ProfileContainerView.fxml");
-            panelHolder.getChildren().add(profileView.getNode());
-
+            profileView = EquizUtils.Instantiate("/view/ProfileContainerView.fxml", panelHolder, AnchorType.FitToParent);
+            //profileView = EquizUtils.Instantiate("/view/login/Login.fxml", panelHolder, AnchorType.FitToParent);
             profileView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,3 +151,4 @@ public class MyApplicationController implements Initializable {
         switchToPanel(gameView);
     }
 }
+
