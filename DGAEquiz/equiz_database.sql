@@ -1,253 +1,204 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Máy chủ: 127.0.0.1:3307
--- Thời gian đã tạo: Th10 24, 2023 lúc 10:51 AM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.0.28
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: dga_data
+-- ------------------------------------------------------
+-- Server version	8.1.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Cơ sở dữ liệu: `jdbcdemo`
+-- Table structure for table `campaign`
 --
 
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `account`
---
-
-CREATE TABLE `account` (
-  `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `account`
---
-
-INSERT INTO `account` (`id`, `username`, `password`) VALUES
-(1, 'Duong', '1234'),
-(2, 'Tuan Anh', '1334'),
-(3, 'Giang', '1239'),
-(4, 'Hoan', '1876'),
-(5, 'TuanDuong', '1351253'),
-(6, 'TuanDuong', '1351253'),
-(7, 'TuanDuong', '1351253');
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `campaign`
---
-
+DROP TABLE IF EXISTS `campaign`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `campaign` (
-  `id` bigint(11) NOT NULL,
-  `title` text DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  `lesson_data` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `title` text COLLATE utf8mb4_general_ci,
+  `description` text COLLATE utf8mb4_general_ci,
+  `lesson_data` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Đang đổ dữ liệu cho bảng `campaign`
+-- Dumping data for table `campaign`
 --
 
-INSERT INTO `campaign` (`id`, `title`, `description`, `lesson_data`) VALUES
-(1, 'Phần 1: Sưu tầm tranh', 'Bài học này chứa rất nhiều thông tin về tranh vẽ', '{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),
-(2, 'Phần 2: Thế giới động vật', 'Bài học này sẽ cho các bé tìm hiểu về thế giới động vật', '{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),
-(3, 'Phần 3: Chiến tranh trung cổ', 'Trong khoá này các bé sẽ học về các sự kiện trung cổ', '{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),
-(4, 'Phần 4: Cuộc chiến đông âu', 'Hãy tự tìm hiểu qua bài học này nhé!', '{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}');
-
--- --------------------------------------------------------
+LOCK TABLES `campaign` WRITE;
+/*!40000 ALTER TABLE `campaign` DISABLE KEYS */;
+INSERT INTO `campaign` VALUES (1,'Phần 1: Sưu tầm tranh','Bài học này chứa rất nhiều thông tin về tranh vẽ','{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),(2,'Phần 2: Thế giới động vật','Bài học này sẽ cho các bé tìm hiểu về thế giới động vật','{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),(3,'Phần 3: Chiến tranh trung cổ','Trong khoá này các bé sẽ học về các sự kiện trung cổ','{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}'),(4,'Phần 4: Cuộc chiến đông âu','Hãy tự tìm hiểu qua bài học này nhé!','{\"id\":1,\"image_questions_id\":[1,2],\"fill_questions_id\":[1,2],\"listening_questions_id\":[1,2],\"translate_questions_id\":[1,2]}');
+/*!40000 ALTER TABLE `campaign` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Cấu trúc bảng cho bảng `fill_question`
+-- Table structure for table `fill_question`
 --
 
+DROP TABLE IF EXISTS `fill_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fill_question` (
-  `id` bigint(20) NOT NULL,
-  `question` text NOT NULL,
-  `context` text DEFAULT NULL,
-  `option1` text DEFAULT NULL,
-  `option2` text DEFAULT NULL,
-  `option3` text DEFAULT NULL,
-  `option4` text DEFAULT NULL,
-  `correct_answer` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` text COLLATE utf8mb4_general_ci NOT NULL,
+  `context` text COLLATE utf8mb4_general_ci,
+  `option1` text COLLATE utf8mb4_general_ci,
+  `option2` text COLLATE utf8mb4_general_ci,
+  `option3` text COLLATE utf8mb4_general_ci,
+  `option4` text COLLATE utf8mb4_general_ci,
+  `correct_answer` tinyint NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Đang đổ dữ liệu cho bảng `fill_question`
+-- Dumping data for table `fill_question`
 --
 
-INSERT INTO `fill_question` (`id`, `question`, `context`, `option1`, `option2`, `option3`, `option4`, `correct_answer`) VALUES
-(1, 'Chọn đáp án đúng:', 'The first time that an (1) \r\n of air rage was recorded was in the 1940’s, but the passenger was never actually charged for an offence because there were no clear rules in place to specify where to prosecute', 'predicted', 'incident', 'passenger', 'hoped', 2),
-(2, 'Chọn đáp án đúng:', 'It was later (2) \r\n that it would be the country where the plane is registered. ', 'passengers', 'established', 'occurring', 'hoped', 3);
-
--- --------------------------------------------------------
+LOCK TABLES `fill_question` WRITE;
+/*!40000 ALTER TABLE `fill_question` DISABLE KEYS */;
+INSERT INTO `fill_question` VALUES (1,'Chọn đáp án đúng:','The first time that an (1) \r\n of air rage was recorded was in the 1940’s, but the passenger was never actually charged for an offence because there were no clear rules in place to specify where to prosecute','predicted','incident','passenger','hoped',2),(2,'Chọn đáp án đúng:','It was later (2) \r\n that it would be the country where the plane is registered. ','passengers','established','occurring','hoped',3);
+/*!40000 ALTER TABLE `fill_question` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Cấu trúc bảng cho bảng `image_question`
+-- Table structure for table `image_question`
 --
 
+DROP TABLE IF EXISTS `image_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `image_question` (
-  `id` bigint(11) NOT NULL,
-  `question` text NOT NULL,
-  `image_source` text DEFAULT NULL,
-  `option1` text DEFAULT NULL,
-  `option2` text DEFAULT NULL,
-  `option3` text DEFAULT NULL,
-  `option4` text DEFAULT NULL,
-  `correct_answer` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` text COLLATE utf8mb4_general_ci NOT NULL,
+  `image_source` text COLLATE utf8mb4_general_ci,
+  `option1` text COLLATE utf8mb4_general_ci,
+  `option2` text COLLATE utf8mb4_general_ci,
+  `option3` text COLLATE utf8mb4_general_ci,
+  `option4` text COLLATE utf8mb4_general_ci,
+  `correct_answer` tinyint NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Đang đổ dữ liệu cho bảng `image_question`
+-- Dumping data for table `image_question`
 --
 
-INSERT INTO `image_question` (`id`, `question`, `image_source`, `option1`, `option2`, `option3`, `option4`, `correct_answer`) VALUES
-(1, 'Hãy chọn đáp án đúng', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dodo_1.JPG/640px-Dodo_1.JPG', 'Con chim dodo', 'Con vẹt', 'Con khủng long', 'Con chó', 1),
-(2, 'Đây là đội tuyển nào', 'https://liquipedia.net/commons/images/thumb/7/7c/GAM_Worlds_2022.jpg/562px-GAM_Worlds_2022.jpg', 'Seed 1 coincard', 'Ông trùm VCS', 'TeamWhale', 'GAM Esport', 4);
-
--- --------------------------------------------------------
+LOCK TABLES `image_question` WRITE;
+/*!40000 ALTER TABLE `image_question` DISABLE KEYS */;
+INSERT INTO `image_question` VALUES (1,'Hãy chọn đáp án đúng','https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dodo_1.JPG/640px-Dodo_1.JPG','Con chim dodo','Con vẹt','Con khủng long','Con chó',1),(2,'Đây là đội tuyển nào','https://liquipedia.net/commons/images/thumb/7/7c/GAM_Worlds_2022.jpg/562px-GAM_Worlds_2022.jpg','Seed 1 coincard','Ông trùm VCS','TeamWhale','GAM Esport',4);
+/*!40000 ALTER TABLE `image_question` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Cấu trúc bảng cho bảng `listening_question`
+-- Table structure for table `information`
 --
 
+DROP TABLE IF EXISTS `information`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `information` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `mail` varchar(255) DEFAULT NULL,
+  `dob` date DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `github` varchar(255) DEFAULT NULL,
+  `link_ava` text,
+  `level` text,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `confirmCode` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `information`
+--
+
+LOCK TABLES `information` WRITE;
+/*!40000 ALTER TABLE `information` DISABLE KEYS */;
+INSERT INTO `information` VALUES (1,'Tran Duy Tuan Anh','22028228@gmail.com','2004-11-11','09009877788','https://github.com/tranduytuana20045',NULL,'B1','tranduytuana123','\n11112004',NULL),(2,'Nguyen Tuan Duong','tuanduong152004@gmail.com','2004-05-01','000000010','https://github.com/koezyrs',NULL,'B1','koezyrs123','2324324',NULL),(3,'Vu Ninh Giang','giang@gmail.com','2004-06-13','000000020','https://github.com/Zeus',NULL,'C1','giangkakaka','69659654',NULL),(4,'Chu Quang Can','ccc@gmail.com','2004-01-23','403594039543','ccc.com',NULL,NULL,'chuquangcccc123','43546546',NULL),(5,'','','0001-01-01','','',NULL,NULL,'nguyenduckien1212','9454854',NULL);
+/*!40000 ALTER TABLE `information` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `listening_question`
+--
+
+DROP TABLE IF EXISTS `listening_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `listening_question` (
-  `id` bigint(20) NOT NULL,
-  `question` text NOT NULL,
-  `audio_source` text DEFAULT NULL,
-  `option1` text DEFAULT NULL,
-  `option2` text DEFAULT NULL,
-  `correct_answer` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` text COLLATE utf8mb4_general_ci NOT NULL,
+  `audio_source` text COLLATE utf8mb4_general_ci,
+  `option1` text COLLATE utf8mb4_general_ci,
+  `option2` text COLLATE utf8mb4_general_ci,
+  `correct_answer` tinyint NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Đang đổ dữ liệu cho bảng `listening_question`
+-- Dumping data for table `listening_question`
 --
 
-INSERT INTO `listening_question` (`id`, `question`, `audio_source`, `option1`, `option2`, `correct_answer`) VALUES
-(1, 'Chọn đáp án đúng:', 'https://api.dictionaryapi.dev/media/pronunciations/en/book-uk.mp3', 'Book', 'Bob', 1),
-(2, 'Chọn đáp án đúng:', 'https://api.dictionaryapi.dev/media/pronunciations/en/field-au.mp3', 'Feel', 'Field', 2);
-
--- --------------------------------------------------------
+LOCK TABLES `listening_question` WRITE;
+/*!40000 ALTER TABLE `listening_question` DISABLE KEYS */;
+INSERT INTO `listening_question` VALUES (1,'Chọn đáp án đúng:','https://api.dictionaryapi.dev/media/pronunciations/en/book-uk.mp3','Book','Bob',1),(2,'Chọn đáp án đúng:','https://api.dictionaryapi.dev/media/pronunciations/en/field-au.mp3','Feel','Field',2);
+/*!40000 ALTER TABLE `listening_question` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Cấu trúc bảng cho bảng `translate_question`
+-- Table structure for table `translate_question`
 --
 
+DROP TABLE IF EXISTS `translate_question`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `translate_question` (
-  `id` bigint(20) NOT NULL,
-  `question` text NOT NULL,
-  `context` text DEFAULT NULL,
-  `option1` text DEFAULT NULL,
-  `option2` text DEFAULT NULL,
-  `option3` text DEFAULT NULL,
-  `option4` text DEFAULT NULL,
-  `correct_answer` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `question` text COLLATE utf8mb4_general_ci NOT NULL,
+  `context` text COLLATE utf8mb4_general_ci,
+  `option1` text COLLATE utf8mb4_general_ci,
+  `option2` text COLLATE utf8mb4_general_ci,
+  `option3` text COLLATE utf8mb4_general_ci,
+  `option4` text COLLATE utf8mb4_general_ci,
+  `correct_answer` tinyint NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Đang đổ dữ liệu cho bảng `translate_question`
+-- Dumping data for table `translate_question`
 --
 
-INSERT INTO `translate_question` (`id`, `question`, `context`, `option1`, `option2`, `option3`, `option4`, `correct_answer`) VALUES
-(1, 'Chọn đáp án đúng:', 'Independent', 'Độc lập', 'Phụ thuộc', 'Ức chế', 'Kiểm soát', 1),
-(2, 'Chọn đáp án đúng:', 'Zoo', 'Ngựa vằn', 'Sở thú', 'Cá heo', 'Mắt', 2);
+LOCK TABLES `translate_question` WRITE;
+/*!40000 ALTER TABLE `translate_question` DISABLE KEYS */;
+INSERT INTO `translate_question` VALUES (1,'Chọn đáp án đúng:','Independent','Độc lập','Phụ thuộc','Ức chế','Kiểm soát',1),(2,'Chọn đáp án đúng:','Zoo','Ngựa vằn','Sở thú','Cá heo','Mắt',2);
+/*!40000 ALTER TABLE `translate_question` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Chỉ mục cho các bảng đã đổ
---
-
---
--- Chỉ mục cho bảng `account`
---
-ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `campaign`
---
-ALTER TABLE `campaign`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `fill_question`
---
-ALTER TABLE `fill_question`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `image_question`
---
-ALTER TABLE `image_question`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `listening_question`
---
-ALTER TABLE `listening_question`
-  ADD PRIMARY KEY (`id`);
-
---
--- Chỉ mục cho bảng `translate_question`
---
-ALTER TABLE `translate_question`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT cho các bảng đã đổ
---
-
---
--- AUTO_INCREMENT cho bảng `account`
---
-ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT cho bảng `campaign`
---
-ALTER TABLE `campaign`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT cho bảng `fill_question`
---
-ALTER TABLE `fill_question`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT cho bảng `image_question`
---
-ALTER TABLE `image_question`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT cho bảng `listening_question`
---
-ALTER TABLE `listening_question`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT cho bảng `translate_question`
---
-ALTER TABLE `translate_question`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-11-09 22:30:15
