@@ -1,36 +1,25 @@
 package com.dga.equiz.controller.editProfile;
 
-import com.dga.equiz.controller.editProfile.EditInforController;
 import com.dga.equiz.model.Profile;
-import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.DBHelper;
-import com.dga.equiz.utils.EquizUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
@@ -60,8 +49,6 @@ public class ProfileController implements Initializable {
 
     @FXML
     public Label labelLevel;
-
-    public static Profile profile = new Profile();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -100,6 +87,8 @@ public class ProfileController implements Initializable {
         connection = statement.getConnection();
 
         resultSet.next();
+
+        Profile profile = ApplicationData.getInstance().profile;
 
         profile.setID(resultSet.getInt(1));
         profile.setName(resultSet.getString(2));

@@ -32,7 +32,7 @@ public class EquizClient implements Runnable {
         }
 
         // new ReadThread(socket, this).start();
-        new WriteThread(socket, this).start();
+        new Receiver(socket).start();
     }
 
     private void close() {

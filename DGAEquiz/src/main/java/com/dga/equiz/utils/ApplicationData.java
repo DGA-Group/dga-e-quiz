@@ -2,12 +2,18 @@ package com.dga.equiz.utils;
 
 import com.dga.equiz.model.Campaign;
 import com.dga.equiz.model.Lesson;
+import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.question.FillQuestion;
 import com.dga.equiz.model.question.ImageQuestion;
 import com.dga.equiz.model.question.ListeningQuestion;
 import com.dga.equiz.model.question.TranslateQuestion;
+import com.dga.game.EquizPacket.Client.ConnectClientRequest;
+import com.dga.game.Receiver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,6 +36,9 @@ public class ApplicationData {
         }
         return instance;
     }
+
+    public Socket socket;
+    public Profile profile = new Profile();
 
     private Map<Long, Campaign> campaignData = new HashMap<Long, Campaign>();
     private Map<Long, ImageQuestion> imageQuestionData = new HashMap<Long, ImageQuestion>();
@@ -96,7 +105,7 @@ public class ApplicationData {
             e.printStackTrace();
         } finally {
             try {
-                DBHelper.closeQuery(resultSet,statement,connection);
+                DBHelper.closeQuery(resultSet, statement, connection);
             } catch (SQLException e) {
                 System.out.println("Unable to close connection!");
             }
@@ -243,5 +252,26 @@ public class ApplicationData {
         }
     }
 
+    public boolean connectToGameServer() {
+        try {
+            socket = new Socket("127.0.0.1", 54321);
+            System.out.println("Success connect to game server at port 54321...");
 
+            Profile profile = ApplicationData.getInstance().profile;
+            ConnectClientRequest request = new ConnectClientRequest(String.valueOf(profile.getID()));
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectOutputStream.writeObject(request);
+            new Receiver(socket).start();
+            return socket.isConnected();
+        } catch (IOException e) {
+            if (socket != null) {
+                try {
+                    socket.close();
+                } catch (Exception ignored) {
+                }
+            }
+            System.out.println("Unable to connect to server! Please try again later!");
+            return false;
+        }
+    }
 }

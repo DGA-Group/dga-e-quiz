@@ -1,7 +1,9 @@
 package com.dga.equiz.controller.editProfile;
 
 import com.dga.equiz.controller.ProfileContainerController;
+import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.DBHelper;
 import javafx.collections.MapChangeListener;
 import javafx.event.ActionEvent;
@@ -56,13 +58,13 @@ public class EditInforController implements Initializable {
     }
 
     public void changeInfor() throws SQLException {
-
-        int id = ProfileController.profile.getID();
-        String nameData = ProfileController.profile.getName();
-        String mailData = ProfileController.profile.getMail();
-        String dobData = ProfileController.profile.getDob();
-        String phoneData = ProfileController.profile.getPhone();
-        String githubData = ProfileController.profile.getGithub();
+        Profile profile = ApplicationData.getInstance().profile;
+        int id = profile.getID();
+        String nameData = profile.getName();
+        String mailData = profile.getMail();
+        String dobData = profile.getDob();
+        String phoneData = profile.getPhone();
+        String githubData = profile.getGithub();
 
         if (nameData != null) { tfName.setText(nameData); }
         if (mailData != null) { tfMail.setText(mailData); }
