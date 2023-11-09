@@ -58,12 +58,14 @@ public class MyApplicationController implements Initializable {
         currentPanel = homeView;
     }
 
-    public void setupButton(Stage stage) {
+    public void setupButton() {
+        Stage stage = ((Stage) this.btnClose.getScene().getWindow());
         this.btnClose.setOnAction((ActionEvent event) -> {
             stage.close();
         });
 
         this.btnMaximize.setOnAction((ActionEvent event) -> {
+
             stage.setMaximized(!stage.isMaximized());
         });
 
