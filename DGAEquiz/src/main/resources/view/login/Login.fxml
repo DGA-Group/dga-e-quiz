@@ -32,7 +32,7 @@
                         <TextField fx:id="tfLogin_username" promptText="Username" />
                         <Pane prefHeight="85.0" prefWidth="324.0">
                            <children>
-                              <PasswordField fx:id="tfLogin_password" prefHeight="25.0" prefWidth="324.0" promptText="Password" />
+                              <PasswordField fx:id="pfLogin_password" prefHeight="25.0" prefWidth="324.0" promptText="Password" />
                               <TextField fx:id="tfLogin_showPass" prefHeight="25.0" prefWidth="324.0" promptText="Password" />
                            </children>
                         </Pane>
@@ -136,7 +136,12 @@
                               <Pane layoutX="253.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" />
                            </children>
                         </HBox>
-                        <TextField fx:id="tfAcc_confirmPass" prefHeight="25.0" prefWidth="201.0" promptText="Confirm your password" />
+                        <Pane prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <PasswordField fx:id="pfAcc_confirmPass" prefHeight="25.0" prefWidth="323.0" />
+                              <TextField fx:id="tfAcc_confirmPassShow" prefHeight="25.0" prefWidth="324.0" promptText="Confirm your password" />
+                           </children>
+                        </Pane>
                         <CheckBox fx:id="checkAcc_showAcc" mnemonicParsing="false" prefHeight="17.0" prefWidth="347.0" text="Show password">
                            <VBox.margin>
                               <Insets left="30.0" />
@@ -167,7 +172,7 @@
                   </BorderPane>
                </bottom>
             </BorderPane>
-            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0">
                <top>
                   <Label alignment="CENTER" prefHeight="50.0" prefWidth="324.0" text="FORGOT PASSWORD" BorderPane.alignment="CENTER">
                      <font>
@@ -177,6 +182,7 @@
                <center>
                   <VBox alignment="CENTER" prefHeight="214.0" prefWidth="324.0" spacing="20.0" BorderPane.alignment="CENTER">
                      <children>
+                        <TextField fx:id="tfForgot_username" promptText="Your username" />
                         <TextField fx:id="tfForgot_mail" promptText="Your Mail" />
                         <TextField fx:id="tfForgot_Npass" promptText="New Password" />
                         <TextField fx:id="tfForgot_confNpass" promptText="Confirm New Password" />

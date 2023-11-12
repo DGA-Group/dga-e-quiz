@@ -2,6 +2,7 @@ package com.dga.equiz.controller.login;
 
 import com.dga.equiz.controller.ProfileContainerController;
 import com.dga.equiz.controller.editProfile.ProfileController;
+import com.dga.equiz.model.Mailer;
 import com.dga.equiz.utils.DBHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import static com.dga.equiz.utils.EquizUtils.showAlert;
@@ -106,7 +108,10 @@ public class LoginController implements Initializable {
     private TextField tfAcc_code4;
 
     @FXML
-    private TextField tfAcc_confirmPass;
+    private TextField tfAcc_confirmPassShow;
+
+    @FXML
+    private PasswordField pfAcc_confirmPass;
 
     @FXML
     private TextField tfForgot_Npass;
@@ -118,7 +123,10 @@ public class LoginController implements Initializable {
     private TextField tfForgot_mail;
 
     @FXML
-    private PasswordField tfLogin_password;
+    private TextField tfForgot_username;
+
+    @FXML
+    private PasswordField pfLogin_password;
 
     @FXML
     private TextField tfLogin_showPass;
@@ -172,37 +180,66 @@ public class LoginController implements Initializable {
 
     public void initButton() {
         setButtonAction(buttonLogin_signUp, paneRegister);
-        setButtonAction(buttonRegister_next, paneConfirmAcc);
         setButtonAction(buttonLogin_ForgotPass, paneForgotPass);
         setButtonAction(buttonForgot_go, paneConfirmPass);
         setButtonAction(buttonRegister_back, paneLogin);
         setButtonAction(buttonAcc_back, paneRegister);
         setButtonAction(buttonForgot_back, paneLogin);
 
+        final int[] code = {0};
         buttonRegister_next.setOnAction((ActionEvent e) -> {
+            stackPane.getChildren().forEach(pane -> pane.setVisible(false));
+            paneConfirmAcc.setVisible(true);
+            Random random = new Random();
+            code[0] = 1000 + random.nextInt(9000);
+            String message = "Ma Code cua ban la: " + code[0];
+            Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru",tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
+        });
+
+        checkAcc_showAcc.setOnAction((ActionEvent e) -> {
+            showPassword(checkAcc_showAcc, pfAcc_confirmPass, tfAcc_confirmPassShow);
+        });
+
+        buttonAcc_go.setOnAction((ActionEvent e) -> {
+            String nb1 = tfAcc_code1.getText();
+            String nb2 = tfAcc_code2.getText();
+            String nb3 = tfAcc_code3.getText();
+            String nb4 = tfAcc_code4.getText();
+            int codeInput = 0;
             try {
-                insertInfor();
-                for(var event : onCompleteSave){
+                codeInput = Integer.parseInt(nb1) * 1000 + Integer.parseInt(nb2) * 100 + Integer.parseInt(nb3) * 10 + Integer.parseInt(nb4);
+            } catch (NumberFormatException err) {
+                showAlert("Chuỗi không thể chuyển đổi thành số nguyên.");
+            }
+
+            if (codeInput != code[0] || !tfAcc_confirmPassShow.getText().equals(tfRegister_pass.getText())) {
+                showAlert("Confirm Code hoặc Confirm Password của bạn không đúng");
+            } else
+            {
+                try {
+                    insertInfor();
+                    for(var event : onCompleteSave){
                     event.handle(e);
                 }
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
         checkLogin_pass.setOnAction((ActionEvent e) -> {
-            showPassword();
+            showPassword(checkLogin_pass,pfLogin_password,tfLogin_showPass);
         });
 
         buttonLogin_login.setOnAction((ActionEvent e) -> {
 
-            if (tfLogin_username.getText().isEmpty() && tfLogin_password.getText().isEmpty()) {
+            if (tfLogin_username.getText().isEmpty() && pfLogin_password.getText().isEmpty()) {
                 showAlert("Please enter your username and password");
                 return;
             } else if (tfLogin_username.getText().isEmpty()) {
                 showAlert("Please enter your username");
                 return;
-            } else if (tfLogin_password.getText().isEmpty()) {
+            } else if (pfLogin_password.getText().isEmpty()) {
                 showAlert("Please enter your password");
                 return;
             }
@@ -225,7 +262,7 @@ public class LoginController implements Initializable {
                     throw new RuntimeException(ex);
             }
 
-            if (!passOutput.equals(tfLogin_password.getText())) {
+            if (!passOutput.equals(pfLogin_password.getText())) {
                 labelLogin_WrongPass.setVisible(true);
             } else {
                 paneLogin.setVisible(false);
@@ -270,32 +307,22 @@ public class LoginController implements Initializable {
 
     }
 
-    private void handle(ActionEvent e) {
-        try {
-            insertInfor();
-            for (var event : onCompleteSave) {
-                event.handle(e);
-            }
-        } catch (SQLException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
     public void initlabel() {
         labelRegister_atlert.setVisible(false);
         labelLogin_WrongPass.setVisible(false);
         tfLogin_showPass.setVisible(false);
+        tfAcc_confirmPassShow.setVisible(false);
     }
 
-    private void showPassword() {
-        if (checkLogin_pass.isSelected()) {
-            tfLogin_showPass.setText(tfLogin_password.getText());
-            tfLogin_password.setVisible(false);
-            tfLogin_showPass.setVisible(true);
+    private void showPassword(CheckBox checkbox, PasswordField pf, TextField tf) {
+        if (checkbox.isSelected()) {
+            tf.setText(pf.getText());
+            pf.setVisible(false);
+            tf.setVisible(true);
         } else {
-            tfLogin_password.setText(tfLogin_showPass.getText());
-            tfLogin_password.setVisible(true);
-            tfLogin_showPass.setVisible(false);
+            pf.setText(tf.getText());
+            pf.setVisible(true);
+            tf.setVisible(false);
         }
     }
 

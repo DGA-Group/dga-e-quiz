@@ -47,12 +47,12 @@ public class ProfileContainerController implements Initializable {
     // add 4 pane to container.
     public void addPane() throws IOException {
 
-//        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
-//        profileView.hide();
-//        loginView = EquizUtils.Instantiate("/view/login/Login.fxml",paneDefault, AnchorType.FitToParent);
-//        loginView.show();
         profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
-        profileView.show();
+        profileView.hide();
+        loginView = EquizUtils.Instantiate("/view/login/Login.fxml",paneDefault, AnchorType.FitToParent);
+        loginView.show();
+//        profileView = EquizUtils.Instantiate("/view/editProfile/ProfileView.fxml",paneDefault, AnchorType.FitToParent);
+//        profileView.show();
         editSelectView = EquizUtils.Instantiate("/view/editProfile/EditSelectView.fxml");
         paneDefault.getChildren().add(editSelectView.getNode());
         editSelectView.hide();

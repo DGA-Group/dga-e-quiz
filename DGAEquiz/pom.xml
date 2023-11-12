@@ -88,6 +88,12 @@
             <artifactId>javafx-media</artifactId>
             <version>11.0.1</version>
         </dependency>
+        <!-- Add your dependencies within this <dependencies> section -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.5</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
