@@ -4,7 +4,9 @@ import com.dga.equiz.controller.ProfileContainerController;
 import com.dga.equiz.controller.editProfile.ProfileController;
 import com.dga.equiz.model.Mailer;
 import com.dga.equiz.utils.DBHelper;
+import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.utils.StageManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -194,7 +196,7 @@ public class LoginController implements Initializable {
             Random random = new Random();
             code[0] = 1000 + random.nextInt(9000);
             String message = "Ma Code cua ban la: " + code[0];
-            Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru",tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
+            Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
         });
 
         checkAcc_showAcc.setOnAction((ActionEvent e) -> {
@@ -215,13 +217,12 @@ public class LoginController implements Initializable {
 
             if (codeInput != code[0] || !tfAcc_confirmPassShow.getText().equals(tfRegister_pass.getText())) {
                 showAlert("Confirm Code hoặc Confirm Password của bạn không đúng");
-            } else
-            {
+            } else {
                 try {
                     insertInfor();
-                    for(var event : onCompleteSave){
-                    event.handle(e);
-                }
+                    for (var event : onCompleteSave) {
+                        event.handle(e);
+                    }
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -229,7 +230,7 @@ public class LoginController implements Initializable {
         });
 
         checkLogin_pass.setOnAction((ActionEvent e) -> {
-            showPassword(checkLogin_pass,pfLogin_password,tfLogin_showPass);
+            showPassword(checkLogin_pass, pfLogin_password, tfLogin_showPass);
         });
 
         buttonLogin_login.setOnAction((ActionEvent e) -> {
@@ -256,24 +257,24 @@ public class LoginController implements Initializable {
                 resultSet = DBHelper.executeQuery(query);
                 statement = resultSet.getStatement();
                 connection = statement.getConnection();
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     passOutput = resultSet.getString(1);
                 }
             } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                throw new RuntimeException(ex);
             }
 
             if (!passOutput.equals(pfLogin_password.getText())) {
                 labelLogin_WrongPass.setVisible(true);
             } else {
-                paneLogin.setVisible(false);
+                // paneLogin.setVisible(false);
                 runMain();
             }
         });
 
     }
 
-    public void setButtonAction(Button button,BorderPane pane1) {
+    public void setButtonAction(Button button, BorderPane pane1) {
         button.setOnAction(e -> {
             stackPane.getChildren().forEach(pane -> pane.setVisible(false));
             pane1.setVisible(true);

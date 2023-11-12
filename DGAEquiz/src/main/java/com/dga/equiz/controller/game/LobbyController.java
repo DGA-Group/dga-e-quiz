@@ -94,6 +94,7 @@ public class LobbyController implements Initializable {
                 String roomName = roomItem.roomName;
                 String roomPlayer = "" + roomItem.roomPlayerLimits; //+ '/' + roomItem.getPlayerLimit();
                 controller.setupRoomItem(roomId, roomName, roomPlayer);
+                controller.setRoom(roomItem);
             } catch (Exception e) {
                 System.out.println("Unable to add room to list!");
             }

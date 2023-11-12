@@ -42,7 +42,7 @@ public class CreateRoomController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ControllerManager.getInstance().createRoomController = this;
-        EquizUtils.callFuncDelay((event) -> setupCreateRoom(), 1000);
+        EquizUtils.callFuncDelay(this::setupCreateRoom, 1000);
     }
 
     public void setupCreateRoom() {

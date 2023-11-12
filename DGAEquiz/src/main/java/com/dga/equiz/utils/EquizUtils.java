@@ -1,6 +1,7 @@
 package com.dga.equiz.utils;
 
 import com.dga.equiz.Main;
+import com.dga.equiz.model.Event;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Word;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -171,13 +173,19 @@ public class EquizUtils {
         alert.showAndWait();
     }
 
-    public static void callFuncDelay(EventHandler<ActionEvent> func, long millisecond) {
+    public static void callFuncDelay(Event func, long milliseconds) {
         Thread thread = new Thread(() -> {
             try {
-                Thread.sleep(millisecond);
-            } catch (InterruptedException ignored) { }
-            func.handle(new ActionEvent());
+                Thread.sleep(milliseconds);
+            } catch (InterruptedException e) {
+                e.printStackTrace(); // Log or handle the exception
+                Thread.currentThread().interrupt(); // Restore the interrupted status
+                return; // Exit the thread
+            }
+
+            Platform.runLater(func::handle);
         });
+
         thread.start();
     }
 }

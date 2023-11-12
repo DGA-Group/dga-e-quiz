@@ -13,14 +13,19 @@ import java.net.Socket;
 
 public class ClientHelperRequest {
 
+    static ObjectOutputStream objectOutputStream = null;
+
     public static void sendRequest(EquizPacket request) {
         Socket socket = ApplicationData.getInstance().socket;
-        if (!socket.isConnected()) {
+
+        if (socket == null || !socket.isConnected()) {
             return;
         }
 
         try {
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            if (objectOutputStream == null) {
+                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            }
             objectOutputStream.writeObject(request);
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,6 +95,16 @@ public class ClientHelperRequest {
 
     public static void sendJoinRoomRequest(String roomId, String roomPassword) {
         EquizPacket request = new JoinRoomRequest(roomId, roomPassword);
+        sendRequest(request);
+    }
+
+    public static void sendMessageRequest(String message) {
+        EquizPacket request = new MessageRequest(message);
+        sendRequest(request);
+    }
+
+    public static void sendStartGameRequest() {
+        EquizPacket request = new StartRoomRequest("red_tea");
         sendRequest(request);
     }
 
