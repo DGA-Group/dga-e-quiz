@@ -4,6 +4,7 @@ import com.dga.equiz.controller.ProfileContainerController;
 import com.dga.equiz.controller.editProfile.ProfileController;
 import com.dga.equiz.model.Mailer;
 import com.dga.equiz.utils.DBHelper;
+import com.dga.equiz.utils.StageManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -327,6 +328,7 @@ public class LoginController implements Initializable {
     }
 
     private void runMain() {
-
+        StageManager.getInstance().myApplicationStage.show();
+        StageManager.getInstance().loginStage.hide();
     }
 }
