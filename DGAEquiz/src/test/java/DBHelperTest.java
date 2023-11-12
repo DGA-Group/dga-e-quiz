@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.Map;
 import java.util.Scanner;
 
+import static com.dga.equiz.utils.DBHelper.executeQuerySqlite;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DBHelperTest {
@@ -90,7 +91,7 @@ public class DBHelperTest {
             e.printStackTrace();
         } finally {
             try {
-                DBHelper.closeQuery(resultSet,statement,connection);
+                DBHelper.closeQuery(resultSet, statement, connection);
             } catch (SQLException e) {
                 System.out.println("Unable to close connection!");
             }
@@ -108,9 +109,41 @@ public class DBHelperTest {
         String phone = "012323323";
         String github = "asbcsdsd.com";
 
-        sqlQuery += "values ('" + 5 + "','" + username + "','" + user_password+ "','" + mail + "','" + dob + "','" + phone + "','" + github + "');";
+        sqlQuery += "values ('" + 5 + "','" + username + "','" + user_password + "','" + mail + "','" + dob + "','" + phone + "','" + github + "');";
 
         DBHelper.executeUpdate(sqlQuery);
+    }
+
+    @Test
+    void checkdb() {
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+        try{
+            String query = "SELECT * FROM av WHERE id = '20';";
+            resultSet = DBHelper.executeQuerySqlite(query);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
+            while (resultSet.next()) {
+                int id = resultSet.getInt(1);
+                String word = resultSet.getString(2);
+                String description = resultSet.getString(4);
+                String pronounce = resultSet.getString(5);
+                System.out.println(id + ' ' + word + ' ' + description + ' ' + pronounce);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                DBHelper.closeQuery(resultSet, statement, connection);
+            }catch (Exception ignore){}
+        }
+    }
+
+    @Test
+    void testInsert() throws SQLException {
+        String query = "INSERT INTO va(word, description, pronounce) VALUES ('book', 'test', 'abcxyz');";
+        DBHelper.executeUpdateSqlite(query);
     }
 
 }

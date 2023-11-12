@@ -1,8 +1,11 @@
 package com.dga.equiz.controller.game;
 
-import com.dga.equiz.model.game.RoomItem;
 import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.EquizUtils;
+import com.dga.game.ClientHelperRequest;
+import com.dga.game.EquizPacket.Room.ShowRoom.RoomWraper;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +47,7 @@ public class LobbyController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().lobbyController = this;
         setupButton();
         setupWindow();
     }
@@ -51,6 +55,10 @@ public class LobbyController implements Initializable {
     private void setupButton() {
         btnCreateRoom.setOnAction((ActionEvent event) -> {
             onClickCreateRoom();
+        });
+
+        btnRefresh.setOnAction((ActionEvent event) -> {
+            onClickRefreshRoomList();
         });
     }
 
@@ -69,29 +77,35 @@ public class LobbyController implements Initializable {
         NodeObject nodeObject = EquizUtils.Instantiate("/view/game/CreateRoomView.fxml");
         Scene scene = new Scene((Parent) nodeObject.getNode());
         createRoomWindow.setScene(scene);
-        CreateRoomController controller = nodeObject.getController();
-        controller.setupCreateRoom();
     }
 
     public void clearRoomList() {
-        vboxRoomList.getChildren().clear();
+        Platform.runLater(() -> {
+            vboxRoomList.getChildren().clear();
+        });
     }
 
-    public void addRoomToList(RoomItem roomItem) {
-        try {
-            NodeObject room = EquizUtils.Instantiate("/view/game/RoomItemView.fxml", vboxRoomList);
-            RoomItemController controller = room.getController();
-            String roomId = roomItem.getRoomId();
-            String roomName = roomItem.getRoomName();
-            String roomPlayer = "" + roomItem.getCurrentPlayer() + '/' + roomItem.getPlayerLimit();
-            controller.setupRoomItem(roomId, roomName, roomPlayer);
-        } catch (Exception e) {
-            System.out.println("Unable to add room to list!");
-        }
+    public void addRoomToList(RoomWraper roomItem) {
+        Platform.runLater(() -> {
+            try {
+                NodeObject room = EquizUtils.Instantiate("/view/game/RoomItemView.fxml", vboxRoomList);
+                RoomItemController controller = room.getController();
+                String roomId = roomItem.roomId;
+                String roomName = roomItem.roomName;
+                String roomPlayer = "" + roomItem.roomPlayerLimits; //+ '/' + roomItem.getPlayerLimit();
+                controller.setupRoomItem(roomId, roomName, roomPlayer);
+            } catch (Exception e) {
+                System.out.println("Unable to add room to list!");
+            }
+        });
     }
 
     public void onClickCreateRoom() {
         createRoomWindow.show();
+    }
+
+    public void onClickRefreshRoomList() {
+        ClientHelperRequest.sendShowRoomRequest();
     }
 
 

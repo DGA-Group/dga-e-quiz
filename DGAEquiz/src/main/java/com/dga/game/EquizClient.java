@@ -1,15 +1,12 @@
 package com.dga.game;
 
-import com.dga.game.EquizPacket.Client.ConnectClientRequest;
+import com.dga.equiz.utils.ApplicationData;
 
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class EquizClient implements Runnable {
     Socket socket = null;
-    Scanner sc = new Scanner(System.in);
 
     @Override
     public void run() {
@@ -21,18 +18,21 @@ public class EquizClient implements Runnable {
             return;
         }
 
-        try {
-            ConnectClientRequest request = new ConnectClientRequest("username");
+        ApplicationData.getInstance().socket = socket;
+
+        /*try {
+            String id = ApplicationData.getInstance().profile.getID() + "";
+            ConnectClientRequest request = new ConnectClientRequest(id);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(request);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Unable to establish new connect!");
             close();
             return;
-        }
+        }*/
 
         // new ReadThread(socket, this).start();
-        new Receiver(socket).start();
+        new ClientListener(socket).start();
     }
 
     private void close() {

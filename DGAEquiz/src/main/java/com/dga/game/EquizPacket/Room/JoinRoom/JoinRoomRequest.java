@@ -4,9 +4,11 @@ import com.dga.game.EquizPacket.EquizPacket;
 
 public class JoinRoomRequest implements EquizPacket {
     public String roomId;
+    public String roomPassword;
 
-    public JoinRoomRequest(String roomId) {
+    public JoinRoomRequest(String roomId, String roomPassword) {
         this.roomId = roomId;
+        this.roomPassword = roomPassword;
     }
 
     @Override

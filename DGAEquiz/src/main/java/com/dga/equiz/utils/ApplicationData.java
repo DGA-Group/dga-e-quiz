@@ -8,7 +8,7 @@ import com.dga.equiz.model.question.ImageQuestion;
 import com.dga.equiz.model.question.ListeningQuestion;
 import com.dga.equiz.model.question.TranslateQuestion;
 import com.dga.game.EquizPacket.Client.ConnectClientRequest;
-import com.dga.game.Receiver;
+import com.dga.game.ClientListener;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -261,7 +261,7 @@ public class ApplicationData {
             ConnectClientRequest request = new ConnectClientRequest(String.valueOf(profile.getID()));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
             objectOutputStream.writeObject(request);
-            new Receiver(socket).start();
+            new ClientListener(socket).start();
             return socket.isConnected();
         } catch (IOException e) {
             if (socket != null) {

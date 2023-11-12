@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -18,6 +20,8 @@ import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
+import java.util.EventListener;
+import java.util.EventObject;
 import java.util.List;
 
 public class EquizUtils {
@@ -165,5 +169,15 @@ public class EquizUtils {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public static void callFuncDelay(EventHandler<ActionEvent> func, long millisecond) {
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(millisecond);
+            } catch (InterruptedException ignored) { }
+            func.handle(new ActionEvent());
+        });
+        thread.start();
     }
 }

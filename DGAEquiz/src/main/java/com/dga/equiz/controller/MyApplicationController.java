@@ -4,6 +4,7 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
+import com.dga.game.EquizClient;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -53,7 +54,7 @@ public class MyApplicationController implements Initializable {
         setupDictionaryView();
         setupProfileView();
         setupGameView();
-
+        EquizUtils.callFuncDelay(event -> setupButton(), 1000);
         // Set default panel to home
         currentPanel = homeView;
     }
@@ -118,7 +119,7 @@ public class MyApplicationController implements Initializable {
     private void setupGameView() {
         try {
             // Load profile here.
-            gameView = EquizUtils.Instantiate("/view/game/LobbyView.fxml", panelHolder, AnchorType.FitToParent);
+            gameView = EquizUtils.Instantiate("/view/game/GameView.fxml", panelHolder, AnchorType.FitToParent);
             gameView.hide();
         } catch (Exception e) {
             e.printStackTrace();

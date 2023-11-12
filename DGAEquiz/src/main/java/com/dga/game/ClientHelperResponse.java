@@ -1,7 +1,13 @@
 package com.dga.game;
 
+import com.dga.equiz.controller.game.GameController;
+import com.dga.equiz.controller.game.LobbyController;
+import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ControllerManager;
+import com.dga.equiz.utils.EquizUtils;
 import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.Message.MessageResponse;
+import com.dga.game.EquizPacket.PacketResponse;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomResponse;
 import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomResponse;
 import com.dga.game.EquizPacket.Room.ShowRoom.RoomWraper;
@@ -36,18 +42,25 @@ public class ClientHelperResponse {
     }
 
     private static void handleOpenRoomResponse(OpenRoomResponse packet) {
-        System.out.println(packet.message);
+        String roomId = packet.roomId;
+        ClientHelperRequest.sendJoinRoomRequest(roomId, "");
     }
 
     private static void handleJoinRoomResponse(JoinRoomResponse packet) {
-        System.out.println(packet.message);
+        if (packet.status != PacketResponse.OK) {
+            EquizUtils.showAlert("There is no room with id: " + packet.roomId);
+        } else {
+            GameController controller = ControllerManager.getInstance().gameController;
+            controller.chatRoomView.show();
+        }
     }
 
     private static void handleShowRoomResponse(ShowRoomResponse packet) {
         List<RoomWraper> roomWrapers = packet.roomList;
-        System.out.println("RoomID\t\tRoomName\t\tRoomPlayerLimit\t\t");
+        LobbyController lobbyController = ControllerManager.getInstance().lobbyController;
+        lobbyController.clearRoomList();
         for (RoomWraper room : roomWrapers) {
-            System.out.println(room.roomId + "\t\t" + room.roomName + "\t\t" + room.roomPlayerLimits);
+            lobbyController.addRoomToList(room);
         }
     }
 

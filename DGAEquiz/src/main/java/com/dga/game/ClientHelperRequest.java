@@ -1,5 +1,6 @@
 package com.dga.game;
 
+import com.dga.equiz.utils.ApplicationData;
 import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.Message.MessageRequest;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomRequest;
@@ -7,10 +8,29 @@ import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomRequest;
 import com.dga.game.EquizPacket.Room.ShowRoom.ShowRoomRequest;
 import com.dga.game.EquizPacket.Room.StartRoom.StartRoomRequest;
 
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
 public class ClientHelperRequest {
+
+    public static void sendRequest(EquizPacket request) {
+        Socket socket = ApplicationData.getInstance().socket;
+        if (!socket.isConnected()) {
+            return;
+        }
+
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            objectOutputStream.writeObject(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static EquizPacket handleRequest(String request) {
         if (request.startsWith("/show_room")) {
-            return createShowRoomRequest(request);
+            return createShowRoomRequest();
         }
 
         if (request.startsWith("/join")) {
@@ -34,7 +54,7 @@ public class ClientHelperRequest {
             System.out.println("Invalid join room request!");
             return null;
         }
-        return new JoinRoomRequest(res[1]);
+        return new JoinRoomRequest(res[1], "");
     }
 
     private static OpenRoomRequest createOpenRoomRequest(String request) {
@@ -50,11 +70,27 @@ public class ClientHelperRequest {
         return new MessageRequest(message);
     }
 
-    private static ShowRoomRequest createShowRoomRequest(String request) {
+    private static ShowRoomRequest createShowRoomRequest() {
         return new ShowRoomRequest();
     }
 
-    private static StartRoomRequest createStartGameRequest(String resquest) {
+    private static StartRoomRequest createStartGameRequest(String request) {
         return new StartRoomRequest("red_tea");
     }
+
+    public static void sendShowRoomRequest() {
+        EquizPacket request = createShowRoomRequest();
+        sendRequest(request);
+    }
+
+    public static void sendCreateRoomRequest(String roomName, String roomPassword, int playerLimit) {
+        EquizPacket request = new OpenRoomRequest(roomName, roomPassword, playerLimit);
+        sendRequest(request);
+    }
+
+    public static void sendJoinRoomRequest(String roomId, String roomPassword) {
+        EquizPacket request = new JoinRoomRequest(roomId, roomPassword);
+        sendRequest(request);
+    }
+
 }
