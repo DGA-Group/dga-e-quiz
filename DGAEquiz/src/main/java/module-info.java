@@ -35,4 +35,5 @@ module dgaequiz {
     requires okhttp;
     requires com.fasterxml.jackson.core;
     requires javafx.media;
+    requires javax.mail;
 }
