@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="599.0" prefWidth="591.0" styleClass="tab-pane-wordPane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
+   <children>
+      <VBox fx:id="vBox" layoutX="4.0" layoutY="3.0" prefHeight="594.0" prefWidth="600.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" top="10.0" />
+         </padding>
+         <children>
+            <Label text="Words">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+            <TextField prefHeight="125.0" prefWidth="578.0" promptText="pronounce">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+            <TextField prefHeight="131.0" prefWidth="580.0" promptText="description">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

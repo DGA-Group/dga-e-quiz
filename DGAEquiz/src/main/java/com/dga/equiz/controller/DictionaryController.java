@@ -55,16 +55,6 @@ public class DictionaryController implements Initializable {
 
     public void onStartup() {
         TextFields.bindAutoCompletion(searchingField, suggesstions);
-        /*List<String> possibleSuggestions = Arrays.asList(
-                "C", "C#", "C++", "F#", "GoLang",
-                "Dart", "Java", "JavaScript", "Kotlin", "PHP",
-                "Python", "R", "Swift", "Visual Basic .NET"
-        );
-
-        Callback<AutoCompletionBinding.ISuggestionRequest, Collection<String>> suggestionProvider =
-                request -> possibleSuggestions.stream()
-                        .filter(suggestion -> suggestion.toLowerCase().contains(request.getUserText().toLowerCase()))
-                        .toList();*/
         searchingField.textProperty().addListener((obs, oldText, newText) -> {
             currentSuggestionTask.cancel(true); // Hủy luồng trước khi bắt đầu một luồng mới
             currentSuggestionTask = CompletableFuture.supplyAsync(() -> {
