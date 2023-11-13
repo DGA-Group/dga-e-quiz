@@ -12,12 +12,17 @@ public class ClientListener extends Thread {
 
     public ClientListener(Socket socket) {
         this.socket = socket;
+        try {
+            objectInputStream = new ObjectInputStream(socket.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void run() {
         try {
             while (socket.isConnected()) {
-                objectInputStream = new ObjectInputStream(socket.getInputStream());
+                // objectInputStream = new ObjectInputStream(socket.getInputStream());
                 EquizPacket packet = (EquizPacket) objectInputStream.readObject();
                 ClientHelperResponse.handleResponse(packet);
             }

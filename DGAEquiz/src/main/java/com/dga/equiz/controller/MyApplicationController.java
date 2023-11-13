@@ -4,6 +4,9 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
+import com.dga.equiz.utils.StageManager;
+import com.dga.game.EquizClient;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -51,7 +54,7 @@ public class MyApplicationController implements Initializable {
         setupProfileView();
         setupGameView();
         setupOfflineDictionaryView();
-        EquizUtils.callFuncDelay(event -> setupButton(), 1000);
+        EquizUtils.callFuncDelay(this::setupButton, 1000);
         // Set default panel to home
         currentPanel = homeView;
     }
@@ -63,7 +66,6 @@ public class MyApplicationController implements Initializable {
         });
 
         this.btnMaximize.setOnAction((ActionEvent event) -> {
-
             stage.setMaximized(!stage.isMaximized());
         });
 

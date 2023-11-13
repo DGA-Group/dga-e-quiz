@@ -23,7 +23,7 @@
             <Label fx:id="lbNumberOfPlayer" alignment="CENTER" prefHeight="50.0" prefWidth="261.0" text="2/10" />
          </children>
       </VBox>
-      <Button mnemonicParsing="false" prefHeight="46.0" prefWidth="78.0" text="Join" />
+      <Button fx:id="btnJoinRoom" mnemonicParsing="false" onAction="#onClickJoinRoom" prefHeight="46.0" prefWidth="78.0" text="Join" />
    </children>
    <padding>
       <Insets left="20.0" right="10.0" />

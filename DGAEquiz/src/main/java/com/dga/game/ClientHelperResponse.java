@@ -1,8 +1,8 @@
 package com.dga.game;
 
+import com.dga.equiz.controller.game.ChatRoomController;
 import com.dga.equiz.controller.game.GameController;
 import com.dga.equiz.controller.game.LobbyController;
-import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.game.EquizPacket.EquizPacket;
@@ -38,7 +38,9 @@ public class ClientHelperResponse {
     }
 
     private static void handleMessageResponse(MessageResponse packet) {
-        System.out.println(packet.text);
+        ChatRoomController chatRoomController = ControllerManager.getInstance().chatRoomController;
+        chatRoomController.addMessage(packet);
+
     }
 
     private static void handleOpenRoomResponse(OpenRoomResponse packet) {
@@ -52,6 +54,9 @@ public class ClientHelperResponse {
         } else {
             GameController controller = ControllerManager.getInstance().gameController;
             controller.chatRoomView.show();
+
+            ChatRoomController chatRoomController = ControllerManager.getInstance().chatRoomController;
+            chatRoomController.clearMessageList();
         }
     }
 
