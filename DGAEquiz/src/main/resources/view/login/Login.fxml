@@ -18,7 +18,7 @@
    <right>
       <StackPane fx:id="stackPane" prefHeight="430.0" prefWidth="324.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0" visible="false">
+            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0">
                <top>
                   <Label alignment="CENTER" prefHeight="121.0" prefWidth="324.0" text="HI!" BorderPane.alignment="CENTER">
                      <font>
@@ -38,7 +38,7 @@
                         </Pane>
                         <HBox prefHeight="30.0" prefWidth="324.0">
                            <children>
-                              <Label fx:id="labelLogin_WrongPass" prefHeight="17.0" prefWidth="134.0" text="Wrong password" />
+                              <Label fx:id="labelLogin_WrongPass" prefHeight="17.0" prefWidth="134.0" text="Wrong password" textFill="#f70101" />
                               <Pane prefHeight="25.0" prefWidth="77.0" />
                               <Button fx:id="buttonLogin_ForgotPass" mnemonicParsing="false" text="Forgot Password" />
                            </children>
@@ -172,7 +172,7 @@
                   </BorderPane>
                </bottom>
             </BorderPane>
-            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0" visible="false">
                <top>
                   <Label alignment="CENTER" prefHeight="50.0" prefWidth="324.0" text="FORGOT PASSWORD" BorderPane.alignment="CENTER">
                      <font>

@@ -6,7 +6,7 @@ import java.sql.*;
  * The DBHelper class provides utility methods for executing SQL queries and managing database connections.
  */
 public class DBHelper {
-    private static final String MysqlURL = "jdbc:mysql://" + SecretKey.HOST + ":" + SecretKey.PORT + "/" + SecretKey.DATABASE;
+    public static final String MysqlURL = "jdbc:mysql://" + SecretKey.HOST + ":" + SecretKey.PORT + "/" + SecretKey.DATABASE;
     private static final String SqliteURL = "jdbc:sqlite:src/main/resources/database/dict_hh.db";
 
     /**

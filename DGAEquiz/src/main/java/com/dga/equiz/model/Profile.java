@@ -13,9 +13,19 @@ public class Profile {
 
     private String github;
 
-    private String linkAva;
+    private byte[] linkAva;
 
-    private String level;
+    private String password;
+
+    private String username;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public String getName() {
         return name;
@@ -56,27 +66,27 @@ public class Profile {
         this.github = github;
     }
 
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public String getLinkAva() {
-        return linkAva;
-    }
-
-    public void setLinkAva(String linkAva) {
-        this.linkAva = linkAva;
-    }
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public byte[] getLinkAva() {
+        return linkAva;
+    }
+
+    public void setLinkAva(byte[] linkAva) {
+        this.linkAva = linkAva;
     }
 }

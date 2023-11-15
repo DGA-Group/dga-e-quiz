@@ -56,14 +56,6 @@ public class Main extends Application {
         loginStage.initStyle(StageStyle.TRANSPARENT);
         loginStage.setScene(loginScene);
         loginStage.show();
-
-        NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml"); //
-        Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 854, 480, Color.TRANSPARENT);
-        Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
-        addStyle(myApplicationScene, "/css/learnDesign.css");
-        myApplicationStage.initStyle(StageStyle.TRANSPARENT);
-        myApplicationStage.setScene(myApplicationScene);
-        myApplicationStage.hide();
     }
 
     public static void main(String[] args) {
