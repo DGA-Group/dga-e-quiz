@@ -46,6 +46,11 @@
                   <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" />
                </graphic>
             </Button>
+            <Button layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Rank" textAlignment="CENTER">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-trending-down" />
+               </graphic>
+            </Button>
          </children>
          <opaqueInsets>
             <Insets />

@@ -43,6 +43,8 @@ public class MyApplicationController implements Initializable {
     private NodeObject profileView = null;
     private NodeObject gameView = null;
 
+    private NodeObject rankView = null;
+
     private NodeObject currentPanel = null;
     private static double xOffset = 0;
     private static double yOffset = 0;
@@ -54,6 +56,7 @@ public class MyApplicationController implements Initializable {
         setupDictionaryView();
         setupProfileView();
         setupGameView();
+        setupRankView();
         EquizUtils.callFuncDelay(event -> setupButton(), 1000);
         // Set default panel to home
         currentPanel = homeView;
@@ -109,7 +112,6 @@ public class MyApplicationController implements Initializable {
         try {
             // Load profile here.
             profileView = EquizUtils.Instantiate("/view/ProfileContainerView.fxml", panelHolder, AnchorType.FitToParent);
-            //profileView = EquizUtils.Instantiate("/view/login/Login.fxml", panelHolder, AnchorType.FitToParent);
             profileView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,6 +123,16 @@ public class MyApplicationController implements Initializable {
             // Load profile here.
             gameView = EquizUtils.Instantiate("/view/game/GameView.fxml", panelHolder, AnchorType.FitToParent);
             gameView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setupRankView() {
+        try {
+            // Load profile here.
+            rankView = EquizUtils.Instantiate("/view/login/RankView.fxml", panelHolder, AnchorType.FitToParent);
+            rankView.hide();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -152,6 +164,10 @@ public class MyApplicationController implements Initializable {
 
     public void onClickSwitchToGame() {
         switchToPanel(gameView);
+    }
+
+    public void onClickSwitchToRank() {
+        switchToPanel(rankView);
     }
 }
 

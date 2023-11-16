@@ -26,10 +26,4 @@ public class ControllerManager {
     public LobbyController lobbyController;
     public CreateRoomController createRoomController;
     public ChatRoomController chatRoomController;
-
-    public ProfileController profileController;
-
-    public EditInforController editInforController;
-
-    public EditAccController editAccController;
 }
