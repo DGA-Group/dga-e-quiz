@@ -42,8 +42,8 @@ public class MyApplicationController implements Initializable {
     private NodeObject dictionaryView = null;
     private NodeObject profileView = null;
     private NodeObject gameView = null;
-
     private NodeObject rankView = null;
+    private NodeObject flashCardView = null;
 
     private NodeObject currentPanel = null;
     private static double xOffset = 0;
@@ -57,6 +57,7 @@ public class MyApplicationController implements Initializable {
         setupProfileView();
         setupGameView();
         setupRankView();
+        setupFlashCardView();
         EquizUtils.callFuncDelay(event -> setupButton(), 1000);
         // Set default panel to home
         currentPanel = homeView;
@@ -138,6 +139,16 @@ public class MyApplicationController implements Initializable {
         }
     }
 
+    private void setupFlashCardView() {
+        try {
+            // Load profile here.
+            flashCardView = EquizUtils.Instantiate("/view/FlashCardView.fxml", panelHolder, AnchorType.FitToParent);
+            flashCardView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void switchToPanel(NodeObject panel) {
         if (currentPanel != null) {
             currentPanel.setVisible(false);
@@ -168,6 +179,10 @@ public class MyApplicationController implements Initializable {
 
     public void onClickSwitchToRank() {
         switchToPanel(rankView);
+    }
+
+    public void onClickSwitchToFlashCard() {
+        switchToPanel(flashCardView);
     }
 }
 
