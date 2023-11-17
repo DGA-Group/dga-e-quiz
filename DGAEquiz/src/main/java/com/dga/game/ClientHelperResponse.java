@@ -14,6 +14,7 @@ import com.dga.game.EquizPacket.Room.LeaveRoom.LeaveRoomResponse;
 import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomResponse;
 import com.dga.game.EquizPacket.Room.ShowRoom.RoomWrapper;
 import com.dga.game.EquizPacket.Room.ShowRoom.ShowRoomResponse;
+import javafx.scene.control.Alert.AlertType;
 
 import java.util.List;
 
@@ -53,12 +54,14 @@ public class ClientHelperResponse {
 
     private static void handleOpenRoomResponse(OpenRoomResponse packet) {
         String roomId = packet.roomId;
-        ClientHelperRequest.sendJoinRoomRequest(roomId, "");
+        String roomPassword = packet.roomPassword;
+        ClientHelperRequest.sendJoinRoomRequest(roomId, roomPassword);
     }
 
     private static void handleJoinRoomResponse(JoinRoomResponse packet) {
         if (packet.status != PacketResponse.OK) {
-            EquizUtils.showAlert("There is no room with id: " + packet.roomId);
+            EquizUtils.showAlert("Error","There is no room with id: " + packet.roomId,
+                    "Please re check the room id", AlertType.WARNING);
         } else {
             GameController controller = ControllerManager.getInstance().gameController;
             controller.chatRoomView.show();

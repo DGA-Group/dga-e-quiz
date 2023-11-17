@@ -6,6 +6,8 @@ import com.dga.game.EquizPacket.Message.MessageRequest;
 import com.dga.game.EquizPacket.Message.MessageResponse;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomRequest;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomResponse;
+import com.dga.game.EquizPacket.Room.LeaveRoom.LeaveRoomRequest;
+import com.dga.game.EquizPacket.Room.LeaveRoom.LeaveRoomResponse;
 import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomRequest;
 import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomResponse;
 import com.dga.game.EquizPacket.Room.ShowRoom.RoomWrapper;
@@ -48,6 +50,8 @@ public class ServerHelper {
             case "start_room_request":
                 response = handleStartGame((StartRoomRequest) packet, client);
                 break;
+            case "leave_room_request":
+                handleLeaveRoom((LeaveRoomRequest) packet, client);
             default:
                 break;
         }
@@ -58,7 +62,7 @@ public class ServerHelper {
         MessageResponse response;
         Room targetRoom = client.currentRoom;
         try {
-            response = new MessageResponse(PacketResponse.OK, client.username, message.text);
+            response = new MessageResponse(PacketResponse.OK, client.userId, client.username, client.name, message.text);
             targetRoom.broadcast(response, client);
             targetRoom.checkAnswer(message.text, client);
         } catch (Exception e) {
@@ -75,10 +79,8 @@ public class ServerHelper {
             ShowRoomRequest showRoomRequest = new ShowRoomRequest();
             ShowRoomResponse showRoomResponse = handleShowRoom(showRoomRequest);
             room.broadcast(showRoomResponse, null);
-        } catch (Exception e) {
-
-        }
-        return new OpenRoomResponse(PacketResponse.OK, "You have opened room " + roomId, roomId);
+        } catch (Exception ignore) { }
+        return new OpenRoomResponse(PacketResponse.OK, "You have opened room " + roomId, roomId, packet.roomPassword);
     }
 
     private static JoinRoomResponse handleJoinRoom(JoinRoomRequest packet, ClientHandler client) {
@@ -92,7 +94,7 @@ public class ServerHelper {
 
             // Broad cast join room response to all player in current room.
             int playerCount = room.playerList.size();
-            String message = "Client " + client.username + " has join room!";
+            String message = "Client -" + client.name + "- has join room!";
             response = new JoinRoomResponse(PacketResponse.OK, message, roomId, playerCount, room.roomPlayerLimits);
             room.broadcast(response, client);
         } catch (Exception e) {
@@ -120,6 +122,16 @@ public class ServerHelper {
 
         }
         return new StartRoomResponse();
+    }
+
+    private static void handleLeaveRoom(LeaveRoomRequest packet, ClientHandler client) {
+        Room room = client.currentRoom;
+        room.playerList.remove(client);
+        LeaveRoomResponse response = new LeaveRoomResponse(client.userId, "User " + client.name + " has left the chat."
+                , room.playerList.size(), room.roomPlayerLimits);
+        try {
+            room.broadcast(response, client);
+        }catch (Exception ignore){}
     }
 
     public static void callFuncDelay(Event func, long millisecond) {

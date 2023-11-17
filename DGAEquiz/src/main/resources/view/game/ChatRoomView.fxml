@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.ChatRoomController">
    <center>
@@ -47,6 +48,18 @@
                </children>
                <padding>
                   <Insets right="30.0" />
+               </padding>
+            </StackPane>
+            <StackPane alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="48.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="btnReturn" mnemonicParsing="false">
+                     <graphic>
+                        <FontIcon iconLiteral="fth-arrow-left-circle" iconSize="30" />
+                     </graphic>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
                </padding>
             </StackPane>
          </children>

@@ -3,13 +3,13 @@ package com.dga.game.EquizPacket.Room.LeaveRoom;
 import com.dga.game.EquizPacket.EquizPacket;
 
 public class LeaveRoomResponse implements EquizPacket {
-    public String username;
+    public int userId;
     public String message;
     public int playerCount;
     public int playerLimit;
 
-    public LeaveRoomResponse(String username, String message, int playerCount, int playerLimit) {
-        this.username = username;
+    public LeaveRoomResponse(int userId, String message, int playerCount, int playerLimit) {
+        this.userId = userId;
         this.message = message;
         this.playerCount = playerCount;
         this.playerLimit = playerLimit;

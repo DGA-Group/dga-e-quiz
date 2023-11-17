@@ -15,26 +15,6 @@ import java.util.Map;
 /**
  * Red tea is a game which player have to compete to guess the word faster.
  */
-class Timer extends Thread {
-    long timeMillisecond;
-
-    public Timer(long timeMillisecond) {
-        this.timeMillisecond = timeMillisecond;
-    }
-
-    public void abort() {
-        this.interrupt();
-    }
-
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(timeMillisecond);
-        } catch (InterruptedException e) {
-        }
-    }
-}
-
 public class RedTea extends TeaGame {
     private final Room hostRoom;
     private volatile Timer currentRoundTimer;
@@ -60,15 +40,19 @@ public class RedTea extends TeaGame {
     @Override
     public void play() throws IOException, InterruptedException {
         while (isRunning) {
-            //Send word to the client
+            //Send word to the client.
             currentRoundWord = GameHelper.getRandomKeyword();
-            MessageResponse messageResponse = new MessageResponse(PacketResponse.OK, "Server", "Guess word: " + currentRoundWord);
+            MessageResponse messageResponse = new MessageResponse(PacketResponse.OK, 0,
+                    "server", "Server", "Guess word: " + currentRoundWord);
             hostRoom.broadcast(messageResponse, null);
 
-            // Wait for player word
+            // Wait for player word.
             currentRoundTimer = new Timer(10000);
             currentRoundTimer.start();
             currentRoundTimer.join();
+
+            // Wait 2 seconds after goto next round.
+            new Timer(2000).run();
         }
     }
 
@@ -99,12 +83,9 @@ public class RedTea extends TeaGame {
         }
 
         // Send response to client
-        MessageResponse response = new MessageResponse
-                (
-                        PacketResponse.OK,
-                        "Server",
-                        "The winner of this round is " + client.username
-                );
+        MessageResponse response = new MessageResponse(PacketResponse.OK,
+                0, "server", "Server",
+                "The winner of this round is " + client.name);
         hostRoom.broadcast(response, null);
         nextRound();
     }
@@ -126,9 +107,10 @@ public class RedTea extends TeaGame {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            try{
+            try {
                 DBHelper.closeQuery(resultSet, statement, connection);
-            }catch (Exception ignore){}
+            } catch (Exception ignore) {
+            }
         }
         return ret;
     }

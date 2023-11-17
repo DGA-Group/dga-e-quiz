@@ -36,6 +36,9 @@ public class ChatRoomController implements Initializable {
     public Button btnStartGame;
 
     @FXML
+    public Button btnReturn;
+
+    @FXML
     public Label lbPlayerCount;
 
     @FXML
@@ -53,6 +56,7 @@ public class ChatRoomController implements Initializable {
         btnSendMessage.setOnAction(event -> onClickSendMessage());
         btnStartGame.setOnAction(event -> onClickStartGame());
         spChatScroll.vvalueProperty().bind(vboxMessageList.heightProperty());
+        btnReturn.setOnAction(event -> onClickReturn());
     }
 
     public void onClickSendMessage() {
@@ -82,13 +86,11 @@ public class ChatRoomController implements Initializable {
             try {
                 NodeObject nodeObject = EquizUtils.Instantiate("/view/game/MessageBoxView.fxml", vboxMessageList);
                 MessageBoxController controller = nodeObject.getController();
-
-                if (message.userId.equals("Server")) {
-                    controller.setUpMessageBox(message.text, MessageAlignment.Middle);
-                } else {
-                    controller.setUpMessageBox(message.text, MessageAlignment.TopLeft);
+                MessageAlignment alignment = MessageAlignment.TopLeft;
+                if (message.name.equals("Server")) {
+                    alignment = MessageAlignment.Middle;
                 }
-
+                controller.setUpMessageBox(message.name, message.text, alignment);
             } catch (IOException ignore) {
             }
         });
@@ -99,7 +101,9 @@ public class ChatRoomController implements Initializable {
             try {
                 NodeObject nodeObject = EquizUtils.Instantiate("/view/game/MessageBoxView.fxml", vboxMessageList);
                 MessageBoxController controller = nodeObject.getController();
-                controller.setUpMessageBox(message, alignment);
+                Profile profile = ApplicationData.getInstance().profile;
+                String name = profile.getName();
+                controller.setUpMessageBox(name, message, alignment);
             } catch (IOException ignore) {
             }
         });
@@ -107,5 +111,12 @@ public class ChatRoomController implements Initializable {
 
     public void onClickStartGame() {
         ClientHelperRequest.sendStartGameRequest();
+    }
+
+    public void onClickReturn() {
+        GameController gameController = ControllerManager.getInstance().gameController;
+        gameController.chatRoomView.hide();
+        gameController.lobbyView.show();
+        ClientHelperRequest.sendLeaveRoomRequest();
     }
 }

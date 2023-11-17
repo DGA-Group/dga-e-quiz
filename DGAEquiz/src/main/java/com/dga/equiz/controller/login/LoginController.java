@@ -476,8 +476,12 @@ public class LoginController implements Initializable {
         try {
             Socket socket = new Socket("127.0.0.1", 54321);
             ApplicationData.getInstance().socket = socket;
-            int id = ApplicationData.getInstance().profile.getID();
-            ConnectClientRequest request = new ConnectClientRequest(String.valueOf(id));
+            Profile profile = ApplicationData.getInstance().profile;
+            int id = profile.getID();
+            String username = profile.getUsername();
+            String name = profile.getName();
+
+            ConnectClientRequest request = new ConnectClientRequest(id, username, name);
             ClientHelperRequest.sendRequest(request);
             new ClientListener(socket).start();
             System.out.println("Success connect to equiz server at port 54321...");

@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.net.Socket;
 
 public class Main extends Application {
 
@@ -35,14 +34,16 @@ public class Main extends Application {
         scene.getStylesheets().add(String.valueOf(Main.class.getResource(cssPath)));
     }
 
-    private void loadStage() throws IOException {
+    private void loadStage() {
         Platform.runLater(() -> {
-            NodeObject loginView = null; // MyApplication.fxml;
+            NodeObject loginView = null;
             try {
                 loginView = EquizUtils.Instantiate("/view/login/Login.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
+                return;
             }
+
             Scene loginScene = new Scene((Parent) loginView.getNode(), 648, 430, Color.TRANSPARENT);
             Stage loginStage = StageManager.getInstance().loginStage = new Stage();
             loginStage.initStyle(StageStyle.TRANSPARENT);
