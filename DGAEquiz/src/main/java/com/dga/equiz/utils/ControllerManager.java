@@ -1,5 +1,8 @@
 package com.dga.equiz.utils;
 
+import com.dga.equiz.controller.editProfile.EditAccController;
+import com.dga.equiz.controller.editProfile.EditInforController;
+import com.dga.equiz.controller.editProfile.ProfileController;
 import com.dga.equiz.controller.game.ChatRoomController;
 import com.dga.equiz.controller.game.CreateRoomController;
 import com.dga.equiz.controller.game.GameController;

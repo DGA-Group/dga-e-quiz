@@ -1,6 +1,8 @@
 package com.dga.equiz.controller.editProfile;
 
+import com.dga.equiz.model.Profile;
 import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.DBHelper;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -31,9 +33,6 @@ public class EditAccController implements Initializable {
     private Button button_check;
 
     @FXML
-    private Button button_fotgot;
-
-    @FXML
     private Button button_save;
 
     @FXML
@@ -57,27 +56,19 @@ public class EditAccController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        int id = ApplicationData.getInstance().profile.getID();
         passFConfirm.setVisible(false);
         passFNew.setVisible(false);
         labelNewPass.setVisible(false);
         labelConfirmPass.setVisible(false);
-        initbutton(id);
-//        changePass();
+        Profile profile = ApplicationData.getInstance().profile;
+        initbutton(profile.getID());
     }
 
-//    private void changePass() {
-//        button_change.setOnAction((ActionEvent e) -> {
-//
-//
-//        });
-//    }
-
-    private void initbutton(int id) {
+    public void initbutton(int id) {
         button_check.setOnAction((ActionEvent e) -> {
             if (passFCurrent.getText().isEmpty()) {
                 showAlert("Please enter your current password \n " +
-                        "If you forgot your password please click \"Forgot Password\" ");
+                        "If you forgot your password please log out and click \"Forgot Password\"");
                 return;
             }
 

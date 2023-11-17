@@ -41,6 +41,7 @@ public class WordController {
                 mediaPlayer[0].stop();
                 mediaPlayer[0] = new MediaPlayer(sound);
                 mediaPlayer[0].play();
+
             }
         });
         int i = 0;
@@ -104,6 +105,7 @@ public class WordController {
         antonymLabel.setText("Antonyms : "+ antonyms);
         antonymLabel.setWrapText(true);
     }
+
 }
 
 

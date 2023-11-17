@@ -4,7 +4,9 @@ import com.dga.equiz.controller.ProfileContainerController;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.DBHelper;
+import com.dga.equiz.utils.EquizUtils;
 import javafx.collections.MapChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -50,16 +52,16 @@ public class EditInforController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+//        ControllerManager.getInstance().editInforController = this;
+        Profile profile = ApplicationData.getInstance().profile;
         try {
-            changeInfor();
+            changeInfor(profile.getID());
         } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
     }
 
-    public void changeInfor() throws SQLException {
+    public void changeInfor(int id) throws SQLException {
         Profile profile = ApplicationData.getInstance().profile;
-        int id = profile.getID();
         String nameData = profile.getName();
         String mailData = profile.getMail();
         String dobData = profile.getDob();
@@ -79,7 +81,6 @@ public class EditInforController implements Initializable {
                     event.handle(e);
                 }
             } catch (SQLException ex) {
-                throw new RuntimeException(ex);
             }
         });
     }
@@ -97,7 +98,6 @@ public class EditInforController implements Initializable {
         query += "`dob`" + " = '" + myFormattedDate + "' ";
         query += "WHERE (`id` = '" + String.valueOf(id) + "')";
 
-        int resultSet = DBHelper.executeUpdate(query);
+        DBHelper.executeUpdate(query);
     }
-
 }

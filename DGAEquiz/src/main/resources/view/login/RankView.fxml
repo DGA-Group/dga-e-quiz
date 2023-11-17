@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.login.RankController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="613.0" text="Rank">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="621.0" text="We want to see your name in ranking below." />
+            <HBox prefHeight="31.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="88.0" text="Top" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label text="Name" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label text="Score" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="27.0" prefHeight="31.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="88.0" text="1" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_name1" text="Name" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_score1" text="Score" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="58.0" prefHeight="31.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="88.0" text="2" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_name2" text="Name" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_score2" text="Score" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="89.0" prefHeight="31.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="88.0" text="3" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_name3" text="Name" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_score3" text="Score" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="120.0" prefHeight="31.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="88.0" text="4" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_name4" text="Name" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_score4" text="Score" />
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="244.0" prefHeight="31.0" prefWidth="600.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="88.0" text="5" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_name5" text="Name" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="labelRank_score5" text="Score" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

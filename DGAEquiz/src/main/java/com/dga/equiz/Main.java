@@ -53,26 +53,19 @@ public class Main extends Application {
         scene.getStylesheets().add(String.valueOf(Main.class.getResource(cssPath)));
     }
 
-    private void loadStage() {
+    private void loadStage() throws IOException {
         Platform.runLater(() -> {
+            NodeObject loginView = null; // MyApplication.fxml;
             try {
-                NodeObject loginView = EquizUtils.Instantiate("/view/login/Login.fxml");
-                Scene loginScene = new Scene((Parent) loginView.getNode(), 648, 430, Color.TRANSPARENT);
-                Stage loginStage = StageManager.getInstance().loginStage = new Stage();
-                loginStage.initStyle(StageStyle.TRANSPARENT);
-                loginStage.setScene(loginScene);
-                loginStage.show();
-
-                NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
-                Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 854, 480, Color.TRANSPARENT);
-                Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
-                addStyle(myApplicationScene, "/css/learnDesign.css");
-                myApplicationStage.initStyle(StageStyle.TRANSPARENT);
-                myApplicationStage.setScene(myApplicationScene);
-                myApplicationStage.hide();
-            }catch (IOException e){
+                loginView = EquizUtils.Instantiate("/view/login/Login.fxml");
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+            Scene loginScene = new Scene((Parent) loginView.getNode(), 648, 430, Color.TRANSPARENT);
+            Stage loginStage = StageManager.getInstance().loginStage = new Stage();
+            loginStage.initStyle(StageStyle.TRANSPARENT);
+            loginStage.setScene(loginScene);
+            loginStage.show();
         });
     }
 

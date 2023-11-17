@@ -49,6 +49,9 @@
             <Button mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="26.0" prefWidth="206.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="OfflineDictionary" textAlignment="CENTER">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-book-open" />
+            <Button layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Rank" textAlignment="CENTER">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-trending-down" />
                </graphic>
             </Button>
          </children>
