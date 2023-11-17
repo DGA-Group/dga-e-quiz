@@ -56,6 +56,11 @@
                   <FontIcon iconColor="WHITE" iconLiteral="fth-trending-down" />
                </graphic>
             </Button>
+            <Button layoutX="11.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickSwitchToFlashCard" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Flash Card" textAlignment="CENTER">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-trending-down" />
+               </graphic>
+            </Button>
          </children>
          <opaqueInsets>
             <Insets />

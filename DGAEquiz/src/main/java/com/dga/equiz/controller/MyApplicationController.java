@@ -4,9 +4,6 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
-import com.dga.equiz.utils.StageManager;
-import com.dga.game.EquizClient;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +41,7 @@ public class MyApplicationController implements Initializable {
     private NodeObject gameView = null;
     private NodeObject offlinedictionaryView = null;
     private NodeObject rankView = null;
+    private NodeObject flashCardView = null;
 
     private NodeObject currentPanel = null;
     private static double xOffset = 0;
@@ -58,6 +56,7 @@ public class MyApplicationController implements Initializable {
         setupGameView();
         setupOfflineDictionaryView();
         setupRankView();
+        setupFlashCardView();
         EquizUtils.callFuncDelay(this::setupButton, 1000);
 
         // Set default panel to home
@@ -153,6 +152,16 @@ public class MyApplicationController implements Initializable {
         }
     }
 
+    private void setupFlashCardView() {
+        try {
+            // Load profile here.
+            flashCardView = EquizUtils.Instantiate("/view/FlashCardView.fxml", panelHolder, AnchorType.FitToParent);
+            flashCardView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void switchToPanel(NodeObject panel) {
         if (currentPanel != null) {
             currentPanel.setVisible(false);
@@ -187,6 +196,10 @@ public class MyApplicationController implements Initializable {
 
     public void onClickSwitchToRank() {
         switchToPanel(rankView);
+    }
+
+    public void onClickSwitchToFlashCard() {
+        switchToPanel(flashCardView);
     }
 }
 
