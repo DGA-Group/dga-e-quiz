@@ -8,15 +8,12 @@ import com.dga.equiz.utils.StageManager;
 import com.dga.game.EquizClient;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.event.Event;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,7 +42,7 @@ public class MyApplicationController implements Initializable {
     private NodeObject dictionaryView = null;
     private NodeObject profileView = null;
     private NodeObject gameView = null;
-
+    private NodeObject offlinedictionaryView = null;
     private NodeObject currentPanel = null;
     private static double xOffset = 0;
     private static double yOffset = 0;
@@ -57,6 +54,7 @@ public class MyApplicationController implements Initializable {
         setupDictionaryView();
         setupProfileView();
         setupGameView();
+        setupOfflineDictionaryView();
         EquizUtils.callFuncDelay(this::setupButton, 1000);
         // Set default panel to home
         currentPanel = homeView;
@@ -112,6 +110,15 @@ public class MyApplicationController implements Initializable {
         }
     }
 
+    private void setupOfflineDictionaryView() {
+        try {
+            offlinedictionaryView = EquizUtils.Instantiate("/view/OfflineDictionaryView.fxml", panelHolder, AnchorType.FitToParent);
+            offlinedictionaryView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setupProfileView() {
         try {
             // Load profile here.
@@ -155,6 +162,10 @@ public class MyApplicationController implements Initializable {
 
     public void onClickSwitchToProfile() {
         switchToPanel(profileView);
+    }
+
+    public void onClickSwitchToOfflineDictionary() {
+        switchToPanel(offlinedictionaryView);
     }
 
     public void onClickSwitchToGame() {

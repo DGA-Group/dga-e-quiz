@@ -26,6 +26,7 @@ public class Main extends Application {
         try {
             loadStage();
 
+            /*
             Socket socket = new Socket("127.0.0.1", 54321);
             ApplicationData.getInstance().socket = socket;
             int id;
@@ -38,6 +39,7 @@ public class Main extends Application {
             ClientHelperRequest.sendRequest(request);
             new ClientListener(socket).start();
             System.out.println("Success connect to equiz server at port 54321...");
+            */
         } catch (Exception e) {
             if (ApplicationData.getInstance().socket != null) {
                 ApplicationData.getInstance().socket.close();

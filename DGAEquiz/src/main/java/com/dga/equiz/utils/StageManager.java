@@ -4,6 +4,8 @@ import javafx.stage.Stage;
 
 public class StageManager {
     private static StageManager instance;
+    public Stage offlineDeleteDictionaryStage;
+    public Stage changeWordStage;
 
     private StageManager() {
 
@@ -18,4 +20,5 @@ public class StageManager {
 
     public Stage loginStage;
     public Stage myApplicationStage;
+    public Stage offlineAddDictionaryStage;
 }
