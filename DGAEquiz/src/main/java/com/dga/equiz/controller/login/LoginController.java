@@ -5,6 +5,9 @@ import com.dga.equiz.model.Mailer;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.*;
+import com.dga.game.ClientHelperRequest;
+import com.dga.game.ClientListener;
+import com.dga.game.EquizPacket.Client.ConnectClientRequest;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,6 +25,7 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.Socket;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -210,7 +214,7 @@ public class LoginController implements Initializable {
                 resultSet = DBHelper.executeQuery(query);
                 statement = resultSet.getStatement();
                 connection = statement.getConnection();
-                while(resultSet.next()) {
+                while (resultSet.next()) {
                     passOutput = resultSet.getString(1);
                 }
             } catch (SQLException ex) {
@@ -219,20 +223,14 @@ public class LoginController implements Initializable {
 
             if (passOutput.equals(pfLogin_password.getText()) || passOutput.equals(tfLogin_showPass.getText())) {
 //                paneLogin.setVisible(false);
-                try {
-                    runMain();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                runMain();
             } else {
                 labelLogin_WrongPass.setVisible(true);
             }
         });
 
         checkLogin_pass.setOnAction((ActionEvent e) -> {
-            showPassword(checkLogin_pass,pfLogin_password,tfLogin_showPass);
+            showPassword(checkLogin_pass, pfLogin_password, tfLogin_showPass);
         });
 
         // sign up
@@ -243,7 +241,7 @@ public class LoginController implements Initializable {
             Random random = new Random();
             code[0] = 1000 + random.nextInt(9000);
             String message = "Ma Code cua ban la: " + code[0];
-            Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru",tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
+            Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
         });
 
         // Confirm Acc
@@ -267,11 +265,10 @@ public class LoginController implements Initializable {
             if (codeInput != code[0] || !tfAcc_confirmPassShow.getText().equals(tfRegister_pass.getText())) {
                 showAlert("Confirm Code hoặc Confirm Password của bạn không đúng");
                 return;
-            } else
-            {
+            } else {
                 try {
                     insertInfor();
-                    for(var event : onCompleteSave){
+                    for (var event : onCompleteSave) {
                         event.handle(e);
                     }
                 } catch (SQLException | IOException ex) {
@@ -287,8 +284,7 @@ public class LoginController implements Initializable {
                     tfForgot_mail.getText().isEmpty() || tfForgot_confNpass.getText().isEmpty()) {
                 showAlert("Vui lòng điền đầy đủ thông tin");
                 return;
-            } else
-            {
+            } else {
                 if (!tfForgot_Npass.getText().equals(tfForgot_confNpass.getText())) {
                     showAlert("Vui lòng nhập lại mật khẩu");
                     return;
@@ -298,7 +294,7 @@ public class LoginController implements Initializable {
                     Random random = new Random();
                     codeForgot[0] = 1000 + random.nextInt(9000);
                     String message = "Ma Code cua ban la: " + codeForgot[0];
-                    Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru",tfForgot_mail.getText(), "Confirm Acc DGAEQuiz", message);
+                    Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfForgot_mail.getText(), "Confirm Acc DGAEQuiz", message);
                 }
             }
         });
@@ -319,24 +315,18 @@ public class LoginController implements Initializable {
 
             if (codeInput != codeForgot[0]) {
                 showAlert("Confirm Code của bạn không đúng");
-                return;
             } else if (!checkAcc_agree.isSelected()) {
                 showAlert("Please agree with all terms to use this app");
             } else {
-                try {
-                    runMain();
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
                 String query = "UPDATE information\n" +
                         "SET password = '" + tfForgot_Npass.getText() + "' WHERE username = '" + tfForgot_username.getText() + "';";
                 try {
                     DBHelper.executeUpdate(query);
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    return;
                 }
+                runMain();
+
             }
         });
 
@@ -348,7 +338,7 @@ public class LoginController implements Initializable {
         setButtonAction(buttonForgot_back, paneLogin);
     }
 
-    public void setButtonAction(Button button,BorderPane pane1) {
+    public void setButtonAction(Button button, BorderPane pane1) {
         button.setOnAction(e -> {
             stackPane.getChildren().forEach(pane -> pane.setVisible(false));
             pane1.setVisible(true);
@@ -389,6 +379,7 @@ public class LoginController implements Initializable {
                 fis.close();
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
+                return;
             }
 
             stackPane.getChildren().forEach(pane -> pane.setVisible(false));
@@ -423,40 +414,78 @@ public class LoginController implements Initializable {
         scene.getStylesheets().add(String.valueOf(Main.class.getResource(cssPath)));
     }
 
-    private void runMain() throws SQLException, IOException {
+    private void runMain() {
         String sqlQuery = "SELECT * FROM `information` WHERE username = '" + tfLogin_username.getText() + "';";
         ResultSet resultSet = null;
         Statement statement = null;
         Connection connection = null;
 
-        resultSet = DBHelper.executeQuery(sqlQuery);
-        statement = resultSet.getStatement();
-        connection = statement.getConnection();
+        try{
+            resultSet = DBHelper.executeQuery(sqlQuery);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
 
-        Profile profile = ApplicationData.getInstance().profile;
+            Profile profile = ApplicationData.getInstance().profile;
 
-        if (resultSet.next()) {
-            profile.setID(resultSet.getInt(1));
-            profile.setName(resultSet.getString(2));
-            profile.setMail(resultSet.getString(3));
-            profile.setDob(resultSet.getString(4));
-            profile.setPhone(resultSet.getString(5));
-            profile.setGithub(resultSet.getString(6));
-            profile.setUsername(resultSet.getString(7));
-            profile.setPassword(resultSet.getString(8));
-            profile.setLinkAva(resultSet.getBytes(9));
+            if (resultSet.next()) {
+                profile.setID(resultSet.getInt(1));
+                profile.setName(resultSet.getString(2));
+                profile.setMail(resultSet.getString(3));
+                profile.setDob(resultSet.getString(4));
+                profile.setPhone(resultSet.getString(5));
+                profile.setGithub(resultSet.getString(6));
+                profile.setUsername(resultSet.getString(7));
+                profile.setPassword(resultSet.getString(8));
+                profile.setLinkAva(resultSet.getBytes(9));
+            }
+
+            if(!connectServer()){
+                showAlert("Cannot connect to server");
+                return;
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return;
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            }catch (Exception ignore) {}
         }
 
 
-        NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
-        Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 854, 480, Color.TRANSPARENT);
-        Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
-        addStyle(myApplicationScene, "/css/learnDesign.css");
-        myApplicationStage.initStyle(StageStyle.TRANSPARENT);
-        myApplicationStage.setScene(myApplicationScene);
-        myApplicationStage.hide();
+        // Initialize application view
+        try{
+            NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
+            Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 854, 480, Color.TRANSPARENT);
+            Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
+            addStyle(myApplicationScene, "/css/learnDesign.css");
+            myApplicationStage.initStyle(StageStyle.TRANSPARENT);
+            myApplicationStage.setScene(myApplicationScene);
+        }catch (Exception e){
+            e.printStackTrace();
+            return;
+        }
 
         StageManager.getInstance().myApplicationStage.show();
         StageManager.getInstance().loginStage.hide();
+    }
+
+    private boolean connectServer() {
+        boolean success;
+        try {
+            Socket socket = new Socket("127.0.0.1", 54321);
+            ApplicationData.getInstance().socket = socket;
+            int id = ApplicationData.getInstance().profile.getID();
+            ConnectClientRequest request = new ConnectClientRequest(String.valueOf(id));
+            ClientHelperRequest.sendRequest(request);
+            new ClientListener(socket).start();
+            System.out.println("Success connect to equiz server at port 54321...");
+            success = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            success =  false;
+        }
+        return success;
     }
 }
