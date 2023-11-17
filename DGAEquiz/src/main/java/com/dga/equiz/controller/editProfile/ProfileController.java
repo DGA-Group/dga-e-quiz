@@ -56,7 +56,7 @@ public class ProfileController implements Initializable {
 
         }
 
-        String sqlQuery = "SELECT * FROM `information` WHERE id = '" + String.valueOf(profile.getID()) + "';";
+        String sqlQuery = "SELECT * FROM `information` WHERE id = '" + profile.getID() + "';";
         try {
             ResultSet resultSet = DBHelper.executeQuery(sqlQuery);
             if (resultSet.next()) {

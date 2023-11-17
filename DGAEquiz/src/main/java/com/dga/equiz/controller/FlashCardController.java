@@ -2,17 +2,22 @@ package com.dga.equiz.controller;
 
 import com.dga.equiz.model.FlashCard;
 import com.dga.equiz.model.PairWord;
+import com.dga.equiz.model.Profile;
+import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.EquizUtils;
 import javafx.animation.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-import java.io.IOException;
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,51 +41,81 @@ public class FlashCardController implements Initializable {
 
     @FXML
     private Label curLabel;
+
+    @FXML
+    private Label atlertLabel;
+
+    @FXML
+    private Label titleLabel;
+
+    @FXML
+    private Circle circleAva;
+
     private boolean isFront = true;
     private String selected = "";
     private int index = 1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Profile profile = ApplicationData.getInstance().profile;
+        try {
+            circleAva.setFill(new ImagePattern(EquizUtils.toImage(profile.getID())));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        circleAva.setVisible(true);
+        titleLabel.setVisible(true);
+
         try {
             ListFlashCard = (ArrayList<PairWord>) FlashCard.getListFlashCard();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        wordLabel.setText(ListFlashCard.get(0).getWordName());
-        curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
-        FlashCardPane.setOnMouseClicked(event -> {
-            wordLabel.setVisible(false);
-            rotatePane();
-        });
-        if (index == 1) {
-            prevButton.setVisible(false);
+        if (!ListFlashCard.isEmpty()) {
+            atlertLabel.setVisible(false);
+            wordLabel.setText(ListFlashCard.get(0).getWordName());
+            curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
+            FlashCardPane.setOnMouseClicked(event -> {
+                wordLabel.setVisible(false);
+                rotatePane();
+            });
+            if (index == 1) {
+                prevButton.setVisible(false);
+            } else {
+                prevButton.setVisible(true);
+            }
+
+            nextButton.setOnMouseClicked(event -> {
+                if (index < ListFlashCard.size()) {
+                    isFront = true;
+                    right_trans();
+                    index++;
+                    showButton(index);
+                    selected = ListFlashCard.get(index - 1).getWordName();
+                    wordLabel.setText(selected);
+                    curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
+                }
+            });
+            prevButton.setOnMouseClicked(event -> {
+                if (index > 1) {
+                    isFront = true;
+                    left_trans();
+                    index--;
+                    showButton(index);
+                    selected = ListFlashCard.get(index - 1).getWordName();
+                    wordLabel.setText(selected);
+                    curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
+                }
+            });
         } else {
-            prevButton.setVisible(true);
+            atlertLabel.setVisible(true);
+            prevButton.setVisible(false);
+            nextButton.setVisible(false);
+            curLabel.setVisible(false);
+            wordLabel.setVisible(false);
         }
 
-        nextButton.setOnMouseClicked(event -> {
-            if (index < ListFlashCard.size()) {
-                isFront = true;
-                right_trans();
-                index++;
-                showButton(index);
-                selected = ListFlashCard.get(index - 1).getWordName();
-                wordLabel.setText(selected);
-                curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
-            }
-        });
-        prevButton.setOnMouseClicked(event -> {
-            if (index > 1) {
-                isFront = true;
-                left_trans();
-                index--;
-                showButton(index);
-                selected = ListFlashCard.get(index - 1).getWordName();
-                wordLabel.setText(selected);
-                curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
-            }
-        });
     }
 
     public void rotatePane() {

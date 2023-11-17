@@ -1,6 +1,7 @@
 package com.dga.equiz.utils;
 
 import com.dga.equiz.Main;
+import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Word;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -14,12 +15,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import javafx.scene.layout.StackPane;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.EventListener;
 import java.util.EventObject;
 import java.util.List;
@@ -179,5 +184,16 @@ public class EquizUtils {
             func.handle(new ActionEvent());
         });
         thread.start();
+    }
+
+    // Convert binary String to Image by using ID.
+    public static Image toImage(int id) throws SQLException {
+        String sqlQuery = "SELECT * FROM `information` WHERE id = '" + id + "';";
+        ResultSet resultSet = DBHelper.executeQuery(sqlQuery);
+        byte[] imageData = new byte[0];
+        if (resultSet.next()) {
+            imageData =  resultSet.getBytes("link_ava_test");
+        }
+        return new Image(new ByteArrayInputStream(imageData));
     }
 }
