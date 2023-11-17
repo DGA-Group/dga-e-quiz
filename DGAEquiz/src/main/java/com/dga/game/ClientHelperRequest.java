@@ -15,7 +15,7 @@ import java.net.Socket;
 
 public class ClientHelperRequest {
 
-    static ObjectOutputStream objectOutputStream = null;
+    public static ObjectOutputStream objectOutputStream = null;
 
     public static void sendRequest(EquizPacket request) {
         Socket socket = ApplicationData.getInstance().socket;

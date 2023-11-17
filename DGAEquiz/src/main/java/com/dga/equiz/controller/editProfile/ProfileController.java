@@ -2,6 +2,7 @@ package com.dga.equiz.controller.editProfile;
 
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.utils.*;
+import com.dga.game.ClientHelperRequest;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.net.Socket;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -73,7 +75,18 @@ public class ProfileController implements Initializable {
         logOutButton.setOnAction((ActionEvent e) -> {
             StageManager.getInstance().myApplicationStage.hide();
             StageManager.getInstance().loginStage.show();
-
+            try {
+                Socket socket = ApplicationData.getInstance().socket;
+                if (socket.isConnected()) {
+                    socket.close();
+                    ObjectOutputStream oos = ClientHelperRequest.objectOutputStream;
+                    if(oos != null){
+                        oos.close();
+                    }
+                    ClientHelperRequest.objectOutputStream = null;
+                }
+            } catch (Exception ignore) {
+            }
         });
     }
 
