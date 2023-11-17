@@ -8,6 +8,7 @@ import com.dga.game.ClientHelperRequest;
 import com.dga.game.EquizPacket.Client.ConnectClientRequest;
 import com.dga.game.ClientListener;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
@@ -50,12 +51,19 @@ public class Main extends Application {
     }
 
     private void loadStage() throws IOException {
-        NodeObject loginView = EquizUtils.Instantiate("/view/login/Login.fxml"); // MyApplication.fxml;
-        Scene loginScene = new Scene((Parent) loginView.getNode(), 648, 430, Color.TRANSPARENT);
-        Stage loginStage = StageManager.getInstance().loginStage = new Stage();
-        loginStage.initStyle(StageStyle.TRANSPARENT);
-        loginStage.setScene(loginScene);
-        loginStage.show();
+        Platform.runLater(() -> {
+            NodeObject loginView = null; // MyApplication.fxml;
+            try {
+                loginView = EquizUtils.Instantiate("/view/login/Login.fxml");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Scene loginScene = new Scene((Parent) loginView.getNode(), 648, 430, Color.TRANSPARENT);
+            Stage loginStage = StageManager.getInstance().loginStage = new Stage();
+            loginStage.initStyle(StageStyle.TRANSPARENT);
+            loginStage.setScene(loginScene);
+            loginStage.show();
+        });
     }
 
     public static void main(String[] args) {

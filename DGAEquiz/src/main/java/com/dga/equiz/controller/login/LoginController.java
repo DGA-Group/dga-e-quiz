@@ -218,7 +218,7 @@ public class LoginController implements Initializable {
             }
 
             if (passOutput.equals(pfLogin_password.getText()) || passOutput.equals(tfLogin_showPass.getText())) {
-                paneLogin.setVisible(false);
+//                paneLogin.setVisible(false);
                 try {
                     runMain();
                 } catch (SQLException ex) {
@@ -446,6 +446,7 @@ public class LoginController implements Initializable {
             profile.setPassword(resultSet.getString(8));
             profile.setLinkAva(resultSet.getBytes(9));
         }
+
 
         NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
         Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 854, 480, Color.TRANSPARENT);

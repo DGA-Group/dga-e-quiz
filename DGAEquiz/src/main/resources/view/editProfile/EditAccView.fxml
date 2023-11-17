@@ -47,7 +47,6 @@
                   </Label>
                   <PasswordField fx:id="passFNew" prefHeight="44.0" prefWidth="270.0" />
                   <Pane prefHeight="44.0" prefWidth="32.0" />
-                  <Button fx:id="button_fotgot" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css" text="Forgot" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="600.0">

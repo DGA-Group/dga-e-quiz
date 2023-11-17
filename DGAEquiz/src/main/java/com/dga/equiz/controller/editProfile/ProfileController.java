@@ -1,10 +1,8 @@
 package com.dga.equiz.controller.editProfile;
 
 import com.dga.equiz.model.Profile;
-import com.dga.equiz.utils.ApplicationData;
-import com.dga.equiz.utils.ControllerManager;
-import com.dga.equiz.utils.DBHelper;
-import com.dga.equiz.utils.SecretKey;
+import com.dga.equiz.utils.*;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +44,9 @@ public class ProfileController implements Initializable {
     @FXML
     public Label labelID;
 
+    @FXML
+    public Button logOutButton;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Profile profile = ApplicationData.getInstance().profile;
@@ -66,14 +67,15 @@ public class ProfileController implements Initializable {
                 }
             }
         } catch (SQLException e) {
+
         }
-    }
 
-    public void setAvatar2(String path) {
-        Image img = new Image(String.valueOf(getClass().getResource(path)));
-        circle.setFill(new ImagePattern(img));
-    }
+        logOutButton.setOnAction((ActionEvent e) -> {
+            StageManager.getInstance().myApplicationStage.hide();
+            StageManager.getInstance().loginStage.show();
 
+        });
+    }
 
     public void changeImage(ActionEvent event) throws SQLException, IOException {
         Profile profile = ApplicationData.getInstance().profile;

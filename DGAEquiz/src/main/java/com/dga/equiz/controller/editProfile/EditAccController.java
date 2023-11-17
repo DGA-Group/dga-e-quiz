@@ -33,9 +33,6 @@ public class EditAccController implements Initializable {
     private Button button_check;
 
     @FXML
-    private Button button_fotgot;
-
-    @FXML
     private Button button_save;
 
     @FXML
@@ -59,7 +56,6 @@ public class EditAccController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        ControllerManager.getInstance().editAccController = this;
         passFConfirm.setVisible(false);
         passFNew.setVisible(false);
         labelNewPass.setVisible(false);
@@ -72,7 +68,7 @@ public class EditAccController implements Initializable {
         button_check.setOnAction((ActionEvent e) -> {
             if (passFCurrent.getText().isEmpty()) {
                 showAlert("Please enter your current password \n " +
-                        "If you forgot your password please click \"Forgot Password\" ");
+                        "If you forgot your password please log out and click \"Forgot Password\"");
                 return;
             }
 

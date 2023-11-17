@@ -16,6 +16,7 @@
                   <Font size="30.0" />
                </font>
             </Label>
+            <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="621.0" text="We want to see your name in ranking below." />
             <HBox prefHeight="31.0" prefWidth="600.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="88.0" text="Top" />
