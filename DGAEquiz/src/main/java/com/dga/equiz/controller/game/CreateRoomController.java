@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -33,6 +34,8 @@ public class CreateRoomController implements Initializable {
     @FXML
     public TextField tfPlayerLimit;
 
+    @FXML
+    public CheckBox cbRequirePassword;
 
     private Stage stage;
 
@@ -63,10 +66,19 @@ public class CreateRoomController implements Initializable {
 
         this.btnCreate.setOnAction(event -> {
             String roomName = tfRoomName.getText();
+            boolean requirePassword = cbRequirePassword.isSelected();
             String roomPassword = tfRoomPassword.getText();
             int playerLimit = Integer.parseInt(tfPlayerLimit.getText());
-            ClientHelperRequest.sendCreateRoomRequest(roomName, roomPassword, playerLimit);
+            ClientHelperRequest.sendCreateRoomRequest(roomName, requirePassword, roomPassword, playerLimit);
         });
+
+        updatePasswordTextField();
+        cbRequirePassword.setOnAction(event -> updatePasswordTextField());
+    }
+
+    private void updatePasswordTextField() {
+        boolean requirePassword = cbRequirePassword.isSelected();
+        this.tfRoomPassword.setDisable(!requirePassword);
     }
 
 

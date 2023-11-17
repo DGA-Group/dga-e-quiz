@@ -5,16 +5,16 @@ import com.dga.game.EquizPacket.PacketResponse;
 
 public class MessageResponse implements EquizPacket {
     public PacketResponse status;
-    public String username;
+    public String userId;
     public String text;
 
     public MessageResponse(PacketResponse status) {
         this.status = status;
     }
 
-    public MessageResponse(PacketResponse status, String username, String text) {
+    public MessageResponse(PacketResponse status, String userId, String text) {
         this.status = status;
-        this.username = username;
+        this.userId = userId;
         this.text = text;
     }
 

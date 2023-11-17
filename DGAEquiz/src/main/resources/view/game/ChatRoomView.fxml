@@ -12,9 +12,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.ChatRoomController">
    <center>
-      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="266.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="spChatScroll" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="266.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="vboxMessageList" style="-fx-background-color: #FFFFFF;">
+            <VBox fx:id="vboxMessageList" prefHeight="314.0" prefWidth="579.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <HBox />
                </children></VBox>
@@ -33,14 +33,15 @@
       </HBox>
    </bottom>
    <top>
-      <StackPane prefHeight="15.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="54.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" minHeight="-Infinity" prefHeight="61.0" prefWidth="600.0">
+            <VBox alignment="CENTER">
                <children>
                   <Label text="Chat room" />
+                  <Label fx:id="lbPlayerCount" layoutX="282.0" layoutY="28.0" text="Current player: 2 / 10" />
                </children>
-            </HBox>
-            <StackPane alignment="CENTER_RIGHT" prefHeight="150.0" prefWidth="200.0">
+            </VBox>
+            <StackPane alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="600.0">
                <children>
                   <Button fx:id="btnStartGame" mnemonicParsing="false" text="Start Game" />
                </children>

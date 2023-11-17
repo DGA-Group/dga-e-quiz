@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 
-<HBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.MessageBoxController">
+<HBox fx:id="hBoxContainer" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.MessageBoxController">
    <children>
       <Label fx:id="lbMessageContent" prefWidth="290.0" text="Your text here" wrapText="true" />
    </children>

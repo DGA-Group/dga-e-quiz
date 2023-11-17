@@ -3,20 +3,26 @@ package com.dga.game;
 import com.dga.equiz.controller.game.ChatRoomController;
 import com.dga.equiz.controller.game.GameController;
 import com.dga.equiz.controller.game.LobbyController;
+import com.dga.equiz.utils.ApplicationEnum.MessageAlignment;
 import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.Message.MessageResponse;
 import com.dga.game.EquizPacket.PacketResponse;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomResponse;
+import com.dga.game.EquizPacket.Room.LeaveRoom.LeaveRoomResponse;
 import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomResponse;
-import com.dga.game.EquizPacket.Room.ShowRoom.RoomWraper;
+import com.dga.game.EquizPacket.Room.ShowRoom.RoomWrapper;
 import com.dga.game.EquizPacket.Room.ShowRoom.ShowRoomResponse;
 
 import java.util.List;
 
 public class ClientHelperResponse {
     public static void handleResponse(EquizPacket packet) {
+        if (packet == null) {
+            return;
+        }
+
         switch (packet.getType()) {
             case "message_response":
                 handleMessageResponse((MessageResponse) packet);
@@ -32,6 +38,9 @@ public class ClientHelperResponse {
                 break;
             case "start_room_response":
                 break;
+            case "leave_room_response":
+                handleLeaveRoomResponse((LeaveRoomResponse) packet);
+                break;
             default:
                 break;
         }
@@ -40,7 +49,6 @@ public class ClientHelperResponse {
     private static void handleMessageResponse(MessageResponse packet) {
         ChatRoomController chatRoomController = ControllerManager.getInstance().chatRoomController;
         chatRoomController.addMessage(packet);
-
     }
 
     private static void handleOpenRoomResponse(OpenRoomResponse packet) {
@@ -56,17 +64,28 @@ public class ClientHelperResponse {
             controller.chatRoomView.show();
 
             ChatRoomController chatRoomController = ControllerManager.getInstance().chatRoomController;
-            chatRoomController.clearMessageList();
+            String currentPlayerCount = "Current player: " + packet.playerCount + '/' + packet.playerLimit;
+            chatRoomController.updatePlayerCount(currentPlayerCount);
+            EquizUtils.callFuncDelay(() -> {
+                chatRoomController.addMyMessage(packet.message, MessageAlignment.Middle);
+            }, 1000);
         }
     }
 
     private static void handleShowRoomResponse(ShowRoomResponse packet) {
-        List<RoomWraper> roomWrapers = packet.roomList;
+        List<RoomWrapper> roomWrappers = packet.roomList;
         LobbyController lobbyController = ControllerManager.getInstance().lobbyController;
         lobbyController.clearRoomList();
-        for (RoomWraper room : roomWrapers) {
+        for (RoomWrapper room : roomWrappers) {
             lobbyController.addRoomToList(room);
         }
+    }
+
+    public static void handleLeaveRoomResponse(LeaveRoomResponse packet) {
+        ChatRoomController chatRoomController = ControllerManager.getInstance().chatRoomController;
+        String currentPlayerCount = "Current player: " + packet.playerCount + '/' + packet.playerLimit;
+        chatRoomController.updatePlayerCount(currentPlayerCount);
+        chatRoomController.addMyMessage(packet.message, MessageAlignment.Middle);
     }
 
 }

@@ -32,64 +32,14 @@ public class ClientHelperRequest {
         }
     }
 
-
-    public static EquizPacket handleRequest(String request) {
-        if (request.startsWith("/show_room")) {
-            return createShowRoomRequest();
-        }
-
-        if (request.startsWith("/join")) {
-            return createJoinRoomRequest(request);
-        }
-
-        if (request.startsWith("/open")) {
-            return createOpenRoomRequest(request);
-        }
-
-        if (request.startsWith("/start_game")) {
-            return createStartGameRequest(request);
-        }
-
-        return createMessageRequest(request);
-    }
-
-    private static JoinRoomRequest createJoinRoomRequest(String request) {
-        String[] res = request.split(" ");
-        if (res.length != 2) {
-            System.out.println("Invalid join room request!");
-            return null;
-        }
-        return new JoinRoomRequest(res[1], "");
-    }
-
-    private static OpenRoomRequest createOpenRoomRequest(String request) {
-        String[] res = request.split(" ");
-        if (res.length != 4) {
-            System.out.println("Invalid open room request!");
-            return null;
-        }
-        return new OpenRoomRequest(res[1], res[2], Integer.parseInt(res[3]));
-    }
-
-    private static MessageRequest createMessageRequest(String message) {
-        return new MessageRequest(message);
-    }
-
-    private static ShowRoomRequest createShowRoomRequest() {
-        return new ShowRoomRequest();
-    }
-
-    private static StartRoomRequest createStartGameRequest(String request) {
-        return new StartRoomRequest("red_tea");
-    }
-
     public static void sendShowRoomRequest() {
-        EquizPacket request = createShowRoomRequest();
+        EquizPacket request = new ShowRoomRequest();
         sendRequest(request);
     }
 
-    public static void sendCreateRoomRequest(String roomName, String roomPassword, int playerLimit) {
-        EquizPacket request = new OpenRoomRequest(roomName, roomPassword, playerLimit);
+    public static void sendCreateRoomRequest(String roomName, boolean requirePassword,
+                                             String roomPassword, int playerLimit) {
+        EquizPacket request = new OpenRoomRequest(roomName, requirePassword, roomPassword, playerLimit);
         sendRequest(request);
     }
 

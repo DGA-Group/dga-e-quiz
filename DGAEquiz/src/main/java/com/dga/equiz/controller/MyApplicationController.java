@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.event.Event;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -65,6 +66,11 @@ public class MyApplicationController implements Initializable {
         Stage stage = ((Stage) this.btnClose.getScene().getWindow());
         this.btnClose.setOnAction((ActionEvent event) -> {
             stage.close();
+            try {
+                ApplicationData.getInstance().socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         this.btnMaximize.setOnAction((ActionEvent event) -> {

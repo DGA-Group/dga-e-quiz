@@ -8,9 +8,9 @@ import java.util.List;
 
 
 public class ShowRoomResponse implements EquizPacket {
-    public List<RoomWraper> roomList = new ArrayList<>();
+    public List<RoomWrapper> roomList = new ArrayList<>();
 
-    public ShowRoomResponse(List<RoomWraper> roomList) {
+    public ShowRoomResponse(List<RoomWrapper> roomList) {
         this.roomList = roomList;
     }
 

@@ -41,7 +41,7 @@ public class Room implements Runnable {
             for (MessageResponse message : messageHistory) {
                 client.sendPacket(message);
             }
-        }, 1000);
+        }, 500);
 
     }
 

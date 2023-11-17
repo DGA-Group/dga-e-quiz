@@ -1,11 +1,15 @@
 package com.dga.game.GameMode;
 
 import com.dga.game.ClientHandler;
+import com.dga.game.DBHelper;
 import com.dga.game.EquizPacket.Message.MessageResponse;
 import com.dga.game.EquizPacket.PacketResponse;
 import com.dga.game.Room;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Map;
 
 /**
@@ -57,12 +61,12 @@ public class RedTea extends TeaGame {
     public void play() throws IOException, InterruptedException {
         while (isRunning) {
             //Send word to the client
-            String keyword = GameHelper.getRandomKeyword();
-            MessageResponse messageResponse = new MessageResponse(PacketResponse.OK, "Server", "Guess word: " + keyword);
+            currentRoundWord = GameHelper.getRandomKeyword();
+            MessageResponse messageResponse = new MessageResponse(PacketResponse.OK, "Server", "Guess word: " + currentRoundWord);
             hostRoom.broadcast(messageResponse, null);
 
             // Wait for player word
-            currentRoundTimer = new Timer(30000);
+            currentRoundTimer = new Timer(10000);
             currentRoundTimer.start();
             currentRoundTimer.join();
         }
@@ -106,7 +110,26 @@ public class RedTea extends TeaGame {
     }
 
     private boolean isValidWord(String word) {
-        // TODO: Complete check valid word function
-        return true;
+        if (!currentRoundWord.toLowerCase().contains(word.toLowerCase())) {
+            return false;
+        }
+
+        boolean ret = false;
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+        try {
+            String sql = "SELECT word FROM av WHERE word = '" + word + "';";
+            resultSet = DBHelper.executeQuerySqlite(sql);
+            resultSet.next();
+            ret = resultSet.getString(1) != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try{
+                DBHelper.closeQuery(resultSet, statement, connection);
+            }catch (Exception ignore){}
+        }
+        return ret;
     }
 }
