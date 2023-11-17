@@ -36,4 +36,5 @@ module dgaequiz {
     requires com.fasterxml.jackson.core;
     requires javafx.media;
     requires javax.mail;
+    requires org.xerial.sqlitejdbc;
 }

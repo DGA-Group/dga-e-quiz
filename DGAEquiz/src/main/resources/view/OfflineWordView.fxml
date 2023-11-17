@@ -3,42 +3,51 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane prefHeight="599.0" prefWidth="591.0" styleClass="tab-pane-wordPane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
+<VBox fx:id="vBox" minHeight="-Infinity" minWidth="-Infinity" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.OfflineWordController">
    <children>
-      <VBox fx:id="vBox" layoutX="4.0" layoutY="3.0" prefHeight="594.0" prefWidth="600.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css">
+      <Label fx:id="labelOfWord" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="#444766" wrapText="true">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelOfPronounce" contentDisplay="RIGHT" prefWidth="523.0" text="pronounce" textFill="#444766" wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelOfDescription" prefWidth="519.0" text="description" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="115.0" prefWidth="501.0">
          <children>
-            <Label fx:id="labelOfWord" prefHeight="46.0" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="#444766">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelOfPronounce" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="523.0" text="pronounce" textFill="#444766">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelOfDescription" prefHeight="45.0" prefWidth="147.0" text="description">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Button mnemonicParsing="false">
-               <graphic>
-                  <FontIcon iconLiteral="fth-pen-tool" iconSize="20" />
-               </graphic>
-            </Button>
+            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="511.0">
+               <children>
+                  <Button fx:id="btnChange" mnemonicParsing="false" onAction="#onClickChangeWord" prefHeight="33.0" prefWidth="56.0">
+                     <graphic>
+                        <FontIcon iconLiteral="fth-pen-tool" iconSize="20" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="956.0">
+               <children>
+                  <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#onClickDelete" text="Delete" />
+               </children>
+            </HBox>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-         <padding>
-            <Insets left="20.0" top="10.0" />
-         </padding>
-      </VBox>
+      </HBox>
    </children>
-</AnchorPane>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets left="20.0" top="10.0" />
+   </padding>
+</VBox>

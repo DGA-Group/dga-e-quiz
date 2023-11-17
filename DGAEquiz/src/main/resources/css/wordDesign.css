@@ -9,11 +9,13 @@
     -fx-background-radius: 40;
     -fx-background-color: #F5F8FA;
     -fx-text-fill: #444766;
+    -fx-focus-color: transparent;
 }
 
 .label-labelPartOfSpeech {
     -fx-font-style: italic;
     -fx-font-family: "Arial";
+    -fx-focus-color: transparent;
 }
 
 .label-labelWeight {
