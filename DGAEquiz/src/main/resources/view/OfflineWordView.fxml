@@ -10,11 +10,24 @@
 
 <VBox fx:id="vBox" minHeight="-Infinity" minWidth="-Infinity" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.OfflineWordController">
    <children>
-      <Label fx:id="labelOfWord" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="#444766" wrapText="true">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
+      <HBox prefHeight="44.0" prefWidth="414.0">
+         <children>
+            <HBox prefHeight="99.0" prefWidth="631.0">
+               <children>
+                  <Label fx:id="labelOfWord" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="#444766" wrapText="true">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="85.0" prefWidth="0.0">
+               <children>
+                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onClickSave" text="Save" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
       <Label fx:id="labelOfPronounce" contentDisplay="RIGHT" prefWidth="523.0" text="pronounce" textFill="#444766" wrapText="true">
          <font>
             <Font size="18.0" />

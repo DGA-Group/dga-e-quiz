@@ -1,6 +1,7 @@
 package com.dga.equiz.controller;
 
 import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.DBHelper;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.utils.StageManager;
@@ -15,7 +16,12 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.SimpleTimeZone;
 
 public class OfflineWordController implements Initializable {
     @FXML
@@ -28,6 +34,8 @@ public class OfflineWordController implements Initializable {
     private Button btnChange;
     @FXML
     private Button btnDelete;
+    @FXML
+    private Button btnSave;
     private ChangeWordController changeWordController;
     private OfflineDictionaryController dictionaryController;
     public void setupWordView(String word, String pronounce, String description, OfflineDictionaryController offlineDictionaryController) {
@@ -61,7 +69,36 @@ public class OfflineWordController implements Initializable {
         }
         dictionaryController.onClickSearch();
     }
-
+    public void onClickSave() throws SQLException {
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+        String savedWord = labelOfWord.getText();
+        String savedDescription = labelOfDescription.getText();
+        int userID = ApplicationData.getInstance().profile.getID();
+        String query = "SELECT id , word, description FROM ALM WHERE id = '" + userID
+                + "' AND word = '" + savedWord + "' AND description = '" + savedDescription + "';";
+        resultSet = DBHelper.executeQuery(query);
+        statement = resultSet.getStatement();
+        connection = statement.getConnection();
+        while (resultSet.next()) {
+            if (resultSet.next()){
+                EquizUtils.showAlert("Already Exist !");
+            }
+            else {
+                String updateQuery = "INSERT INTO ALM (id, word, description) VALUES ('"
+                        + userID + "','" + savedWord + "','" + savedDescription + "');";
+                try {
+                    DBHelper.executeUpdateSqlite(query);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                finally {
+                    DBHelper.closeQuery(resultSet, statement, connection);
+                }
+            }
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
