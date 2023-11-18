@@ -4,18 +4,15 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
-import com.dga.game.EquizClient;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import javafx.event.Event;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -42,6 +39,7 @@ public class MyApplicationController implements Initializable {
     private NodeObject dictionaryView = null;
     private NodeObject profileView = null;
     private NodeObject gameView = null;
+    private NodeObject offlinedictionaryView = null;
     private NodeObject rankView = null;
     private NodeObject flashCardView = null;
 
@@ -56,9 +54,11 @@ public class MyApplicationController implements Initializable {
         setupDictionaryView();
         setupProfileView();
         setupGameView();
+        setupOfflineDictionaryView();
         setupRankView();
         setupFlashCardView();
-        EquizUtils.callFuncDelay(event -> setupButton(), 1000);
+        EquizUtils.callFuncDelay(this::setupButton, 1000);
+
         // Set default panel to home
         currentPanel = homeView;
     }
@@ -67,10 +67,14 @@ public class MyApplicationController implements Initializable {
         Stage stage = ((Stage) this.btnClose.getScene().getWindow());
         this.btnClose.setOnAction((ActionEvent event) -> {
             stage.close();
+            try {
+                ApplicationData.getInstance().socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         this.btnMaximize.setOnAction((ActionEvent event) -> {
-
             stage.setMaximized(!stage.isMaximized());
         });
 
@@ -104,6 +108,15 @@ public class MyApplicationController implements Initializable {
             dictionaryView = EquizUtils.Instantiate("/view/DictionaryView.fxml");
             panelHolder.getChildren().add(dictionaryView.getNode());
             dictionaryView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setupOfflineDictionaryView() {
+        try {
+            offlinedictionaryView = EquizUtils.Instantiate("/view/OfflineDictionaryView.fxml", panelHolder, AnchorType.FitToParent);
+            offlinedictionaryView.hide();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -171,6 +184,10 @@ public class MyApplicationController implements Initializable {
 
     public void onClickSwitchToProfile() {
         switchToPanel(profileView);
+    }
+
+    public void onClickSwitchToOfflineDictionary() {
+        switchToPanel(offlinedictionaryView);
     }
 
     public void onClickSwitchToGame() {

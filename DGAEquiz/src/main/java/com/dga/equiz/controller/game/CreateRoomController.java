@@ -2,14 +2,18 @@ package com.dga.equiz.controller.game;
 
 import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.EquizUtils;
+import com.dga.equiz.utils.StageManager;
 import com.dga.game.ClientHelperRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert.AlertType;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,6 +37,8 @@ public class CreateRoomController implements Initializable {
     @FXML
     public TextField tfPlayerLimit;
 
+    @FXML
+    public CheckBox cbRequirePassword;
 
     private Stage stage;
 
@@ -42,7 +48,7 @@ public class CreateRoomController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ControllerManager.getInstance().createRoomController = this;
-        EquizUtils.callFuncDelay((event) -> setupCreateRoom(), 1000);
+        EquizUtils.callFuncDelay(this::setupCreateRoom, 1000);
     }
 
     public void setupCreateRoom() {
@@ -63,10 +69,32 @@ public class CreateRoomController implements Initializable {
 
         this.btnCreate.setOnAction(event -> {
             String roomName = tfRoomName.getText();
+            boolean requirePassword = cbRequirePassword.isSelected();
             String roomPassword = tfRoomPassword.getText();
-            int playerLimit = Integer.parseInt(tfPlayerLimit.getText());
-            ClientHelperRequest.sendCreateRoomRequest(roomName, roomPassword, playerLimit);
+            int playerLimit;
+            try {
+                playerLimit = Integer.parseInt(tfPlayerLimit.getText());
+            }catch (Exception e){
+                EquizUtils.showAlert("Error", "Unable to create room",
+                        "Do not input player limit as character!", AlertType.ERROR);
+                return;
+            }
+
+            tfRoomName.clear();
+            tfPlayerLimit.clear();
+            tfRoomPassword.clear();
+            (btnCreate.getScene().getWindow()).hide();
+
+            ClientHelperRequest.sendCreateRoomRequest(roomName, requirePassword, roomPassword, playerLimit);
         });
+
+        updatePasswordTextField();
+        cbRequirePassword.setOnAction(event -> updatePasswordTextField());
+    }
+
+    private void updatePasswordTextField() {
+        boolean requirePassword = cbRequirePassword.isSelected();
+        this.tfRoomPassword.setDisable(!requirePassword);
     }
 
 

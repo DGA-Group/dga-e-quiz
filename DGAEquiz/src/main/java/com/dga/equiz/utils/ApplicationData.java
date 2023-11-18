@@ -251,27 +251,4 @@ public class ApplicationData {
             }
         }
     }
-
-    public boolean connectToGameServer() {
-        try {
-            socket = new Socket("127.0.0.1", 54321);
-            System.out.println("Success connect to game server at port 54321...");
-
-            Profile profile = ApplicationData.getInstance().profile;
-            ConnectClientRequest request = new ConnectClientRequest(String.valueOf(profile.getID()));
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            objectOutputStream.writeObject(request);
-            new ClientListener(socket).start();
-            return socket.isConnected();
-        } catch (IOException e) {
-            if (socket != null) {
-                try {
-                    socket.close();
-                } catch (Exception ignored) {
-                }
-            }
-            System.out.println("Unable to connect to server! Please try again later!");
-            return false;
-        }
-    }
 }

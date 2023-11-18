@@ -4,7 +4,7 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.game.ClientHelperRequest;
-import com.dga.game.EquizPacket.Room.ShowRoom.RoomWraper;
+import com.dga.game.EquizPacket.Room.ShowRoom.RoomWrapper;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,6 +50,7 @@ public class LobbyController implements Initializable {
         ControllerManager.getInstance().lobbyController = this;
         setupButton();
         setupWindow();
+        ClientHelperRequest.sendShowRoomRequest();
     }
 
     private void setupButton() {
@@ -85,7 +86,7 @@ public class LobbyController implements Initializable {
         });
     }
 
-    public void addRoomToList(RoomWraper roomItem) {
+    public void addRoomToList(RoomWrapper roomItem) {
         Platform.runLater(() -> {
             try {
                 NodeObject room = EquizUtils.Instantiate("/view/game/RoomItemView.fxml", vboxRoomList);
@@ -94,6 +95,7 @@ public class LobbyController implements Initializable {
                 String roomName = roomItem.roomName;
                 String roomPlayer = "" + roomItem.roomPlayerLimits; //+ '/' + roomItem.getPlayerLimit();
                 controller.setupRoomItem(roomId, roomName, roomPlayer);
+                controller.setRoom(roomItem);
             } catch (Exception e) {
                 System.out.println("Unable to add room to list!");
             }

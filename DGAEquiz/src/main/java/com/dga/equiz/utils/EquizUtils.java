@@ -1,7 +1,7 @@
 package com.dga.equiz.utils;
 
 import com.dga.equiz.Main;
-import com.dga.equiz.model.Profile;
+import com.dga.equiz.model.Event;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Word;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -9,24 +9,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import javafx.scene.layout.StackPane;
+import javafx.scene.control.Alert.AlertType;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.EventListener;
-import java.util.EventObject;
 import java.util.List;
 
 public class EquizUtils {
@@ -169,31 +163,34 @@ public class EquizUtils {
 
     // Print the Alert to the screen when you receive an ERROR!
     public static void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Username Alert");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
-    public static void callFuncDelay(EventHandler<ActionEvent> func, long millisecond) {
-        Thread thread = new Thread(() -> {
-            try {
-                Thread.sleep(millisecond);
-            } catch (InterruptedException ignored) { }
-            func.handle(new ActionEvent());
-        });
-        thread.start();
+    public static void showAlert(String title, String headerText, String message, AlertType alertType){
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
-    // Convert binary String to Image by using ID.
-    public static Image toImage(int id) throws SQLException {
-        String sqlQuery = "SELECT * FROM `information` WHERE id = '" + id + "';";
-        ResultSet resultSet = DBHelper.executeQuery(sqlQuery);
-        byte[] imageData = new byte[0];
-        if (resultSet.next()) {
-            imageData =  resultSet.getBytes("link_ava_test");
-        }
-        return new Image(new ByteArrayInputStream(imageData));
+    public static void callFuncDelay(Event func, long milliseconds) {
+        Thread thread = new Thread(() -> {
+            try {
+                Thread.sleep(milliseconds);
+            } catch (InterruptedException e) {
+                e.printStackTrace(); // Log or handle the exception
+                Thread.currentThread().interrupt(); // Restore the interrupted status
+                return; // Exit the thread
+            }
+
+            Platform.runLater(func::handle);
+        });
+
+        thread.start();
     }
 }
