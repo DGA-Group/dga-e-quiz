@@ -10,8 +10,6 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -20,10 +18,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import javafx.scene.layout.StackPane;
+import javafx.scene.control.Alert.AlertType;
 
 import java.io.IOException;
-import java.util.EventListener;
-import java.util.EventObject;
 import java.util.List;
 
 public class EquizUtils {
@@ -166,9 +163,17 @@ public class EquizUtils {
 
     // Print the Alert to the screen when you receive an ERROR!
     public static void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        Alert alert = new Alert(AlertType.WARNING);
         alert.setTitle("Username Alert");
         alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public static void showAlert(String title, String headerText, String message, AlertType alertType){
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
         alert.setContentText(message);
         alert.showAndWait();
     }

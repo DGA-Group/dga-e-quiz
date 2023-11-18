@@ -1,15 +1,19 @@
 package com.dga.equiz.controller.game;
 
+import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.ApplicationEnum.MessageAlignment;
 import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.game.ClientHelperRequest;
-import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.Message.MessageResponse;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
@@ -31,6 +35,15 @@ public class ChatRoomController implements Initializable {
     @FXML
     public Button btnStartGame;
 
+    @FXML
+    public Button btnReturn;
+
+    @FXML
+    public Label lbPlayerCount;
+
+    @FXML
+    public ScrollPane spChatScroll;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ControllerManager.getInstance().chatRoomController = this;
@@ -42,11 +55,18 @@ public class ChatRoomController implements Initializable {
 
         btnSendMessage.setOnAction(event -> onClickSendMessage());
         btnStartGame.setOnAction(event -> onClickStartGame());
+        spChatScroll.vvalueProperty().bind(vboxMessageList.heightProperty());
+        btnReturn.setOnAction(event -> onClickReturn());
     }
 
     public void onClickSendMessage() {
         String message = tfChatInputBox.getText();
+        if (message.equals("")) {
+            return;
+        }
+        addMyMessage(message, MessageAlignment.TopRight);
         ClientHelperRequest.sendMessageRequest(message);
+        tfChatInputBox.clear();
     }
 
     public void clearMessageList() {
@@ -55,12 +75,35 @@ public class ChatRoomController implements Initializable {
         });
     }
 
+    public void updatePlayerCount(String message) {
+        Platform.runLater(() -> {
+            lbPlayerCount.setText(message);
+        });
+    }
+
     public void addMessage(MessageResponse message) {
         Platform.runLater(() -> {
             try {
                 NodeObject nodeObject = EquizUtils.Instantiate("/view/game/MessageBoxView.fxml", vboxMessageList);
                 MessageBoxController controller = nodeObject.getController();
-                controller.setUpMessageBox(message.text);
+                MessageAlignment alignment = MessageAlignment.TopLeft;
+                if (message.name.equals("Server")) {
+                    alignment = MessageAlignment.Middle;
+                }
+                controller.setUpMessageBox(message.name, message.text, alignment);
+            } catch (IOException ignore) {
+            }
+        });
+    }
+
+    public void addMyMessage(String message, MessageAlignment alignment) {
+        Platform.runLater(() -> {
+            try {
+                NodeObject nodeObject = EquizUtils.Instantiate("/view/game/MessageBoxView.fxml", vboxMessageList);
+                MessageBoxController controller = nodeObject.getController();
+                Profile profile = ApplicationData.getInstance().profile;
+                String name = profile.getName();
+                controller.setUpMessageBox(name, message, alignment);
             } catch (IOException ignore) {
             }
         });
@@ -68,5 +111,12 @@ public class ChatRoomController implements Initializable {
 
     public void onClickStartGame() {
         ClientHelperRequest.sendStartGameRequest();
+    }
+
+    public void onClickReturn() {
+        GameController gameController = ControllerManager.getInstance().gameController;
+        gameController.chatRoomView.hide();
+        gameController.lobbyView.show();
+        ClientHelperRequest.sendLeaveRoomRequest();
     }
 }

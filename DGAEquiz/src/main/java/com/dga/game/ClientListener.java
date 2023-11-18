@@ -7,7 +7,7 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 
 public class ClientListener extends Thread {
-    private Socket socket;
+    private final Socket socket;
     private ObjectInputStream objectInputStream;
 
     public ClientListener(Socket socket) {
@@ -22,7 +22,6 @@ public class ClientListener extends Thread {
     public void run() {
         try {
             while (socket.isConnected()) {
-                // objectInputStream = new ObjectInputStream(socket.getInputStream());
                 EquizPacket packet = (EquizPacket) objectInputStream.readObject();
                 ClientHelperResponse.handleResponse(packet);
             }

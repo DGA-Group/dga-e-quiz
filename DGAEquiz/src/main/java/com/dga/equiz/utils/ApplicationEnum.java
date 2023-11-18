@@ -20,7 +20,7 @@ public class ApplicationEnum {
     }
     //endregion
 
-    public static class Color{
+    public static class Color {
         // Tỉ lệ màu : 60 30 10.
         public static final String WhiteSmoke = "#F5F8FA";      // Trắng 60%
         public static final String LightSkyBlue = "#C9E6FF";    // Xanh lam pastel 30%
@@ -33,5 +33,10 @@ public class ApplicationEnum {
         public static final String LightRed = "#FFBFBF";
     }
 
+    public enum MessageAlignment {
+        TopLeft,
+        TopRight,
+        Middle,
+    }
 
 }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.FlashCardController">
+   <top>
+      <Pane prefHeight="83.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="19.0" prefHeight="17.0" prefWidth="379.0" text="Your Flash Card">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Circle fx:id="circleAva" fill="DODGERBLUE" layoutX="457.0" layoutY="42.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </Pane>
+   </top>
+   <center>
+      <StackPane fx:id="FlashCardPane" prefHeight="197.0" prefWidth="349.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="wordLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="170.0" prefWidth="387.0" style="-fx-background-color: pink;" text="Word" visible="false">
+               <font>
+                  <Font size="50.0" />
+               </font>
+            </Label>
+            <Label fx:id="atlertLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="222.0" prefWidth="502.0" text="You don't have any flash card.">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+   </center>
+   <bottom>
+      <Pane prefHeight="69.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="prevButton" layoutX="161.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+            <Button fx:id="nextButton" layoutX="384.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
+            <Label fx:id="curLabel" alignment="CENTER" layoutX="252.0" layoutY="18.0" prefHeight="22.0" prefWidth="98.0" text="Label" />
+         </children>
+      </Pane>
+   </bottom>
+   <left>
+      <Pane prefHeight="263.0" prefWidth="82.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="249.0" prefWidth="70.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>

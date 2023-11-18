@@ -2,9 +2,17 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<HBox xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.MessageBoxController">
+<HBox fx:id="hBoxContainer" nodeOrientation="LEFT_TO_RIGHT" spacing="10.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.MessageBoxController">
    <children>
-      <Label fx:id="lbMessageContent" prefWidth="290.0" text="Your text here" wrapText="true" />
+      <Circle fx:id="ccUserImage" fill="WHITE" radius="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <VBox fx:id="vboxContainer">
+         <children>
+            <Label fx:id="lbName" text="Label" />
+            <Label fx:id="lbMessageContent" prefWidth="302.0" text="Your text here" wrapText="true" />
+         </children>
+      </VBox>
    </children>
 </HBox>

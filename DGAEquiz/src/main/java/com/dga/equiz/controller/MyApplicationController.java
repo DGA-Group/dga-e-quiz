@@ -4,9 +4,6 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.equiz.utils.EquizUtils;
-import com.dga.equiz.utils.StageManager;
-import com.dga.game.EquizClient;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -42,6 +40,9 @@ public class MyApplicationController implements Initializable {
     private NodeObject profileView = null;
     private NodeObject gameView = null;
     private NodeObject offlinedictionaryView = null;
+    private NodeObject rankView = null;
+    private NodeObject flashCardView = null;
+
     private NodeObject currentPanel = null;
     private static double xOffset = 0;
     private static double yOffset = 0;
@@ -54,7 +55,10 @@ public class MyApplicationController implements Initializable {
         setupProfileView();
         setupGameView();
         setupOfflineDictionaryView();
+        setupRankView();
+        setupFlashCardView();
         EquizUtils.callFuncDelay(this::setupButton, 1000);
+
         // Set default panel to home
         currentPanel = homeView;
     }
@@ -63,6 +67,11 @@ public class MyApplicationController implements Initializable {
         Stage stage = ((Stage) this.btnClose.getScene().getWindow());
         this.btnClose.setOnAction((ActionEvent event) -> {
             stage.close();
+            try {
+                ApplicationData.getInstance().socket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         this.btnMaximize.setOnAction((ActionEvent event) -> {
@@ -117,7 +126,6 @@ public class MyApplicationController implements Initializable {
         try {
             // Load profile here.
             profileView = EquizUtils.Instantiate("/view/ProfileContainerView.fxml", panelHolder, AnchorType.FitToParent);
-            //profileView = EquizUtils.Instantiate("/view/login/Login.fxml", panelHolder, AnchorType.FitToParent);
             profileView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,6 +137,26 @@ public class MyApplicationController implements Initializable {
             // Load profile here.
             gameView = EquizUtils.Instantiate("/view/game/GameView.fxml", panelHolder, AnchorType.FitToParent);
             gameView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setupRankView() {
+        try {
+            // Load profile here.
+            rankView = EquizUtils.Instantiate("/view/login/RankView.fxml", panelHolder, AnchorType.FitToParent);
+            rankView.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setupFlashCardView() {
+        try {
+            // Load profile here.
+            flashCardView = EquizUtils.Instantiate("/view/FlashCardView.fxml", panelHolder, AnchorType.FitToParent);
+            flashCardView.hide();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -164,6 +192,14 @@ public class MyApplicationController implements Initializable {
 
     public void onClickSwitchToGame() {
         switchToPanel(gameView);
+    }
+
+    public void onClickSwitchToRank() {
+        switchToPanel(rankView);
+    }
+
+    public void onClickSwitchToFlashCard() {
+        switchToPanel(flashCardView);
     }
 }
 

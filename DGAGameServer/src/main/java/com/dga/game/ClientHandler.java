@@ -12,7 +12,10 @@ public class ClientHandler implements Runnable {
     public ObjectInputStream objectInputStream = null;
     public ObjectOutputStream objectOutputStream = null;
     public Room currentRoom;
+
+    public int userId;
     public String username;
+    public String name;
 
     public ClientHandler(Socket socket, EquizServer server) {
         this.socket = socket;
@@ -30,7 +33,9 @@ public class ClientHandler implements Runnable {
         try {
             // objectInputStream = new ObjectInputStream(socket.getInputStream());
             ConnectClientRequest connectRequest = (ConnectClientRequest) objectInputStream.readObject();
+            this.userId = connectRequest.userId;
             this.username = connectRequest.username;
+            this.name = connectRequest.name;
 
             while (socket.isConnected()) {
                 // objectInputStream = new ObjectInputStream(socket.getInputStream());

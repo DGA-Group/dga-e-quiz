@@ -1,5 +1,9 @@
 package com.dga.game;
 
+import com.dga.game.EquizPacket.EquizPacket;
+import com.dga.game.EquizPacket.Room.LeaveRoom.LeaveRoomResponse;
+
+import java.io.IOException;
 import java.util.Set;
 
 public class ServerCleaner extends Thread {
@@ -29,7 +33,19 @@ public class ServerCleaner extends Thread {
 
     private void cleanRoomList() {
         for (Room room : roomList) {
-            room.playerList.removeIf(x -> x.socket.isClosed());
+            room.playerList.removeIf(x -> {
+                if (x.socket.isClosed()) {
+                    EquizPacket packet = new LeaveRoomResponse(x.userId, "User " + x.name + " has left the room."
+                            , room.playerList.size() - 1, room.roomPlayerLimits);
+                    try {
+                        room.broadcast(packet, x);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return true;
+                }
+                return false;
+            });
         }
 
         roomList.removeIf(x -> {

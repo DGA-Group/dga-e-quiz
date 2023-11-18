@@ -1,8 +1,9 @@
 package com.dga.equiz.controller.editProfile;
 
 import com.dga.equiz.model.Profile;
-import com.dga.equiz.utils.ApplicationData;
-import com.dga.equiz.utils.DBHelper;
+import com.dga.equiz.utils.*;
+import com.dga.game.ClientHelperRequest;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,12 +15,10 @@ import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
+import java.io.*;
+import java.net.Socket;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
@@ -48,57 +47,104 @@ public class ProfileController implements Initializable {
     public Label labelID;
 
     @FXML
-    public Label labelLevel;
+    public Button logOutButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setAvatar("test.jpg");
+        Profile profile = ApplicationData.getInstance().profile;
         try {
-            setLabel();
+            setLabel(profile.getID());
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+
         }
+
+        String sqlQuery = "SELECT * FROM `information` WHERE id = '" + profile.getID() + "';";
+        try {
+            ResultSet resultSet = DBHelper.executeQuery(sqlQuery);
+            if (resultSet.next()) {
+                byte[] imageData = resultSet.getBytes("link_ava_test");
+                if (imageData != null) {
+                    Image image = new Image(new ByteArrayInputStream(imageData));
+                    circle.setFill(new ImagePattern(image));
+                }
+            }
+        } catch (SQLException e) {
+
+        }
+
+        logOutButton.setOnAction((ActionEvent e) -> {
+            StageManager.getInstance().myApplicationStage.hide();
+            StageManager.getInstance().loginStage.show();
+            try {
+                Socket socket = ApplicationData.getInstance().socket;
+                if (socket.isConnected()) {
+                    socket.close();
+                    ObjectOutputStream oos = ClientHelperRequest.objectOutputStream;
+                    if(oos != null){
+                        oos.close();
+                    }
+                    ClientHelperRequest.objectOutputStream = null;
+                }
+            } catch (Exception ignore) {
+            }
+        });
     }
 
-    public void setAvatar(String path) {
-        Image img = new Image(String.valueOf(getClass().getResource("/image/" + path)));
-        circle.setFill(new ImagePattern(img));
-    }
-
-    public void changeImage(ActionEvent event) {
+    public void changeImage(ActionEvent event) throws SQLException, IOException {
+        Profile profile = ApplicationData.getInstance().profile;
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"));
         File file = fileChooser.showOpenDialog(new Stage());
 
         if (file != null) {
+            String link = file.getAbsolutePath();
+            try (Connection connection = DriverManager.getConnection(DBHelper.MysqlURL, SecretKey.USERNAME, SecretKey.PASSWORD)) {
+                File imageFile = new File(link);
+                FileInputStream fis = new FileInputStream(imageFile);
+
+                String updateSql = "UPDATE information SET link_ava_test = ? WHERE id = '" + profile.getID() + "';";
+                try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
+                    updateStatement.setBinaryStream(1, fis, (int) imageFile.length());
+                    updateStatement.executeUpdate();
+                    System.out.println("Image updated successfully.");
+                }
+
+                fis.close();
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
+
+            // Convert FileInputStream to byte[]
+            byte[] imageData = convertFileInputStreamToByteArray(file);
+
+            // Set the byte[] to the profile
+            profile.setLinkAva(imageData);
+
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));
         }
     }
 
-    public void setLabel() throws SQLException {
-        String sqlQuery = "SELECT * FROM `information` WHERE id = 1";
-        ResultSet resultSet = null;
-        Statement statement = null;
-        Connection connection = null;
+    // Helper method to convert FileInputStream to byte[]
+    public static byte[] convertFileInputStreamToByteArray(File file) throws IOException {
+        FileInputStream fis = new FileInputStream(file);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
 
-        resultSet = DBHelper.executeQuery(sqlQuery);
-        statement = resultSet.getStatement();
-        connection = statement.getConnection();
+        int bytesRead;
+        while ((bytesRead = fis.read(buffer)) != -1) {
+            bos.write(buffer, 0, bytesRead);
+        }
 
-        resultSet.next();
+        fis.close();
+        bos.close();
+
+        return bos.toByteArray();
+    }
+
+    public void setLabel(int id) throws SQLException {
 
         Profile profile = ApplicationData.getInstance().profile;
-
-        profile.setID(resultSet.getInt(1));
-        profile.setName(resultSet.getString(2));
-        profile.setMail(resultSet.getString(3));
-        profile.setDob(resultSet.getString(4));
-        profile.setPhone(resultSet.getString(5));
-        profile.setGithub(resultSet.getString(6));
-        profile.setLevel(resultSet.getString(8));
-
-
 
         labelName.setText(profile.getName());
         labelMail.setText(profile.getMail());
@@ -106,8 +152,6 @@ public class ProfileController implements Initializable {
         labelPhone.setText(profile.getPhone());
         labelGithub.setText(profile.getGithub());
         labelID.setText(String.valueOf(profile.getID()));
-        labelLevel.setText(profile.getLevel());
 
-        DBHelper.closeQuery(resultSet,statement,connection);
     }
 }

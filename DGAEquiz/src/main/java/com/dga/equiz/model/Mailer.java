@@ -27,7 +27,6 @@ public class Mailer {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
             message.setSubject(sub);
             message.setText(msg);
-
             // Gửi tin nhắn
             Transport.send(message);
             System.out.println("Tin nhắn gửi thành công");
@@ -35,17 +34,5 @@ public class Mailer {
             throw new RuntimeException(e);
         }
     }
-
-//    public static void main(String[] args) {
-//        // Gọi hàm gửi email
-//        String from = "tuankoi921@gmail.com";
-//        String password = "uvyt ehsf ufew uyru";
-//        String to = "tranduytuana123@gmail.com";
-//        String subject = "Testing";
-//        String message = "Ngay hom nay ban the nao 123";
-//
-//        send(from, password, to, subject, message);
-//    }
-
 }
 

@@ -1,36 +1,20 @@
 package com.dga.game.GameMode;
 
 import com.dga.game.ClientHandler;
+import com.dga.game.DBHelper;
 import com.dga.game.EquizPacket.Message.MessageResponse;
 import com.dga.game.EquizPacket.PacketResponse;
 import com.dga.game.Room;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Map;
 
 /**
  * Red tea is a game which player have to compete to guess the word faster.
  */
-class Timer extends Thread {
-    long timeMillisecond;
-
-    public Timer(long timeMillisecond) {
-        this.timeMillisecond = timeMillisecond;
-    }
-
-    public void abort() {
-        this.interrupt();
-    }
-
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(timeMillisecond);
-        } catch (InterruptedException e) {
-        }
-    }
-}
-
 public class RedTea extends TeaGame {
     private final Room hostRoom;
     private volatile Timer currentRoundTimer;
@@ -56,15 +40,19 @@ public class RedTea extends TeaGame {
     @Override
     public void play() throws IOException, InterruptedException {
         while (isRunning) {
-            //Send word to the client
-            String keyword = GameHelper.getRandomKeyword();
-            MessageResponse messageResponse = new MessageResponse(PacketResponse.OK, "Server", "Guess word: " + keyword);
+            //Send word to the client.
+            currentRoundWord = GameHelper.getRandomKeyword();
+            MessageResponse messageResponse = new MessageResponse(PacketResponse.OK, 0,
+                    "server", "Server", "Guess word: " + currentRoundWord);
             hostRoom.broadcast(messageResponse, null);
 
-            // Wait for player word
-            currentRoundTimer = new Timer(30000);
+            // Wait for player word.
+            currentRoundTimer = new Timer(10000);
             currentRoundTimer.start();
             currentRoundTimer.join();
+
+            // Wait 2 seconds after goto next round.
+            new Timer(2000).run();
         }
     }
 
@@ -95,18 +83,35 @@ public class RedTea extends TeaGame {
         }
 
         // Send response to client
-        MessageResponse response = new MessageResponse
-                (
-                        PacketResponse.OK,
-                        "Server",
-                        "The winner of this round is " + client.username
-                );
+        MessageResponse response = new MessageResponse(PacketResponse.OK,
+                0, "server", "Server",
+                "The winner of this round is " + client.name);
         hostRoom.broadcast(response, null);
         nextRound();
     }
 
     private boolean isValidWord(String word) {
-        // TODO: Complete check valid word function
-        return true;
+        if (!currentRoundWord.toLowerCase().contains(word.toLowerCase())) {
+            return false;
+        }
+
+        boolean ret = false;
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+        try {
+            String sql = "SELECT word FROM av WHERE word = '" + word + "';";
+            resultSet = DBHelper.executeQuerySqlite(sql);
+            resultSet.next();
+            ret = resultSet.getString(1) != null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            } catch (Exception ignore) {
+            }
+        }
+        return ret;
     }
 }

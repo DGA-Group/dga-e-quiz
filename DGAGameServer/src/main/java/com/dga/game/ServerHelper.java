@@ -6,9 +6,11 @@ import com.dga.game.EquizPacket.Message.MessageRequest;
 import com.dga.game.EquizPacket.Message.MessageResponse;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomRequest;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomResponse;
+import com.dga.game.EquizPacket.Room.LeaveRoom.LeaveRoomRequest;
+import com.dga.game.EquizPacket.Room.LeaveRoom.LeaveRoomResponse;
 import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomRequest;
 import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomResponse;
-import com.dga.game.EquizPacket.Room.ShowRoom.RoomWraper;
+import com.dga.game.EquizPacket.Room.ShowRoom.RoomWrapper;
 import com.dga.game.EquizPacket.Room.ShowRoom.ShowRoomRequest;
 import com.dga.game.EquizPacket.Room.ShowRoom.ShowRoomResponse;
 import com.dga.game.EquizPacket.Room.StartRoom.StartRoomRequest;
@@ -34,7 +36,7 @@ public class ServerHelper {
 
         switch (packet.getType()) {
             case "message_request":
-                response = handleMessage((MessageRequest) packet, client);
+                handleMessage((MessageRequest) packet, client);
                 break;
             case "open_room_request":
                 response = handleOpenRoom((OpenRoomRequest) packet);
@@ -48,6 +50,8 @@ public class ServerHelper {
             case "start_room_request":
                 response = handleStartGame((StartRoomRequest) packet, client);
                 break;
+            case "leave_room_request":
+                handleLeaveRoom((LeaveRoomRequest) packet, client);
             default:
                 break;
         }
@@ -58,47 +62,57 @@ public class ServerHelper {
         MessageResponse response;
         Room targetRoom = client.currentRoom;
         try {
-            response = new MessageResponse(PacketResponse.OK, client.username, '[' + client.username + "]:"
-                    + message.text);
+            response = new MessageResponse(PacketResponse.OK, client.userId, client.username, client.name, message.text);
             targetRoom.broadcast(response, client);
             targetRoom.checkAnswer(message.text, client);
-            return response;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             response = new MessageResponse(PacketResponse.ERROR);
-            return response;
         }
-
+        return response;
     }
 
     private static OpenRoomResponse handleOpenRoom(OpenRoomRequest packet) {
         String roomId = server.addRoom(packet.roomName, packet.roomPassword, packet.roomPlayerLimit);
-        return new OpenRoomResponse(PacketResponse.OK, "You have opened room " + roomId, roomId);
+        try {
+            Room room = server.getRoom(roomId);
+            ShowRoomRequest showRoomRequest = new ShowRoomRequest();
+            ShowRoomResponse showRoomResponse = handleShowRoom(showRoomRequest);
+            room.broadcast(showRoomResponse, null);
+        } catch (Exception ignore) { }
+        return new OpenRoomResponse(PacketResponse.OK, "You have opened room " + roomId, roomId, packet.roomPassword);
     }
 
     private static JoinRoomResponse handleJoinRoom(JoinRoomRequest packet, ClientHandler client) {
         String roomId = packet.roomId;
         JoinRoomResponse response;
         try {
+            // Find room by id and add player to room
             Room room = server.getRoom(roomId);
             room.addPlayer(client);
             client.currentRoom = room;
-            response = new JoinRoomResponse(PacketResponse.OK, "You have joined room " + roomId, roomId);
+
+            // Broad cast join room response to all player in current room.
+            int playerCount = room.playerList.size();
+            String message = "Client -" + client.name + "- has join room!";
+            response = new JoinRoomResponse(PacketResponse.OK, message, roomId, playerCount, room.roomPlayerLimits);
+            room.broadcast(response, client);
         } catch (Exception e) {
-            response = new JoinRoomResponse(PacketResponse.ERROR, "Unable to join room " + roomId, roomId);
+            response = new JoinRoomResponse(PacketResponse.ERROR, "Unable to join room " + roomId
+                    , null, 0, 0);
         }
         return response;
     }
 
     private static ShowRoomResponse handleShowRoom(ShowRoomRequest packet) {
         Set<Room> roomList = server.getRoomList();
-        List<RoomWraper> roomWrapers = new ArrayList<>();
+        List<RoomWrapper> roomWrappers = new ArrayList<>();
         for (Room room : roomList) {
-            RoomWraper roomWraper = new RoomWraper(room.roomId, room.roomName,
+            RoomWrapper roomWrapper = new RoomWrapper(room.roomId, room.roomName,
                     room.roomPassword, room.roomPlayerLimits);
-            roomWrapers.add(roomWraper);
+            roomWrappers.add(roomWrapper);
         }
-        return new ShowRoomResponse(roomWrapers);
+        return new ShowRoomResponse(roomWrappers);
     }
 
     private static StartRoomResponse handleStartGame(StartRoomRequest packet, ClientHandler client) {
@@ -110,12 +124,23 @@ public class ServerHelper {
         return new StartRoomResponse();
     }
 
+    private static void handleLeaveRoom(LeaveRoomRequest packet, ClientHandler client) {
+        Room room = client.currentRoom;
+        room.playerList.remove(client);
+        LeaveRoomResponse response = new LeaveRoomResponse(client.userId, "User " + client.name + " has left the chat."
+                , room.playerList.size(), room.roomPlayerLimits);
+        try {
+            room.broadcast(response, client);
+        }catch (Exception ignore){}
+    }
+
     public static void callFuncDelay(Event func, long millisecond) {
         Thread thread = new Thread(() -> {
             try {
                 Thread.sleep(millisecond);
                 func.handle();
-            } catch (InterruptedException | IOException ignored) { }
+            } catch (InterruptedException | IOException ignored) {
+            }
 
         });
         thread.start();

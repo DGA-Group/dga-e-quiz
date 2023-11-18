@@ -41,7 +41,7 @@ public class Room implements Runnable {
             for (MessageResponse message : messageHistory) {
                 client.sendPacket(message);
             }
-        }, 1000);
+        }, 500);
 
     }
 
@@ -100,12 +100,9 @@ public class Room implements Runnable {
                 currentGameMode.play();
 
                 // =============Announce the player =============
-                MessageResponse winnerMessage = new MessageResponse
-                        (
-                                PacketResponse.OK,
-                                "Server",
-                                "Time's up! The winner is " + currentWinner.username
-                        );
+                MessageResponse winnerMessage = new MessageResponse(PacketResponse.OK,
+                        0, "server", "Server",
+                        "Time's up! The winner is " + currentWinner.name);
                 broadcast(winnerMessage, null);
                 endGame();
             }
