@@ -85,9 +85,6 @@ public class LoginController implements Initializable {
     private DatePicker dateRegister_dob;
 
     @FXML
-    private Label labelLogin_WrongPass;
-
-    @FXML
     private StackPane stackPane;
 
     @FXML
@@ -136,13 +133,13 @@ public class LoginController implements Initializable {
     private TextField tfForgot_username;
 
     @FXML
-    private PasswordField pfLogin_password;
+    public PasswordField pfLogin_password;
 
     @FXML
-    private TextField tfLogin_showPass;
+    public TextField tfLogin_showPass;
 
     @FXML
-    private TextField tfLogin_username;
+    public TextField tfLogin_username;
 
     @FXML
     private TextField tfPass_code1;
@@ -182,6 +179,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().loginController = this;
         stackPane.getChildren().forEach(pane -> pane.setVisible(false));
         paneLogin.setVisible(true);
         initlabel();
@@ -190,6 +188,10 @@ public class LoginController implements Initializable {
 
     public void initButton() {
         // login
+        checkLogin_pass.setOnAction((ActionEvent e) -> {
+            showPassword(checkLogin_pass, pfLogin_password, tfLogin_showPass);
+        });
+
         buttonLogin_login.setOnAction((ActionEvent e) -> {
 
             if (tfLogin_username.getText().isEmpty() && pfLogin_password.getText().isEmpty()) {
@@ -198,7 +200,7 @@ public class LoginController implements Initializable {
             } else if (tfLogin_username.getText().isEmpty()) {
                 showAlert("Please enter your username");
                 return;
-            } else if (pfLogin_password.getText().isEmpty()) {
+            } else if (pfLogin_password.getText().isEmpty() && tfLogin_showPass.getText().isEmpty()) {
                 showAlert("Please enter your password");
                 return;
             }
@@ -214,34 +216,63 @@ public class LoginController implements Initializable {
                 resultSet = DBHelper.executeQuery(query);
                 statement = resultSet.getStatement();
                 connection = statement.getConnection();
-                while (resultSet.next()) {
-                    passOutput = resultSet.getString(1);
+                if (!resultSet.next()) {
+                    showAlert("Your password is wrong!123");
+                    pfLogin_password.setText(null);
+                    tfLogin_showPass.setText(null);
+                    return;
+                } else {
+                        passOutput = resultSet.getString(1);
                 }
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
+            }  finally {
+                try {
+                    DBHelper.closeQuery(resultSet, statement, connection);
+                }catch (Exception ignore) {}
             }
 
             if (passOutput.equals(pfLogin_password.getText()) || passOutput.equals(tfLogin_showPass.getText())) {
-//                paneLogin.setVisible(false);
                 runMain();
             } else {
-                labelLogin_WrongPass.setVisible(true);
+                showAlert("Your password is wrong!");
+                pfLogin_password.setText(null);
+                tfLogin_showPass.setText(null);
             }
-        });
-
-        checkLogin_pass.setOnAction((ActionEvent e) -> {
-            showPassword(checkLogin_pass, pfLogin_password, tfLogin_showPass);
         });
 
         // sign up
         final int[] code = {0};
         buttonRegister_next.setOnAction((ActionEvent e) -> {
-            stackPane.getChildren().forEach(pane -> pane.setVisible(false));
-            paneConfirmAcc.setVisible(true);
-            Random random = new Random();
-            code[0] = 1000 + random.nextInt(9000);
-            String message = "Ma Code cua ban la: " + code[0];
-            Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
+            String query = "SELECT username FROM information WHERE username = '" + tfRegister_username.getText() + "';";
+            ResultSet resultSet = null;
+            Statement statement = null;
+            Connection connection = null;
+            try{
+                resultSet = DBHelper.executeQuery(query);
+                statement = resultSet.getStatement();
+                connection = statement.getConnection();
+
+                if (resultSet.next()) {
+                    showAlert("Username đã tồn tại vui lòng nhập username khác.");
+                    return;
+                } else {
+                    Random random = new Random();
+                    code[0] = 1000 + random.nextInt(9000);
+                    String message = "Ma Code cua ban la: " + code[0];
+                    Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
+                    stackPane.getChildren().forEach(pane -> pane.setVisible(false));
+                    paneConfirmAcc.setVisible(true);
+                }
+
+            } catch (Exception e1){
+                e1.printStackTrace();
+                return;
+            } finally {
+                try {
+                    DBHelper.closeQuery(resultSet, statement, connection);
+                }catch (Exception ignore) {}
+            }
         });
 
         // Confirm Acc
@@ -274,6 +305,7 @@ public class LoginController implements Initializable {
                 } catch (SQLException | IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                runMain();
             }
         });
 
@@ -293,7 +325,7 @@ public class LoginController implements Initializable {
                     paneConfirmPass.setVisible(true);
                     Random random = new Random();
                     codeForgot[0] = 1000 + random.nextInt(9000);
-                    String message = "Ma Code cua ban la: " + codeForgot[0];
+                    String message = "Your Code is: " + codeForgot[0];
                     Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfForgot_mail.getText(), "Confirm Acc DGAEQuiz", message);
                 }
             }
@@ -388,12 +420,10 @@ public class LoginController implements Initializable {
         } else {
             labelRegister_atlert.setVisible(true);
         }
-
     }
 
     public void initlabel() {
         labelRegister_atlert.setVisible(false);
-        labelLogin_WrongPass.setVisible(false);
         tfLogin_showPass.setVisible(false);
         tfAcc_confirmPassShow.setVisible(false);
     }
@@ -401,10 +431,12 @@ public class LoginController implements Initializable {
     private void showPassword(CheckBox checkbox, PasswordField pf, TextField tf) {
         if (checkbox.isSelected()) {
             tf.setText(pf.getText());
+            pf.setText(tf.getText());
             pf.setVisible(false);
             tf.setVisible(true);
         } else {
             pf.setText(tf.getText());
+            tf.setText(pf.getText());
             pf.setVisible(true);
             tf.setVisible(false);
         }
@@ -466,7 +498,6 @@ public class LoginController implements Initializable {
             e.printStackTrace();
             return;
         }
-
         StageManager.getInstance().myApplicationStage.show();
         StageManager.getInstance().loginStage.hide();
     }

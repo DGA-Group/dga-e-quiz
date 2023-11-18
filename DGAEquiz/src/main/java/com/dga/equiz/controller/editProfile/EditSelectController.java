@@ -13,6 +13,4 @@ public class EditSelectController {
     @FXML
     public Button buttonPassword;
 
-
-
 }

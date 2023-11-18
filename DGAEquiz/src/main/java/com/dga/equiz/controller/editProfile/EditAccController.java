@@ -91,6 +91,10 @@ public class EditAccController implements Initializable {
                 }
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
+            }  finally {
+                try {
+                    DBHelper.closeQuery(resultSet, statement, connection);
+                }catch (Exception ignore) {}
             }
 
             if (passOutput.equals(passFCurrent.getText())) {
@@ -117,7 +121,7 @@ public class EditAccController implements Initializable {
 
             if (flag) {
                 String query = "UPDATE information\n" +
-                        "SET password = '\n" + passFConfirm.getText() + "'\n" +
+                        "SET password = '" + passFConfirm.getText() + "'\n" +
                         "WHERE id = " + id + ";";
                 try {
                     DBHelper.executeUpdate(query);
@@ -128,6 +132,14 @@ public class EditAccController implements Initializable {
                     throw new RuntimeException(ex);
                 }
             }
+            Profile profile = ApplicationData.getInstance().profile;
+            profile.setPassword(passFConfirm.getText());
+
+            passFConfirm.setText(null);
+            passFNew.setText(null);
+            passFCurrent.setText(null);
+            passFNew.setVisible(false);
+            passFConfirm.setVisible(false);
         });
     }
 }

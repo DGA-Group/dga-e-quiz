@@ -3,7 +3,6 @@ package com.dga.equiz.controller.editProfile;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.utils.*;
 import com.dga.game.ClientHelperRequest;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,9 +13,11 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Hyperlink;
+import java.awt.Desktop;
 import java.io.*;
 import java.net.Socket;
+import java.net.URI;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -41,16 +42,17 @@ public class ProfileController implements Initializable {
     public Label labelPhone;
 
     @FXML
-    public Label labelGithub;
-
-    @FXML
     public Label labelID;
 
     @FXML
     public Button logOutButton;
 
+    @FXML
+    private Hyperlink link_Github;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         Profile profile = ApplicationData.getInstance().profile;
         try {
             setLabel(profile.getID());
@@ -59,8 +61,13 @@ public class ProfileController implements Initializable {
         }
 
         String sqlQuery = "SELECT * FROM `information` WHERE id = '" + profile.getID() + "';";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
         try {
-            ResultSet resultSet = DBHelper.executeQuery(sqlQuery);
+            resultSet = DBHelper.executeQuery(sqlQuery);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
             if (resultSet.next()) {
                 byte[] imageData = resultSet.getBytes("link_ava_test");
                 if (imageData != null) {
@@ -69,12 +76,19 @@ public class ProfileController implements Initializable {
                 }
             }
         } catch (SQLException e) {
-
+        }  finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            }catch (Exception ignore) {}
         }
 
         logOutButton.setOnAction((ActionEvent e) -> {
             StageManager.getInstance().myApplicationStage.hide();
             StageManager.getInstance().loginStage.show();
+            ControllerManager.getInstance().loginController.tfLogin_username.setText(null);
+            ControllerManager.getInstance().loginController.tfLogin_showPass.setText(null);
+            ControllerManager.getInstance().loginController.pfLogin_password.setText(null);
+
             try {
                 Socket socket = ApplicationData.getInstance().socket;
                 if (socket.isConnected()) {
@@ -88,6 +102,8 @@ public class ProfileController implements Initializable {
             } catch (Exception ignore) {
             }
         });
+
+        link_Github.setOnAction(e -> openURL(profile.getGithub()));
     }
 
     public void changeImage(ActionEvent event) throws SQLException, IOException {
@@ -150,8 +166,18 @@ public class ProfileController implements Initializable {
         labelMail.setText(profile.getMail());
         labelDOB.setText(profile.getDob());
         labelPhone.setText(profile.getPhone());
-        labelGithub.setText(profile.getGithub());
         labelID.setText(String.valueOf(profile.getID()));
+        if (profile.getGithub() != null) {
+            String[] tmp = profile.getGithub().split("/");
+            link_Github.setText(tmp[tmp.length - 1]);
+        }
+    }
 
+    private void openURL(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

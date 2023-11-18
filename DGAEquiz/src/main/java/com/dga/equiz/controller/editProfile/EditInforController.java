@@ -99,5 +99,12 @@ public class EditInforController implements Initializable {
         query += "WHERE (`id` = '" + String.valueOf(id) + "')";
 
         DBHelper.executeUpdate(query);
+
+        Profile profile = ApplicationData.getInstance().profile;
+        profile.setName(tfName.getText());
+        profile.setMail(tfMail.getText());
+        profile.setPhone(tfPhone.getText());
+        profile.setGithub(tfGithub.getText());
+        profile.setDob(myFormattedDate);
     }
 }

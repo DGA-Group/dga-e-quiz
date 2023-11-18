@@ -18,7 +18,7 @@
    <right>
       <StackPane fx:id="stackPane" prefHeight="430.0" prefWidth="324.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0">
+            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0" visible="false">
                <top>
                   <Label alignment="CENTER" prefHeight="121.0" prefWidth="324.0" text="HI!" BorderPane.alignment="CENTER">
                      <font>
@@ -38,8 +38,7 @@
                         </Pane>
                         <HBox prefHeight="30.0" prefWidth="324.0">
                            <children>
-                              <Label fx:id="labelLogin_WrongPass" prefHeight="17.0" prefWidth="134.0" text="Wrong password" textFill="#f70101" />
-                              <Pane prefHeight="25.0" prefWidth="77.0" />
+                              <Pane prefHeight="25.0" prefWidth="218.0" />
                               <Button fx:id="buttonLogin_ForgotPass" mnemonicParsing="false" text="Forgot Password" />
                            </children>
                         </HBox>
@@ -72,7 +71,7 @@
                   </VBox>
                </bottom>
             </BorderPane>
-            <BorderPane fx:id="paneRegister" prefHeight="513.0" prefWidth="353.0" visible="false">
+            <BorderPane fx:id="paneRegister" prefHeight="513.0" prefWidth="353.0">
                <top>
                   <Label alignment="CENTER" prefHeight="50.0" prefWidth="320.0" text="CREATE ACCOUNT" BorderPane.alignment="CENTER">
                      <font>
@@ -102,7 +101,7 @@
                         <TextField fx:id="tfRegister_mail" layoutX="10.0" layoutY="111.0" promptText="Your Mail" />
                         <TextField fx:id="tfRegister_phone" layoutX="10.0" layoutY="153.0" promptText="Phone Number" />
                         <TextField fx:id="tfRegister_github" layoutX="10.0" layoutY="195.0" promptText="Github Link" />
-                        <DatePicker fx:id="dateRegister_dob" prefHeight="25.0" prefWidth="1044.0" promptText="Date Of Birth" />
+                        <DatePicker fx:id="dateRegister_dob" prefHeight="25.0" prefWidth="1044.0" promptText="mm/dd/yyyy" />
                      </children>
                   </VBox>
                </center>

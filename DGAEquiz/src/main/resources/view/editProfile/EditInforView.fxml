@@ -73,7 +73,7 @@
                      </padding>
                   </Label>
                   <Pane prefHeight="33.0" prefWidth="52.0" />
-                  <DatePicker fx:id="date" prefHeight="33.0" prefWidth="356.0" promptText="Pick your birthday" styleClass="text-input" stylesheets="@../../css/editProfileDesign.css" />
+                  <DatePicker fx:id="date" prefHeight="33.0" prefWidth="356.0" promptText="mm/dd/yyyy" styleClass="text-input" stylesheets="@../../css/editProfileDesign.css" />
                </children>
             </HBox>
          </children>
