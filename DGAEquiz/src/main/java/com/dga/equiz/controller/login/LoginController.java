@@ -233,7 +233,7 @@ public class LoginController implements Initializable {
             }
 
             if (passOutput.equals(pfLogin_password.getText()) || passOutput.equals(tfLogin_showPass.getText())) {
-                runMain();
+                runMain(tfLogin_username.getText());
             } else {
                 showAlert("Your password is wrong!");
                 pfLogin_password.setText(null);
@@ -305,7 +305,8 @@ public class LoginController implements Initializable {
                 } catch (SQLException | IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                runMain();
+                stackPane.getChildren().forEach(pane -> pane.setVisible(false));
+                paneLogin.setVisible(true);
             }
         });
 
@@ -357,8 +358,9 @@ public class LoginController implements Initializable {
                 } catch (SQLException ex) {
                     return;
                 }
-                runMain();
-
+                runMain(tfForgot_username.getText());
+                stackPane.getChildren().forEach(pane -> pane.setVisible(false));
+                paneLogin.setVisible(true);
             }
         });
 
@@ -413,10 +415,9 @@ public class LoginController implements Initializable {
                 e.printStackTrace();
                 return;
             }
-
+            runMain(tfRegister_username.getText());
             stackPane.getChildren().forEach(pane -> pane.setVisible(false));
             paneConfirmAcc.setVisible(true);
-            runMain();
         } else {
             labelRegister_atlert.setVisible(true);
         }
@@ -446,8 +447,8 @@ public class LoginController implements Initializable {
         scene.getStylesheets().add(String.valueOf(Main.class.getResource(cssPath)));
     }
 
-    private void runMain() {
-        String sqlQuery = "SELECT * FROM `information` WHERE username = '" + tfLogin_username.getText() + "';";
+    private void runMain(String username) {
+        String sqlQuery = "SELECT * FROM `information` WHERE username = '" + username + "';";
         ResultSet resultSet = null;
         Statement statement = null;
         Connection connection = null;

@@ -75,7 +75,7 @@ public class EditAccController implements Initializable {
             String current = passFCurrent.getText();
             String query = "SELECT password\n" +
                     "FROM information\n" +
-                    "WHERE id = " + Integer.toString(id) + ";";
+                    "WHERE id = " + id + ";";
 
             ResultSet resultSet = null;
             Statement statement = null;
