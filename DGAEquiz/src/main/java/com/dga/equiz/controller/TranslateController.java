@@ -41,10 +41,6 @@ public class TranslateController implements Initializable {
     private MenuItem action1;
     @FXML
     private MenuItem action2;
-    @FXML
-    private Button btnENVI;
-    @FXML
-    private Button btnVIEN;
 
 
     @Override
@@ -57,7 +53,7 @@ public class TranslateController implements Initializable {
         taOutput.clear();
         CompletableFuture<Void> translateToViFuture = CompletableFuture.runAsync(() -> {
             try {
-                translateToVi();
+                taOutput.setText(translateToVi(inpWord));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -65,22 +61,18 @@ public class TranslateController implements Initializable {
 
         CompletableFuture<Void> translateToEnFuture = CompletableFuture.runAsync(() -> {
             try {
-                translateToEn();
+                taOutput.setText(translateToEn(inpWord));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    public void translateToVi() throws IOException {
-        String inpWord = taInput.getText().trim();
-        String opWord = EquizUtils.translateTextToVi(inpWord);
-        taOutput.setText(opWord);
+    public String translateToVi(String word) throws IOException {
+        return EquizUtils.translateTextToVi(word);
     }
 
-    public void translateToEn() throws IOException {
-        String inpWord = taInput.getText().trim();
-        String opWord = EquizUtils.translateTextToEn(inpWord);
-        taOutput.setText(opWord);
+    public String translateToEn(String word) throws IOException {
+        return EquizUtils.translateTextToEn(word);
     }
 }
