@@ -2,6 +2,7 @@ package com.dga.game;
 
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.EquizUtils;
 import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.Message.MessageRequest;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomRequest;
@@ -21,7 +22,9 @@ public class ClientHelperRequest {
         Socket socket = ApplicationData.getInstance().socket;
 
         if (socket == null || !socket.isConnected()) {
-            return;
+            if (!EquizUtils.connectServer()) {
+                return;
+            }
         }
 
         try {
@@ -55,12 +58,12 @@ public class ClientHelperRequest {
         sendRequest(request);
     }
 
-    public static void sendStartGameRequest() {
-        EquizPacket request = new StartRoomRequest("red_tea");
+    public static void sendStartGameRequest(String gameMode) {
+        EquizPacket request = new StartRoomRequest(gameMode);
         sendRequest(request);
     }
 
-    public static void sendLeaveRoomRequest(){
+    public static void sendLeaveRoomRequest() {
         Profile profile = ApplicationData.getInstance().profile;
         int userId = profile.getID();
         EquizPacket request = new LeaveRoomRequest(userId);

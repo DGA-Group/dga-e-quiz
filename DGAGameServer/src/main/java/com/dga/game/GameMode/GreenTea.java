@@ -13,32 +13,24 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Red tea is a game which player have to compete to guess the word faster.
- */
-public class RedTea extends TeaGame {
+public class GreenTea extends TeaGame{
     private final Room hostRoom;
     private volatile Timer currentRoundTimer;
-    private volatile String currentRoundWord;
+    private String currentRoundWord;
 
     private volatile boolean isRunning = true;
-    private volatile Map<String, Integer> playerPoint;
+    private Map<String, Integer> playerPoint;
 
-    public RedTea(Room hostRoom) {
+    public GreenTea(Room hostRoom) {
         this.hostRoom = hostRoom;
     }
 
     private void nextRound() {
-        if (hostRoom.currentWinner != null) {
-
-            String winnerUsername = hostRoom.currentWinner.username;
-            if (playerPoint.containsKey(winnerUsername)
-                    && playerPoint.get(winnerUsername) >= 5) {
-                isRunning = false;
-            }
-
+        if (hostRoom.currentWinner != null
+                && playerPoint.containsKey(hostRoom.currentWinner.username)
+                && playerPoint.get(hostRoom.currentWinner.username) >= 5) {
+            isRunning = false;
         }
-
         currentRoundTimer.abort();
     }
 
@@ -79,11 +71,8 @@ public class RedTea extends TeaGame {
             currentPoint = playerPoint.get(client.username);
         }
 
-        if (hostRoom.currentWinner != null) {
-            String winnerUsername = hostRoom.currentWinner.username;
-            if (playerPoint.containsKey(winnerUsername)) {
-                highestPoint = playerPoint.get(winnerUsername);
-            }
+        if (hostRoom.currentWinner != null && playerPoint.containsKey(hostRoom.currentWinner.username)) {
+            highestPoint = playerPoint.get(hostRoom.currentWinner.username);
         }
 
         playerPoint.put(client.username, currentPoint + 1);

@@ -2,8 +2,12 @@ package com.dga.equiz.utils;
 
 import com.dga.equiz.Main;
 import com.dga.equiz.model.Event;
+import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Word;
+import com.dga.game.ClientHelperRequest;
+import com.dga.game.ClientListener;
+import com.dga.game.EquizPacket.Client.ConnectClientRequest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.okhttp.OkHttpClient;
@@ -23,6 +27,7 @@ import javafx.scene.control.Alert.AlertType;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -206,5 +211,28 @@ public class EquizUtils {
             imageData =  resultSet.getBytes("link_ava_test");
         }
         return new Image(new ByteArrayInputStream(imageData));
+    }
+
+    // Connect socket
+    public static boolean connectServer() {
+        boolean success;
+        try {
+            Socket socket = new Socket("127.0.0.1", 54321);
+            ApplicationData.getInstance().socket = socket;
+            Profile profile = ApplicationData.getInstance().profile;
+            int id = profile.getID();
+            String username = profile.getUsername();
+            String name = profile.getName();
+
+            ConnectClientRequest request = new ConnectClientRequest(id, username, name);
+            ClientHelperRequest.sendRequest(request);
+            new ClientListener(socket).start();
+            System.out.println("Success connect to equiz server at port 54321...");
+            success = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            success =  false;
+        }
+        return success;
     }
 }

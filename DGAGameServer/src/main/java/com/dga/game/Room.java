@@ -4,6 +4,8 @@ import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.Message.MessageResponse;
 import com.dga.game.EquizPacket.PacketResponse;
 import com.dga.game.EquizPacket.Room.StartRoom.StartRoomResponse;
+import com.dga.game.GameMode.BlueTea;
+import com.dga.game.GameMode.GreenTea;
 import com.dga.game.GameMode.RedTea;
 import com.dga.game.GameMode.TeaGame;
 
@@ -21,10 +23,9 @@ public class Room implements Runnable {
     private volatile boolean isClose = false;
     private final Object lock = new Object();
 
-    public TeaGame currentGameMode = null;
-    public ClientHandler currentWinner = null;
-    public List<MessageResponse> messageHistory = new ArrayList<>();
-    public Map<String, Integer> playerPoint = new HashMap<>();
+    public volatile TeaGame currentGameMode = null;
+    public volatile ClientHandler currentWinner = null;
+    public volatile List<MessageResponse> messageHistory = new ArrayList<>();
 
     public Room(String roomId, String roomName, String roomPassword, int roomPlayerLimits) {
         this.roomId = roomId;
@@ -59,12 +60,16 @@ public class Room implements Runnable {
 
     public void startGame(String gameMode, ClientHandler host) throws IOException {
         synchronized (lock) {
-            StartRoomResponse response = new StartRoomResponse();
-            host.sendPacket(response);
             isRunning = true;
             switch (gameMode) {
                 case "red_tea":
                     currentGameMode = new RedTea(this);
+                    break;
+                case "blue_tea":
+                    currentGameMode = new BlueTea(this);
+                    break;
+                case "green_tea":
+                    currentGameMode = new GreenTea(this);
                     break;
                 default:
                     break;
@@ -77,7 +82,6 @@ public class Room implements Runnable {
         isRunning = false;
         currentWinner = null;
         currentGameMode = null;
-        playerPoint.clear();
     }
 
     public void abort() {

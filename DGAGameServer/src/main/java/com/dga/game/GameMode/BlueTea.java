@@ -13,18 +13,17 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Red tea is a game which player have to compete to guess the word faster.
- */
-public class RedTea extends TeaGame {
+public class BlueTea extends TeaGame {
     private final Room hostRoom;
     private volatile Timer currentRoundTimer;
     private volatile String currentRoundWord;
+    private volatile String currentRoundLongestWord;
+    private volatile ClientHandler currentRoundWinner;
 
     private volatile boolean isRunning = true;
     private volatile Map<String, Integer> playerPoint;
 
-    public RedTea(Room hostRoom) {
+    public BlueTea(Room hostRoom) {
         this.hostRoom = hostRoom;
     }
 
@@ -40,6 +39,23 @@ public class RedTea extends TeaGame {
         }
 
         currentRoundTimer.abort();
+
+        if (currentRoundWinner != null) {
+            // Send response to client
+            MessageResponse response = new MessageResponse(PacketResponse.OK,
+                    0, "server", "Server",
+                    "The winner of this round is " + currentRoundWinner.name);
+            try {
+                hostRoom.broadcast(response, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        currentRoundWinner = null;
+        currentRoundWord = "";
+        currentRoundLongestWord = "";
+
     }
 
     @Override
@@ -58,6 +74,7 @@ public class RedTea extends TeaGame {
             currentRoundTimer = new Timer(10000);
             currentRoundTimer.start();
             currentRoundTimer.join();
+            nextRound();
 
             // Wait 2 seconds after goto next round.
             new Timer(2000).run();
@@ -70,6 +87,16 @@ public class RedTea extends TeaGame {
         if (!isValidWord(word)) {
             return;
         }
+
+        // Set the new longest word
+        currentRoundWinner = client;
+        currentRoundLongestWord = word;
+
+        // Announce the good word!
+        MessageResponse response = new MessageResponse(PacketResponse.OK,
+                0, "server", "Server",
+                client.name + "currently has the longest word : " + word);
+        hostRoom.broadcast(response, null);
 
         // Add point to player.
         int currentPoint = 0;
@@ -92,13 +119,6 @@ public class RedTea extends TeaGame {
         if (currentPoint + 1 > highestPoint) {
             hostRoom.currentWinner = client;
         }
-
-        // Send response to client
-        MessageResponse response = new MessageResponse(PacketResponse.OK,
-                0, "server", "Server",
-                "The winner of this round is " + client.name);
-        hostRoom.broadcast(response, null);
-        nextRound();
     }
 
     private boolean isValidWord(String word) {
@@ -113,8 +133,10 @@ public class RedTea extends TeaGame {
         try {
             String sql = "SELECT word FROM av WHERE word = '" + word + "';";
             resultSet = DBHelper.executeQuerySqlite(sql);
-            resultSet.next();
-            ret = resultSet.getString(1) != null;
+            ret = resultSet.next();
+            if (!currentRoundLongestWord.isEmpty()) {
+                ret &= (currentRoundLongestWord.length() < word.length());
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -123,6 +145,7 @@ public class RedTea extends TeaGame {
             } catch (Exception ignore) {
             }
         }
+
         return ret;
     }
 }
