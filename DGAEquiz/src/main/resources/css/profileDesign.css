@@ -1,19 +1,92 @@
 @font-face {
-    src: url("../font/Signika.ttf");
-}
-@font-face {
-    src: url("../font/Signika-Bold.ttf");
+    src: url("../font/Inter-Bold.ttf");
 }
 
-.primary-color {
-    -fx-background-color: #B4DDD3;
+@font-face {
+    src: url("../font/Inter-Medium.ttf");
 }
-.button {
-    -fx-background-radius: 20;
-    -fx-background-color: #FFC75A;
+@font-face {
+    src: url("../font/PlayfairDisplay.ttf");
+}
+
+.back_ground {
+    -fx-background-color: #0B1021;
+}
+
+.pane {
+    -fx-background-color: #1D1E3D;
+    -fx-background-radius: 10px;
+}
+
+.label {
+    -fx-font-family: "Inter Medium";
+    -fx-text-fill : #FFFFFF;
+}
+
+.mail_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/mail.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.phone_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/phone2.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.dob_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/dob.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.github_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/github.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.pen_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/pen.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.pen_image:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/pen.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.about_me {
+    -fx-background-color: #A5A8B6;
+    -fx-background-radius: 10px;
+}
+
+.button_color {
+    -fx-background-color: linear-gradient(to bottom right, #2B48AC, #A5A8B6);
     -fx-text-fill: white;
-    -fx-font-family: "Signika";
 }
-.font-label {
-    -fx-font-family: "Signika";
+
+.quote {
+    -fx-font-family: "Playfair Display";
+    -fx-text-fill : #FFFFFF;
 }

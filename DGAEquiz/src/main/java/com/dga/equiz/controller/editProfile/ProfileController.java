@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -23,6 +24,9 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
+
+    @FXML
+    private ImageView mailImage;
 
     @FXML
     private Circle circle;

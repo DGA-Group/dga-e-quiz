@@ -26,12 +26,6 @@ public class MyApplicationController implements Initializable {
     private Button btnClose;
 
     @FXML
-    private Button btnMaximize;
-
-    @FXML
-    private Button btnMinimize;
-
-    @FXML
     private HBox hboxUpperBar;
     //endregion
 
@@ -72,14 +66,6 @@ public class MyApplicationController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
-
-        this.btnMaximize.setOnAction((ActionEvent event) -> {
-            stage.setMaximized(!stage.isMaximized());
-        });
-
-        this.btnMinimize.setOnAction((ActionEvent event) -> {
-            stage.setIconified(true);
         });
 
         this.hboxUpperBar.setOnMousePressed(event -> {
