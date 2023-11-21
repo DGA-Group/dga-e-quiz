@@ -74,8 +74,8 @@ public class CreateRoomController implements Initializable {
             int playerLimit;
             try {
                 playerLimit = Integer.parseInt(tfPlayerLimit.getText());
-            }catch (Exception e){
-                EquizUtils.showAlert("Error", "Unable to create room",
+            } catch (Exception e) {
+                EquizUtils.showAlert("Error", null,
                         "Do not input player limit as character!", AlertType.ERROR);
                 return;
             }
@@ -85,6 +85,7 @@ public class CreateRoomController implements Initializable {
             tfRoomPassword.clear();
             (btnCreate.getScene().getWindow()).hide();
 
+            ControllerManager.getInstance().chatRoomController.vboxMessageList.getChildren().clear();
             ClientHelperRequest.sendCreateRoomRequest(roomName, requirePassword, roomPassword, playerLimit);
         });
 

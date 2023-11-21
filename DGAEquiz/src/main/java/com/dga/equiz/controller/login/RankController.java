@@ -62,6 +62,10 @@ public class RankController implements Initializable {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }  finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            }catch (Exception ignore) {}
         }
     }
 

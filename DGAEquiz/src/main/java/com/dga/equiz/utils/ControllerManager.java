@@ -7,6 +7,7 @@ import com.dga.equiz.controller.game.ChatRoomController;
 import com.dga.equiz.controller.game.CreateRoomController;
 import com.dga.equiz.controller.game.GameController;
 import com.dga.equiz.controller.game.LobbyController;
+import com.dga.equiz.controller.login.LoginController;
 
 public class ControllerManager {
     private static ControllerManager instance;
@@ -26,4 +27,6 @@ public class ControllerManager {
     public LobbyController lobbyController;
     public CreateRoomController createRoomController;
     public ChatRoomController chatRoomController;
+
+    public LoginController loginController;
 }

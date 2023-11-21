@@ -5,8 +5,8 @@ import java.util.Random;
 public class GameHelper {
     private static Random rand = new Random();
     public static String[] keywords = {
-            "abc",
-            "ijk"
+            "ary",
+            "ion"
     };
 
     public static String getRandomKeyword() {

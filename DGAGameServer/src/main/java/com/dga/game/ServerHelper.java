@@ -116,12 +116,16 @@ public class ServerHelper {
     }
 
     private static StartRoomResponse handleStartGame(StartRoomRequest packet, ClientHandler client) {
+        if(client.currentRoom.currentGameMode != null){
+            return new StartRoomResponse(PacketResponse.ERROR, "There is a game being played already!");
+        }
+
         try {
             client.currentRoom.startGame(packet.gameMode, client);
         } catch (IOException e) {
-
+            return new StartRoomResponse(PacketResponse.ERROR, "Unable to start game, there maybe server error!");
         }
-        return new StartRoomResponse();
+        return new StartRoomResponse(PacketResponse.OK, "Start game successfully!");
     }
 
     private static void handleLeaveRoom(LeaveRoomRequest packet, ClientHandler client) {

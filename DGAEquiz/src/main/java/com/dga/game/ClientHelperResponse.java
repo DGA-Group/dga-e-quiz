@@ -14,6 +14,7 @@ import com.dga.game.EquizPacket.Room.LeaveRoom.LeaveRoomResponse;
 import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomResponse;
 import com.dga.game.EquizPacket.Room.ShowRoom.RoomWrapper;
 import com.dga.game.EquizPacket.Room.ShowRoom.ShowRoomResponse;
+import com.dga.game.EquizPacket.Room.StartRoom.StartRoomResponse;
 import javafx.scene.control.Alert.AlertType;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class ClientHelperResponse {
                 handleShowRoomResponse((ShowRoomResponse) packet);
                 break;
             case "start_room_response":
+                handleStartRoomResponse((StartRoomResponse) packet);
                 break;
             case "leave_room_response":
                 handleLeaveRoomResponse((LeaveRoomResponse) packet);
@@ -60,7 +62,7 @@ public class ClientHelperResponse {
 
     private static void handleJoinRoomResponse(JoinRoomResponse packet) {
         if (packet.status != PacketResponse.OK) {
-            EquizUtils.showAlert("Error","There is no room with id: " + packet.roomId,
+            EquizUtils.showAlert("Error", "There is no room with id: " + packet.roomId,
                     "Please re check the room id", AlertType.WARNING);
         } else {
             GameController controller = ControllerManager.getInstance().gameController;
@@ -89,6 +91,12 @@ public class ClientHelperResponse {
         String currentPlayerCount = "Current player: " + packet.playerCount + '/' + packet.playerLimit;
         chatRoomController.updatePlayerCount(currentPlayerCount);
         chatRoomController.addMyMessage(packet.message, MessageAlignment.Middle);
+    }
+
+    public static void handleStartRoomResponse(StartRoomResponse packet) {
+        if (packet.status == PacketResponse.ERROR) {
+            EquizUtils.showAlert("Error", null, packet.message, AlertType.ERROR);
+        }
     }
 
 }

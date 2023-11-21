@@ -59,7 +59,9 @@ public class FlashCardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Profile profile = ApplicationData.getInstance().profile;
         try {
-            circleAva.setFill(new ImagePattern(EquizUtils.toImage(profile.getID())));
+            if (profile.getLinkAva() != null) {
+                circleAva.setFill(new ImagePattern(EquizUtils.toImage(profile.getID())));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

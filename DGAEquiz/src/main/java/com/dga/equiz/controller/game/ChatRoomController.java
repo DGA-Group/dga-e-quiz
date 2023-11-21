@@ -11,10 +11,8 @@ import com.dga.game.EquizPacket.Message.MessageResponse;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
@@ -44,6 +42,9 @@ public class ChatRoomController implements Initializable {
     @FXML
     public ScrollPane spChatScroll;
 
+    @FXML
+    public ChoiceBox<String> cbGameMode;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ControllerManager.getInstance().chatRoomController = this;
@@ -57,6 +58,10 @@ public class ChatRoomController implements Initializable {
         btnStartGame.setOnAction(event -> onClickStartGame());
         spChatScroll.vvalueProperty().bind(vboxMessageList.heightProperty());
         btnReturn.setOnAction(event -> onClickReturn());
+        cbGameMode.getItems().add("Red Tea");
+        cbGameMode.getItems().add("Blue Tea");
+        cbGameMode.getItems().add("Green Tea");
+        cbGameMode.setValue("Mode");
     }
 
     public void onClickSendMessage() {
@@ -87,8 +92,12 @@ public class ChatRoomController implements Initializable {
                 NodeObject nodeObject = EquizUtils.Instantiate("/view/game/MessageBoxView.fxml", vboxMessageList);
                 MessageBoxController controller = nodeObject.getController();
                 MessageAlignment alignment = MessageAlignment.TopLeft;
+                Profile profile = ApplicationData.getInstance().profile;
+                int userId = profile.getID();
                 if (message.name.equals("Server")) {
                     alignment = MessageAlignment.Middle;
+                } else if (message.userId == userId) {
+                    alignment = MessageAlignment.TopRight;
                 }
                 controller.setUpMessageBox(message.name, message.text, alignment);
             } catch (IOException ignore) {
@@ -110,7 +119,22 @@ public class ChatRoomController implements Initializable {
     }
 
     public void onClickStartGame() {
-        ClientHelperRequest.sendStartGameRequest();
+        String gameMode;
+        switch (cbGameMode.getValue()) {
+            case "Red Tea":
+                gameMode = "red_tea";
+                break;
+            case "Blue Tea":
+                gameMode = "blue_tea";
+                break;
+            case "Green Tea":
+                gameMode = "green_tea";
+                break;
+            default:
+                EquizUtils.showAlert("Error", null, "Please choose a game mode!", AlertType.ERROR);
+                return;
+        }
+        ClientHelperRequest.sendStartGameRequest(gameMode);
     }
 
     public void onClickReturn() {

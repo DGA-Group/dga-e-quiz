@@ -37,4 +37,5 @@ module dgaequiz {
     requires javafx.media;
     requires javax.mail;
     requires org.xerial.sqlitejdbc;
+    requires java.desktop;
 }
