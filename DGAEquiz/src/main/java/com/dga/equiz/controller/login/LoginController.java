@@ -490,7 +490,7 @@ public class LoginController implements Initializable {
         // Initialize application view
         try{
             NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
-            Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 854, 480, Color.TRANSPARENT);
+            Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 1280, 720, Color.TRANSPARENT);
             Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
             addStyle(myApplicationScene, "/css/learnDesign.css");
             myApplicationStage.initStyle(StageStyle.TRANSPARENT);
