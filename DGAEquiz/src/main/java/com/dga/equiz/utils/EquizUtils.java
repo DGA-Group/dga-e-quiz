@@ -2,7 +2,6 @@ package com.dga.equiz.utils;
 
 import com.dga.equiz.Main;
 import com.dga.equiz.model.Event;
-import com.dga.equiz.model.TranslationData;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Word;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
@@ -129,35 +128,6 @@ public class EquizUtils {
         return wordList;
     }
 
-    /**
-     * Translates the given text to Vietnamese.
-     *
-     * @param targetWord The text to be translated.
-     * @return The translated text in Vietnamese.
-     * @throws IOException If an I/O error occurs while making the API call.
-     */
-    public static String translateTextToVi(String targetWord) throws IOException {
-        String apiCall = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=vi&dt=t&q=" + targetWord;
-        ObjectMapper mapper = new ObjectMapper();
-        Response response = APICall(apiCall);
-        TranslationData translationData = mapper.readValue(response.body().byteStream(), TranslationData.class);
-        return translationData.getSourceText();
-    }
-
-    /**
-     * Translates the given text to English.
-     *
-     * @param targetWord The text to be translated.
-     * @return The translated text in English.
-     * @throws IOException If an I/O error occurs while making the API call.
-     */
-    public static String translateTextToEn(String targetWord) throws IOException {
-        String apiCall = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=" + targetWord;
-        ObjectMapper mapper = new ObjectMapper();
-        Response response = APICall(apiCall);
-        TranslationData translationData = mapper.readValue(response.body().byteStream(), TranslationData.class);
-        return translationData.getSourceText();
-    }
 
     /**
      * Fetches suggested words or related words for a given input word using an online
@@ -224,4 +194,5 @@ public class EquizUtils {
 
         thread.start();
     }
+
 }
