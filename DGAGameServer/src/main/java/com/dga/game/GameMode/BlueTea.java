@@ -95,7 +95,7 @@ public class BlueTea extends TeaGame {
         // Announce the good word!
         MessageResponse response = new MessageResponse(PacketResponse.OK,
                 0, "server", "Server",
-                client.name + "currently has the longest word : " + word);
+                client.name + " currently has the longest word : " + word);
         hostRoom.broadcast(response, null);
 
         // Add point to player.

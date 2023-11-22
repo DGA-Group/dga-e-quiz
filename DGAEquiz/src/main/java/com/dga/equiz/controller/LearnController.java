@@ -278,10 +278,6 @@ public class LearnController implements Initializable {
         this.buttonContinue.setVisible(toggleButtonContinue);
         this.buttonSubmit.setVisible(toggleButtonSubmit);
 
-       /* if (this.buttonSubmit.isVisible()) {
-            this.buttonSubmit.setDisable(true);
-        }*/
-
         boolean panelMessageVisible = this.paneMessageHolder.isVisible();
         this.paneMessageHolder.setVisible(!panelMessageVisible);
     }

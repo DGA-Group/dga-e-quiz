@@ -58,6 +58,10 @@ public class ClientHelperResponse {
     private static void handleOpenRoomResponse(OpenRoomResponse packet) {
         String roomId = packet.roomId;
         String roomPassword = packet.roomPassword;
+
+        ChatRoomController controller = ControllerManager.getInstance().chatRoomController;
+        controller.clearMessageList();
+
         ClientHelperRequest.sendJoinRoomRequest(roomId, roomPassword);
     }
 

@@ -18,6 +18,7 @@
 --
 -- Table structure for table `campaign`
 --
+SET FOREIGN_KEY_CHECKS = 1;
 
 DROP TABLE IF EXISTS `campaign`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;

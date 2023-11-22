@@ -32,12 +32,53 @@ public class HomeController implements Initializable {
     private VBox vBCampaignList;
     //endregion
 
+    // region Model
     private NodeObject currentPanel = null;
     private NodeObject campaignPickerView = null;
     private NodeObject learnView = null;
     private NodeObject finishView = null;
 
     private Map<Long, CampaignController> campaigns = new HashMap<>();
+    //endregion
+
+    // region Event
+    public IEventLong onFinishCampaign = campaignNumber -> {
+        Profile profile = ApplicationData.getInstance().profile;
+        String username = profile.getUsername();
+        int currentPoint = profile.getScore();
+        long currentCampaign = profile.getCurrentCampaign();
+        int totalCampaign = ApplicationData.getInstance().getCampaignData().size();
+
+        // Add point
+        if (campaignNumber == currentCampaign) {
+            int rewardPoints = 10;
+            int newPoint = currentPoint + rewardPoints;
+            String sql = "UPDATE information SET score = '" + newPoint
+                    + "' WHERE username = '" + username + "'";
+            try {
+                DBHelper.executeUpdate(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (campaignNumber == currentCampaign && campaignNumber < totalCampaign) {
+            // Set next campaign
+            long nextCampaignNumber = campaignNumber + 1;
+            CampaignController nextCampaignController = campaigns.get(nextCampaignNumber);
+            nextCampaignController.setUnlockCampaign();
+            String sql = "UPDATE information SET current_campaign = '" + nextCampaignNumber
+                    + "' WHERE username = '" + username + "'";
+            try {
+                DBHelper.executeUpdate(sql);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // Unlock next campaign
+            nextCampaignController.setUnlockCampaign();
+        }
+    };
 
     //endregion
 
@@ -67,7 +108,7 @@ public class HomeController implements Initializable {
                 CampaignController controller = node.getController();
                 controller.setCampaignModel(campaign);
                 controller.setupCampaign(campaign);
-                controller.buttonStartCampaign.setOnAction((ActionEvent event) -> {
+                controller.buttonStartCampaign.setOnAction(event -> {
                     LearnController learnController = learnView.getController();
                     Lesson lesson = campaign.getLesson();
                     learnController.setLesson(lesson, campaignId);
@@ -78,6 +119,8 @@ public class HomeController implements Initializable {
                 if (campaignId <= currentCampaign) {
                     controller.setUnlockCampaign();
                 }
+
+                campaigns.put(campaignId, controller);
             }
             vBCampaignList.setVisible(true);
         } catch (Exception e) {
@@ -90,12 +133,8 @@ public class HomeController implements Initializable {
         try {
             learnView = EquizUtils.Instantiate("/view/LearnView.fxml", panelHome);
             LearnController controller = learnView.getController();
-            controller.buttonClose.setOnAction((ActionEvent event) -> {
-                switchToPanel(null);
-            });
-            controller.onGoToFinishView = () -> {
-                switchToPanel(finishView);
-            };
+            controller.buttonClose.setOnAction(event -> switchToPanel(null));
+            controller.onGoToFinishView = () -> switchToPanel(finishView);
             learnView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,9 +147,7 @@ public class HomeController implements Initializable {
             campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml", panelHome, AnchorType.FitToParent);
             CampaignPickerController controller = campaignPickerView.getController();
 
-            controller.buttonLearn.setOnAction((ActionEvent event) -> {
-                switchToPanel(learnView);
-            });
+            controller.buttonLearn.setOnAction(event -> switchToPanel(learnView));
 
             campaignPickerView.hide();
         } catch (Exception e) {
@@ -123,9 +160,7 @@ public class HomeController implements Initializable {
             finishView = EquizUtils.Instantiate("/view/campaign/FinishCampaignView.fxml", panelHome, AnchorType.FitToParent);
             FinishCampaignController controller = finishView.getController();
 
-            controller.btnToHome.setOnAction((ActionEvent event) -> {
-                switchToPanel(null);
-            });
+            controller.btnToHome.setOnAction(event -> switchToPanel(null));
 
             finishView.hide();
         } catch (Exception e) {
@@ -144,46 +179,4 @@ public class HomeController implements Initializable {
             currentPanel.setVisible(true);
         }
     }
-
-
-    public IEventLong onFinishCampaign = campaignNumber -> {
-        Profile profile = ApplicationData.getInstance().profile;
-        String username = profile.getUsername();
-        int currentPoint = profile.getScore();
-        long currentCampaign = profile.getCurrentCampaign();
-        int totalCampaign = ApplicationData.getInstance().getCampaignData().size();
-
-        // Add point
-        int rewardPoints = 10;
-        int newPoint = currentPoint + rewardPoints;
-        String sql = "";
-        sql = "UPDATE information SET score = '" + newPoint
-                + "' WHERE username = '" + username + "'";
-        try {
-            DBHelper.executeUpdate(sql);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (campaignNumber < currentCampaign || campaignNumber >= totalCampaign) {
-            return;
-        }
-
-        // Set next campaign
-        long nextCampaignNumber = campaignNumber + 1;
-        CampaignController nextCampaignController = campaigns.get(nextCampaignNumber);
-        nextCampaignController.setUnlockCampaign();
-        sql = "UPDATE information SET current_campaign = '" + nextCampaignNumber
-                + "' WHERE username = '" + username + "'";
-        try {
-            DBHelper.executeUpdate(sql);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Unlock next campaign
-        nextCampaignController.setUnlockCampaign();
-    };
-
-
 }
