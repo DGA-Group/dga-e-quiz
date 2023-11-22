@@ -83,7 +83,7 @@
 }
 
 .button_color {
-    -fx-background-color: linear-gradient(to bottom right, #2B48AC, #A5A8B6);
+    -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
     -fx-text-fill: white;
 }
 
