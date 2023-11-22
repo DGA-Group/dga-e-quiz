@@ -1,0 +1,36 @@
+.label-labelOfWord {
+    -fx-font-size: 30;
+    -fx-text-fill: #FFFFFF;
+}
+
+.text-area-taPronounceDescription {
+    -fx-font-size: 18;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 10;
+    -fx-control-inner-background: #1D1E3D;
+    -fx-control-inner-text-fill: #FFFFFF;
+    -fx-focus-traversable: transparent;
+
+}
+.text-area-taPronounceDescription:focused:hover {
+    -fx-font-size: 18;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 10;
+    -fx-control-inner-background: #1D1E3D;
+    -fx-focus-traversable: transparent;
+
+}
+
+.tab-pane-addPane {
+    -fx-background-color: #0B1021;
+}
+
+.scroll-pane-addScrollPane {
+    -fx-background-color: #0B1021;
+}
+
+.text-area-custom {
+    -fx-background-color: #1D1E3D; /* Đặt màu nền */
+    -fx-text-fill: #FFFFFF; /* Đặt màu chữ */
+    -fx-background-radius: 10; /* Đặt góc bo tròn */
+}

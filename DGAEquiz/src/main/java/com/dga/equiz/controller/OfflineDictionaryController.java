@@ -4,6 +4,7 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.DBHelper;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.utils.StageManager;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -11,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -53,7 +56,35 @@ public class OfflineDictionaryController implements Initializable {
             TextFields.bindAutoCompletion(searchingField, suggestions);
         });
     }
-
+    public void onEnterSearch() {
+        searchingField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    try {
+                        onClickSearch();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        onStartup();
+        onEnterSearch();
+        try {
+            NodeObject offlineAddDictionaryView = EquizUtils.Instantiate("/view/OfflineAddWordView.fxml");
+            Scene offlineAddDictionaryScene = new Scene((Parent) offlineAddDictionaryView.getNode());
+            Stage offlineAddDictionaryViewStage = StageManager.getInstance().offlineAddDictionaryStage = new Stage();
+            offlineAddDictionaryViewStage.initStyle(StageStyle.TRANSPARENT);
+            offlineAddDictionaryViewStage.setScene(offlineAddDictionaryScene);
+            offlineAddDictionaryViewStage.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void updatedSuggestions(String word) {
         ResultSet resultSet = null;
         Statement statement = null;
@@ -77,20 +108,6 @@ public class OfflineDictionaryController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        onStartup();
-        try {
-            NodeObject offlineAddDictionaryView = EquizUtils.Instantiate("/view/OfflineAddWordView.fxml");
-            Scene offlineAddDictionaryScene = new Scene((Parent) offlineAddDictionaryView.getNode());
-            Stage offlineAddDictionaryViewStage = StageManager.getInstance().offlineAddDictionaryStage = new Stage();
-            offlineAddDictionaryViewStage.initStyle(StageStyle.TRANSPARENT);
-            offlineAddDictionaryViewStage.setScene(offlineAddDictionaryScene);
-            offlineAddDictionaryViewStage.hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void onClickAddWord() throws IOException {
         StageManager.getInstance().offlineAddDictionaryStage.show();

@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="vBox" prefWidth="720.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
+<VBox fx:id="vBox" maxWidth="720.0" prefWidth="720.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
    <children>
       <Label fx:id="labelWord" prefHeight="46.0" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="WHITE">
          <font>

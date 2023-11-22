@@ -5,6 +5,7 @@ import com.dga.equiz.utils.StageManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -16,9 +17,9 @@ public class OfflineAddWordController {
     @FXML
     private TextField wordText;
     @FXML
-    private TextField pronounceText;
+    private TextArea taPronounce;
     @FXML
-    private TextField descriptionText;
+    private TextArea taDescription;
     @FXML
     private Button btnClose;
     @FXML
@@ -30,8 +31,8 @@ public class OfflineAddWordController {
 
     public void onClickAdd() {
         String word = wordText.getText();
-        String pronounce = pronounceText.getText();
-        String description = descriptionText.getText();
+        String pronounce = taPronounce.getText();
+        String description = taDescription.getText();
         String query = "INSERT INTO av(word, description, pronounce) VALUES " +
                 "('" + word + "','" + pronounce + "','" + description + "');";
         try {
