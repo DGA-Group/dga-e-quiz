@@ -1,0 +1,42 @@
+@font-face {
+    src: url("../font/VinaSans-Regular.ttf");
+}
+
+@font-face {
+    src: url("../font/Reforma-Italic.ttf");
+}
+.back_ground {
+    -fx-background-color: #0B1021;
+}
+.label_what {
+    -fx-text-fill: white;
+    -fx-font-family: "Vina Sans";
+    -fx-font-size : 50;
+}
+
+.label_what2 {
+    -fx-text-fill: white;
+    -fx-font-family: "Vina Sans";
+    -fx-font-size : 150;
+;
+}
+
+.label_what3 {
+    -fx-font-family: "Reforma 2018 Negra";
+    -fx-font-size : 80;
+    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+}
+
+.button {
+    -fx-background-color: #0B1021;
+    -fx-font-family: "Vina Sans";
+    -fx-text-fill: white;
+    -fx-font-size : 50;
+}
+
+.button:hover {
+    -fx-background-color: #0B1021;
+    -fx-font-family: "Vina Sans";
+    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+    -fx-font-size : 50;
+}

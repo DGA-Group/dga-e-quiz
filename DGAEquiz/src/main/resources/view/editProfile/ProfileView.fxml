@@ -14,26 +14,26 @@
          <children>
             <Pane layoutX="35.0" layoutY="231.0" prefHeight="437.0" prefWidth="492.0" styleClass="pane" stylesheets="@../../css/profileDesign.css">
                <children>
-                  <Button layoutX="54.0" layoutY="54.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="mail_image" stylesheets="@../../css/profileDesign.css" />
-                  <Button layoutX="54.0" layoutY="144.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="dob_image" stylesheets="@../../css/profileDesign.css" />
-                  <Button layoutX="54.0" layoutY="224.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="phone_image" stylesheets="@../../css/profileDesign.css" />
-                  <Button layoutX="54.0" layoutY="304.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="github_image" stylesheets="@../../css/profileDesign.css" />
-                  <Label fx:id="labelMail" layoutX="152.0" layoutY="50.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="mailghi">
+                  <Button layoutX="54.0" layoutY="74.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="mail_image" stylesheets="@../../css/profileDesign.css" />
+                  <Button layoutX="54.0" layoutY="164.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="dob_image" stylesheets="@../../css/profileDesign.css" />
+                  <Button layoutX="54.0" layoutY="244.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="phone_image" stylesheets="@../../css/profileDesign.css" />
+                  <Button layoutX="54.0" layoutY="324.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="github_image" stylesheets="@../../css/profileDesign.css" />
+                  <Label fx:id="labelMail" layoutX="152.0" layoutY="70.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="mailghi">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelDOB" layoutX="152.0" layoutY="140.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="dofghi">
+                  <Label fx:id="labelDOB" layoutX="152.0" layoutY="160.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="dofghi">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelPhone" layoutX="152.0" layoutY="216.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="phoneghi">
+                  <Label fx:id="labelPhone" layoutX="152.0" layoutY="236.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="phoneghi">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Hyperlink fx:id="link_Github" layoutX="152.0" layoutY="307.0" prefHeight="51.0" prefWidth="188.0" styleClass="label" stylesheets="@../../css/profileDesign.css" text="Link">
+                  <Hyperlink fx:id="link_Github" layoutX="152.0" layoutY="327.0" prefHeight="51.0" prefWidth="188.0" styleClass="label" stylesheets="@../../css/profileDesign.css" text="Link">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -74,6 +74,11 @@
                   </Label>
                </children>
             </Pane>
+            <Button fx:id="buttonEdit1" alignment="CENTER" layoutX="955.0" layoutY="26.0" mnemonicParsing="false" onAction="#changeImage" prefHeight="21.0" prefWidth="39.0" styleClass="camera" stylesheets="@../../css/profileDesign.css" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </right>
