@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.editProfile.ProfileController">
-   <bottom>
+   <right>
       <Pane prefHeight="720.0" prefWidth="1030.0" styleClass="back_ground" stylesheets="@../../css/profileDesign.css" BorderPane.alignment="CENTER">
          <children>
             <Pane layoutX="35.0" layoutY="231.0" prefHeight="437.0" prefWidth="492.0" styleClass="pane" stylesheets="@../../css/profileDesign.css">
@@ -18,11 +18,6 @@
                   <Button layoutX="54.0" layoutY="144.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="dob_image" stylesheets="@../../css/profileDesign.css" />
                   <Button layoutX="54.0" layoutY="224.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="phone_image" stylesheets="@../../css/profileDesign.css" />
                   <Button layoutX="54.0" layoutY="304.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="github_image" stylesheets="@../../css/profileDesign.css" />
-                  <Button fx:id="buttonEdit" alignment="CENTER" layoutX="441.0" layoutY="14.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="37.0" styleClass="setting" stylesheets="@../../css/profileDesign.css" textFill="WHITE">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Button>
                   <Label fx:id="labelMail" layoutX="152.0" layoutY="50.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="mailghi">
                      <font>
                         <Font size="20.0" />
@@ -43,43 +38,43 @@
                         <Font size="20.0" />
                      </font>
                   </Hyperlink>
-               </children></Pane>
-            <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="484.0" layoutX="586.0" layoutY="29.0" stroke="BLACK" strokeType="INSIDE" width="422.0" />
-            <Label layoutX="42.0" layoutY="29.0" styleClass="name_label" text="#">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelName" alignment="CENTER_RIGHT" contentDisplay="TOP" layoutX="-9.0" layoutY="159.0" prefHeight="72.0" prefWidth="536.0" stylesheets="@../../css/editProfileDesign.css" text="name" textFill="WHITE">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_LEFT" contentDisplay="RIGHT" layoutX="734.0" layoutY="545.0" prefHeight="148.0" prefWidth="274.0" styleClass="quote" stylesheets="@../../css/profileDesign.css" text="I believe in serenades under the moonlight, stolen glances across a crowded room, and the power of a warm embrace to heal all wounds." textAlignment="RIGHT" wrapText="true">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="labelID" layoutX="53.0" layoutY="21.0" prefHeight="42.0" prefWidth="82.0" styleClass="name_label" stylesheets="@../../css/editProfileDesign.css" text="id ghi">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Pane layoutX="35.0" layoutY="61.0" prefHeight="62.0" prefWidth="507.0" styleClass="pane" stylesheets="@../../css/profileDesign.css">
-               <children>
-                  <Label layoutX="14.0" layoutY="13.0" prefHeight="30.0" prefWidth="232.0" text="INFORMATION">
+                  <Button fx:id="buttonEdit" alignment="CENTER" layoutX="443.0" layoutY="13.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="38.0" styleClass="pen" stylesheets="@../../css/profileDesign.css" textFill="WHITE">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+               </children></Pane>
+            <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="484.0" layoutX="578.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="422.0" />
+            <Label layoutX="43.0" layoutY="44.0" styleClass="name_label" text="#">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelName" alignment="CENTER" contentDisplay="TOP" layoutX="-9.0" layoutY="143.0" prefHeight="72.0" prefWidth="536.0" stylesheets="@../../css/editProfileDesign.css" text="name" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="50.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="578.0" layoutY="505.0" prefHeight="148.0" prefWidth="422.0" styleClass="quote" stylesheets="@../../css/profileDesign.css" text="I believe in serenades under the moonlight, stolen glances across a crowded room, and the power of a warm embrace to heal all wounds." textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelID" layoutX="63.0" layoutY="38.0" prefHeight="42.0" prefWidth="82.0" styleClass="name_label" stylesheets="@../../css/editProfileDesign.css" text="id ghi">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <Pane layoutX="35.0" layoutY="81.0" prefHeight="30.0" prefWidth="138.0" styleClass="pane" stylesheets="@../../css/profileDesign.css">
+               <children>
+                  <Label layoutX="10.0" layoutY="-2.0" prefHeight="30.0" prefWidth="128.0" text="INFORMATION">
+                     <font>
+                        <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="buttonEdit1" alignment="CENTER" layoutX="972.0" layoutY="675.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0" styleClass="pen" stylesheets="@../../css/profileDesign.css" textFill="WHITE">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
-   </bottom>
+   </right>
 </BorderPane>

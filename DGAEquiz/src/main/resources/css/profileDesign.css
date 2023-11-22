@@ -5,9 +5,6 @@
 @font-face {
     src: url("../font/Inter-Medium.ttf");
 }
-/*@font-face {*/
-/*    src: url("../font/PlayfairDisplay.ttf");*/
-/*}*/
 
 .back_ground {
     -fx-background-color: #0B1021;

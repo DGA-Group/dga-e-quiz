@@ -1,41 +1,12 @@
-.rounded-application {
-    -fx-background-color: transparent;
+.box {
+    -fx-background-color: #1D1E3D;
+}
+.button_menu {
+    -fx-background-color: #1D1E3D;
+    -fx-text-fill: white;
 }
 
-.content-pane {
-    -fx-background-color: #FFFFFF;
-}
-
-.nav-pane {
-    -fx-background-color: #0B1021;
-    -fx-border-color: transparent;
-    -fx-border-width: 0.4px 0px 0.4px 0.4px;
-}
-
-.menu-pane {
-    -fx-background-color: #FFFFFF;
-}
-
-.button-close {
-    -fx-background-color: #F36935;
-}
-
-.button-close:hover {
-    -fx-background-color: #F58E67;
-}
-
-.button-maximize {
-    -fx-background-color: #FFB519;
-}
-
-.button-maximize:hover {
-    -fx-background-color: #FFC64F;
-}
-
-.button-minimize {
-    -fx-background-color: #89F112;
-}
-
-.button-minimize:hover {
-    -fx-background-color: #B0F565;
+.button_menu:hover {
+    -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+    -fx-text-fill: white;
 }
