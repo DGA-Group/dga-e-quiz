@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -38,9 +39,6 @@ import java.util.ResourceBundle;
 import static com.dga.equiz.utils.EquizUtils.showAlert;
 
 public class LoginController implements Initializable {
-
-    @FXML
-    private Label labelRegister_atlert;
 
     @FXML
     private Button buttonAcc_go;
@@ -257,13 +255,18 @@ public class LoginController implements Initializable {
                 if (resultSet.next()) {
                     showAlert("Username đã tồn tại vui lòng nhập username khác.");
                     return;
-                } else {
+                } else if (tfRegister_username.getText().isEmpty() == false && tfRegister_pass.getText().isEmpty() == false && tfRegister_mail.getText().isEmpty() == false) {
                     Random random = new Random();
                     code[0] = 1000 + random.nextInt(9000);
                     String message = "Ma Code cua ban la: " + code[0];
                     Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
                     stackPane.getChildren().forEach(pane -> pane.setVisible(false));
                     paneConfirmAcc.setVisible(true);
+                } else {
+                    showAlert("Please give our your USERNAME, PASSWORD AND MAIL to create a new account.");
+                    System.out.println(tfRegister_username.getText());
+                    System.out.println(tfRegister_pass.getText());
+                    System.out.println(tfRegister_mail.getText());
                 }
 
             } catch (Exception e1) {
@@ -422,12 +425,11 @@ public class LoginController implements Initializable {
             stackPane.getChildren().forEach(pane -> pane.setVisible(false));
             paneConfirmAcc.setVisible(true);
         } else {
-            labelRegister_atlert.setVisible(true);
+            showAlert("Please give me your USERNAME and PASSWORD to resgister");
         }
     }
 
     public void initlabel() {
-        labelRegister_atlert.setVisible(false);
         tfLogin_showPass.setVisible(false);
         tfAcc_confirmPassShow.setVisible(false);
     }

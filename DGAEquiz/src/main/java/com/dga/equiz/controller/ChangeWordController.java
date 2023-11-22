@@ -19,6 +19,10 @@ public class ChangeWordController {
     @FXML
     private Button btnClose;
 
+    public void onClickClose() {
+        StageManager.getInstance().changeWordStage.hide();
+    }
+
     public void setupChangeWordView(String changedWord, String changedPronounce, String changedDescription) {
         labelWord.setText(changedWord);
         textAreaPronounce.setText(changedPronounce);
@@ -36,10 +40,7 @@ public class ChangeWordController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
-    public void onClickClose() {
-        StageManager.getInstance().changeWordStage.hide();
     }
 
 }

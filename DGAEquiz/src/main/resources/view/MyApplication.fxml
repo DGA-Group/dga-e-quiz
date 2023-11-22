@@ -6,13 +6,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
+<?import javafx.scene.layout.HBox?>
 <BorderPane prefHeight="720.0" prefWidth="1280.0" styleClass="rounded-application" stylesheets="@../css/applicationDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.MyApplicationController">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="480.0" prefWidth="206.0" styleClass="nav-pane" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="250.0" styleClass="box" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="102.0" prefWidth="206.0">
                <children>
@@ -23,43 +24,76 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Button mnemonicParsing="false" onAction="#onClickSwitchToHome" prefHeight="26.0" prefWidth="206.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Home" textAlignment="CENTER">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToHome" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Home" textAlignment="CENTER" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-home" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-home" iconSize="20" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSwitchToDictionary" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Dictionary" textAlignment="CENTER">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSwitchToDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Dictionary" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-book" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-book" iconSize="20" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
-            <Button layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickSwitchToProfile" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Profile" textAlignment="CENTER">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickSwitchToProfile" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Profile" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-settings" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-user" iconSize="20" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
-            <Button layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Game" textAlignment="CENTER">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Game" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" iconSize="20" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="26.0" prefWidth="206.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="OfflineDictionary" textAlignment="CENTER">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="OffDic" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-book-open" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-book-open" iconSize="20" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
-            <Button layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Rank" textAlignment="CENTER">
+            <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickSwitchToFlashCard" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Flash Card" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-trending-down" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-clipboard" iconSize="20" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
-            <Button layoutX="11.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickSwitchToFlashCard" prefHeight="26.0" prefWidth="231.0" styleClass="nav-btn" stylesheets="@../css/homeDesign.css" text="Flash Card" textAlignment="CENTER">
+            <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Rank" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-trending-down" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-bar-chart-2" iconSize="20" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="logOutButton" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Logout" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-log-out" iconSize="20" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-x-octagon" iconSize="20" />
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
          </children>
          <opaqueInsets>
@@ -68,11 +102,11 @@
       </VBox>
    </left>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="379.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
             <BorderPane BorderPane.alignment="CENTER">
                <center>
-                  <AnchorPane fx:id="panelHolder" styleClass="content-pane" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER" />
+                  <AnchorPane fx:id="panelHolder" prefHeight="720.0" prefWidth="1030.0" styleClass="content-pane" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
          </center>

@@ -95,6 +95,9 @@ public class DictionaryController implements Initializable {
 
     public void onClickSearch() throws IOException {
         String inputWord = searchingField.getText().trim();
+        if (inputWord.equals("")) {
+            EquizUtils.showAlert("Please text !!");
+        }
         CompletableFuture.supplyAsync(() -> {
             try {
                 return EquizUtils.FetchWordFromDictionary(inputWord);

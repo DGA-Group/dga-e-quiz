@@ -9,26 +9,26 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="vBox" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
+<VBox fx:id="vBox" prefWidth="720.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
    <children>
-      <Label fx:id="labelWord" prefHeight="46.0" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="#444766">
+      <Label fx:id="labelWord" prefHeight="46.0" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label fx:id="labelPartOfSpeech" prefHeight="30.0" prefWidth="241.0" styleClass="label-labelPartOfSpeech" stylesheets="@../css/wordDesign.css" text="PartofSpeech" textFill="#444766">
+      <Label fx:id="labelPartOfSpeech" prefHeight="30.0" prefWidth="241.0" styleClass="label-labelPartOfSpeech" stylesheets="@../css/wordDesign.css" text="PartofSpeech" textFill="#a5a8b6">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="labelTextOfPhonetic" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="523.0" text="textOfphonetic" textFill="#444766">
+      <Label fx:id="labelTextOfPhonetic" contentDisplay="RIGHT" prefHeight="30.0" prefWidth="523.0" text="textOfphonetic" textFill="#a5a8b6">
          <font>
             <Font size="18.0" />
          </font>
          <graphic>
-            <Button fx:id="buttonPlaySound" mnemonicParsing="false" styleClass="radio-button" stylesheets="@../css/wordDesign.css" textAlignment="CENTER" textFill="#444766">
+            <Button fx:id="buttonPlaySound" mnemonicParsing="false" styleClass="radio-button" stylesheets="@../css/wordDesign.css" textAlignment="CENTER" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="#444548" iconLiteral="fth-volume-2">
+                  <FontIcon iconColor="#d3d5db" iconLiteral="fth-volume-2">
                      <cursor>
                         <Cursor fx:constant="NONE" />
                      </cursor>

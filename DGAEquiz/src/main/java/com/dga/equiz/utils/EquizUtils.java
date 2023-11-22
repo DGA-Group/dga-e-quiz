@@ -5,6 +5,7 @@ import com.dga.equiz.model.event.IEvent;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Word;
+import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import com.dga.game.ClientHelperRequest;
 import com.dga.game.ClientListener;
 import com.dga.game.EquizPacket.Client.ConnectClientRequest;
@@ -18,12 +19,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import com.dga.equiz.utils.ApplicationEnum.AnchorType;
 import javafx.scene.layout.StackPane;
-import javafx.scene.control.Alert.AlertType;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -136,6 +136,7 @@ public class EquizUtils {
 
         return wordList;
     }
+
 
     /**
      * Fetches suggested words or related words for a given input word using an online

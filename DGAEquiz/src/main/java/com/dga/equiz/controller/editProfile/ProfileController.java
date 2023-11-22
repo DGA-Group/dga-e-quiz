@@ -10,11 +10,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.control.Hyperlink;
-import java.awt.Desktop;
+
+import java.awt.*;
 import java.io.*;
 import java.net.Socket;
 import java.net.URI;
@@ -25,7 +26,7 @@ import java.util.ResourceBundle;
 public class ProfileController implements Initializable {
 
     @FXML
-    private Circle circle;
+    private Rectangle rectangle;
     @FXML
     public Button buttonEdit;
 
@@ -45,13 +46,12 @@ public class ProfileController implements Initializable {
     public Label labelID;
 
     @FXML
-    public Button logOutButton;
-
-    @FXML
     private Hyperlink link_Github;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        rectangle.setArcWidth(30.0);
+        rectangle.setArcHeight(20.0);
 
         Profile profile = ApplicationData.getInstance().profile;
         try {
@@ -72,7 +72,7 @@ public class ProfileController implements Initializable {
                 byte[] imageData = resultSet.getBytes("link_ava_test");
                 if (imageData != null) {
                     Image image = new Image(new ByteArrayInputStream(imageData));
-                    circle.setFill(new ImagePattern(image));
+                    rectangle.setFill(new ImagePattern(image));
                 }
             }
         } catch (SQLException e) {
@@ -81,27 +81,6 @@ public class ProfileController implements Initializable {
                 DBHelper.closeQuery(resultSet, statement, connection);
             }catch (Exception ignore) {}
         }
-
-        logOutButton.setOnAction((ActionEvent e) -> {
-            StageManager.getInstance().myApplicationStage.hide();
-            StageManager.getInstance().loginStage.show();
-            ControllerManager.getInstance().loginController.tfLogin_username.setText(null);
-            ControllerManager.getInstance().loginController.tfLogin_showPass.setText(null);
-            ControllerManager.getInstance().loginController.pfLogin_password.setText(null);
-
-            try {
-                Socket socket = ApplicationData.getInstance().socket;
-                if (socket.isConnected()) {
-                    socket.close();
-                    ObjectOutputStream oos = ClientHelperRequest.objectOutputStream;
-                    if(oos != null){
-                        oos.close();
-                    }
-                    ClientHelperRequest.objectOutputStream = null;
-                }
-            } catch (Exception ignore) {
-            }
-        });
 
         link_Github.setOnAction(e -> openURL(profile.getGithub()));
     }
@@ -137,7 +116,7 @@ public class ProfileController implements Initializable {
             profile.setLinkAva(imageData);
 
             Image newImage = new Image(file.toURI().toString());
-            circle.setFill(new ImagePattern(newImage));
+            rectangle.setFill(new ImagePattern(newImage));
         }
     }
 

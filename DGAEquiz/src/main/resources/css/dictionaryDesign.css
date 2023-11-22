@@ -1,24 +1,57 @@
+@font-face {
+    src: url("../font/Inter-Light.ttf");
+}
+
 .button-searchButton {
     -fx-background-color: transparent;
 }
+
+.pen_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/searchImage.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.pen_image:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/searchAnimation.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
 .textField-searchBar {
-    -fx-text-fill: black;
-    -fx-prompt-text-fill: black;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-border-width: 4;
-    -fx-border-color: #5D8BDF;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
     -fx-font-style: italic;
-    -fx-font-family: "Times New Roman";
+    -fx-font-family: "Inter Light";
     -fx-alignment: center-left;
     -fx-padding: 5;
+    -fx-background-color: #1D1E3D;
 }
+
 .tab-pane {
-    -fx-background-radius: 0px 0px 20px 20px;
-    -fx-background-color: #444766;
+    -fx-background-radius: 10px;
+    -fx-background-color: #0B1021;
 
 }
-.scroll-pane {
-    -fx-background-color: #C9E6FF;
-    -fx-focus-color: transparent;
+
+.scroll-pane-wordspane {
+    -fx-background-color: #0B1021;
+    -fx-background-image: url('../image/imagegroup.png');
+    -fx-background-size: contain;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+.label- {
+    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+    -fx-font-weight: Bold;
+    -fx-font-style: italic;
 }
