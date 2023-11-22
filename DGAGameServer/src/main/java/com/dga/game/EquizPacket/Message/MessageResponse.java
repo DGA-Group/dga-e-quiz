@@ -4,6 +4,7 @@ import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.PacketResponse;
 
 public class MessageResponse implements EquizPacket {
+    private static final long serialVersionUID = 2973514425190292755L;
     public PacketResponse status;
     public int userId;
     public String username;

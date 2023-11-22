@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public class ShowRoomResponse implements EquizPacket {
+    private static final long serialVersionUID = 2370608051129232922L;
     public List<RoomWrapper> roomList = new ArrayList<>();
 
     public ShowRoomResponse(List<RoomWrapper> roomList) {

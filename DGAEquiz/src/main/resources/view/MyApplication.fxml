@@ -79,16 +79,6 @@
          <top>
             <HBox fx:id="hboxUpperBar" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="648.0" spacing="5.0" styleClass="menu-pane" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnMinimize" mnemonicParsing="false" styleClass="button-minimize" stylesheets="@../css/applicationDesign.css">
-                     <graphic>
-                        <FontIcon iconLiteral="fth-minus" iconSize="10" />
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btnMaximize" mnemonicParsing="false" styleClass="button-maximize" stylesheets="@../css/applicationDesign.css">
-                     <graphic>
-                        <FontIcon iconLiteral="fth-square" iconSize="10" />
-                     </graphic>
-                  </Button>
                   <Button fx:id="btnClose" mnemonicParsing="false" prefHeight="24.0" prefWidth="10.0" styleClass="button-close" stylesheets="@../css/applicationDesign.css" textFill="RED">
                      <graphic>
                         <FontIcon iconLiteral="fth-x" iconSize="10" />

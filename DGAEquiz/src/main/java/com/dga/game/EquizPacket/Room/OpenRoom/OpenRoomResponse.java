@@ -4,6 +4,7 @@ import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.PacketResponse;
 
 public class OpenRoomResponse implements EquizPacket {
+    private static final long serialVersionUID = 7663424830294911895L;
     public PacketResponse status;
     public String message;
     public String roomId;

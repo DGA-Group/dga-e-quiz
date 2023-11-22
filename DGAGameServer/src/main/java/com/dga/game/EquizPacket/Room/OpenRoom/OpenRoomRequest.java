@@ -3,6 +3,7 @@ package com.dga.game.EquizPacket.Room.OpenRoom;
 import com.dga.game.EquizPacket.EquizPacket;
 
 public class OpenRoomRequest implements EquizPacket {
+    private static final long serialVersionUID = -9159491280264274009L;
     public String roomName;
     public boolean requirePassword;
     public String roomPassword;

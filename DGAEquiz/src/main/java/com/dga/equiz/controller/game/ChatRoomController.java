@@ -60,7 +60,6 @@ public class ChatRoomController implements Initializable {
         btnReturn.setOnAction(event -> onClickReturn());
         cbGameMode.getItems().add("Red Tea");
         cbGameMode.getItems().add("Blue Tea");
-        cbGameMode.getItems().add("Green Tea");
         cbGameMode.setValue("Mode");
     }
 

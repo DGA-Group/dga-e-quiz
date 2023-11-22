@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane prefHeight="430.0" prefWidth="648.0" style="-fx-background-color: #E3F2FF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
+<BorderPane prefHeight="480.0" prefWidth="1030.0" style="-fx-background-color: #E3F2FF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
    <top>
-      <AnchorPane prefHeight="62.0" prefWidth="648.0" styleClass="upper" stylesheets="@../css/learnDesign.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="62.0" styleClass="upper" stylesheets="@../css/learnDesign.css" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="TOP_CENTER" layoutX="128.0" layoutY="9.0" prefHeight="21.0" prefWidth="391.0" spacing="200.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="9.0">
                <children>
@@ -34,10 +34,19 @@
          </children>
       </AnchorPane>
    </top>
+   <center>
+      <StackPane fx:id="paneQuestion" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="20.0" top="20.0" />
+         </padding></StackPane>
+   </center>
    <bottom>
-      <AnchorPane prefHeight="102.0" prefWidth="648.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="102.0" prefWidth="650.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="paneMessageHolder" prefHeight="102.4" prefWidth="648.0" styleClass="footer" stylesheets="@../css/learnDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="paneMessageHolder" prefHeight="102.4" styleClass="footer" stylesheets="@../css/learnDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label fx:id="labelComment" layoutX="65.0" layoutY="7.0" prefHeight="27.0" prefWidth="555.0" styleClass="label-content" stylesheets="@../css/learnDesign.css" text="Tuyệt vời, cố gắng lên nhé bạn nhỏ!" textAlignment="CENTER" wrapText="true">
                      <font>
@@ -47,7 +56,7 @@
                   <FontIcon iconLiteral="fth-thumbs-up" iconSize="30" layoutX="27.0" layoutY="33.0" wrappingWidth="29.600006103515625" />
                </children>
             </AnchorPane>
-            <StackPane alignment="BOTTOM_CENTER" prefHeight="102.4" prefWidth="648.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <StackPane alignment="BOTTOM_CENTER" prefHeight="102.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="buttonSubmit" mnemonicParsing="false" prefHeight="40.0" prefWidth="390.0" styleClass="learn-button" stylesheets="@../css/learnDesign.css" text="KIỂM TRA" />
                   <Button fx:id="buttonContinue" mnemonicParsing="false" prefHeight="40.0" prefWidth="390.0" styleClass="learn-button" stylesheets="@../css/learnDesign.css" text="TIẾP TỤC" visible="false" />
@@ -62,13 +71,4 @@
          </children>
       </AnchorPane>
    </bottom>
-   <center>
-      <StackPane fx:id="paneQuestion" prefHeight="281.0" prefWidth="648.0" BorderPane.alignment="CENTER">
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <padding>
-            <Insets top="10.0" />
-         </padding></StackPane>
-   </center>
 </BorderPane>

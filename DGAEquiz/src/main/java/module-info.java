@@ -21,6 +21,8 @@ module dgaequiz {
     opens com.dga.equiz.controller.game;
     exports com.dga.equiz.controller.login;
     opens com.dga.equiz.controller.login;
+    exports com.dga.equiz.model.event;
+    opens com.dga.equiz.model.event;
 
     requires javafx.base;
     requires javafx.graphics;

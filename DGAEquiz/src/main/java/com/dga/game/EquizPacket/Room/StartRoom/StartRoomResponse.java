@@ -4,8 +4,13 @@ import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.PacketResponse;
 
 public class StartRoomResponse implements EquizPacket {
+    private static final long serialVersionUID = -1876546223270730793L;
     public PacketResponse status;
     public String message;
+
+    public StartRoomResponse(){
+
+    }
 
     public StartRoomResponse(PacketResponse status, String message) {
         this.status = status;
