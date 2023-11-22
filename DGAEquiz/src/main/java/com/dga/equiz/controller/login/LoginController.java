@@ -40,9 +40,6 @@ import static com.dga.equiz.utils.EquizUtils.showAlert;
 public class LoginController implements Initializable {
 
     @FXML
-    private Label labelRegister_atlert;
-
-    @FXML
     private Button buttonAcc_go;
 
     @FXML
@@ -256,13 +253,15 @@ public class LoginController implements Initializable {
                 if (resultSet.next()) {
                     showAlert("Username đã tồn tại vui lòng nhập username khác.");
                     return;
-                } else {
+                } else if (!tfRegister_username.getText().isEmpty() && !tfRegister_pass.getText().isEmpty() && tfRegister_mail.getText().isEmpty()) {
                     Random random = new Random();
                     code[0] = 1000 + random.nextInt(9000);
                     String message = "Ma Code cua ban la: " + code[0];
                     Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfRegister_mail.getText(), "Confirm Acc DGAEQuiz", message);
                     stackPane.getChildren().forEach(pane -> pane.setVisible(false));
                     paneConfirmAcc.setVisible(true);
+                } else {
+                    showAlert("Please give our your USERNAME, PASSWORD AND MAIL to create a new account.");
                 }
 
             } catch (Exception e1){
@@ -419,12 +418,11 @@ public class LoginController implements Initializable {
             stackPane.getChildren().forEach(pane -> pane.setVisible(false));
             paneConfirmAcc.setVisible(true);
         } else {
-            labelRegister_atlert.setVisible(true);
+            showAlert("Please give me your USERNAME and PASSWORD to resgister");
         }
     }
 
     public void initlabel() {
-        labelRegister_atlert.setVisible(false);
         tfLogin_showPass.setVisible(false);
         tfAcc_confirmPassShow.setVisible(false);
     }

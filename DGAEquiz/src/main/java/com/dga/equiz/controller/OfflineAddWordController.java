@@ -39,7 +39,6 @@ public class OfflineAddWordController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
 }

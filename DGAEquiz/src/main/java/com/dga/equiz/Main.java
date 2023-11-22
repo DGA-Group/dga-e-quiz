@@ -44,7 +44,7 @@ public class Main extends Application {
                 return;
             }
 
-            Scene loginScene = new Scene((Parent) loginView.getNode(), 648, 430, Color.TRANSPARENT);
+            Scene loginScene = new Scene((Parent) loginView.getNode(), 1280, 720, Color.TRANSPARENT);
             Stage loginStage = StageManager.getInstance().loginStage = new Stage();
             loginStage.initStyle(StageStyle.TRANSPARENT);
             loginStage.setScene(loginScene);

@@ -94,7 +94,6 @@ public class OfflineDictionaryController implements Initializable {
 
     public void onClickAddWord() throws IOException {
         StageManager.getInstance().offlineAddDictionaryStage.show();
-        onClickSearch();
     }
 
     public void onClickSearch() throws IOException {
@@ -122,7 +121,12 @@ public class OfflineDictionaryController implements Initializable {
                 word = resultSet.getString(2);
                 description = resultSet.getString(4);
                 pronounce = resultSet.getString(5);
-                controller.setupWordView(word, pronounce, description, this);
+                if (word != null) {
+                    controller.setupWordView(word, pronounce, description, this);
+                }
+                else {
+                    EquizUtils.showAlert("Word is not exist !!!");
+                }
             }
 
         } catch (SQLException e) {

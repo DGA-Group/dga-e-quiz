@@ -1,15 +1,3 @@
-@font-face {
-    src: url("../font/Signika-Light.ttf");
-}
-
-@font-face {
-    src: url("../font/Signika-Bold.ttf");
-}
-
-@font-face {
-    src: url("../font/Signika-SemiBold.ttf");
-}
-
 .root {
     black: #000000;
     white: #FFFFFF;
@@ -27,7 +15,6 @@
 
 /* ===================================== Button ===================================== */
 .learn-button {
-    -fx-font-family: "Signika-Bold";
     -fx-font-size: 16px;
     -fx-text-fill: #F5F8FA;
     -fx-border-radius: 15px;
@@ -51,7 +38,6 @@
 }
 
 .button-correct-answer {
-    -fx-font-family: "Signika-Bold";
     -fx-font-size: 16px;
     -fx-text-fill: #F5F8FA;
     -fx-border-radius: 15px;
@@ -64,7 +50,6 @@
 }
 
 .button-wrong-answer {
-    -fx-font-family: "Signika-Bold";
     -fx-font-size: 16px;
     -fx-text-fill: #000000;
     -fx-border-radius: 15px;
@@ -110,13 +95,11 @@
 }
 
 .progress-label {
-    -fx-font-family: "Signika Light";
     -fx-font-size: 13px;
 }
 
 /* ===================================== Label ===================================== */
 .label-content {
-    -fx-font-family: "Signika SemiBold";
     -fx-font-size: 16px;
 }
 

@@ -21,7 +21,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-import java.util.SimpleTimeZone;
 
 public class OfflineWordController implements Initializable {
     @FXML
@@ -38,6 +37,22 @@ public class OfflineWordController implements Initializable {
     private Button btnSave;
     private ChangeWordController changeWordController;
     private OfflineDictionaryController dictionaryController;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            NodeObject changeWordView = EquizUtils.Instantiate("/view/ChangeWordView.fxml");
+            this.changeWordController = changeWordView.getController();
+            Scene changeWordScene = new Scene((Parent) changeWordView.getNode());
+            Stage changeWordViewStage = StageManager.getInstance().changeWordStage = new Stage();
+            changeWordViewStage.initStyle(StageStyle.TRANSPARENT);
+            changeWordViewStage.setScene(changeWordScene);
+            changeWordViewStage.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void setupWordView(String word, String pronounce, String description, OfflineDictionaryController offlineDictionaryController) {
         this.labelOfWord.setText(word);
         this.labelOfDescription.setText(description);
@@ -47,13 +62,13 @@ public class OfflineWordController implements Initializable {
         labelOfPronounce.setWrapText(true);
         labelOfDescription.setWrapText(true);
     }
+
     public void onClickChangeWord() throws IOException {
         String changedWord = labelOfWord.getText();
         String changedPronounce = labelOfPronounce.getText();
         String changedDescription = labelOfDescription.getText();
-        changeWordController.setupChangeWordView(changedWord,changedPronounce,changedDescription);
+        changeWordController.setupChangeWordView(changedWord, changedPronounce, changedDescription);
         StageManager.getInstance().changeWordStage.show();
-        dictionaryController.onClickSearch();
     }
 
     public void onClickDelete() throws IOException {
@@ -69,6 +84,7 @@ public class OfflineWordController implements Initializable {
         }
         dictionaryController.onClickSearch();
     }
+
     public void onClickSave() throws SQLException {
         ResultSet resultSet = null;
         Statement statement = null;
@@ -76,41 +92,25 @@ public class OfflineWordController implements Initializable {
         String savedWord = labelOfWord.getText();
         String savedDescription = labelOfDescription.getText();
         int userID = ApplicationData.getInstance().profile.getID();
-        String query = "SELECT id , word, description FROM ALM WHERE id = '" + userID
+        String query = "SELECT id , word, description FROM flashcard WHERE id = '" + userID
                 + "' AND word = '" + savedWord + "' AND description = '" + savedDescription + "';";
         resultSet = DBHelper.executeQuery(query);
         statement = resultSet.getStatement();
         connection = statement.getConnection();
         while (resultSet.next()) {
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 EquizUtils.showAlert("Already Exist !");
-            }
-            else {
-                String updateQuery = "INSERT INTO ALM (id, word, description) VALUES ('"
+            } else {
+                String updateQuery = "INSERT INTO flashcard (id, word, description) VALUES ('"
                         + userID + "','" + savedWord + "','" + savedDescription + "');";
                 try {
                     DBHelper.executeUpdateSqlite(query);
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
-                finally {
+                } finally {
                     DBHelper.closeQuery(resultSet, statement, connection);
                 }
             }
-        }
-    }
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            NodeObject changeWordView = EquizUtils.Instantiate("/view/ChangeWordView.fxml");
-            this.changeWordController = changeWordView.getController();
-            Scene changeWordScene = new Scene((Parent) changeWordView.getNode());
-            Stage changeWordViewStage = StageManager.getInstance().changeWordStage = new Stage();
-            changeWordViewStage.initStyle(StageStyle.TRANSPARENT);
-            changeWordViewStage.setScene(changeWordScene);
-            changeWordViewStage.hide();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

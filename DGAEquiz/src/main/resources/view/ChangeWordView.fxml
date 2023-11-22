@@ -29,7 +29,7 @@
             <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#onClickConfirm" text="Confirm" />
          </children>
       </VBox>
-      <Button fx:id="btnClose" layoutX="586.0" layoutY="2.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="24.0" prefWidth="10.0" styleClass="button-close" stylesheets="@../css/applicationDesign.css" textFill="RED">
+      <Button fx:id="btnClose" layoutX="586.0" layoutY="2.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="24.0" prefWidth="10.0" textFill="RED">
          <graphic>
             <FontIcon iconLiteral="fth-x" iconSize="10" />
          </graphic>

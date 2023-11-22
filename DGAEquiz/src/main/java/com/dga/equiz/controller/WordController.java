@@ -56,6 +56,7 @@ public class WordController {
             vBox.getChildren().add(definitionsLabel);
             definitionsLabel.setWrapText(true);
             definitionsLabel.setText("Definition:  " + def.getDefinition());
+            definitionsLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
             if (def.getExample() == null) {
                 cntDef++;
             } else {
@@ -63,6 +64,7 @@ public class WordController {
                 vBox.getChildren().add(exampleLabel);
                 exampleLabel.setWrapText(true);
                 exampleLabel.setText("Example:  " + def.getExample());
+                exampleLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
                 cntEx++;
                 cntDef++;
             }
@@ -89,6 +91,8 @@ public class WordController {
 
         synonymLabel.setText("Synonyms : " + synonyms);
         synonymLabel.setWrapText(true);
+        synonymLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
+
         String antonyms = "";
         for (int k = 0; k < word.getMeanings().size(); k++) {
             if (!word.getMeanings().get(k).getAntonyms().isEmpty()) {
@@ -104,6 +108,7 @@ public class WordController {
 
         antonymLabel.setText("Antonyms : "+ antonyms);
         antonymLabel.setWrapText(true);
+        antonymLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
     }
 
 }
