@@ -5,9 +5,9 @@
 @font-face {
     src: url("../font/Inter-Medium.ttf");
 }
-@font-face {
-    src: url("../font/PlayfairDisplay.ttf");
-}
+/*@font-face {*/
+/*    src: url("../font/PlayfairDisplay.ttf");*/
+/*}*/
 
 .back_ground {
     -fx-background-color: #0B1021;
@@ -19,8 +19,13 @@
 }
 
 .label {
-    -fx-font-family: "Inter Medium";
+    -fx-font-family: "Trebuchet MS";
     -fx-text-fill : #FFFFFF;
+}
+
+.name_label {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
 }
 
 .mail_image {
@@ -34,7 +39,7 @@
 .phone_image {
     -fx-background-color: transparent;
     -fx-border-width: 0;
-    -fx-background-image: url("../image/phone2.png");
+    -fx-background-image: url("../image/phone.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
@@ -58,7 +63,7 @@
     -fx-background-position: center center;
 }
 
-.pen_image {
+.pen {
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-background-image: url("../image/pen.png");
@@ -66,11 +71,10 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
-
-.pen_image:hover {
+.setting {
     -fx-background-color: transparent;
     -fx-border-width: 0;
-    -fx-background-image: url("../image/pen.gif");
+    -fx-background-image: url("../image/setting.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
@@ -87,6 +91,12 @@
 }
 
 .quote {
-    -fx-font-family: "Playfair Display";
+    -fx-font-family: "Georgia";
     -fx-text-fill : #FFFFFF;
+}
+.rectangle {
+    -fx-fill: #A5A8B6;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    /*-fx-background-radius: 10px;*/
 }

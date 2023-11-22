@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -253,7 +254,7 @@ public class LoginController implements Initializable {
                 if (resultSet.next()) {
                     showAlert("Username đã tồn tại vui lòng nhập username khác.");
                     return;
-                } else if (!tfRegister_username.getText().isEmpty() && !tfRegister_pass.getText().isEmpty() && tfRegister_mail.getText().isEmpty()) {
+                } else if (tfRegister_username.getText().isEmpty() == false && tfRegister_pass.getText().isEmpty() == false && tfRegister_mail.getText().isEmpty() == false) {
                     Random random = new Random();
                     code[0] = 1000 + random.nextInt(9000);
                     String message = "Ma Code cua ban la: " + code[0];
@@ -262,6 +263,9 @@ public class LoginController implements Initializable {
                     paneConfirmAcc.setVisible(true);
                 } else {
                     showAlert("Please give our your USERNAME, PASSWORD AND MAIL to create a new account.");
+                    System.out.println(tfRegister_username.getText());
+                    System.out.println(tfRegister_pass.getText());
+                    System.out.println(tfRegister_mail.getText());
                 }
 
             } catch (Exception e1){

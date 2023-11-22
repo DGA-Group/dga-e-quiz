@@ -3,7 +3,10 @@ package com.dga.equiz.controller;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.EquizUtils;
+import com.dga.equiz.utils.StageManager;
+import com.dga.game.ClientHelperRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +16,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,6 +29,9 @@ public class MyApplicationController implements Initializable {
 
     @FXML
     private Button btnClose;
+
+    @FXML
+    private Button logOutButton;
 
     @FXML
     private HBox hboxUpperBar;
@@ -55,6 +63,27 @@ public class MyApplicationController implements Initializable {
 
         // Set default panel to home
         currentPanel = homeView;
+
+        logOutButton.setOnAction((ActionEvent e) -> {
+            StageManager.getInstance().myApplicationStage.hide();
+            StageManager.getInstance().loginStage.show();
+            ControllerManager.getInstance().loginController.tfLogin_username.setText(null);
+            ControllerManager.getInstance().loginController.tfLogin_showPass.setText(null);
+            ControllerManager.getInstance().loginController.pfLogin_password.setText(null);
+
+            try {
+                Socket socket = ApplicationData.getInstance().socket;
+                if (socket.isConnected()) {
+                    socket.close();
+                    ObjectOutputStream oos = ClientHelperRequest.objectOutputStream;
+                    if(oos != null){
+                        oos.close();
+                    }
+                    ClientHelperRequest.objectOutputStream = null;
+                }
+            } catch (Exception ignore) {
+            }
+        });
     }
 
     public void setupButton() {

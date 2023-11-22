@@ -60,6 +60,7 @@
                   <FontIcon iconColor="WHITE" iconLiteral="fth-trending-down" />
                </graphic>
             </Button>
+            <Button fx:id="logOutButton" mnemonicParsing="false" text="Logout" />
             <Button fx:id="btnClose" mnemonicParsing="false" prefHeight="24.0" prefWidth="10.0" styleClass="button-close" stylesheets="@../css/applicationDesign.css" textFill="RED">
                <graphic>
                   <FontIcon iconLiteral="fth-x" iconSize="10" />

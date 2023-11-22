@@ -17,7 +17,7 @@
    <right>
       <StackPane fx:id="stackPane" prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0">
+            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0" visible="false">
                <center>
                   <Pane prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                      <children>
@@ -73,7 +73,7 @@
                   </Pane>
                </center>
             </BorderPane>
-            <BorderPane fx:id="paneRegister" prefHeight="513.0" prefWidth="353.0" visible="false">
+            <BorderPane fx:id="paneRegister" prefHeight="513.0" prefWidth="353.0">
                <center>
                   <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
