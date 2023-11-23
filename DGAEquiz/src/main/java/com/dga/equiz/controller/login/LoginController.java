@@ -17,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -57,6 +56,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button buttonPass_go;
+
+    @FXML
+    private Button buttonPass_back;
 
     @FXML
     private Button buttonForgot_go;
@@ -168,9 +170,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField tfRegister_username;
-
-    @FXML
-    private VBox vboxInfor;
 
     public List<EventHandler<ActionEvent>> onCompleteSave = new ArrayList<>();
 
@@ -375,6 +374,7 @@ public class LoginController implements Initializable {
         setButtonAction(buttonRegister_back, paneLogin);
         setButtonAction(buttonAcc_back, paneRegister);
         setButtonAction(buttonForgot_back, paneLogin);
+        setButtonAction(buttonPass_back, paneForgotPass);
     }
 
     public void setButtonAction(Button button, BorderPane pane1) {

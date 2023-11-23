@@ -6,95 +6,101 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.login.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" styleClass="back_ground" stylesheets="@../../css/loginDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.login.LoginController">
    <right>
-      <StackPane fx:id="stackPane" prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+      <StackPane fx:id="stackPane" prefHeight="720.0" prefWidth="640.0" styleClass="pane" BorderPane.alignment="CENTER">
          <children>
             <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0" visible="false">
                <center>
                   <Pane prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" layoutY="51.0" prefHeight="120.0" prefWidth="640.0" text="HI!">
+                        <Label alignment="CENTER" layoutY="21.0" prefHeight="126.0" prefWidth="640.0" styleClass="loginField" text="Welcome">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfLogin_username" layoutX="139.0" layoutY="191.0" prefHeight="45.0" prefWidth="370.0" promptText="Username">
+                        <TextField fx:id="tfLogin_username" alignment="TOP_LEFT" layoutX="139.0" layoutY="191.0" prefHeight="45.0" prefWidth="370.0" styleClass="button1">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </TextField>
-                        <PasswordField fx:id="pfLogin_password" layoutX="139.0" layoutY="265.0" prefHeight="30.0" prefWidth="370.0" promptText="Password" />
-                        <TextField fx:id="tfLogin_showPass" layoutX="139.0" layoutY="265.0" prefHeight="45.0" prefWidth="370.0" promptText="Password">
+                        <PasswordField fx:id="pfLogin_password" layoutX="139.0" layoutY="285.0" prefHeight="45.0" prefWidth="370.0" promptText="Password" styleClass="button1" />
+                        <TextField fx:id="tfLogin_showPass" alignment="TOP_LEFT" layoutX="139.0" layoutY="285.0" prefHeight="45.0" prefWidth="370.0" styleClass="button1">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </TextField>
-                        <CheckBox fx:id="checkLogin_pass" layoutX="142.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="SHOW PASSWORD">
+                        <CheckBox fx:id="checkLogin_pass" layoutX="142.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="155.0" text="SHOW PASSWORD" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </CheckBox>
-                        <Button fx:id="buttonLogin_ForgotPass" layoutX="372.0" layoutY="335.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="137.0" text="Forgot Password">
+                        <Button fx:id="buttonLogin_ForgotPass" layoutX="372.0" layoutY="375.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="137.0" styleClass="button1" text="Forgot Password">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonLogin_login" layoutX="219.0" layoutY="412.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0" text="LOG IN">
+                        <Button fx:id="buttonLogin_login" layoutX="219.0" layoutY="432.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0" styleClass="button1" text="Start">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
                         <Line endX="47.0" layoutX="461.0" layoutY="512.0" startX="-105.0" startY="1.5" />
-                        <Label layoutX="306.0" layoutY="491.0" prefWidth="50.0" text="OR">
+                        <Label layoutX="305.0" layoutY="523.0" prefWidth="50.0" styleClass="normal_field" text="OR">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
                         <Line endX="57.0" layoutX="241.0" layoutY="514.0" startX="-100.0" />
-                        <Label alignment="CENTER" layoutX="158.0" layoutY="563.0" prefHeight="30.0" prefWidth="324.0" text="Register Account">
+                        <Label alignment="CENTER" layoutX="158.0" layoutY="583.0" prefHeight="30.0" prefWidth="324.0" styleClass="normal_field" text="Register Account">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonLogin_signUp" layoutX="219.0" layoutY="619.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" text="SIGN UP">
+                        <Button fx:id="buttonLogin_signUp" layoutX="219.0" layoutY="639.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="button1" text="Sign Up">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
+                        <Label layoutX="144.0" layoutY="154.0" styleClass="userLabel" text="Username" />
+                        <Label layoutX="141.0" layoutY="251.0" styleClass="userLabel" text="Password" />
                      </children>
                   </Pane>
                </center>
             </BorderPane>
-            <BorderPane fx:id="paneRegister" prefHeight="513.0" prefWidth="353.0">
+            <BorderPane fx:id="paneRegister" prefHeight="513.0" prefWidth="353.0" visible="false">
                <center>
                   <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" layoutX="184.0" layoutY="37.0" prefHeight="98.0" prefWidth="320.0" text="CREATE ACCOUNT">
+                        <Label alignment="CENTER" layoutX="126.0" layoutY="37.0" prefHeight="98.0" prefWidth="437.0" styleClass="loginField" text="CREATE ACCOUNT">
                            <font>
                               <Font name="System Bold" size="24.0" />
                            </font>
                         </Label>
-                        <VBox fx:id="vboxInfor" layoutX="159.0" layoutY="155.0" prefHeight="428.0" prefWidth="370.0" spacing="30.0">
-                           <children>
-                              <TextField fx:id="tfRegister_username" prefHeight="30.0" prefWidth="370.0" promptText="Username" />
-                              <TextField fx:id="tfRegister_pass" layoutX="10.0" layoutY="27.0" prefHeight="30.0" prefWidth="370.0" promptText="Password" />
-                              <TextField fx:id="tfRegister_name" layoutX="10.0" layoutY="69.0" prefHeight="30.0" prefWidth="370.0" promptText="Your Name" />
-                              <TextField fx:id="tfRegister_mail" layoutX="10.0" layoutY="111.0" prefHeight="30.0" prefWidth="370.0" promptText="Your Mail" />
-                              <TextField fx:id="tfRegister_phone" layoutX="10.0" layoutY="153.0" prefHeight="30.0" prefWidth="370.0" promptText="Phone Number" />
-                              <TextField fx:id="tfRegister_github" layoutX="10.0" layoutY="195.0" prefHeight="30.0" prefWidth="370.0" promptText="Github Link" />
-                              <DatePicker fx:id="dateRegister_dob" prefHeight="30.0" prefWidth="370.0" promptText="mm/dd/yyyy" />
-                           </children>
-                        </VBox>
-                        <Button fx:id="buttonRegister_back" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" text="BACK" />
-                        <Button fx:id="buttonRegister_next" layoutX="271.0" layoutY="600.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="180.0" text="CONTINUE" />
+                        <Label layoutX="126.0" layoutY="120.0" styleClass="userLabel" text="Username" />
+                        <TextField fx:id="tfRegister_username" layoutX="126.0" layoutY="150.0" prefHeight="30.0" prefWidth="370.0" promptText="Username" styleClass="button1" />
+                        <Label layoutX="126.0" layoutY="200.0" styleClass="userLabel" text="Password" />
+                        <TextField fx:id="tfRegister_pass" layoutX="126.0" layoutY="230.0" prefHeight="30.0" prefWidth="370.0" promptText="Password" styleClass="button1" />
+                        <Label layoutX="126.0" layoutY="280.0" styleClass="userLabel" text="Mail" />
+                        <Label layoutX="126.0" layoutY="530.0" styleClass="userLabel" text="Github Link" />
+                        <Label layoutX="126.0" layoutY="440.0" styleClass="userLabel" text="Phone Number" />
+                        <Label layoutX="126.0" layoutY="360.0" styleClass="userLabel" text="Name" />
+                        <TextField fx:id="tfRegister_mail" layoutX="126.0" layoutY="310.0" prefHeight="30.0" prefWidth="370.0" promptText="Your Mail" styleClass="button1" />
+                        <TextField fx:id="tfRegister_name" layoutX="126.0" layoutY="390.0" prefHeight="30.0" prefWidth="370.0" promptText="Your Name" styleClass="button1" />
+                        <TextField fx:id="tfRegister_phone" layoutX="126.0" layoutY="470.0" prefHeight="30.0" prefWidth="370.0" promptText="Phone Number" styleClass="button1" />
+                        <TextField fx:id="tfRegister_github" layoutX="126.0" layoutY="560.0" prefHeight="30.0" prefWidth="370.0" promptText="Github Link" styleClass="button1" />
+                        <Button fx:id="buttonRegister_back" layoutX="17.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" styleClass="back" />
+                        <Label layoutX="126.0" layoutY="610.0" styleClass="userLabel" text="Date Of Birth" />
+                        <DatePicker fx:id="dateRegister_dob" layoutX="126.0" layoutY="640.0" prefHeight="30.0" prefWidth="370.0" promptText="mm/dd/yyyy" styleClass="button1" />
+                        <Button fx:id="buttonRegister_next" layoutX="575.0" layoutY="655.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" styleClass="next" />
                      </children>
                   </Pane>
                </center>
@@ -103,54 +109,54 @@
                <center>
                   <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" layoutX="160.0" layoutY="63.0" prefHeight="92.0" prefWidth="320.0" text="OPEN YOUR MAIL">
+                        <Label alignment="CENTER" layoutX="123.0" layoutY="63.0" prefHeight="92.0" prefWidth="423.0" styleClass="loginField" text="OPEN YOUR MAIL">
                            <font>
                               <Font name="System Bold" size="35.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="152.0" layoutY="172.0" prefHeight="17.0" prefWidth="336.0" text="Confirm Code">
+                        <Label alignment="CENTER" layoutX="152.0" layoutY="172.0" prefHeight="17.0" prefWidth="336.0" styleClass="normal_field" text="Confirm Code">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonAcc_back" layoutX="21.0" layoutY="23.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="49.0" text="Back" />
-                        <TextField fx:id="tfAcc_confirmPassShow" layoutX="123.0" layoutY="402.0" prefHeight="43.0" prefWidth="378.0" promptText="Confirm your password">
+                        <Button fx:id="buttonAcc_back" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="45.0" styleClass="back" />
+                        <TextField fx:id="tfAcc_confirmPassShow" layoutX="123.0" layoutY="402.0" prefHeight="43.0" prefWidth="378.0" promptText="Confirm your password" styleClass="button1">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </TextField>
-                        <PasswordField fx:id="pfAcc_confirmPass" layoutX="123.0" layoutY="402.0" prefHeight="43.0" prefWidth="378.0">
+                        <PasswordField fx:id="pfAcc_confirmPass" layoutX="123.0" layoutY="402.0" prefHeight="43.0" prefWidth="378.0" styleClass="button1">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </PasswordField>
-                        <CheckBox fx:id="checkAcc_showAcc" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="542.0" layoutY="409.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="19.0">
+                        <CheckBox fx:id="checkAcc_showAcc" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="525.0" layoutY="413.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="19.0">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="checkAcc_agree" layoutX="161.0" layoutY="507.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="347.0" text="I agree to all of the developer's terms">
+                        <CheckBox fx:id="checkAcc_agree" layoutX="161.0" layoutY="507.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="347.0" styleClass="normal_field" text="I agree to all of the developer's terms">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </CheckBox>
-                        <Button fx:id="buttonAcc_go" layoutX="198.0" layoutY="585.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="229.0" text="Go To App" />
-                        <TextField fx:id="tfAcc_code1" alignment="CENTER" layoutX="123.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0">
+                        <Button fx:id="buttonAcc_go" layoutX="254.0" layoutY="566.0" mnemonicParsing="false" prefHeight="108.0" prefWidth="116.0" styleClass="go" />
+                        <TextField fx:id="tfAcc_code1" alignment="CENTER" layoutX="123.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="tfAcc_code2" alignment="CENTER" layoutX="223.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0">
+                        <TextField fx:id="tfAcc_code2" alignment="CENTER" layoutX="223.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="tfAcc_code3" alignment="CENTER" layoutX="323.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0">
+                        <TextField fx:id="tfAcc_code3" alignment="CENTER" layoutX="323.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="tfAcc_code4" alignment="CENTER" layoutX="423.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0">
+                        <TextField fx:id="tfAcc_code4" alignment="CENTER" layoutX="423.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
                            <font>
                               <Font size="35.0" />
                            </font>
@@ -161,63 +167,70 @@
             </BorderPane>
             <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0" visible="false">
                <center>
-                  <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <Pane prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" layoutX="142.0" layoutY="113.0" prefHeight="117.0" prefWidth="357.0" text="FORGOT PASSWORD">
+                        <Label alignment="CENTER" layoutX="92.0" layoutY="42.0" prefHeight="117.0" prefWidth="491.0" styleClass="loginField" text="FORGOT PASSWORD">
                            <font>
                               <Font name="System Bold" size="35.0" />
                            </font>
                         </Label>
-                        <VBox alignment="CENTER" layoutX="147.0" layoutY="230.0" prefHeight="287.0" prefWidth="370.0" spacing="40.0">
-                           <children>
-                              <TextField fx:id="tfForgot_username" prefHeight="30.0" prefWidth="370.0" promptText="Your username" />
-                              <TextField fx:id="tfForgot_mail" prefHeight="30.0" prefWidth="370.0" promptText="Your Mail" />
-                              <TextField fx:id="tfForgot_Npass" prefHeight="30.0" prefWidth="370.0" promptText="New Password" />
-                              <TextField fx:id="tfForgot_confNpass" prefHeight="30.0" prefWidth="370.0" promptText="Confirm New Password" />
-                           </children>
-                        </VBox>
-                        <Button fx:id="buttonForgot_back" layoutX="35.0" layoutY="28.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="55.0" text="Back" />
-                        <Button fx:id="buttonForgot_go" layoutX="251.0" layoutY="559.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="163.0" text="COUTINUE" />
+                        <Button fx:id="buttonForgot_back" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="55.0" styleClass="back" />
+                        <Button fx:id="buttonForgot_go" layoutX="583.0" layoutY="662.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="55.0" styleClass="next" />
+                        <Label layoutX="100.0" layoutY="280.0" styleClass="userNameFor" text="Mail" />
+                        <Label layoutX="100.0" layoutY="420.0" styleClass="userNameFor" text="New Password" />
+                        <Label layoutX="100.0" layoutY="140.0" styleClass="userNameFor" text="Username" />
+                        <Label layoutX="100.0" layoutY="560.0" styleClass="userNameFor" text="Confirm Pass" />
+                        <TextField fx:id="tfForgot_username" layoutX="100.0" layoutY="190.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1" />
+                        <TextField fx:id="tfForgot_mail" layoutX="100.0" layoutY="330.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1" />
+                        <TextField fx:id="tfForgot_Npass" layoutX="100.0" layoutY="470.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1" />
+                        <TextField fx:id="tfForgot_confNpass" layoutX="100.0" layoutY="610.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1" />
                      </children>
                   </Pane>
                </center>
             </BorderPane>
-            <BorderPane fx:id="paneConfirmPass" layoutX="10.0" layoutY="10.0" prefHeight="513.0" prefWidth="353.0" visible="false">
+            <BorderPane fx:id="paneConfirmPass" layoutX="10.0" layoutY="10.0" prefHeight="513.0" prefWidth="353.0">
                <center>
                   <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" layoutX="154.0" layoutY="78.0" prefHeight="124.0" prefWidth="333.0" text="OPEN YOUR MAIL">
+                        <Label alignment="CENTER" layoutX="127.0" layoutY="74.0" prefHeight="124.0" prefWidth="429.0" styleClass="loginField" text="OPEN YOUR MAIL">
                            <font>
                               <Font name="System Bold" size="35.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="152.0" layoutY="191.0" prefHeight="51.0" prefWidth="336.0" text="Confirm Code">
+                        <Label alignment="CENTER" layoutX="152.0" layoutY="191.0" prefHeight="51.0" prefWidth="336.0" styleClass="normal_field" text="Confirm Code">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfPass_code1" layoutX="141.0" layoutY="300.0" prefHeight="75.0" prefWidth="75.0">
+                        <TextField fx:id="tfPass_code1" layoutX="141.0" layoutY="300.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="tfPass_code2" layoutX="241.0" layoutY="300.0" prefHeight="75.0" prefWidth="75.0">
+                        <TextField fx:id="tfPass_code2" layoutX="241.0" layoutY="300.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
                            <font>
                               <Font size="35.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="tfPass_code3" layoutX="341.0" layoutY="300.0" prefHeight="75.0" prefWidth="75.0" />
-                        <TextField fx:id="tfPass_code4" layoutX="441.0" layoutY="300.0" prefHeight="75.0" prefWidth="75.0" />
-                        <Label alignment="CENTER" layoutX="92.0" layoutY="439.0" prefHeight="51.0" prefWidth="498.0" text="Don't forget your password again ;)">
+                        <TextField fx:id="tfPass_code3" layoutX="341.0" layoutY="300.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
+                           <font>
+                              <Font size="35.0" />
+                           </font></TextField>
+                        <TextField fx:id="tfPass_code4" layoutX="441.0" layoutY="300.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
+                           <font>
+                              <Font size="35.0" />
+                           </font></TextField>
+                        <Label alignment="CENTER" layoutX="92.0" layoutY="439.0" prefHeight="51.0" prefWidth="498.0" styleClass="normal_field" text="Don't forget your password again ;)">
                            <font>
                               <Font size="25.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonPass_go" layoutX="241.0" layoutY="534.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="200.0" text="Let's Go to App">
+                        <Button fx:id="buttonPass_go" layoutX="271.0" layoutY="519.0" mnemonicParsing="false" prefHeight="136.0" prefWidth="142.0" styleClass="go">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
+                        <Button fx:id="buttonPass_back" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="74.0" styleClass="back" />
                      </children>
                   </Pane>
                </center>
@@ -226,6 +239,15 @@
       </StackPane>
    </right>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="429.0" fitWidth="448.0" layoutX="60.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/imagegroup.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="14.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="facebook" />
+            <Button layoutX="74.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="instagram" />
+         </children></Pane>
    </center>
 </BorderPane>

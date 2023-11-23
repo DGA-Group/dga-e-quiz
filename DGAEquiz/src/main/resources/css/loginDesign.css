@@ -1,0 +1,101 @@
+.back_ground {
+    -fx-background-color: #0B1021;
+}
+
+.pane {
+    -fx-background-color: #1D1E3D;
+    -fx-background-radius: 10px;
+}
+.normal_field {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill : #FFFFFF;
+}
+
+.button1 {
+    -fx-background-color: #6387FF;
+    -fx-text-fill: #FFFFFF;
+    -fx-background-radius: 10px;
+}
+
+.button1:hover {
+    -fx-background-color: linear-gradient(to bottom right, #F1A4EB, #6387FF);
+    -fx-text-fill: black;
+    -fx-background-radius: 10px;
+}
+.userLabel {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill : #FFFFFF;
+    -fx-font-size: 20;
+}
+
+.loginField {
+    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB, #5E47FF);
+    -fx-font-size: 50;
+}
+
+.facebook {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/facebook.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.instagram {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/instagram.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.next {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/next.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.next {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/next.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.back {
+     -fx-background-color: transparent;
+     -fx-border-width: 0;
+     -fx-background-image: url("../image/back.png");
+     -fx-background-size: cover;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position: center center;
+ }
+
+.go {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/check_in.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.go:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/check_in.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.userNameFor {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill : #FFFFFF;
+    -fx-font-size: 30;
+}

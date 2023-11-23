@@ -8,5 +8,5 @@
 
 .button_menu:hover {
     -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
