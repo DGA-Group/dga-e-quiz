@@ -16,10 +16,10 @@ import java.util.Map;
 public class GreenTea extends TeaGame{
     private final Room hostRoom;
     private volatile Timer currentRoundTimer;
-    private String currentRoundWord;
+    private volatile String currentRoundWord;
 
     private volatile boolean isRunning = true;
-    private Map<String, Integer> playerPoint;
+    private volatile Map<String, Integer> playerPoint;
 
     public GreenTea(Room hostRoom) {
         this.hostRoom = hostRoom;
@@ -38,7 +38,7 @@ public class GreenTea extends TeaGame{
     public void play() throws IOException, InterruptedException {
         playerPoint = new HashMap<>();
         hostRoom.currentWinner = null;
-
+        Thread.sleep(500);
         while (isRunning) {
             //Send word to the client.
             currentRoundWord = GameHelper.getRandomKeyword();

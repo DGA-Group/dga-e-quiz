@@ -5,8 +5,10 @@ import com.dga.game.EquizPacket.EquizPacket;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serial;
 
 public class StartRoomRequest implements EquizPacket {
+    @Serial
     private static final long serialVersionUID = -2317145088469874136L;
     public String gameMode;
 
@@ -16,14 +18,6 @@ public class StartRoomRequest implements EquizPacket {
 
     public StartRoomRequest(String gameMode) {
         this.gameMode = gameMode;
-    }
-
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-    }
-
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
     }
 
     @Override

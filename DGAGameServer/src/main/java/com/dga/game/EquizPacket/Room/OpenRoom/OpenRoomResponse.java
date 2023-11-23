@@ -6,9 +6,11 @@ import com.dga.game.EquizPacket.PacketResponse;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serial;
 
 public class OpenRoomResponse implements EquizPacket {
-    private static final long serialVersionUID = 7663424830294911895L;
+    @Serial
+    private static final long serialVersionUID = -6654321628719438566L;
     public PacketResponse status;
     public String message;
     public String roomId;
@@ -27,14 +29,6 @@ public class OpenRoomResponse implements EquizPacket {
         this.message = message;
         this.roomId = roomId;
         this.roomPassword = roomPassword;
-    }
-
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-    }
-
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
     }
 
     @Override
