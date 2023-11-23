@@ -1,3 +1,25 @@
 .back_ground {
     -fx-background-color: #0B1021;
 }
+
+.text_field {
+    -fx-background-color: #6387FF;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20;
+}
+
+.text_field:hover {
+    -fx-background-color: linear-gradient(to bottom right, #F1A4EB, #6387FF);
+    -fx-text-fill: black;
+    -fx-font-size: 20;
+}
+
+.field {
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+}
+
+.pane {
+    -fx-background-color: #1D1E3D;
+    -fx-background-radius: 10px;
+}
