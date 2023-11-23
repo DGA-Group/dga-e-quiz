@@ -2,6 +2,8 @@ package com.dga.equiz.controller;
 
 import com.dga.equiz.controller.question.*;
 import com.dga.equiz.model.Lesson;
+import com.dga.equiz.model.event.IEvent;
+import com.dga.equiz.model.event.IEventLong;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.EquizUtils;
@@ -15,10 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class LearnController implements Initializable {
     //region FXML Reference
@@ -45,11 +44,16 @@ public class LearnController implements Initializable {
 
     @FXML
     public Label labelPercent;
+
     //endregion
+
+    public IEventLong onFinishCampaign;
+    public IEvent onGoToFinishView;
 
     private NodeObject currentQuestion;
     private LinkedList<NodeObject> linkedListQuestions = new LinkedList<NodeObject>();
     private double totalQuestionCount = 0;
+    private long campaignId = 0;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,9 +71,10 @@ public class LearnController implements Initializable {
 
     }
 
-    public void setLesson(Lesson lesson) {
+    public void setLesson(Lesson lesson, long campaignId) {
         linkedListQuestions.clear();
         paneQuestion.getChildren().clear();
+        this.campaignId = campaignId;
         List<Long> image_questions_id = lesson.getImage_questions_id();
         for (var questionId : image_questions_id) {
             addImageQuestion(questionId);
@@ -217,6 +222,14 @@ public class LearnController implements Initializable {
     private void nextQuestion() {
         if (linkedListQuestions.isEmpty()) {
             System.out.println("Chuc mung ban da hoan thanh khoa hoc!");
+            if (onFinishCampaign != null) {
+                onFinishCampaign.hande(campaignId);
+            }
+            if (onGoToFinishView != null) {
+                onGoToFinishView.handle();
+            }
+            onFinishCampaign = null;
+            onGoToFinishView = null;
             return;
         }
 
@@ -264,10 +277,6 @@ public class LearnController implements Initializable {
 
         this.buttonContinue.setVisible(toggleButtonContinue);
         this.buttonSubmit.setVisible(toggleButtonSubmit);
-
-       /* if (this.buttonSubmit.isVisible()) {
-            this.buttonSubmit.setDisable(true);
-        }*/
 
         boolean panelMessageVisible = this.paneMessageHolder.isVisible();
         this.paneMessageHolder.setVisible(!panelMessageVisible);

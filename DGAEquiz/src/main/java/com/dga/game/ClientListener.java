@@ -1,19 +1,19 @@
 package com.dga.game;
 
+import com.dga.equiz.utils.MyObjectInputStream;
 import com.dga.game.EquizPacket.EquizPacket;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.Socket;
 
 public class ClientListener extends Thread {
     private final Socket socket;
-    private ObjectInputStream objectInputStream;
+    private MyObjectInputStream objectInputStream;
 
     public ClientListener(Socket socket) {
         this.socket = socket;
         try {
-            objectInputStream = new ObjectInputStream(socket.getInputStream());
+            objectInputStream = new MyObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }

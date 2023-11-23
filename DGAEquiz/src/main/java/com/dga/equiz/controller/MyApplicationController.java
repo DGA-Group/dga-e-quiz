@@ -33,15 +33,13 @@ public class MyApplicationController implements Initializable {
     @FXML
     private Button logOutButton;
 
-    @FXML
-    private HBox hboxUpperBar;
     //endregion
 
     private NodeObject homeView = null;
     private NodeObject dictionaryView = null;
     private NodeObject profileView = null;
     private NodeObject gameView = null;
-    private NodeObject offlinedictionaryView = null;
+    private NodeObject offlineDictionaryView = null;
     private NodeObject rankView = null;
     private NodeObject flashCardView = null;
 
@@ -96,16 +94,6 @@ public class MyApplicationController implements Initializable {
                 e.printStackTrace();
             }
         });
-
-        this.hboxUpperBar.setOnMousePressed(event -> {
-            xOffset = stage.getX() - event.getScreenX();
-            yOffset = stage.getY() - event.getScreenY();
-        });
-
-        this.hboxUpperBar.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() + xOffset);
-            stage.setY(event.getScreenY() + yOffset);
-        });
     }
 
     private void setupHomeView() {
@@ -130,8 +118,8 @@ public class MyApplicationController implements Initializable {
 
     private void setupOfflineDictionaryView() {
         try {
-            offlinedictionaryView = EquizUtils.Instantiate("/view/OfflineDictionaryView.fxml", panelHolder, AnchorType.FitToParent);
-            offlinedictionaryView.hide();
+            offlineDictionaryView = EquizUtils.Instantiate("/view/OfflineDictionaryView.fxml", panelHolder, AnchorType.FitToParent);
+            offlineDictionaryView.hide();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,7 +190,7 @@ public class MyApplicationController implements Initializable {
     }
 
     public void onClickSwitchToOfflineDictionary() {
-        switchToPanel(offlinedictionaryView);
+        switchToPanel(offlineDictionaryView);
     }
 
     public void onClickSwitchToGame() {

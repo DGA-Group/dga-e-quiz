@@ -2,12 +2,18 @@ package com.dga.game.EquizPacket.Room.ShowRoom;
 
 import com.dga.game.EquizPacket.EquizPacket;
 
-import java.util.ArrayList;
+import java.io.Serial;
 import java.util.List;
 
 
 public class ShowRoomResponse implements EquizPacket {
-    public List<RoomWrapper> roomList = new ArrayList<>();
+    @Serial
+    private static final long serialVersionUID = -3671318777867721526L;
+    public List<RoomWrapper> roomList;
+
+    public ShowRoomResponse() {
+
+    }
 
     public ShowRoomResponse(List<RoomWrapper> roomList) {
         this.roomList = roomList;

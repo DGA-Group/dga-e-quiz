@@ -220,14 +220,15 @@ public class LoginController implements Initializable {
                     tfLogin_showPass.setText(null);
                     return;
                 } else {
-                        passOutput = resultSet.getString(1);
+                    passOutput = resultSet.getString(1);
                 }
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
-            }  finally {
+            } finally {
                 try {
                     DBHelper.closeQuery(resultSet, statement, connection);
-                }catch (Exception ignore) {}
+                } catch (Exception ignore) {
+                }
             }
 
             if (passOutput.equals(pfLogin_password.getText()) || passOutput.equals(tfLogin_showPass.getText())) {
@@ -246,7 +247,7 @@ public class LoginController implements Initializable {
             ResultSet resultSet = null;
             Statement statement = null;
             Connection connection = null;
-            try{
+            try {
                 resultSet = DBHelper.executeQuery(query);
                 statement = resultSet.getStatement();
                 connection = statement.getConnection();
@@ -268,13 +269,14 @@ public class LoginController implements Initializable {
                     System.out.println(tfRegister_mail.getText());
                 }
 
-            } catch (Exception e1){
+            } catch (Exception e1) {
                 e1.printStackTrace();
                 return;
             } finally {
                 try {
                     DBHelper.closeQuery(resultSet, statement, connection);
-                }catch (Exception ignore) {}
+                } catch (Exception ignore) {
+                }
             }
         });
 
@@ -396,7 +398,7 @@ public class LoginController implements Initializable {
                 File imageFile = new File("C:\\Users\\ASUS\\OneDrive\\Pictures\\Saved Pictures\\test.jpg");
                 FileInputStream fis = new FileInputStream(imageFile);
 
-                String query = "INSERT INTO information (name, mail, dob, phone, github, username, password, link_ava_test) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                String query = "INSERT INTO information (name, mail, dob, phone, github, username, password, link_ava_test, score, current_campaign) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                     // Set other parameters
                     preparedStatement.setString(1, tfRegister_name.getText());
@@ -406,8 +408,9 @@ public class LoginController implements Initializable {
                     preparedStatement.setString(5, tfRegister_github.getText());
                     preparedStatement.setString(6, tfRegister_username.getText());
                     preparedStatement.setString(7, tfRegister_pass.getText());
-
                     preparedStatement.setBinaryStream(8, fis, (int) imageFile.length());
+                    preparedStatement.setInt(9, 0);
+                    preparedStatement.setInt(10, 1);
 
                     preparedStatement.executeUpdate();
                     System.out.println("Data inserted successfully.");
@@ -455,7 +458,7 @@ public class LoginController implements Initializable {
         Statement statement = null;
         Connection connection = null;
 
-        try{
+        try {
             resultSet = DBHelper.executeQuery(sqlQuery);
             statement = resultSet.getStatement();
             connection = statement.getConnection();
@@ -472,32 +475,35 @@ public class LoginController implements Initializable {
                 profile.setUsername(resultSet.getString(7));
                 profile.setPassword(resultSet.getString(8));
                 profile.setLinkAva(resultSet.getBytes(9));
+                profile.setScore(resultSet.getInt(10));
+                profile.setCurrentCampaign(resultSet.getInt(11));
             }
 
-            if(!EquizUtils.connectServer()){
+            if (!EquizUtils.connectServer()) {
                 showAlert("Cannot connect to server");
                 return;
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return;
         } finally {
             try {
                 DBHelper.closeQuery(resultSet, statement, connection);
-            }catch (Exception ignore) {}
+            } catch (Exception ignore) {
+            }
         }
 
 
         // Initialize application view
-        try{
+        try {
             NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
             Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 1280, 720, Color.TRANSPARENT);
             Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
             addStyle(myApplicationScene, "/css/learnDesign.css");
             myApplicationStage.initStyle(StageStyle.TRANSPARENT);
             myApplicationStage.setScene(myApplicationScene);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return;
         }

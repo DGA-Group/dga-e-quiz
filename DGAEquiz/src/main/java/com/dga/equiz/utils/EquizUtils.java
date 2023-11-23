@@ -1,7 +1,7 @@
 package com.dga.equiz.utils;
 
 import com.dga.equiz.Main;
-import com.dga.equiz.model.Event;
+import com.dga.equiz.model.event.IEvent;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Word;
@@ -173,22 +173,26 @@ public class EquizUtils {
 
     // Print the Alert to the screen when you receive an ERROR!
     public static void showAlert(String message) {
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("Username Alert");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+        Platform.runLater(() -> {
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Username Alert");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        });
     }
 
-    public static void showAlert(String title, String headerText, String message, AlertType alertType) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(headerText);
-        alert.setContentText(message);
-        alert.showAndWait();
+    public static void showAlert(String title, String headerText, String message, AlertType alertType){
+        Platform.runLater(() -> {
+            Alert alert = new Alert(alertType);
+            alert.setTitle(title);
+            alert.setHeaderText(headerText);
+            alert.setContentText(message);
+            alert.showAndWait();
+        });
     }
 
-    public static void callFuncDelay(Event func, long milliseconds) {
+    public static void callFuncDelay(IEvent func, long milliseconds) {
         Thread thread = new Thread(() -> {
             try {
                 Thread.sleep(milliseconds);

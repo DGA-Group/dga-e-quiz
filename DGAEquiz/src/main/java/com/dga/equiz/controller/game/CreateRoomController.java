@@ -32,13 +32,8 @@ public class CreateRoomController implements Initializable {
     public TextField tfRoomName;
 
     @FXML
-    public TextField tfRoomPassword;
-
-    @FXML
     public TextField tfPlayerLimit;
 
-    @FXML
-    public CheckBox cbRequirePassword;
 
     private Stage stage;
 
@@ -69,8 +64,7 @@ public class CreateRoomController implements Initializable {
 
         this.btnCreate.setOnAction(event -> {
             String roomName = tfRoomName.getText();
-            boolean requirePassword = cbRequirePassword.isSelected();
-            String roomPassword = tfRoomPassword.getText();
+            String roomPassword = "";
             int playerLimit;
             try {
                 playerLimit = Integer.parseInt(tfPlayerLimit.getText());
@@ -82,20 +76,11 @@ public class CreateRoomController implements Initializable {
 
             tfRoomName.clear();
             tfPlayerLimit.clear();
-            tfRoomPassword.clear();
             (btnCreate.getScene().getWindow()).hide();
 
             ControllerManager.getInstance().chatRoomController.vboxMessageList.getChildren().clear();
-            ClientHelperRequest.sendCreateRoomRequest(roomName, requirePassword, roomPassword, playerLimit);
+            ClientHelperRequest.sendCreateRoomRequest(roomName, false, roomPassword, playerLimit);
         });
-
-        updatePasswordTextField();
-        cbRequirePassword.setOnAction(event -> updatePasswordTextField());
-    }
-
-    private void updatePasswordTextField() {
-        boolean requirePassword = cbRequirePassword.isSelected();
-        this.tfRoomPassword.setDisable(!requirePassword);
     }
 
 

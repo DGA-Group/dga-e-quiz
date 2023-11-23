@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="478.0" styleClass="campaign-item" stylesheets="@../../css/campaignDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.CampaignController">
    <children>
@@ -26,6 +27,12 @@
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="18.0" prefWidth="396.0" text="0 / 4 Bài" textAlignment="CENTER" />
             <Label fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="1.0" prefHeight="38.0" prefWidth="396.0" text="Phần 1: Bước vào hành trình" textAlignment="CENTER" wrapText="true" />
             <Label fx:id="labelDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="100.0" prefHeight="18.0" prefWidth="396.0" text="Khởi động cùng một số cụm từ và ngữ pháp cơ bản" textAlignment="CENTER" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneBG" style="-fx-background-color: #000000; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="paneLock" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <FontIcon iconColor="WHITE" iconLiteral="fth-lock" iconSize="100" layoutX="192.0" layoutY="240.0" wrappingWidth="93.60003185272217" />
          </children>
       </AnchorPane>
    </children>

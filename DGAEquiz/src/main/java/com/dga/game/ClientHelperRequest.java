@@ -3,6 +3,7 @@ package com.dga.game;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.EquizUtils;
+import com.dga.equiz.utils.MyObjectOutputStream;
 import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.Message.MessageRequest;
 import com.dga.game.EquizPacket.Room.JoinRoom.JoinRoomRequest;
@@ -16,7 +17,7 @@ import java.net.Socket;
 
 public class ClientHelperRequest {
 
-    public static ObjectOutputStream objectOutputStream = null;
+    public static MyObjectOutputStream objectOutputStream = null;
 
     public static void sendRequest(EquizPacket request) {
         Socket socket = ApplicationData.getInstance().socket;
@@ -29,9 +30,12 @@ public class ClientHelperRequest {
 
         try {
             if (objectOutputStream == null) {
-                objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+                objectOutputStream = new MyObjectOutputStream(socket.getOutputStream());
+                objectOutputStream.flush();
             }
             objectOutputStream.writeObject(request);
+            objectOutputStream.flush();
+            objectOutputStream.reset();
         } catch (Exception e) {
             e.printStackTrace();
         }

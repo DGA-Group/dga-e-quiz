@@ -3,12 +3,20 @@ package com.dga.game.EquizPacket.Message;
 import com.dga.game.EquizPacket.EquizPacket;
 import com.dga.game.EquizPacket.PacketResponse;
 
+import java.io.Serial;
+
 public class MessageResponse implements EquizPacket {
+    @Serial
+    private static final long serialVersionUID = 6131545497749990430L;
     public PacketResponse status;
     public int userId;
     public String username;
     public String name;
     public String text;
+
+    public MessageResponse() {
+
+    }
 
     public MessageResponse(PacketResponse status) {
         this.status = status;

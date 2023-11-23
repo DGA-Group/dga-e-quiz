@@ -62,7 +62,7 @@ public class BlueTea extends TeaGame {
     public void play() throws IOException, InterruptedException {
         playerPoint = new HashMap<>();
         hostRoom.currentWinner = null;
-
+        Thread.sleep(500);
         while (isRunning) {
             //Send word to the client.
             currentRoundWord = GameHelper.getRandomKeyword();
@@ -95,7 +95,7 @@ public class BlueTea extends TeaGame {
         // Announce the good word!
         MessageResponse response = new MessageResponse(PacketResponse.OK,
                 0, "server", "Server",
-                client.name + "currently has the longest word : " + word);
+                client.name + " currently has the longest word : " + word);
         hostRoom.broadcast(response, null);
 
         // Add point to player.

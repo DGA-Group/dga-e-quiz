@@ -19,6 +19,28 @@ public class Profile {
 
     private String username;
 
+
+    private int score;
+
+    private int currentCampaign;
+
+    public int getCurrentCampaign() {
+        return currentCampaign;
+    }
+
+    public void setCurrentCampaign(int currentCampaign) {
+        this.currentCampaign = currentCampaign;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+
     public String getUsername() {
         return username;
     }
@@ -42,6 +64,7 @@ public class Profile {
     public void setID(int ID) {
         this.ID = ID;
     }
+
     public String getMail() {
         return mail;
     }

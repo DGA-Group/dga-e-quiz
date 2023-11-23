@@ -15,6 +15,7 @@ import com.dga.game.EquizPacket.Room.OpenRoom.OpenRoomResponse;
 import com.dga.game.EquizPacket.Room.ShowRoom.RoomWrapper;
 import com.dga.game.EquizPacket.Room.ShowRoom.ShowRoomResponse;
 import com.dga.game.EquizPacket.Room.StartRoom.StartRoomResponse;
+import javafx.application.Platform;
 import javafx.scene.control.Alert.AlertType;
 
 import java.util.List;
@@ -57,6 +58,10 @@ public class ClientHelperResponse {
     private static void handleOpenRoomResponse(OpenRoomResponse packet) {
         String roomId = packet.roomId;
         String roomPassword = packet.roomPassword;
+
+        ChatRoomController controller = ControllerManager.getInstance().chatRoomController;
+        controller.clearMessageList();
+
         ClientHelperRequest.sendJoinRoomRequest(roomId, roomPassword);
     }
 

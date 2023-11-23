@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Main-Class: com.dga.equiz.Launcher
+Class-Path: commons-lang3-3.7.jar logback-core-1.2.6.jar javafx-fxml-21.
+ jar jackson-databind-2.9.3.jar protobuf-java-3.21.9.jar javax.mail-1.5.
+ 6.jar jackson-core-2.9.3.jar ikonli-core-12.3.1.jar logback-classic-1.2
+ .6.jar javafx-base-21.jar ikonli-javafx-12.3.1.jar mysql-connector-j-8.
+ 1.0.jar jackson-annotations-2.9.0.jar ikonli-feather-pack-12.3.1.jar ok
+ http-2.7.5.jar javafx-fxml-21-win.jar javafx-graphics-21.jar javafx-med
+ ia-11.0.1-win.jar javafx-media-11.0.1.jar javafx-controls-21-win.jar sl
+ f4j-api-1.7.36.jar controlsfx-11.1.2.jar okio-1.6.0.jar javafx-controls
+ -21.jar sqlite-jdbc-3.43.2.2.jar activation-1.1.jar javafx-base-21-win.
+ jar javafx-graphics-21-win.jar commons-email-1.5.jar
+
