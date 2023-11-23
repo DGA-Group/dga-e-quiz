@@ -1,0 +1,82 @@
+.back_ground {
+    -fx-background-color: #0B1021;
+}
+
+.pane {
+    -fx-background-color: #1D1E3D;
+    -fx-background-radius: 10px;
+}
+
+.rank_label {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill :  linear-gradient(to bottom right, #6387FF, #F1A4EB, #5E47FF);
+    -fx-font-size: 70;
+}
+
+.label_top1 {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../image/number-one.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.label_top2 {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../image/number_two.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.label_top3 {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../image/number_three.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.label_top4 {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../image/number_four.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.label_top5 {
+    -fx-background-color: transparent;
+    -fx-background-image: url("../image/number_five.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.name1 {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill : #F5BD25;
+    -fx-font-size: 30;
+}
+
+.name2 {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill : #C7C9CB;
+    -fx-font-size: 30;
+}
+
+.name3 {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill : #985E1A;
+    -fx-font-size: 30;
+}
+
+.label_component {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill : #FFFFFF;
+    -fx-font-size: 30;
+}
+
+.quote {
+    -fx-font-family: "Georgia";
+    -fx-text-fill :white;
+    -fx-font-size: 15;
+}

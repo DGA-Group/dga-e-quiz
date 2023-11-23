@@ -1,77 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.login.RankController">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.login.RankController">
+   <top>
+      <AnchorPane prefHeight="720.0" prefWidth="1030.0" styleClass="back_ground" stylesheets="@../../css/rankDesign.css" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="613.0" text="Rank">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="209.0" layoutY="14.0" prefHeight="17.0" prefWidth="613.0" styleClass="rank_label" text="Whale Rank">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="621.0" text="We want to see your name in ranking below." />
-            <HBox prefHeight="31.0" prefWidth="600.0">
+            <Label layoutX="93.0" layoutY="110.0" prefHeight="36.0" prefWidth="58.0" styleClass="label_component" text="Top" />
+            <Label layoutX="477.0" layoutY="110.0" styleClass="label_component" text="Name" />
+            <Label layoutX="832.0" layoutY="110.0" styleClass="label_component" text="Score" />
+            <Pane layoutX="56.0" layoutY="163.0" prefHeight="75.0" prefWidth="930.0" styleClass="pane">
                <children>
-                  <Label prefHeight="17.0" prefWidth="88.0" text="Top" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label text="Name" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label text="Score" />
+                  <Label layoutX="35.0" layoutY="13.0" prefHeight="55.0" prefWidth="55.0" styleClass="label_top1" />
+                  <Label fx:id="labelRank_name1" alignment="CENTER" layoutX="314.0" layoutY="20.0" prefHeight="40.0" prefWidth="300.0" styleClass="name1" text="Name1" textAlignment="CENTER" />
+                  <Label fx:id="labelRank_score1" alignment="CENTER" layoutX="792.0" layoutY="20.0" styleClass="name1" text="Score1" textAlignment="CENTER" />
                </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="27.0" prefHeight="31.0" prefWidth="600.0">
+            </Pane>
+            <Pane layoutX="56.0" layoutY="268.0" prefHeight="75.0" prefWidth="930.0" styleClass="pane">
                <children>
-                  <Label prefHeight="17.0" prefWidth="88.0" text="1" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_name1" text="Name" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_score1" text="Score" />
+                  <Label layoutX="36.0" layoutY="12.0" prefHeight="51.0" prefWidth="53.0" styleClass="label_top2" />
+                  <Label fx:id="labelRank_name2" alignment="CENTER" layoutX="315.0" layoutY="17.0" prefHeight="40.0" prefWidth="300.0" styleClass="name2" text="Name2" textAlignment="CENTER" />
+                  <Label fx:id="labelRank_score2" alignment="CENTER" layoutX="792.0" layoutY="19.0" styleClass="name2" text="score2" textAlignment="CENTER" />
                </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="58.0" prefHeight="31.0" prefWidth="600.0">
+            </Pane>
+            <Pane layoutX="56.0" layoutY="373.0" prefHeight="75.0" prefWidth="930.0" styleClass="pane">
                <children>
-                  <Label prefHeight="17.0" prefWidth="88.0" text="2" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_name2" text="Name" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_score2" text="Score" />
+                  <Label layoutX="37.0" layoutY="11.0" prefHeight="55.0" prefWidth="50.0" styleClass="label_top3" />
+                  <Label fx:id="labelRank_score3" alignment="CENTER" layoutX="792.0" layoutY="20.0" styleClass="name3" text="Score3" textAlignment="CENTER" />
+                  <Label fx:id="labelRank_name3" alignment="CENTER" layoutX="315.0" layoutY="18.0" prefHeight="40.0" prefWidth="300.0" styleClass="name3" text="Name3" textAlignment="CENTER" />
                </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="89.0" prefHeight="31.0" prefWidth="600.0">
+            </Pane>
+            <Pane layoutX="56.0" layoutY="478.0" prefHeight="75.0" prefWidth="930.0" styleClass="pane">
                <children>
-                  <Label prefHeight="17.0" prefWidth="88.0" text="3" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_name3" text="Name" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_score3" text="Score" />
+                  <Label graphicTextGap="0.0" layoutX="38.0" layoutY="12.0" prefHeight="52.0" prefWidth="45.0" styleClass="label_top4" text="4" />
+                  <Label fx:id="labelRank_score4" alignment="CENTER" layoutX="795.0" layoutY="20.0" styleClass="label_component" text="Score4" textAlignment="CENTER" />
+                  <Label fx:id="labelRank_name4" alignment="CENTER" layoutX="315.0" layoutY="18.0" prefHeight="40.0" prefWidth="300.0" styleClass="label_component" text="Name4" textAlignment="CENTER" />
                </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="120.0" prefHeight="31.0" prefWidth="600.0">
+            </Pane>
+            <Pane layoutX="56.0" layoutY="583.0" prefHeight="75.0" prefWidth="930.0" styleClass="pane">
                <children>
-                  <Label prefHeight="17.0" prefWidth="88.0" text="4" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_name4" text="Name" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_score4" text="Score" />
+                  <Label layoutX="39.0" layoutY="12.0" prefHeight="52.0" prefWidth="52.0" styleClass="label_top5" text="5" />
+                  <Label fx:id="labelRank_name5" alignment="CENTER" layoutX="315.0" layoutY="18.0" prefHeight="40.0" prefWidth="300.0" styleClass="label_component" text="Name5" textAlignment="CENTER" />
+                  <Label fx:id="labelRank_score5" alignment="CENTER" layoutX="797.0" layoutY="20.0" styleClass="label_component" text="Score5" textAlignment="CENTER" />
                </children>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="244.0" prefHeight="31.0" prefWidth="600.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="88.0" text="5" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_name5" text="Name" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-                  <Label fx:id="labelRank_score5" text="Score" />
-               </children>
-            </HBox>
+            </Pane>
+            <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="643.0" layoutY="677.0" prefHeight="19.0" prefWidth="263.0" styleClass="quote" text="&quot;We want to see your name in ranking&quot;" />
+            <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="926.0" layoutY="625.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../image/whaleRank.png" />
+               </image>
+            </ImageView>
          </children>
-      </VBox>
-   </center>
+      </AnchorPane>
+   </top>
 </BorderPane>
