@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="648.0" styleClass="primary-color" stylesheets="@../../css/editProfileDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.editProfile.EditAccController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" styleClass="back_ground" stylesheets="@../../css/editAccDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.editProfile.EditAccController">
    <children>
-      <Label alignment="CENTER" layoutX="-2.0" layoutY="2.0" prefHeight="99.0" prefWidth="648.0" styleClass="font-family" stylesheets="@../../css/editProfileDesign.css" text="Password Setting" textFill="#444766">
+      <Label alignment="CENTER" layoutX="-2.0" layoutY="2.0" prefHeight="99.0" prefWidth="648.0" text="Password Setting" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="30.0" />
          </font>
@@ -22,7 +22,7 @@
          <children>
             <HBox prefHeight="44.0" prefWidth="600.0">
                <children>
-                  <Label prefHeight="44.0" prefWidth="192.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Current Password : " textFill="#f5f8fa">
+                  <Label prefHeight="44.0" prefWidth="192.0" text="Current Password : " textFill="#f5f8fa">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -32,12 +32,12 @@
                   </Label>
                   <PasswordField fx:id="passFCurrent" prefHeight="44.0" prefWidth="270.0" />
                   <Pane prefHeight="44.0" prefWidth="32.0" />
-                  <Button fx:id="button_check" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css" text="Check" />
+                  <Button fx:id="button_check" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" text="Check" />
                </children>
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="558.0">
                <children>
-                  <Label fx:id="labelNewPass" prefHeight="44.0" prefWidth="192.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="New Password : " textFill="#f5f8fa">
+                  <Label fx:id="labelNewPass" prefHeight="44.0" prefWidth="192.0" text="New Password : " textFill="#f5f8fa">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -51,7 +51,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" prefHeight="44.0" prefWidth="600.0">
                <children>
-                  <Label fx:id="labelConfirmPass" prefHeight="44.0" prefWidth="193.0" styleClass="font-label" stylesheets="@../../css/editProfileDesign.css" text="Confirm Password : " textFill="#f5f8fa">
+                  <Label fx:id="labelConfirmPass" prefHeight="44.0" prefWidth="193.0" text="Confirm Password : " textFill="#f5f8fa">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -61,13 +61,13 @@
                   </Label>
                   <PasswordField fx:id="passFConfirm" prefHeight="44.0" prefWidth="270.0" />
                   <Pane prefHeight="44.0" prefWidth="32.0" />
-                  <Button fx:id="button_save" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css" text="Save" />
+                  <Button fx:id="button_save" mnemonicParsing="false" prefHeight="39.0" prefWidth="88.0" text="Save" />
                </children>
             </HBox>
          </children>
       </VBox>
       <FontIcon iconColor="#444766" iconLiteral="fth-key" iconSize="50" layoutX="148.0" layoutY="73.0" wrappingWidth="55.0" />
-      <Button fx:id="buttonBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0" styleClass="save-button" stylesheets="@../../css/editProfileDesign.css">
+      <Button fx:id="buttonBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0">
          <graphic>
             <FontIcon iconColor="#f5f8fa" iconLiteral="fth-rotate-ccw" iconSize="30" />
          </graphic>
