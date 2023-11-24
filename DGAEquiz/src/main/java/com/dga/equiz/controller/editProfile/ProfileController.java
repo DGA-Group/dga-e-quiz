@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public class ProfileController implements Initializable {
 
     @FXML
-    private Rectangle rectangle;
+    public Rectangle rectangle;
     @FXML
     public Button buttonEdit;
 
@@ -50,6 +50,7 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().profileController = this;
         rectangle.setArcWidth(30.0);
         rectangle.setArcHeight(20.0);
 
@@ -83,58 +84,6 @@ public class ProfileController implements Initializable {
         }
 
         link_Github.setOnAction(e -> openURL(profile.getGithub()));
-    }
-
-    public void changeImage(ActionEvent event) throws SQLException, IOException {
-        Profile profile = ApplicationData.getInstance().profile;
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"));
-        File file = fileChooser.showOpenDialog(new Stage());
-
-        if (file != null) {
-            String link = file.getAbsolutePath();
-            try (Connection connection = DriverManager.getConnection(DBHelper.MysqlURL, SecretKey.USERNAME, SecretKey.PASSWORD)) {
-                File imageFile = new File(link);
-                FileInputStream fis = new FileInputStream(imageFile);
-
-                String updateSql = "UPDATE information SET link_ava_test = ? WHERE id = '" + profile.getID() + "';";
-                try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {
-                    updateStatement.setBinaryStream(1, fis, (int) imageFile.length());
-                    updateStatement.executeUpdate();
-                    System.out.println("Image updated successfully.");
-                }
-
-                fis.close();
-            } catch (SQLException | IOException e) {
-                e.printStackTrace();
-            }
-
-            // Convert FileInputStream to byte[]
-            byte[] imageData = convertFileInputStreamToByteArray(file);
-
-            // Set the byte[] to the profile
-            profile.setLinkAva(imageData);
-
-            Image newImage = new Image(file.toURI().toString());
-            rectangle.setFill(new ImagePattern(newImage));
-        }
-    }
-
-    // Helper method to convert FileInputStream to byte[]
-    public static byte[] convertFileInputStreamToByteArray(File file) throws IOException {
-        FileInputStream fis = new FileInputStream(file);
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] buffer = new byte[1024];
-
-        int bytesRead;
-        while ((bytesRead = fis.read(buffer)) != -1) {
-            bos.write(buffer, 0, bytesRead);
-        }
-
-        fis.close();
-        bos.close();
-
-        return bos.toByteArray();
     }
 
     public void setLabel(int id) throws SQLException {

@@ -12,9 +12,9 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1030.0" styleClass="tab-pane" stylesheets="@../css/dictionaryDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.OfflineDictionaryController">
    <children>
-      <ScrollPane fx:id="Scrollpane" fitToHeight="true" fitToWidth="true" focusTraversable="false" layoutX="-1.0" layoutY="165.0" prefHeight="555.0" prefWidth="1030.0" styleClass="scroll-pane-wordspane" stylesheets="@../css/dictionaryDesign.css">
+      <ScrollPane fx:id="Scrollpane" fitToHeight="true" fitToWidth="true" focusTraversable="false" layoutX="-1.0" layoutY="165.0" prefHeight="555.0" prefWidth="1030.0" styleClass="scroll-pane-wordsPane" stylesheets="@../css/dictionaryDesign.css">
          <content>
-            <VBox fx:id="wordsBox" alignment="TOP_CENTER" prefHeight="830.0" prefWidth="1030.0" spacing="25.0" styleClass="scroll-pane-wordspane" stylesheets="@../css/dictionaryDesign.css" />
+            <VBox fx:id="wordsBox" alignment="TOP_CENTER" fillWidth="false" prefHeight="830.0" prefWidth="1030.0" spacing="25.0" styleClass="scroll-pane-wordsPane" stylesheets="@../css/dictionaryDesign.css" />
          </content>
       </ScrollPane>
       <ImageView fitHeight="68.0" fitWidth="351.0" layoutX="33.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -34,8 +34,8 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <Button fx:id="buttonSearch" layoutX="546.0" layoutY="48.0" mnemonicParsing="false" onAction="#onClickSearch" onKeyPressed="#onEnterSearch" prefHeight="39.0" prefWidth="38.0" styleClass="pen_image" stylesheets="@../css/dictionaryDesign.css" textAlignment="CENTER" />
-            <Button fx:id="buttonAdd" layoutX="196.0" layoutY="55.0" mnemonicParsing="false" onAction="#onClickAddWord" text="Add" />
+            <Button fx:id="buttonAdd" layoutX="207.0" layoutY="45.0" mnemonicParsing="false" onAction="#onClickAddWord" prefHeight="45.0" prefWidth="42.0" styleClass="button-add" stylesheets="@../css/dictionaryDesign.css" />
+            <Button fx:id="buttonSearch1" layoutX="550.0" layoutY="50.0" mnemonicParsing="false" onAction="#onClickSearch" onKeyPressed="#onEnterSearch" prefHeight="34.0" prefWidth="33.0" styleClass="search_image" stylesheets="@../css/dictionaryDesign.css" textAlignment="CENTER" />
          </children>
       </AnchorPane>
    </children>

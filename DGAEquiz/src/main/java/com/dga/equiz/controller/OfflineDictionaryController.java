@@ -57,6 +57,37 @@ public class OfflineDictionaryController implements Initializable {
         });
     }
 
+    public void onEnterSearch() {
+        searchingField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                    try {
+                        onClickSearch();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        onStartup();
+        onEnterSearch();
+        try {
+            NodeObject offlineAddDictionaryView = EquizUtils.Instantiate("/view/OfflineAddWordView.fxml");
+            Scene offlineAddDictionaryScene = new Scene((Parent) offlineAddDictionaryView.getNode());
+            Stage offlineAddDictionaryViewStage = StageManager.getInstance().offlineAddDictionaryStage = new Stage();
+            offlineAddDictionaryViewStage.initStyle(StageStyle.TRANSPARENT);
+            offlineAddDictionaryViewStage.setScene(offlineAddDictionaryScene);
+            offlineAddDictionaryViewStage.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updatedSuggestions(String word) {
         ResultSet resultSet = null;
         Statement statement = null;
@@ -77,22 +108,6 @@ public class OfflineDictionaryController implements Initializable {
                 DBHelper.closeQuery(resultSet, statement, connection);
             } catch (Exception ignore) {
             }
-        }
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        onStartup();
-        onEnterSearch();
-        try {
-            NodeObject offlineAddDictionaryView = EquizUtils.Instantiate("/view/OfflineAddWordView.fxml");
-            Scene offlineAddDictionaryScene = new Scene((Parent) offlineAddDictionaryView.getNode());
-            Stage offlineAddDictionaryViewStage = StageManager.getInstance().offlineAddDictionaryStage = new Stage();
-            offlineAddDictionaryViewStage.initStyle(StageStyle.TRANSPARENT);
-            offlineAddDictionaryViewStage.setScene(offlineAddDictionaryScene);
-            offlineAddDictionaryViewStage.hide();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -118,6 +133,7 @@ public class OfflineDictionaryController implements Initializable {
             String word = "";
             String description = "";
             String pronounce = "";
+            boolean foundWord = false;
             while (resultSet.next()) {
                 NodeObject wordView = EquizUtils.Instantiate("/view/OfflineWordView.fxml");
                 wordsBox.getChildren().add(wordView.getNode());
@@ -125,12 +141,11 @@ public class OfflineDictionaryController implements Initializable {
                 word = resultSet.getString(2);
                 description = resultSet.getString(4);
                 pronounce = resultSet.getString(5);
-                if (word != null) {
-                    controller.setupWordView(word, pronounce, description, this);
-                }
-                else {
-                    EquizUtils.showAlert("Word is not exist !!!");
-                }
+                controller.setupWordView(word, pronounce, description, this);
+                foundWord = true;
+            }
+            if (!foundWord) {
+                EquizUtils.showAlert("Word is not exist!"+ "\n" +"Please add your word!");
             }
 
         } catch (SQLException e) {
@@ -143,18 +158,4 @@ public class OfflineDictionaryController implements Initializable {
         }
     }
 
-    public void onEnterSearch() {
-        searchingField.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.ENTER) {
-                    try {
-                        onClickSearch();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
 }

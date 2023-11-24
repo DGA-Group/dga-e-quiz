@@ -24,6 +24,7 @@ public class ControllerManager {
         return instance;
     }
 
+    public ProfileController profileController;
     public GameController gameController;
     public LobbyController lobbyController;
     public CreateRoomController createRoomController;

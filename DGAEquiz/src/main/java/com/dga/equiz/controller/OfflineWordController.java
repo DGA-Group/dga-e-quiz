@@ -92,24 +92,22 @@ public class OfflineWordController implements Initializable {
         String savedWord = labelOfWord.getText();
         String savedDescription = labelOfDescription.getText();
         int userID = ApplicationData.getInstance().profile.getID();
-        String query = "SELECT id , word, description FROM flashcard WHERE id = '" + userID
-                + "' AND word = '" + savedWord + "' AND description = '" + savedDescription + "';";
+        String query = "SELECT id , word, meaning FROM flashcard WHERE id = '" + userID
+                + "' AND word = '" + savedWord + "' AND meaning = '" + savedDescription + "';";
         resultSet = DBHelper.executeQuery(query);
         statement = resultSet.getStatement();
         connection = statement.getConnection();
-        while (resultSet.next()) {
-            if (resultSet.next()) {
-                EquizUtils.showAlert("Already Exist !");
-            } else {
-                String updateQuery = "INSERT INTO flashcard (id, word, description) VALUES ('"
-                        + userID + "','" + savedWord + "','" + savedDescription + "');";
-                try {
-                    DBHelper.executeUpdateSqlite(query);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    DBHelper.closeQuery(resultSet, statement, connection);
-                }
+        if (resultSet.next()) {
+            EquizUtils.showAlert("Already Exist !");
+        } else {
+            String updateQuery = "INSERT INTO flashcard (id, word, meaning) VALUES ('"
+                    + userID + "','" + savedWord + "','" + savedDescription + "');";
+            try {
+                DBHelper.executeUpdate(updateQuery);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                DBHelper.closeQuery(resultSet, statement, connection);
             }
         }
     }

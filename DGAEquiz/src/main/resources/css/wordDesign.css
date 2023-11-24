@@ -2,7 +2,7 @@
 
 .scroll-pane {
     -fx-background-radius: 10;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #D3D5DB;
     -fx-background-color: rgba(29, 30, 61, 0.7);
 
 }
@@ -24,4 +24,60 @@
 .radio-button {
     -fx-background-color: transparent;
 }
+.button-alter {
+    -fx-background-color: transparent;
+}
+.button-alter:hover {
+    -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+}
+.edit_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/edit-word.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
 
+.edit_image:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/edit-word.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.remove_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/remove-word.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.remove_image:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/remove-word.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.save_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/save-word.png");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.save_image:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/save-word.gif");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}

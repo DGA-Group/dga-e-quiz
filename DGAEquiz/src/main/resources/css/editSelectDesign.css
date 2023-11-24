@@ -40,3 +40,15 @@
     -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
     -fx-font-size : 50;
 }
+
+.back {
+    -fx-background-color: #6387FF;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20;
+}
+
+.back:hover {
+    -fx-background-color: linear-gradient(to bottom right, #F1A4EB, #6387FF);
+    -fx-text-fill: black;
+    -fx-font-size: 20;
+}

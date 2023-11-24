@@ -106,16 +106,22 @@ public class EditAccController implements Initializable {
                 labelNewPass.setVisible(false);
                 labelConfirmPass.setVisible(false);
                 showAlert("Wrong Password");
+                passFCurrent.setText(null);
                 return;
             }
         });
 
         button_save.setOnAction((ActionEvent e) -> {
             boolean flag = false;
-            if (passFNew.getText().equals(passFConfirm.getText())) {
+            if (passFNew.getText().isEmpty() || passFConfirm.getText().isEmpty()) {
+                showAlert("Please write your password");
+                return;
+            } else if (passFNew.getText().equals(passFConfirm.getText())) {
                 flag = true;
             } else {
                 showAlert("Confirm Pass Is Wrong");
+                passFNew.setText(null);
+                passFConfirm.setText(null);
                 return;
             }
 

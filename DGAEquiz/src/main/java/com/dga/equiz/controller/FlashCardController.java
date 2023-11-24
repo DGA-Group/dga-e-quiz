@@ -4,20 +4,15 @@ import com.dga.equiz.model.FlashCard;
 import com.dga.equiz.model.PairWord;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.utils.ApplicationData;
-import com.dga.equiz.utils.EquizUtils;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,9 +43,6 @@ public class FlashCardController implements Initializable {
     @FXML
     private Label titleLabel;
 
-    @FXML
-    private Circle circleAva;
-
     private boolean isFront = true;
     private String selected = "";
     private int index = 1;
@@ -58,15 +50,6 @@ public class FlashCardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Profile profile = ApplicationData.getInstance().profile;
-        try {
-            if (profile.getLinkAva() != null) {
-                circleAva.setFill(new ImagePattern(EquizUtils.toImage(profile.getID())));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        circleAva.setVisible(true);
         titleLabel.setVisible(true);
 
         try {
@@ -77,7 +60,7 @@ public class FlashCardController implements Initializable {
         if (!ListFlashCard.isEmpty()) {
             atlertLabel.setVisible(false);
             wordLabel.setText(ListFlashCard.get(0).getWordName());
-            curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
+            curLabel.setText(index + " / " + ListFlashCard.size());
             FlashCardPane.setOnMouseClicked(event -> {
                 wordLabel.setVisible(false);
                 rotatePane();
@@ -96,7 +79,7 @@ public class FlashCardController implements Initializable {
                     showButton(index);
                     selected = ListFlashCard.get(index - 1).getWordName();
                     wordLabel.setText(selected);
-                    curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
+                    curLabel.setText(index + " / " + ListFlashCard.size());
                 }
             });
             prevButton.setOnMouseClicked(event -> {
@@ -107,7 +90,7 @@ public class FlashCardController implements Initializable {
                     showButton(index);
                     selected = ListFlashCard.get(index - 1).getWordName();
                     wordLabel.setText(selected);
-                    curLabel.setText(Integer.toString(index) + " / " + Integer.toString(ListFlashCard.size()));
+                    curLabel.setText(index + " / " + ListFlashCard.size());
                 }
             });
         } else {

@@ -1,0 +1,60 @@
+.back_ground {
+    -fx-background-color: #0B1021;
+}
+.label_main {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill : #FFFFFF;
+    -fx-font-size : 40;
+}
+
+.pane {
+    -fx-background-color: #1D1E3D;
+    -fx-background-radius: 10px;
+}
+
+.text_field {
+    -fx-background-color: #6387FF;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20;
+}
+
+.text_field:hover {
+    -fx-background-color: linear-gradient(to bottom right, #F1A4EB, #6387FF);
+    -fx-text-fill: black;
+    -fx-font-size: 20;
+}
+
+.camera {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/camera.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.go {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/check_in.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.go:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/check_in.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.back {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/back.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}

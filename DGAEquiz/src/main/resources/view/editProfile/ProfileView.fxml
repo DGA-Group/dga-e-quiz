@@ -12,23 +12,23 @@
    <right>
       <Pane prefHeight="720.0" prefWidth="1030.0" styleClass="back_ground" stylesheets="@../../css/profileDesign.css" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="35.0" layoutY="231.0" prefHeight="437.0" prefWidth="492.0" styleClass="pane" stylesheets="@../../css/profileDesign.css">
+            <Pane layoutX="35.0" layoutY="231.0" prefHeight="437.0" prefWidth="492.0" styleClass="pane">
                <children>
                   <Button layoutX="54.0" layoutY="74.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="mail_image" stylesheets="@../../css/profileDesign.css" />
                   <Button layoutX="54.0" layoutY="164.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="dob_image" stylesheets="@../../css/profileDesign.css" />
                   <Button layoutX="54.0" layoutY="244.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="phone_image" stylesheets="@../../css/profileDesign.css" />
                   <Button layoutX="54.0" layoutY="324.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="github_image" stylesheets="@../../css/profileDesign.css" />
-                  <Label fx:id="labelMail" layoutX="152.0" layoutY="70.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="mailghi">
+                  <Label fx:id="labelMail" layoutX="152.0" layoutY="70.0" prefHeight="60.0" prefWidth="300.0" text="mailghi">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelDOB" layoutX="152.0" layoutY="160.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="dofghi">
+                  <Label fx:id="labelDOB" layoutX="152.0" layoutY="160.0" prefHeight="60.0" prefWidth="300.0" text="dofghi">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelPhone" layoutX="152.0" layoutY="236.0" prefHeight="60.0" prefWidth="300.0" stylesheets="@../../css/editProfileDesign.css" text="phoneghi">
+                  <Label fx:id="labelPhone" layoutX="152.0" layoutY="236.0" prefHeight="60.0" prefWidth="300.0" text="phoneghi">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -44,13 +44,13 @@
                      </font>
                   </Button>
                </children></Pane>
-            <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="484.0" layoutX="578.0" layoutY="21.0" stroke="BLACK" strokeType="INSIDE" width="422.0" />
-            <Label layoutX="43.0" layoutY="44.0" styleClass="name_label" text="#">
+            <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="466.0" layoutX="578.0" layoutY="39.0" stroke="BLACK" strokeType="INSIDE" width="422.0" />
+            <Label layoutX="43.0" layoutY="44.0" styleClass="name_label" stylesheets="@../../css/profileDesign.css" text="#">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="labelName" alignment="CENTER" contentDisplay="TOP" layoutX="-9.0" layoutY="143.0" prefHeight="72.0" prefWidth="536.0" stylesheets="@../../css/editProfileDesign.css" text="name" textFill="WHITE">
+            <Label fx:id="labelName" alignment="CENTER" contentDisplay="TOP" layoutX="-9.0" layoutY="143.0" prefHeight="72.0" prefWidth="536.0" stylesheets="@../../css/profileDesign.css" text="name" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>
@@ -60,7 +60,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelID" layoutX="63.0" layoutY="38.0" prefHeight="42.0" prefWidth="82.0" styleClass="name_label" stylesheets="@../../css/editProfileDesign.css" text="id ghi">
+            <Label fx:id="labelID" layoutX="63.0" layoutY="38.0" prefHeight="42.0" prefWidth="82.0" styleClass="name_label" stylesheets="@../../css/profileDesign.css" text="id ghi">
                <font>
                   <Font size="25.0" />
                </font>
@@ -74,11 +74,6 @@
                   </Label>
                </children>
             </Pane>
-            <Button fx:id="buttonEdit1" alignment="CENTER" layoutX="955.0" layoutY="26.0" mnemonicParsing="false" onAction="#changeImage" prefHeight="21.0" prefWidth="39.0" styleClass="camera" stylesheets="@../../css/profileDesign.css" textFill="WHITE">
-               <font>
-                  <Font size="17.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
    </right>
