@@ -6,15 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" styleClass="back_ground" stylesheets="@../../css/editAccDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.editProfile.EditAccController">
    <children>
-      <Button fx:id="buttonBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="36.0" styleClass="text_field">
-         <graphic>
-            <FontIcon iconColor="#f5f8fa" iconLiteral="fth-rotate-ccw" iconSize="30" />
-         </graphic>
-      </Button>
+      <Button fx:id="buttonBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="59.0" styleClass="back" />
       <Pane layoutX="181.0" layoutY="54.0" prefHeight="606.0" prefWidth="705.0" styleClass="pane" stylesheets="@../../css/editAccDesign.css">
          <children>
             <Label layoutX="231.0" layoutY="38.0" prefHeight="45.0" prefWidth="270.0" styleClass="field" text="Current Password" textFill="#f5f8fa">
@@ -36,7 +31,7 @@
             <PasswordField fx:id="passFCurrent" alignment="CENTER" layoutX="88.0" layoutY="101.0" prefHeight="44.0" prefWidth="555.0" styleClass="text_field" stylesheets="@../../css/editAccDesign.css" />
             <PasswordField fx:id="passFConfirm" alignment="CENTER" layoutX="88.0" layoutY="453.0" prefHeight="44.0" prefWidth="555.0" styleClass="text_field" />
             <Button fx:id="button_check" layoutX="561.0" layoutY="164.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="82.0" styleClass="text_field" text="Check" />
-            <Button fx:id="button_save" layoutX="245.0" layoutY="540.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="192.0" styleClass="text_field" text="Save" />
+            <Button fx:id="button_save" layoutX="317.0" layoutY="513.0" mnemonicParsing="false" prefHeight="79.0" prefWidth="82.0" styleClass="go" />
          </children>
       </Pane>
    </children>

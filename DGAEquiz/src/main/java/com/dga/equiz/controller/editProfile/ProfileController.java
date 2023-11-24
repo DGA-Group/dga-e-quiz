@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 public class ProfileController implements Initializable {
 
     @FXML
-    private Rectangle rectangle;
+    public Rectangle rectangle;
     @FXML
     public Button buttonEdit;
 
@@ -50,6 +50,7 @@ public class ProfileController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().profileController = this;
         rectangle.setArcWidth(30.0);
         rectangle.setArcHeight(20.0);
 

@@ -7,16 +7,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" styleClass="back_ground" stylesheets="@../../css/editInforDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.editProfile.EditInforController">
    <children>
-      <Button fx:id="buttonBack" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="24.0" styleClass="text_field" stylesheets="@../../css/editInforDesign.css">
-         <graphic>
-            <FontIcon iconColor="#f5f8fa" iconLiteral="fth-rotate-ccw" iconSize="30" wrappingWidth="31.0" />
-         </graphic>
-      </Button>
-      <Button fx:id="buttonSave" layoutX="935.0" layoutY="661.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="68.0" styleClass="text_field" stylesheets="@../../css/editInforDesign.css" text="Save">
+      <Button fx:id="buttonBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="57.0" styleClass="back" stylesheets="@../../css/editInforDesign.css" />
+      <Button fx:id="buttonSave" layoutX="938.0" layoutY="640.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="66.0" styleClass="go" stylesheets="@../../css/editInforDesign.css">
          <font>
             <Font size="15.0" />
          </font>

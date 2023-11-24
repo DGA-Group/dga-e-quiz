@@ -123,6 +123,8 @@ public class EditInforController implements Initializable {
         profile.setPhone(tfPhone.getText());
         profile.setGithub(tfGithub.getText());
         profile.setDob(myFormattedDate);
+
+        ControllerManager.getInstance().profileController.setLabel(profile.getID());
     }
 
     public void changeImage(ActionEvent event) throws SQLException, IOException {
@@ -157,6 +159,7 @@ public class EditInforController implements Initializable {
 
             Image newImage = new Image(file.toURI().toString());
             circle.setFill(new ImagePattern(newImage));
+            ControllerManager.getInstance().profileController.rectangle.setFill(new ImagePattern(newImage));
         }
     }
 

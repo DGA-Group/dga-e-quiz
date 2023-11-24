@@ -165,7 +165,7 @@
                   </Pane>
                </center>
             </BorderPane>
-            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <Pane prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                      <children>
@@ -180,15 +180,27 @@
                         <Label layoutX="100.0" layoutY="420.0" styleClass="userNameFor" text="New Password" />
                         <Label layoutX="100.0" layoutY="140.0" styleClass="userNameFor" text="Username" />
                         <Label layoutX="100.0" layoutY="560.0" styleClass="userNameFor" text="Confirm Pass" />
-                        <TextField fx:id="tfForgot_username" layoutX="100.0" layoutY="190.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1" />
-                        <TextField fx:id="tfForgot_mail" layoutX="100.0" layoutY="330.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1" />
-                        <TextField fx:id="tfForgot_Npass" layoutX="100.0" layoutY="470.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1" />
-                        <TextField fx:id="tfForgot_confNpass" layoutX="100.0" layoutY="610.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1" />
+                        <TextField fx:id="tfForgot_username" layoutX="100.0" layoutY="190.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <TextField fx:id="tfForgot_mail" layoutX="100.0" layoutY="330.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <TextField fx:id="tfForgot_Npass" layoutX="100.0" layoutY="470.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <TextField fx:id="tfForgot_confNpass" layoutX="100.0" layoutY="610.0" prefHeight="50.0" prefWidth="475.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
                      </children>
                   </Pane>
                </center>
             </BorderPane>
-            <BorderPane fx:id="paneConfirmPass" layoutX="10.0" layoutY="10.0" prefHeight="513.0" prefWidth="353.0">
+            <BorderPane fx:id="paneConfirmPass" layoutX="10.0" layoutY="10.0" prefHeight="513.0" prefWidth="353.0" visible="false">
                <center>
                   <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
