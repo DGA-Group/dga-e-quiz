@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -117,8 +116,12 @@
                            </font></TextField>
                         <Button fx:id="buttonRegister_back" layoutX="17.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" styleClass="back" />
                         <Label layoutX="126.0" layoutY="610.0" styleClass="userLabel" text="Date Of Birth" />
-                        <DatePicker fx:id="dateRegister_dob" layoutX="126.0" layoutY="640.0" prefHeight="40.0" prefWidth="370.0" promptText="mm/dd/yyyy" styleClass="button1" />
                         <Button fx:id="buttonRegister_next" layoutX="575.0" layoutY="655.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" styleClass="next" />
+                        <TextField fx:id="tfRegister_date" layoutX="126.0" layoutY="640.0" prefHeight="40.0" prefWidth="370.0" promptText="yyyy/mm/dd" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </TextField>
                      </children>
                   </Pane>
                </center>
@@ -153,12 +156,12 @@
                               <Font size="15.0" />
                            </font>
                         </CheckBox>
-                        <CheckBox fx:id="checkAcc_agree" layoutX="161.0" layoutY="507.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="347.0" styleClass="normal_field" text="I agree to all of the developer's terms">
+                        <CheckBox fx:id="checkAcc_agree" layoutX="132.0" layoutY="510.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="383.0" styleClass="normal_field" text="I agree to all of the developer's terms">
                            <font>
-                              <Font size="15.0" />
+                              <Font size="20.0" />
                            </font>
                         </CheckBox>
-                        <Button fx:id="buttonAcc_go" layoutX="254.0" layoutY="566.0" mnemonicParsing="false" prefHeight="108.0" prefWidth="116.0" styleClass="go" />
+                        <Button fx:id="buttonAcc_go" layoutX="286.0" layoutY="563.0" mnemonicParsing="false" prefHeight="108.0" prefWidth="116.0" styleClass="go" />
                         <TextField fx:id="tfAcc_code1" alignment="CENTER" layoutX="123.0" layoutY="285.0" prefHeight="75.0" prefWidth="75.0" styleClass="button1">
                            <font>
                               <Font size="35.0" />
@@ -278,6 +281,7 @@
             </ImageView>
             <Button fx:id="buttonFacebook" layoutX="14.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="facebook" />
             <Button fx:id="buttonInstagram" layoutX="74.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="instagram" />
+            <Button fx:id="close" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="34.0" styleClass="off" />
          </children></Pane>
    </center>
 </BorderPane>

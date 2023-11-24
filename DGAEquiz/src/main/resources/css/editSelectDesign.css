@@ -42,13 +42,10 @@
 }
 
 .back {
-    -fx-background-color: #6387FF;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 20;
-}
-
-.back:hover {
-    -fx-background-color: linear-gradient(to bottom right, #F1A4EB, #6387FF);
-    -fx-text-fill: black;
-    -fx-font-size: 20;
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/back.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
 }

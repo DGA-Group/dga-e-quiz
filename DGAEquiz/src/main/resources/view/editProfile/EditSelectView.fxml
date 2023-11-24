@@ -9,8 +9,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" styleClass="back_ground" stylesheets="@../../css/editSelectDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.editProfile.EditSelectController">
    <children>
-      <Button fx:id="buttonBack" layoutX="24.0" layoutY="25.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="56.0" styleClass="back" stylesheets="@../../css/editSelectDesign.css" textFill="WHITE" />
-      <Button fx:id="buttonPassword" alignment="TOP_RIGHT" layoutX="5.0" layoutY="461.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="244.0" stylesheets="@../../css/editSelectDesign.css" text="Password" textAlignment="RIGHT" textFill="#f5f8fa">
+      <Button fx:id="buttonBack" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="104.0" styleClass="back" stylesheets="@../../css/editSelectDesign.css" textFill="WHITE" />
+      <Button fx:id="buttonPassword" alignment="TOP_RIGHT" layoutX="14.0" layoutY="320.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="244.0" stylesheets="@../../css/editSelectDesign.css" text="Password" textAlignment="RIGHT" textFill="#f5f8fa">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -20,21 +20,12 @@
             <Image url="@../../image/whale1.png" />
          </image>
       </ImageView>
-      <Button fx:id="buttonInfor" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="7.0" layoutY="594.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="301.0" text="Information" textFill="#f5f8fa">
+      <Button fx:id="buttonInfor" alignment="TOP_LEFT" contentDisplay="CENTER" layoutX="14.0" layoutY="514.0" mnemonicParsing="false" prefHeight="104.0" prefWidth="301.0" text="Information" textFill="#f5f8fa">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Button>
-      <Label alignment="TOP_LEFT" layoutX="38.0" layoutY="53.0" prefHeight="126.0" prefWidth="401.0" styleClass="label_what2" stylesheets="@../../css/editSelectDesign.css" text="WHAT" textFill="WHITE" wrapText="true">
-         <font>
-            <Font />
-         </font>
-      </Label>
-      <Label layoutX="38.0" layoutY="239.0" styleClass="label_what" stylesheets="@../../css/editSelectDesign.css" text="would" />
-      <Label layoutX="38.0" layoutY="375.0" styleClass="label_what3" stylesheets="@../../css/editSelectDesign.css" text="change?" />
-      <Label layoutX="157.0" layoutY="239.0" styleClass="label_what" stylesheets="@../../css/editSelectDesign.css" text="you" />
-      <Label layoutX="38.0" layoutY="310.0" styleClass="label_what" stylesheets="@../../css/editSelectDesign.css" text="want" />
-      <Label layoutX="137.0" layoutY="310.0" styleClass="label_what" stylesheets="@../../css/editSelectDesign.css" text="to" />
-      <Label layoutX="41.0" layoutY="546.0" styleClass="label_what" stylesheets="@../../css/editSelectDesign.css" text="or" />
+      <Label layoutX="41.0" layoutY="204.0" styleClass="label_what3" stylesheets="@../../css/editSelectDesign.css" text="change?" />
+      <Label layoutX="51.0" layoutY="432.0" styleClass="label_what" stylesheets="@../../css/editSelectDesign.css" text="or" />
    </children>
 </AnchorPane>

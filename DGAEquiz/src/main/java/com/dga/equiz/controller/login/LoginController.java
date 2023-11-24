@@ -45,6 +45,9 @@ import static com.dga.equiz.utils.EquizUtils.showAlert;
 public class LoginController implements Initializable {
 
     @FXML
+    private Button close;
+
+    @FXML
     private Button buttonFacebook;
 
     @FXML
@@ -93,9 +96,6 @@ public class LoginController implements Initializable {
     private CheckBox checkLogin_pass;
 
     @FXML
-    private DatePicker dateRegister_dob;
-
-    @FXML
     private StackPane stackPane;
 
     @FXML
@@ -127,6 +127,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField tfAcc_confirmPassShow;
+
+    @FXML
+    private TextField tfRegister_date;
 
     @FXML
     private PasswordField pfAcc_confirmPass;
@@ -274,9 +277,6 @@ public class LoginController implements Initializable {
                     paneConfirmAcc.setVisible(true);
                 } else {
                     showAlert("Please give our your USERNAME, PASSWORD AND MAIL to create a new account.");
-                    System.out.println(tfRegister_username.getText());
-                    System.out.println(tfRegister_pass.getText());
-                    System.out.println(tfRegister_mail.getText());
                 }
 
             } catch (Exception e1) {
@@ -418,6 +418,9 @@ public class LoginController implements Initializable {
         setButtonAction(buttonAcc_back, paneRegister);
         setButtonAction(buttonForgot_back, paneLogin);
         setButtonAction(buttonPass_back, paneForgotPass);
+        close.setOnAction((ActionEvent e) -> {
+            StageManager.getInstance().loginStage.close();
+        });
         buttonFacebook.setOnAction((ActionEvent e) -> {
             openBrowser("https://www.facebook.com/tunduong0105");
         });
@@ -446,8 +449,8 @@ public class LoginController implements Initializable {
         if (!tfRegister_username.getText().isEmpty() && !tfRegister_pass.getText().isEmpty()) {
 
             String myFormattedDate = "0001-01-01";
-            if (dateRegister_dob.getValue() != null) {
-                LocalDate myDate = dateRegister_dob.getValue();
+            if (!tfRegister_date.getText().isEmpty()) {
+                LocalDate myDate = LocalDate.parse(tfRegister_date.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 myFormattedDate = myDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             }
 

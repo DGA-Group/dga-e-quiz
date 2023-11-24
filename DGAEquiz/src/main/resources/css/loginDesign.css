@@ -99,3 +99,21 @@
     -fx-text-fill : #FFFFFF;
     -fx-font-size: 30;
 }
+
+.off {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/water.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.off:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/water.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
