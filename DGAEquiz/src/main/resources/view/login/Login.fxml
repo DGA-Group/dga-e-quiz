@@ -276,8 +276,8 @@
                   <Image url="@../../image/imagegroup.png" />
                </image>
             </ImageView>
-            <Button layoutX="14.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="facebook" />
-            <Button layoutX="74.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="instagram" />
+            <Button fx:id="buttonFacebook" layoutX="14.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="facebook" />
+            <Button fx:id="buttonInstagram" layoutX="74.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="instagram" />
          </children></Pane>
    </center>
 </BorderPane>
