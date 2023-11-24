@@ -336,6 +336,9 @@ public class LoginController implements Initializable {
                     if (resultSet.next()) {
                         if (!tfForgot_mail.getText().equals(resultSet.getString("mail"))) {
                             showAlert("Mail của bạn nhập không trùng với Mail của hệ thống");
+                            tfForgot_mail.setText(null);
+                            tfForgot_Npass.setText(null);
+                            tfForgot_confNpass.setText(null);
                             flag = false;
                         }
                     }
@@ -354,6 +357,8 @@ public class LoginController implements Initializable {
                     return;
                 } else if (!tfForgot_Npass.getText().equals(tfForgot_confNpass.getText())) {
                     showAlert("Vui lòng nhập lại mật khẩu");
+                    tfForgot_confNpass.setText(null);
+                    tfForgot_Npass.setText(null);
                     return;
                 } else if (flag){
                     stackPane.getChildren().forEach(pane -> pane.setVisible(false));
@@ -382,8 +387,6 @@ public class LoginController implements Initializable {
 
             if (codeInput != codeForgot[0]) {
                 showAlert("Confirm Code của bạn không đúng");
-            } else if (!checkAcc_agree.isSelected()) {
-                showAlert("Please agree with all terms to use this app");
             } else {
                 String query = "UPDATE information\n" +
                         "SET password = '" + tfForgot_Npass.getText() + "' WHERE username = '" + tfForgot_username.getText() + "';";

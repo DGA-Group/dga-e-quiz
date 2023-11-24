@@ -32,7 +32,6 @@
                               <Font size="20.0" />
                            </font>
                         </TextField>
-                        <PasswordField fx:id="pfLogin_password" layoutX="139.0" layoutY="285.0" prefHeight="45.0" prefWidth="370.0" promptText="Password" styleClass="button1" />
                         <TextField fx:id="tfLogin_showPass" alignment="TOP_LEFT" layoutX="139.0" layoutY="285.0" prefHeight="45.0" prefWidth="370.0" styleClass="button1">
                            <font>
                               <Font size="20.0" />
@@ -72,6 +71,7 @@
                         </Button>
                         <Label layoutX="144.0" layoutY="154.0" styleClass="userLabel" text="Username" />
                         <Label layoutX="141.0" layoutY="251.0" styleClass="userLabel" text="Password" />
+                        <PasswordField fx:id="pfLogin_password" layoutX="139.0" layoutY="285.0" prefHeight="45.0" prefWidth="370.0" styleClass="button1" />
                      </children>
                   </Pane>
                </center>
@@ -86,20 +86,38 @@
                            </font>
                         </Label>
                         <Label layoutX="126.0" layoutY="120.0" styleClass="userLabel" text="Username" />
-                        <TextField fx:id="tfRegister_username" layoutX="126.0" layoutY="150.0" prefHeight="30.0" prefWidth="370.0" promptText="Username" styleClass="button1" />
+                        <TextField fx:id="tfRegister_username" layoutX="126.0" layoutY="150.0" prefHeight="40.0" prefWidth="370.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
                         <Label layoutX="126.0" layoutY="200.0" styleClass="userLabel" text="Password" />
-                        <TextField fx:id="tfRegister_pass" layoutX="126.0" layoutY="230.0" prefHeight="30.0" prefWidth="370.0" promptText="Password" styleClass="button1" />
+                        <TextField fx:id="tfRegister_pass" layoutX="126.0" layoutY="230.0" prefHeight="40.0" prefWidth="370.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
                         <Label layoutX="126.0" layoutY="280.0" styleClass="userLabel" text="Mail" />
                         <Label layoutX="126.0" layoutY="530.0" styleClass="userLabel" text="Github Link" />
                         <Label layoutX="126.0" layoutY="440.0" styleClass="userLabel" text="Phone Number" />
                         <Label layoutX="126.0" layoutY="360.0" styleClass="userLabel" text="Name" />
-                        <TextField fx:id="tfRegister_mail" layoutX="126.0" layoutY="310.0" prefHeight="30.0" prefWidth="370.0" promptText="Your Mail" styleClass="button1" />
-                        <TextField fx:id="tfRegister_name" layoutX="126.0" layoutY="390.0" prefHeight="30.0" prefWidth="370.0" promptText="Your Name" styleClass="button1" />
-                        <TextField fx:id="tfRegister_phone" layoutX="126.0" layoutY="470.0" prefHeight="30.0" prefWidth="370.0" promptText="Phone Number" styleClass="button1" />
-                        <TextField fx:id="tfRegister_github" layoutX="126.0" layoutY="560.0" prefHeight="30.0" prefWidth="370.0" promptText="Github Link" styleClass="button1" />
+                        <TextField fx:id="tfRegister_mail" layoutX="126.0" layoutY="310.0" prefHeight="40.0" prefWidth="370.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <TextField fx:id="tfRegister_name" layoutX="126.0" layoutY="390.0" prefHeight="40.0" prefWidth="370.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <TextField fx:id="tfRegister_phone" layoutX="126.0" layoutY="470.0" prefHeight="40.0" prefWidth="370.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
+                        <TextField fx:id="tfRegister_github" layoutX="126.0" layoutY="560.0" prefHeight="40.0" prefWidth="370.0" styleClass="button1">
+                           <font>
+                              <Font size="20.0" />
+                           </font></TextField>
                         <Button fx:id="buttonRegister_back" layoutX="17.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" styleClass="back" />
                         <Label layoutX="126.0" layoutY="610.0" styleClass="userLabel" text="Date Of Birth" />
-                        <DatePicker fx:id="dateRegister_dob" layoutX="126.0" layoutY="640.0" prefHeight="30.0" prefWidth="370.0" promptText="mm/dd/yyyy" styleClass="button1" />
+                        <DatePicker fx:id="dateRegister_dob" layoutX="126.0" layoutY="640.0" prefHeight="40.0" prefWidth="370.0" promptText="mm/dd/yyyy" styleClass="button1" />
                         <Button fx:id="buttonRegister_next" layoutX="575.0" layoutY="655.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" styleClass="next" />
                      </children>
                   </Pane>
@@ -120,7 +138,7 @@
                            </font>
                         </Label>
                         <Button fx:id="buttonAcc_back" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="45.0" styleClass="back" />
-                        <TextField fx:id="tfAcc_confirmPassShow" layoutX="123.0" layoutY="402.0" prefHeight="43.0" prefWidth="378.0" promptText="Confirm your password" styleClass="button1">
+                        <TextField fx:id="tfAcc_confirmPassShow" layoutX="123.0" layoutY="402.0" prefHeight="43.0" prefWidth="378.0" styleClass="button1">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -165,7 +183,7 @@
                   </Pane>
                </center>
             </BorderPane>
-            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="paneForgotPass" prefHeight="200.0" prefWidth="200.0" visible="false">
                <center>
                   <Pane prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                      <children>

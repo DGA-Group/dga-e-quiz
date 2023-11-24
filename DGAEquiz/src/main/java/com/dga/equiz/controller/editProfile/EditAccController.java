@@ -106,6 +106,7 @@ public class EditAccController implements Initializable {
                 labelNewPass.setVisible(false);
                 labelConfirmPass.setVisible(false);
                 showAlert("Wrong Password");
+                passFCurrent.setText(null);
                 return;
             }
         });
@@ -119,6 +120,8 @@ public class EditAccController implements Initializable {
                 flag = true;
             } else {
                 showAlert("Confirm Pass Is Wrong");
+                passFNew.setText(null);
+                passFConfirm.setText(null);
                 return;
             }
 
