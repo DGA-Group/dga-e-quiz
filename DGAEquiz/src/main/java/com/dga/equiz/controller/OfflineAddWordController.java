@@ -1,6 +1,7 @@
 package com.dga.equiz.controller;
 
 import com.dga.equiz.utils.DBHelper;
+import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.utils.StageManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +34,9 @@ public class OfflineAddWordController {
         String word = wordText.getText();
         String pronounce = taPronounce.getText();
         String description = taDescription.getText();
+        if (word.equals("") && pronounce.equals("") && description.equals("")){
+            EquizUtils.showAlert("Please add word !!!");
+        }
         String query = "INSERT INTO av(word, description, pronounce) VALUES " +
                 "('" + word + "','" + pronounce + "','" + description + "');";
         try {

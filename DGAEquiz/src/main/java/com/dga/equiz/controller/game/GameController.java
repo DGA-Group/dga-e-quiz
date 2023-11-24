@@ -30,7 +30,7 @@ public class GameController implements Initializable {
             lobbyView = EquizUtils.Instantiate("/view/game/LobbyView.fxml", paneGame, AnchorType.FitToParent);
             lobbyView.show();
 
-            chatRoomView = EquizUtils.Instantiate("/view/game/ChatRoomView.fxml", paneGame, AnchorType.FitToParent);
+            chatRoomView = EquizUtils.Instantiate("/view/game/ChatRoomView.fxml", paneGame);
             chatRoomView.hide();
         } catch (Exception ignore) {
         }

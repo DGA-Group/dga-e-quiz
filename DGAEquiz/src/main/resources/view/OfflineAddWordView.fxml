@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="600.0" styleClass="tab-pane-addPane" stylesheets="@../css/addWordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.OfflineAddWordController">
    <children>
-      <VBox fx:id="vBox" alignment="TOP_CENTER" layoutX="4.0" layoutY="36.0" prefHeight="395.0" prefWidth="590.0" spacing="20.0" styleClass="scroll-pane-addScrollPane" stylesheets="@../css/addWordDesign.css">
+      <VBox fx:id="vBox" alignment="TOP_CENTER" layoutX="4.0" layoutY="36.0" prefHeight="549.0" prefWidth="613.0" spacing="30.0" styleClass="scroll-pane-addScrollPane" stylesheets="@../css/addWordDesign.css">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -19,20 +19,23 @@
             <Insets left="10.0" right="10.0" top="10.0" />
          </padding>
          <children>
-            <TextField fx:id="wordText" prefHeight="57.0" prefWidth="580.0" promptText="word" styleClass="text-area-taPronounceDescription">
+            <TextField fx:id="wordText" prefHeight="57.0" prefWidth="580.0" promptText="Word" styleClass="text-area-taPronounceDescription">
                <font>
                   <Font size="25.0" />
                </font>
             </TextField>
             <TextArea fx:id="taPronounce" prefHeight="74.0" prefWidth="593.0" promptText="Pronounce" styleClass="text-area-taPronounceDescription" />
-            <TextArea fx:id="taDescription" prefHeight="181.0" prefWidth="572.0" promptText="Description" styleClass="text-area-taPronounceDescription" />
+            <TextArea fx:id="taDescription" prefHeight="201.0" prefWidth="570.0" promptText="Description" styleClass="text-area-taPronounceDescription" />
+            <Button fx:id="btnConfirm" mnemonicParsing="false" onAction="#onClickAdd" styleClass="button-confirm" text="Confirm">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
          </children>
       </VBox>
-      <Button fx:id="btnClose" layoutX="577.0" layoutY="2.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="24.0" prefWidth="10.0" styleClass="button-close" stylesheets="@../css/applicationDesign.css" textFill="RED">
+      <Button fx:id="btnClose" layoutX="573.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickClose" prefHeight="24.0" prefWidth="10.0" styleClass="button-out" stylesheets="@../css/addWordDesign.css" textFill="RED">
          <graphic>
-            <FontIcon iconLiteral="fth-x" iconSize="10" />
+            <FontIcon iconColor="WHITE" iconLiteral="fth-x" iconSize="14" />
          </graphic>
       </Button>
-      <Button fx:id="btnConfirm" layoutX="279.0" layoutY="439.0" mnemonicParsing="false" onAction="#onClickAdd" text="Confirm" />
    </children>
 </AnchorPane>

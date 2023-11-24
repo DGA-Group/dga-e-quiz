@@ -4,6 +4,7 @@ import com.dga.equiz.model.Campaign;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class CampaignController {
 
@@ -16,6 +17,12 @@ public class CampaignController {
 
     @FXML
     public Label labelDescription;
+
+    @FXML
+    public AnchorPane paneBG;
+
+    @FXML
+    public AnchorPane paneLock;
     //endregion
 
 
@@ -33,8 +40,15 @@ public class CampaignController {
         this.labelDescription.setText(description);
     }
 
-    public void setupCampaign(Campaign campaignModel){
+    public void setupCampaign(Campaign campaignModel) {
         this.labelTitle.setText(campaignModel.getTitle());
         this.labelDescription.setText(campaignModel.getDescription());
+    }
+
+    public void setUnlockCampaign() {
+        paneBG.setDisable(true);
+        paneBG.setVisible(false);
+        paneLock.setDisable(true);
+        paneLock.setVisible(false);
     }
 }

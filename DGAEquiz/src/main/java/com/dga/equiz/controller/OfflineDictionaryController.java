@@ -56,6 +56,7 @@ public class OfflineDictionaryController implements Initializable {
             TextFields.bindAutoCompletion(searchingField, suggestions);
         });
     }
+
     public void onEnterSearch() {
         searchingField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
@@ -70,6 +71,7 @@ public class OfflineDictionaryController implements Initializable {
             }
         });
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         onStartup();
@@ -85,6 +87,7 @@ public class OfflineDictionaryController implements Initializable {
             e.printStackTrace();
         }
     }
+
     public void updatedSuggestions(String word) {
         ResultSet resultSet = null;
         Statement statement = null;
@@ -108,7 +111,6 @@ public class OfflineDictionaryController implements Initializable {
         }
     }
 
-
     public void onClickAddWord() throws IOException {
         StageManager.getInstance().offlineAddDictionaryStage.show();
     }
@@ -131,6 +133,7 @@ public class OfflineDictionaryController implements Initializable {
             String word = "";
             String description = "";
             String pronounce = "";
+            boolean foundWord = false;
             while (resultSet.next()) {
                 NodeObject wordView = EquizUtils.Instantiate("/view/OfflineWordView.fxml");
                 wordsBox.getChildren().add(wordView.getNode());
@@ -138,12 +141,11 @@ public class OfflineDictionaryController implements Initializable {
                 word = resultSet.getString(2);
                 description = resultSet.getString(4);
                 pronounce = resultSet.getString(5);
-                if (word != null) {
-                    controller.setupWordView(word, pronounce, description, this);
-                }
-                else {
-                    EquizUtils.showAlert("Word is not exist !!!");
-                }
+                controller.setupWordView(word, pronounce, description, this);
+                foundWord = true;
+            }
+            if (!foundWord) {
+                EquizUtils.showAlert("Word is not exist!"+ "\n" +"Please add your word!");
             }
 
         } catch (SQLException e) {
@@ -155,4 +157,5 @@ public class OfflineDictionaryController implements Initializable {
             }
         }
     }
+
 }

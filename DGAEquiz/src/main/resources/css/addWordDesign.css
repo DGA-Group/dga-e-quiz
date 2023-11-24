@@ -1,36 +1,64 @@
 .label-labelOfWord {
     -fx-font-size: 30;
     -fx-text-fill: #FFFFFF;
+    -fx-background-color: transparent;
 }
 
 .text-area-taPronounceDescription {
     -fx-font-size: 18;
     -fx-text-fill: #FFFFFF;
     -fx-background-radius: 10;
-    -fx-control-inner-background: #1D1E3D;
+    -fx-control-inner-background: rgb(29, 30, 61);
+    -fx-background-color: transparent;
     -fx-control-inner-text-fill: #FFFFFF;
-    -fx-focus-traversable: transparent;
+    -fx-prompt-text-fill: #FFFFFF;
 
 }
-.text-area-taPronounceDescription:focused:hover {
+
+.text-area-taPronounceDescription:hover:focused {
     -fx-font-size: 18;
     -fx-text-fill: #FFFFFF;
     -fx-background-radius: 10;
-    -fx-control-inner-background: #1D1E3D;
-    -fx-focus-traversable: transparent;
-
+    -fx-control-inner-background: rgba(29, 30, 61, 0.7);
 }
 
 .tab-pane-addPane {
     -fx-background-color: #0B1021;
+    -fx-background-radius: 10px;
+
+}
+
+.scroll-pane-son {
+    -fx-background-radius: 10;
+    -fx-text-fill: #D3D5DB;
+    -fx-background-color: rgba(29, 30, 61, 0.7);
+
 }
 
 .scroll-pane-addScrollPane {
-    -fx-background-color: #0B1021;
+    -fx-background-color: transparent;
+    -fx-background-image: url('../image/imagegroup.png');
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+.button-confirm{
+    -fx-background-color: #1D1E3D;
+    -fx-text-fill: #A5A8B6;
 }
 
-.text-area-custom {
-    -fx-background-color: #1D1E3D; /* Đặt màu nền */
-    -fx-text-fill: #FFFFFF; /* Đặt màu chữ */
-    -fx-background-radius: 10; /* Đặt góc bo tròn */
+.button-confirm:hover {
+    -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
+.button-out {
+    -fx-background-color: #1D1E3D;
+}
+.button-out:hover {
+    -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+}
+
+
+
+

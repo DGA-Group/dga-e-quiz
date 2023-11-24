@@ -6,7 +6,7 @@
     -fx-background-color: transparent;
 }
 
-.pen_image {
+.search_image {
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-background-image: url("../image/searchImage.png");
@@ -15,7 +15,7 @@
     -fx-background-position: center center;
 }
 
-.pen_image:hover {
+.search_image:hover {
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-background-image: url("../image/searchAnimation.gif");
@@ -23,6 +23,25 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
+.button-add{
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/add-word.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.button-add:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/add-word.gif");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+
+}
+
 
 .textField-searchBar {
     -fx-text-fill: white;
