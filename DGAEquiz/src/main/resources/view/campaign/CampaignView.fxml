@@ -2,37 +2,56 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="394.0" prefWidth="478.0" styleClass="campaign-item" stylesheets="@../../css/campaignDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.CampaignController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="960.0" styleClass="campaign-item" stylesheets="@../../css/campaignDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.CampaignController">
    <children>
-      <ImageView fitHeight="337.0" fitWidth="215.0" layoutX="131.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../image/duolingo_holding_map.PNG" />
-         </image>
-      </ImageView>
-      <AnchorPane layoutX="40.0" layoutY="184.0" prefHeight="200.0" prefWidth="394.0" style="-fx-background-color: #009571;" styleClass="info-box" stylesheets="@../../css/campaignDesign.css">
+      <HBox alignment="CENTER" prefHeight="238.0" prefWidth="960.0">
          <children>
-            <Button fx:id="buttonStartCampaign" alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="137.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="243.0" styleClass="ok-btn" stylesheets="@../../css/campaignDesign.css" text="BẮT ĐẦU" textAlignment="CENTER">
+            <ImageView fitHeight="238.0" fitWidth="322.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+         </children>
+      </HBox>
+      <AnchorPane layoutX="139.0" layoutY="257.0" prefHeight="198.0" prefWidth="682.0" styleClass="info-box" stylesheets="@../../css/campaignDesign.css">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="394.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" styleClass="label1" stylesheets="@../../css/campaignDesign.css" text="Phần 1: Bước vào hành trình" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" styleClass="label1" stylesheets="@../../css/campaignDesign.css" text="Chưa hoàn thành" textAlignment="CENTER">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelDescription" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" styleClass="label1" stylesheets="@../../css/campaignDesign.css" text="Khởi động cùng một số cụm từ và ngữ pháp cơ bản" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Button fx:id="buttonStartCampaign" alignment="CENTER" contentDisplay="CENTER" layoutX="101.0" layoutY="142.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="470.0" styleClass="button1" stylesheets="@../../css/campaignDesign.css" text="BẮT ĐẦU" textAlignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <ProgressBar layoutX="97.0" layoutY="71.0" prefWidth="200.0" progress="0.29" stylesheets="@../../css/campaignDesign.css" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="39.0" prefHeight="18.0" prefWidth="396.0" text="0 / 4 Bài" textAlignment="CENTER" />
-            <Label fx:id="labelTitle" alignment="CENTER" contentDisplay="CENTER" layoutY="1.0" prefHeight="38.0" prefWidth="396.0" text="Phần 1: Bước vào hành trình" textAlignment="CENTER" wrapText="true" />
-            <Label fx:id="labelDescription" alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="100.0" prefHeight="18.0" prefWidth="396.0" text="Khởi động cùng một số cụm từ và ngữ pháp cơ bản" textAlignment="CENTER" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneBG" style="-fx-background-color: #000000; -fx-opacity: 0.5;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="paneLock" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="paneBG" styleClass="mask" stylesheets="@../../css/campaignDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="paneLock" stylesheets="@../../css/campaignDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <FontIcon iconColor="WHITE" iconLiteral="fth-lock" iconSize="100" layoutX="192.0" layoutY="240.0" wrappingWidth="93.60003185272217" />
+            <HBox alignment="CENTER" prefHeight="480.0" prefWidth="960.0">
+               <children>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-lock" iconSize="300" wrappingWidth="283.60003185272217" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>
