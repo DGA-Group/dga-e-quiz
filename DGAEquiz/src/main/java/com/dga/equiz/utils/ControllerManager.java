@@ -1,5 +1,6 @@
 package com.dga.equiz.utils;
 
+import com.dga.equiz.controller.MyApplicationController;
 import com.dga.equiz.controller.editProfile.EditAccController;
 import com.dga.equiz.controller.editProfile.EditInforController;
 import com.dga.equiz.controller.editProfile.ProfileController;
@@ -27,6 +28,6 @@ public class ControllerManager {
     public LobbyController lobbyController;
     public CreateRoomController createRoomController;
     public ChatRoomController chatRoomController;
-
     public LoginController loginController;
+    public MyApplicationController myApplicationController;
 }

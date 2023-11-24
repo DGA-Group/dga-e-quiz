@@ -1,6 +1,7 @@
 .box {
     -fx-background-color: #1D1E3D;
 }
+
 .button_menu {
     -fx-background-color: #1D1E3D;
     -fx-text-fill: white;
@@ -9,4 +10,8 @@
 .button_menu:hover {
     -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
     -fx-text-fill: white;
+}
+
+.loading-img {
+    -fx-background-image: url("../image/loading.gif");
 }

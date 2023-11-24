@@ -10,13 +10,14 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="panelHome" maxHeight="720.0" maxWidth="1030.0" prefHeight="720.0" prefWidth="1030.0" style="-fx-background-color: #0B1021;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.HomeController">
+<AnchorPane fx:id="panelHome" maxHeight="720.0" maxWidth="1030.0" prefHeight="720.0" prefWidth="1030.0" style="-fx-background-color: #0B1021;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.HomeController">
    <children>
-      <VBox maxHeight="720.0" maxWidth="1030.0" prefHeight="720.0" prefWidth="1030.0">
+      <VBox alignment="TOP_CENTER" maxHeight="720.0" maxWidth="1030.0" prefHeight="720.0" prefWidth="1030.0" spacing="10.0">
          <children>
             <HBox prefHeight="80.0" prefWidth="1030.0">
                <children>
@@ -70,6 +71,55 @@
                   </HBox>
                </children>
             </HBox>
+            <HBox prefHeight="400.0" prefWidth="1030.0" spacing="10.0">
+               <children>
+                  <AnchorPane prefHeight="196.0" prefWidth="272.0" styleClass="home-item" stylesheets="@../css/learnDesign.css">
+                     <children>
+                        <Label layoutX="14.0" text="Point" textFill="WHITE">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbPoint" alignment="CENTER" contentDisplay="CENTER" layoutY="71.0" prefHeight="83.0" prefWidth="300.0" text="0 pts" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="56.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="20.0" layoutY="10.0" prefHeight="196.0" prefWidth="276.0" styleClass="home-item" stylesheets="@../css/learnDesign.css">
+                     <children>
+                        <Label layoutX="14.0" text="Rank" textFill="WHITE">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbRankTop" alignment="CENTER" contentDisplay="CENTER" layoutY="69.0" prefHeight="83.0" prefWidth="300.0" text="Top 1" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="56.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="379.0" layoutY="10.0" prefHeight="196.0" prefWidth="354.0" styleClass="home-item" stylesheets="@../css/learnDesign.css">
+                     <children>
+                        <Label layoutX="14.0" text="Flashcard" textFill="WHITE">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lbFlashCard" alignment="CENTER" contentDisplay="CENTER" layoutY="69.0" prefHeight="83.0" prefWidth="300.0" text="38 cards" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font size="56.0" />
+                           </font>
+                        </Label>
+                     </children></AnchorPane>
+               </children>
+               <padding>
+                  <Insets left="35.0" right="10.0" />
+               </padding>
+            </HBox>
+            <Line endX="100.0" startX="-853.1515502929688" startY="-0.8001880049705505" stroke="WHITE" />
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="658.0" prefWidth="1030.0" style="-fx-background-color: #0B1021;" vbarPolicy="NEVER">
                <content>
                   <VBox fx:id="vBCampaignList" alignment="TOP_CENTER" spacing="50.0" style="-fx-background-color: #0B1021;">

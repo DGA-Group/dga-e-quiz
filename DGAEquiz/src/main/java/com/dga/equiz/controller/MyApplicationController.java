@@ -49,6 +49,7 @@ public class MyApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().myApplicationController = this;
         ApplicationData.getInstance().loadAllData();
         setupHomeView();
         setupDictionaryView();
