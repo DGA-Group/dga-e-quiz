@@ -33,8 +33,6 @@ public class MyApplicationController implements Initializable {
     @FXML
     private Button logOutButton;
 
-    @FXML
-    private HBox hboxUpperBar;
     //endregion
 
     private NodeObject homeView = null;
@@ -95,16 +93,6 @@ public class MyApplicationController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
-
-        this.hboxUpperBar.setOnMousePressed(event -> {
-            xOffset = stage.getX() - event.getScreenX();
-            yOffset = stage.getY() - event.getScreenY();
-        });
-
-        this.hboxUpperBar.setOnMouseDragged(event -> {
-            stage.setX(event.getScreenX() + xOffset);
-            stage.setY(event.getScreenY() + yOffset);
         });
     }
 

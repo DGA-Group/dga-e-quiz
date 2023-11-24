@@ -31,9 +31,11 @@ public class ClientHelperRequest {
         try {
             if (objectOutputStream == null) {
                 objectOutputStream = new MyObjectOutputStream(socket.getOutputStream());
+                objectOutputStream.flush();
             }
             objectOutputStream.writeObject(request);
             objectOutputStream.flush();
+            objectOutputStream.reset();
         } catch (Exception e) {
             e.printStackTrace();
         }

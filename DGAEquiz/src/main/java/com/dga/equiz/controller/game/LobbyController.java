@@ -93,7 +93,7 @@ public class LobbyController implements Initializable {
                 RoomItemController controller = room.getController();
                 String roomId = roomItem.roomId;
                 String roomName = roomItem.roomName;
-                String roomPlayer = "" + roomItem.roomPlayerLimits; //+ '/' + roomItem.getPlayerLimit();
+                String roomPlayer =  roomItem.roomPlayerCount + "/" + roomItem.roomPlayerLimits;
                 controller.setupRoomItem(roomId, roomName, roomPlayer);
                 controller.setRoom(roomItem);
             } catch (Exception e) {

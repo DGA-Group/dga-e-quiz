@@ -17,7 +17,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -57,6 +56,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private Button buttonPass_go;
+
+    @FXML
+    private Button buttonPass_back;
 
     @FXML
     private Button buttonForgot_go;
@@ -168,9 +170,6 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField tfRegister_username;
-
-    @FXML
-    private VBox vboxInfor;
 
     public List<EventHandler<ActionEvent>> onCompleteSave = new ArrayList<>();
 
@@ -323,10 +322,39 @@ public class LoginController implements Initializable {
                 showAlert("Vui lòng điền đầy đủ thông tin");
                 return;
             } else {
-                if (!tfForgot_Npass.getText().equals(tfForgot_confNpass.getText())) {
+                boolean flag = true;
+                String sqlQuery = "SELECT mail FROM `information` WHERE username = '" + tfForgot_username.getText() + "';";
+                ResultSet resultSet = null;
+                Statement statement = null;
+                Connection connection = null;
+
+                try {
+                    resultSet = DBHelper.executeQuery(sqlQuery);
+                    statement = resultSet.getStatement();
+                    connection = statement.getConnection();
+                    if (resultSet.next()) {
+                        if (!tfForgot_mail.getText().equals(resultSet.getString("mail"))) {
+                            showAlert("Mail của bạn nhập không trùng với Mail của hệ thống");
+                            flag = false;
+                        }
+                    }
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                } finally {
+                    try {
+                        DBHelper.closeQuery(resultSet, statement, connection);
+                    } catch (Exception ignore) {
+                    }
+                }
+
+                if (tfForgot_Npass.getText().isEmpty() || tfForgot_confNpass.getText().isEmpty()) {
+                    showAlert("Please write your password");
+                    flag = false;
+                    return;
+                } else if (!tfForgot_Npass.getText().equals(tfForgot_confNpass.getText())) {
                     showAlert("Vui lòng nhập lại mật khẩu");
                     return;
-                } else {
+                } else if (flag){
                     stackPane.getChildren().forEach(pane -> pane.setVisible(false));
                     paneConfirmPass.setVisible(true);
                     Random random = new Random();
@@ -335,7 +363,7 @@ public class LoginController implements Initializable {
                     Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfForgot_mail.getText(), "Confirm Acc DGAEQuiz", message);
                 }
             }
-        });
+            });
 
         // Pass
         buttonPass_go.setOnAction((ActionEvent e) -> {
@@ -375,6 +403,7 @@ public class LoginController implements Initializable {
         setButtonAction(buttonRegister_back, paneLogin);
         setButtonAction(buttonAcc_back, paneRegister);
         setButtonAction(buttonForgot_back, paneLogin);
+        setButtonAction(buttonPass_back, paneForgotPass);
     }
 
     public void setButtonAction(Button button, BorderPane pane1) {

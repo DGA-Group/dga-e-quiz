@@ -79,7 +79,8 @@ public class ServerHelper {
             ShowRoomRequest showRoomRequest = new ShowRoomRequest();
             ShowRoomResponse showRoomResponse = handleShowRoom(showRoomRequest);
             room.broadcast(showRoomResponse, null);
-        } catch (Exception ignore) { }
+        } catch (Exception ignore) {
+        }
         return new OpenRoomResponse(PacketResponse.OK, "You have opened room " + roomId, roomId, packet.roomPassword);
     }
 
@@ -108,15 +109,16 @@ public class ServerHelper {
         Set<Room> roomList = server.getRoomList();
         List<RoomWrapper> roomWrappers = new ArrayList<>();
         for (Room room : roomList) {
+            int roomPlayerCount = room.playerList.size();
             RoomWrapper roomWrapper = new RoomWrapper(room.roomId, room.roomName,
-                    room.roomPassword, room.roomPlayerLimits);
+                    room.roomPassword, roomPlayerCount, room.roomPlayerLimits);
             roomWrappers.add(roomWrapper);
         }
         return new ShowRoomResponse(roomWrappers);
     }
 
     private static StartRoomResponse handleStartGame(StartRoomRequest packet, ClientHandler client) {
-        if(client.currentRoom.currentGameMode != null){
+        if (client.currentRoom.currentGameMode != null) {
             return new StartRoomResponse(PacketResponse.ERROR, "There is a game being played already!");
         }
 
@@ -135,7 +137,8 @@ public class ServerHelper {
                 , room.playerList.size(), room.roomPlayerLimits);
         try {
             room.broadcast(response, client);
-        }catch (Exception ignore){}
+        } catch (Exception ignore) {
+        }
     }
 
     public static void callFuncDelay(Event func, long millisecond) {

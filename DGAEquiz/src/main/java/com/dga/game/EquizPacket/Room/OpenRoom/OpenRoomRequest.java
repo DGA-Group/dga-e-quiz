@@ -2,12 +2,11 @@ package com.dga.game.EquizPacket.Room.OpenRoom;
 
 import com.dga.game.EquizPacket.EquizPacket;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.Serial;
 
 public class OpenRoomRequest implements EquizPacket {
-    private static final long serialVersionUID = -9159491280264274009L;
+    @Serial
+    private static final long serialVersionUID = 934745767650458372L;
     public String roomName;
     public boolean requirePassword;
     public String roomPassword;
@@ -24,14 +23,6 @@ public class OpenRoomRequest implements EquizPacket {
             this.roomPassword = roomPassword;
         }
         this.roomPlayerLimit = roomPlayerLimit;
-    }
-
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-    }
-
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
     }
 
     @Override

@@ -7,7 +7,6 @@ import java.io.OutputStream;
 public class MyObjectOutputStream extends ObjectOutputStream {
 
     public MyObjectOutputStream() throws IOException {
-        super();
     }
 
     public MyObjectOutputStream(OutputStream o) throws IOException {

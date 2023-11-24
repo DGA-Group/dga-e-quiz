@@ -5,31 +5,29 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.FlashCardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" styleClass="back_ground" stylesheets="@../css/flashcardDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.FlashCardController">
    <top>
-      <Pane prefHeight="83.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="131.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="111.0" layoutY="19.0" prefHeight="17.0" prefWidth="379.0" text="Your Flash Card">
+            <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="202.0" layoutY="26.0" prefHeight="79.0" prefWidth="629.0" styleClass="flash_card" text="Flash Card" textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <Circle fx:id="circleAva" fill="DODGERBLUE" layoutX="457.0" layoutY="42.0" radius="33.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </Pane>
    </top>
    <center>
-      <StackPane fx:id="FlashCardPane" prefHeight="197.0" prefWidth="349.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+      <StackPane fx:id="FlashCardPane" prefHeight="396.0" prefWidth="630.0" styleClass="pane" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="wordLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="170.0" prefWidth="387.0" style="-fx-background-color: pink;" text="Word" visible="false">
+            <Label fx:id="wordLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="170.0" prefWidth="387.0" styleClass="normal_field" text="Word" textAlignment="CENTER" visible="false">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
-            <Label fx:id="atlertLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="222.0" prefWidth="502.0" text="You don't have any flash card.">
+            <Label fx:id="atlertLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="222.0" prefWidth="502.0" styleClass="normal_field" text="You don't have any flash card." textAlignment="CENTER">
                <font>
                   <Font size="30.0" />
                </font>
@@ -38,18 +36,22 @@
       </StackPane>
    </center>
    <bottom>
-      <Pane prefHeight="69.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="193.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="prevButton" layoutX="161.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
-            <Button fx:id="nextButton" layoutX="384.0" layoutY="14.0" mnemonicParsing="false" text="Button" />
-            <Label fx:id="curLabel" alignment="CENTER" layoutX="252.0" layoutY="18.0" prefHeight="22.0" prefWidth="98.0" text="Label" />
+            <Pane layoutX="204.0" layoutY="26.0" prefHeight="100.0" prefWidth="630.0" styleClass="pane">
+               <children>
+                  <Button fx:id="nextButton" layoutX="405.0" layoutY="16.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="76.0" styleClass="next" />
+                  <Button fx:id="prevButton" layoutX="121.0" layoutY="17.0" mnemonicParsing="false" prefHeight="69.0" prefWidth="76.0" styleClass="back" />
+                  <Label fx:id="curLabel" alignment="CENTER" layoutX="252.0" layoutY="32.0" prefHeight="22.0" prefWidth="98.0" styleClass="normal_field" text="Label" />
+               </children>
+            </Pane>
          </children>
       </Pane>
    </bottom>
    <left>
-      <Pane prefHeight="263.0" prefWidth="82.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane prefHeight="249.0" prefWidth="70.0" style="-fx-background-color: yellow;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

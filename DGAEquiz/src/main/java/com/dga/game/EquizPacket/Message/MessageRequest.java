@@ -2,11 +2,10 @@ package com.dga.game.EquizPacket.Message;
 
 import com.dga.game.EquizPacket.EquizPacket;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.Serial;
 
 public class MessageRequest implements EquizPacket {
+    @Serial
     private static final long serialVersionUID = -2552934271788998803L;
     public String text;
 
@@ -16,14 +15,6 @@ public class MessageRequest implements EquizPacket {
 
     public MessageRequest(String text) {
         this.text = text;
-    }
-
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-    }
-
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
     }
 
     @Override

@@ -9,8 +9,8 @@ import java.net.Socket;
 public class ClientHandler implements Runnable {
     public Socket socket;
     public EquizServer server;
-    public MyObjectInputStream objectInputStream = null;
     public MyObjectOutputStream objectOutputStream = null;
+    public MyObjectInputStream objectInputStream = null;
     public Room currentRoom;
 
     public int userId;
@@ -21,8 +21,9 @@ public class ClientHandler implements Runnable {
         this.socket = socket;
         this.server = server;
         try {
-            objectInputStream = new MyObjectInputStream(socket.getInputStream());
             objectOutputStream = new MyObjectOutputStream(socket.getOutputStream());
+            objectOutputStream.flush();
+            objectInputStream = new MyObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -51,8 +52,9 @@ public class ClientHandler implements Runnable {
     }
 
     public void sendPacket(EquizPacket packet) throws IOException {
-        // objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
         objectOutputStream.writeObject(packet);
+        objectOutputStream.flush();
+        objectOutputStream.reset();
     }
 
     public void close() {

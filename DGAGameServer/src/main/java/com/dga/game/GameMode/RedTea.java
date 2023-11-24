@@ -46,6 +46,7 @@ public class RedTea extends TeaGame {
     public void play() throws IOException, InterruptedException {
         playerPoint = new HashMap<>();
         hostRoom.currentWinner = null;
+        Thread.sleep(500);
 
         while (isRunning) {
             //Send word to the client.

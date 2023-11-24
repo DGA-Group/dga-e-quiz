@@ -22,7 +22,7 @@
 
 .name_label {
     -fx-font-family: "Trebuchet MS";
-    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB, #5E47FF);
 }
 
 .mail_image {
@@ -63,7 +63,15 @@
 .pen {
     -fx-background-color: transparent;
     -fx-border-width: 0;
-    -fx-background-image: url("../image/pen.png");
+    -fx-background-image: url("../image/painter.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.pen:hover {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/painter.gif");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
@@ -72,6 +80,15 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-background-image: url("../image/setting.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+.camera {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/camera.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;

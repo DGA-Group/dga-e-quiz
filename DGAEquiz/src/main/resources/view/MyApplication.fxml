@@ -23,7 +23,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToHome" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Home" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToHome" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Home" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -34,7 +34,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSwitchToDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Dictionary" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSwitchToDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Dictionary" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-book" iconSize="20" />
                </graphic>
@@ -42,7 +42,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickSwitchToProfile" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Profile" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickSwitchToProfile" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Profile" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-user" iconSize="20" />
                </graphic>
@@ -50,7 +50,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Game" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Game" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" iconSize="20" />
                </graphic>
@@ -58,7 +58,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="OffDic" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="OffDic" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-book-open" iconSize="20" />
                </graphic>
@@ -66,7 +66,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickSwitchToFlashCard" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Flash Card" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickSwitchToFlashCard" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Flash Card" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-clipboard" iconSize="20" />
                </graphic>
@@ -74,7 +74,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Rank" textAlignment="CENTER" textFill="WHITE">
+            <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Rank" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-bar-chart-2" iconSize="20" />
                </graphic>
@@ -82,12 +82,20 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button fx:id="logOutButton" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Logout" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="logOutButton" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Logout" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-log-out" iconSize="20" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-log-out" iconSize="20" />
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnClose" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Exit" textFill="WHITE">
+               <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-x-octagon" iconSize="20" />
                </graphic>
                <font>
@@ -101,28 +109,6 @@
       </VBox>
    </left>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <center>
-            <BorderPane BorderPane.alignment="CENTER">
-               <center>
-                  <AnchorPane fx:id="panelHolder" prefHeight="720.0" prefWidth="1030.0" styleClass="content-pane" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
-         </center>
-         <top>
-            <HBox fx:id="hboxUpperBar" alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="648.0" spacing="5.0" styleClass="menu-pane" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="btnClose" mnemonicParsing="false" prefHeight="24.0" prefWidth="10.0" styleClass="button-close" stylesheets="@../css/applicationDesign.css" textFill="RED">
-                     <graphic>
-                        <FontIcon iconLiteral="fth-x" iconSize="10" />
-                     </graphic>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </HBox>
-         </top>
-      </BorderPane>
+      <AnchorPane fx:id="panelHolder" prefHeight="720.0" prefWidth="1030.0" styleClass="content-pane" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
