@@ -6,52 +6,47 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="vBox" minHeight="-Infinity" minWidth="-Infinity" prefWidth="720.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.OfflineWordController">
+<VBox fx:id="vBox" fillWidth="false" minHeight="-Infinity" minWidth="-Infinity" prefWidth="720.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.OfflineWordController">
    <children>
-      <HBox prefHeight="44.0" prefWidth="414.0">
+      <HBox prefHeight="53.0" prefWidth="687.0">
          <children>
             <HBox prefHeight="99.0" prefWidth="631.0">
                <children>
-                  <Label fx:id="labelOfWord" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="#444766" wrapText="true">
+                  <Label fx:id="labelOfWord" prefHeight="51.0" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="#444766" wrapText="true">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="44.0" prefWidth="87.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="72.0">
                <children>
-                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#onClickSave" text="Save" />
+                  <Button fx:id="btnSave" minWidth="53.0" mnemonicParsing="false" onAction="#onClickSave" prefHeight="59.0" prefWidth="53.0" styleClass="save_image" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <Label fx:id="labelOfPronounce" contentDisplay="RIGHT" prefWidth="523.0" styleClass="label-labelPartOfSpeech" stylesheets="@../css/wordDesign.css" text="pronounce" textFill="WHITE" wrapText="true">
+      <Label fx:id="labelOfPronounce" contentDisplay="RIGHT" prefHeight="35.0" prefWidth="523.0" styleClass="label-labelPartOfSpeech" stylesheets="@../css/wordDesign.css" text="pronounce" textFill="WHITE" wrapText="true">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="labelOfDescription" prefWidth="720.0" styleClass="label-labelDescription" stylesheets="@../css/wordDesign.css" text="description" wrapText="true">
+      <Label fx:id="labelOfDescription" prefHeight="55.0" prefWidth="700.0" styleClass="label-labelDescription" stylesheets="@../css/wordDesign.css" text="description" wrapText="true">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER" prefHeight="115.0" prefWidth="501.0">
+      <HBox alignment="CENTER" prefHeight="49.0" prefWidth="695.0">
          <children>
-            <HBox prefHeight="100.0" prefWidth="720.0">
+            <HBox prefHeight="115.0" prefWidth="713.0">
                <children>
-                  <Button fx:id="btnChange" mnemonicParsing="false" onAction="#onClickChangeWord" prefHeight="33.0" prefWidth="56.0">
-                     <graphic>
-                        <FontIcon iconLiteral="fth-pen-tool" iconSize="20" />
-                     </graphic>
-                  </Button>
+                  <Button fx:id="btnChange" minHeight="35.0" minWidth="53.0" mnemonicParsing="false" onAction="#onClickChangeWord" prefHeight="53.0" prefWidth="53.0" styleClass="edit_image" stylesheets="@../css/wordDesign.css" />
                </children>
             </HBox>
-            <HBox alignment="BOTTOM_RIGHT" prefWidth="720.0">
+            <HBox alignment="BOTTOM_RIGHT" prefHeight="90.0" prefWidth="53.0">
                <children>
-                  <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#onClickDelete" text="Delete" />
+                  <Button fx:id="btnDelete" minWidth="53.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="53.0" prefWidth="53.0" styleClass="remove_image" />
                </children>
             </HBox>
          </children>

@@ -1,6 +1,7 @@
 .box {
     -fx-background-color: #1D1E3D;
 }
+
 .button_menu {
     -fx-background-color: #1D1E3D;
     -fx-text-fill: white;
@@ -8,5 +9,16 @@
 
 .button_menu:hover {
     -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
-    -fx-text-fill: black;
+    -fx-text-fill: white;
+}
+
+.tab-pane-logo {
+    -fx-background-image: url('../image/imagegroup.png');
+    -fx-background-size: contain;
+    -fx-background-position: center top;
+    -fx-background-repeat: no-repeat;
+}
+.label-logo {
+    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+    -fx-font-weight: bold;
 }
