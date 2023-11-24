@@ -23,10 +23,26 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="80.0" prefWidth="251.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="92.0" prefWidth="247.0" text="Dashboard" textAlignment="CENTER" textFill="WHITE">
+                        <Label alignment="CENTER" prefHeight="92.0" prefWidth="247.0" text="Dashboard" textAlignment="CENTER">
                            <font>
                               <Font size="48.0" />
                            </font>
+                           <textFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.9450980424880981" green="0.6431372761726379" blue="0.9215686321258545" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.38823530077934265" green="0.529411792755127" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </textFill>
                         </Label>
                      </children>
                   </HBox>

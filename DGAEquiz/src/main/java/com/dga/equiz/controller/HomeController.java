@@ -2,6 +2,7 @@ package com.dga.equiz.controller;
 
 import com.dga.equiz.controller.campaign.CampaignController;
 import com.dga.equiz.controller.campaign.FinishCampaignController;
+import com.dga.equiz.controller.login.RankController;
 import com.dga.equiz.model.Campaign;
 import com.dga.equiz.model.Lesson;
 import com.dga.equiz.model.Profile;
@@ -62,6 +63,7 @@ public class HomeController implements Initializable {
     // region Event
     public IEventLong onFinishCampaign = campaignNumber -> {
         Profile profile = ApplicationData.getInstance().profile;
+        int userId = profile.getID();
         String username = profile.getUsername();
         int currentPoint = profile.getScore();
         long currentCampaign = profile.getCurrentCampaign();
@@ -78,6 +80,11 @@ public class HomeController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            RankController rankController = ControllerManager.getInstance().rankController;
+            String userNewRank = "Top " + rankController.findUserRank(userId);
+            setUserPoints(newPoint + "");
+            setRank(userNewRank);
+            ControllerManager.getInstance().rankController.reloadRank();
         }
 
         if (campaignNumber == currentCampaign && campaignNumber < totalCampaign) {
@@ -106,6 +113,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().homeController = this;
         setupHome();
         setupCampaignList();
         setupCampaignPickerView();
@@ -128,6 +136,14 @@ public class HomeController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        RankController rankController = ControllerManager.getInstance().rankController;
+        FlashCardController flashCardController = ControllerManager.getInstance().flashCardController;
+        String userPoints = rankController.findUserPoint(userId) + " points";
+        String userRank = "Top " + rankController.findUserRank(userId);
+        String flashCards = flashCardController.findUserFlashCards(userId) + " cards";
+        setUserPoints(userPoints);
+        setRank(userRank);
+        setFlashCard(flashCards);
     }
 
     private void setupCampaignList() {
@@ -209,5 +225,17 @@ public class HomeController implements Initializable {
         if (currentPanel != null) {
             currentPanel.setVisible(true);
         }
+    }
+
+    public void setUserPoints(String points) {
+        lbPoint.setText(points);
+    }
+
+    public void setRank(String rank) {
+        lbRankTop.setText(rank);
+    }
+
+    public void setFlashCard(String flashCard) {
+        lbFlashCard.setText(flashCard);
     }
 }

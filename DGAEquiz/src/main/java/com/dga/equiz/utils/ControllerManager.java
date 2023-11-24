@@ -1,5 +1,7 @@
 package com.dga.equiz.utils;
 
+import com.dga.equiz.controller.FlashCardController;
+import com.dga.equiz.controller.HomeController;
 import com.dga.equiz.controller.MyApplicationController;
 import com.dga.equiz.controller.editProfile.EditAccController;
 import com.dga.equiz.controller.editProfile.EditInforController;
@@ -9,6 +11,7 @@ import com.dga.equiz.controller.game.CreateRoomController;
 import com.dga.equiz.controller.game.GameController;
 import com.dga.equiz.controller.game.LobbyController;
 import com.dga.equiz.controller.login.LoginController;
+import com.dga.equiz.controller.login.RankController;
 
 public class ControllerManager {
     private static ControllerManager instance;
@@ -31,4 +34,7 @@ public class ControllerManager {
     public ChatRoomController chatRoomController;
     public LoginController loginController;
     public MyApplicationController myApplicationController;
+    public HomeController homeController;
+    public RankController rankController;
+    public FlashCardController flashCardController;
 }

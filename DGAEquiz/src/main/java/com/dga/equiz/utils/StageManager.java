@@ -20,4 +20,5 @@ public class StageManager {
     public Stage offlineAddDictionaryStage;
     public Stage offlineDeleteDictionaryStage;
     public Stage changeWordStage;
+
 }

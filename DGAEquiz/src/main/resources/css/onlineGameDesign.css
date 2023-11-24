@@ -1,0 +1,11 @@
+.create-room-panel {
+    -fx-background-color: #0B1021;
+    -fx-border-color: linear-gradient(to bottom right, #f1a4eb, #6387ff);
+    -fx-border-width: 1 1 1 1;
+}
+
+.message-box {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-background-color: #1D1E3D;
+}

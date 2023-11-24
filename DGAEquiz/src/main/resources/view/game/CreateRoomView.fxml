@@ -7,17 +7,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="paneParent" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.CreateRoomController">
+<AnchorPane fx:id="paneParent" styleClass="create-room-panel" stylesheets="@../../css/onlineGameDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.CreateRoomController">
    <children>
-      <Label alignment="CENTER" layoutY="5.0" prefHeight="42.0" prefWidth="480.0" text="Create room here" textAlignment="CENTER" />
+      <Label alignment="CENTER" layoutY="5.0" prefHeight="42.0" prefWidth="480.0" text="Create room here" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
       <VBox layoutY="62.0" prefHeight="93.0" prefWidth="480.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label layoutX="38.0" layoutY="10.0" prefHeight="17.0" prefWidth="150.0" text="Room name:" />
-                  <TextField fx:id="tfRoomName" prefHeight="25.0" prefWidth="300.0" />
+                  <Label layoutX="38.0" layoutY="10.0" prefHeight="17.0" prefWidth="150.0" text="Room name:" textFill="WHITE" />
+                  <TextField fx:id="tfRoomName" prefHeight="25.0" prefWidth="300.0" styleClass="button1" stylesheets="@../../css/loginDesign.css" />
                </children>
                <padding>
                   <Insets left="20.0" />
@@ -25,8 +29,8 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="110.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="150.0" text="Player limit:" />
-                  <TextField fx:id="tfPlayerLimit" prefWidth="300.0" />
+                  <Label prefHeight="17.0" prefWidth="150.0" text="Player limit:" textFill="WHITE" />
+                  <TextField fx:id="tfPlayerLimit" prefWidth="300.0" styleClass="button1" stylesheets="@../../css/loginDesign.css" />
                </children>
                <padding>
                   <Insets left="20.0" />
@@ -36,12 +40,12 @@
       </VBox>
       <HBox alignment="CENTER" layoutX="348.0" layoutY="155.0" prefHeight="50.0" prefWidth="118.0" spacing="50.0">
          <children>
-            <Button fx:id="btnCreate" layoutX="77.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="87.0" text="Create" />
+            <Button fx:id="btnCreate" layoutX="77.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="87.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Create" />
          </children>
       </HBox>
-      <Button fx:id="btnClose" layoutX="440.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="10.0" styleClass="button-close" stylesheets="@../../css/applicationDesign.css" textFill="RED">
+      <Button fx:id="btnClose" layoutX="440.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="10.0" styleClass="button-close-learn" stylesheets="@../../css/learnDesign.css" textFill="RED">
          <graphic>
-            <FontIcon iconLiteral="fth-x" iconSize="10" />
+            <FontIcon iconColor="WHITE" iconLiteral="fth-x" iconSize="20" />
          </graphic>
       </Button>
    </children>
