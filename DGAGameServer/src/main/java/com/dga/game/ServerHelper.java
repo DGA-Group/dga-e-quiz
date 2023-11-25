@@ -96,11 +96,12 @@ public class ServerHelper {
             // Broad cast join room response to all player in current room.
             int playerCount = room.playerList.size();
             String message = "Client -" + client.name + "- has join room!";
-            response = new JoinRoomResponse(PacketResponse.OK, message, roomId, playerCount, room.roomPlayerLimits);
+            response = new JoinRoomResponse(PacketResponse.OK, client.userId, client.username,
+                    message, roomId, playerCount, room.roomPlayerLimits);
             room.broadcast(response, client);
         } catch (Exception e) {
-            response = new JoinRoomResponse(PacketResponse.ERROR, "Unable to join room " + roomId
-                    , null, 0, 0);
+            response = new JoinRoomResponse(PacketResponse.ERROR, 0, null,
+                    "Unable to join room " + roomId, null, 0, 0);
         }
         return response;
     }
@@ -133,7 +134,7 @@ public class ServerHelper {
     private static void handleLeaveRoom(LeaveRoomRequest packet, ClientHandler client) {
         Room room = client.currentRoom;
         room.playerList.remove(client);
-        LeaveRoomResponse response = new LeaveRoomResponse(client.userId, "User " + client.name + " has left the chat."
+        LeaveRoomResponse response = new LeaveRoomResponse(client.userId, client.username, "User " + client.name + " has left the chat."
                 , room.playerList.size(), room.roomPlayerLimits);
         try {
             room.broadcast(response, client);

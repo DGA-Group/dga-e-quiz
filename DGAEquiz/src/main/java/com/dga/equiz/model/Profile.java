@@ -1,5 +1,8 @@
 package com.dga.equiz.model;
 
+import com.dga.equiz.utils.EquizUtils;
+import javafx.scene.image.Image;
+
 public class Profile {
     private int ID;
 
@@ -18,9 +21,12 @@ public class Profile {
     private String password;
 
     private String username;
+
     private int score;
 
     private int currentCampaign;
+
+    private Image userAva;
 
     public int getCurrentCampaign() {
         return currentCampaign;
@@ -109,5 +115,16 @@ public class Profile {
 
     public void setLinkAva(byte[] linkAva) {
         this.linkAva = linkAva;
+    }
+
+    public Image getUserAva() {
+        if (userAva == null) {
+            try {
+                userAva = EquizUtils.toImage(ID);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return userAva;
     }
 }

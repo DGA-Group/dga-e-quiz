@@ -13,23 +13,23 @@
          <children>
             <HBox prefHeight="99.0" prefWidth="631.0">
                <children>
-                  <Label fx:id="labelOfWord" prefHeight="51.0" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="word" textFill="#444766" wrapText="true">
+                  <Label fx:id="labelOfWord" prefHeight="51.0" prefWidth="374.0" styleClass="label-labelWeight" stylesheets="@../css/wordDesign.css" text="Word" textFill="#444766" wrapText="true">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="55.0" prefWidth="72.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="55.0" prefWidth="72.0">
                <children>
-                  <Button fx:id="btnSave" minWidth="53.0" mnemonicParsing="false" onAction="#onClickSave" prefHeight="59.0" prefWidth="53.0" styleClass="save_image" />
+                  <Button fx:id="btnSave" minWidth="37.0" mnemonicParsing="false" onAction="#onClickSave" prefHeight="35.0" prefWidth="35.0" styleClass="save_image" />
                </children>
             </HBox>
          </children>
       </HBox>
-      <Label fx:id="labelOfPronounce" contentDisplay="RIGHT" prefHeight="35.0" prefWidth="523.0" styleClass="label-labelPartOfSpeech" stylesheets="@../css/wordDesign.css" text="pronounce" textFill="WHITE" wrapText="true">
+      <Label fx:id="labelOfPronounce" contentDisplay="RIGHT" prefHeight="35.0" prefWidth="523.0" styleClass="label-labelOfPronounce" stylesheets="@../css/wordDesign.css" text="pronounce" textFill="WHITE" wrapText="true">
          <font>
-            <Font size="18.0" />
+            <Font size="20.0" />
          </font>
       </Label>
       <Label fx:id="labelOfDescription" prefHeight="55.0" prefWidth="700.0" styleClass="label-labelDescription" stylesheets="@../css/wordDesign.css" text="description" wrapText="true">
@@ -41,12 +41,12 @@
          <children>
             <HBox prefHeight="115.0" prefWidth="713.0">
                <children>
-                  <Button fx:id="btnChange" minHeight="35.0" minWidth="53.0" mnemonicParsing="false" onAction="#onClickChangeWord" prefHeight="53.0" prefWidth="53.0" styleClass="edit_image" stylesheets="@../css/wordDesign.css" />
+                  <Button fx:id="btnChange" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onClickChangeWord" prefHeight="35.0" prefWidth="35.0" styleClass="edit_image" stylesheets="@../css/wordDesign.css" />
                </children>
             </HBox>
-            <HBox alignment="BOTTOM_RIGHT" prefHeight="90.0" prefWidth="53.0">
+            <HBox alignment="TOP_RIGHT" prefHeight="90.0" prefWidth="53.0">
                <children>
-                  <Button fx:id="btnDelete" minWidth="53.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="53.0" prefWidth="53.0" styleClass="remove_image" />
+                  <Button fx:id="btnDelete" minWidth="53.0" mnemonicParsing="false" onAction="#onClickDelete" prefHeight="35.0" prefWidth="35.0" styleClass="remove_image" />
                </children>
             </HBox>
          </children>

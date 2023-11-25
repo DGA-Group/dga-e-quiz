@@ -16,7 +16,10 @@
     -fx-text-fill: #FFFFFF;
     -fx-background-radius: 10px;
 }
-
+.label-group {
+    -fx-text-fill: linear-gradient(to bottom right, #F1A4EB, #6387FF);
+    -fx-font-weight: bold;
+}
 .button1:hover {
     -fx-background-color: linear-gradient(to bottom right, #F1A4EB, #6387FF);
     -fx-text-fill: black;

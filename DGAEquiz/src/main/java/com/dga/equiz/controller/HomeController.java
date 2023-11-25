@@ -126,7 +126,7 @@ public class HomeController implements Initializable {
         int userId = profile.getID();
         String name = profile.getName();
         try {
-            Image userAva = EquizUtils.toImage(userId);
+            Image userAva = profile.getUserAva();
             rectUserAvatar.setFill(new ImagePattern(userAva));
             rectUserAvatar.setOnMouseClicked(mouseEvent -> {
                 MyApplicationController controller = ControllerManager.getInstance().myApplicationController;

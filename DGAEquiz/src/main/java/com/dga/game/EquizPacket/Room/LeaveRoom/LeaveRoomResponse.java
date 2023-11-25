@@ -6,8 +6,9 @@ import java.io.Serial;
 
 public class LeaveRoomResponse implements EquizPacket {
     @Serial
-    private static final long serialVersionUID = 9063323918315911064L;
+    private static final long serialVersionUID = -6193053053445748811L;
     public int userId;
+    public String username;
     public String message;
     public int playerCount;
     public int playerLimit;
@@ -16,8 +17,9 @@ public class LeaveRoomResponse implements EquizPacket {
 
     }
 
-    public LeaveRoomResponse(int userId, String message, int playerCount, int playerLimit) {
+    public LeaveRoomResponse(int userId, String username, String message, int playerCount, int playerLimit) {
         this.userId = userId;
+        this.username = username;
         this.message = message;
         this.playerCount = playerCount;
         this.playerLimit = playerLimit;
