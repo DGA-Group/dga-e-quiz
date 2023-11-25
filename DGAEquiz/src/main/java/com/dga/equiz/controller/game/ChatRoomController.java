@@ -13,11 +13,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class ChatRoomController implements Initializable {
@@ -44,6 +47,8 @@ public class ChatRoomController implements Initializable {
 
     @FXML
     public ChoiceBox<String> cbGameMode;
+
+    private Map<String, Image> userAvatars = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -79,6 +84,10 @@ public class ChatRoomController implements Initializable {
         });
     }
 
+    public Map<String, Image> getUserAvatars() {
+        return userAvatars;
+    }
+
     public void updatePlayerCount(String message) {
         Platform.runLater(() -> {
             lbPlayerCount.setText(message);
@@ -98,7 +107,7 @@ public class ChatRoomController implements Initializable {
                 } else if (message.userId == userId) {
                     alignment = MessageAlignment.TopRight;
                 }
-                controller.setUpMessageBox(message.name, message.text, alignment);
+                controller.setUpMessageBox(message.username, message.name, message.text, alignment);
             } catch (IOException ignore) {
             }
         });
@@ -110,8 +119,9 @@ public class ChatRoomController implements Initializable {
                 NodeObject nodeObject = EquizUtils.Instantiate("/view/game/MessageBoxView.fxml", vboxMessageList);
                 MessageBoxController controller = nodeObject.getController();
                 Profile profile = ApplicationData.getInstance().profile;
+                String username = profile.getUsername();
                 String name = profile.getName();
-                controller.setUpMessageBox(name, message, alignment);
+                controller.setUpMessageBox(username, name, message, alignment);
             } catch (IOException ignore) {
             }
         });
@@ -142,4 +152,22 @@ public class ChatRoomController implements Initializable {
         gameController.lobbyView.show();
         ClientHelperRequest.sendLeaveRoomRequest();
     }
+
+    public void addPlayer(String username) {
+        if (!userAvatars.containsKey(username)) {
+            Image playerAva = new Image(getClass().getResourceAsStream("/image/test.jpg"));
+            try {
+                playerAva = EquizUtils.toImage(username);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            userAvatars.put(username, playerAva);
+        }
+    }
+
+    public void removePlayer(String username) {
+        userAvatars.remove(username);
+    }
+
+
 }

@@ -44,7 +44,21 @@ public class OfflineDictionaryController implements Initializable {
     private ScrollPane Scrollpane;
     private ArrayList<String> suggestions = new ArrayList<>();
 
-    public OfflineDictionaryController() {
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        onStartup();
+        onEnterSearch();
+        try {
+            NodeObject offlineAddDictionaryView = EquizUtils.Instantiate("/view/OfflineAddWordView.fxml");
+            Scene offlineAddDictionaryScene = new Scene((Parent) offlineAddDictionaryView.getNode());
+            Stage offlineAddDictionaryViewStage = StageManager.getInstance().offlineAddDictionaryStage = new Stage();
+            offlineAddDictionaryViewStage.initStyle(StageStyle.TRANSPARENT);
+            offlineAddDictionaryViewStage.setScene(offlineAddDictionaryScene);
+            offlineAddDictionaryViewStage.hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void onStartup() {
@@ -72,28 +86,13 @@ public class OfflineDictionaryController implements Initializable {
         });
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        onStartup();
-        onEnterSearch();
-        try {
-            NodeObject offlineAddDictionaryView = EquizUtils.Instantiate("/view/OfflineAddWordView.fxml");
-            Scene offlineAddDictionaryScene = new Scene((Parent) offlineAddDictionaryView.getNode());
-            Stage offlineAddDictionaryViewStage = StageManager.getInstance().offlineAddDictionaryStage = new Stage();
-            offlineAddDictionaryViewStage.initStyle(StageStyle.TRANSPARENT);
-            offlineAddDictionaryViewStage.setScene(offlineAddDictionaryScene);
-            offlineAddDictionaryViewStage.hide();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void updatedSuggestions(String word) {
         ResultSet resultSet = null;
         Statement statement = null;
         Connection connection = null;
         try {
-            String query = "SELECT * FROM av WHERE word LIKE '%" + word + "%'";
+            String query = "SELECT * FROM av WHERE word LIKE '" + word + "%'";
             resultSet = DBHelper.executeQuerySqlite(query);
             statement = resultSet.getStatement();
             connection = statement.getConnection();
@@ -145,7 +144,7 @@ public class OfflineDictionaryController implements Initializable {
                 foundWord = true;
             }
             if (!foundWord) {
-                EquizUtils.showAlert("Word is not exist!"+ "\n" +"Please add your word!");
+                EquizUtils.showAlert("Word is not exist!" + "\n" + "Please add your word!");
             }
 
         } catch (SQLException e) {

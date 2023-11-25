@@ -11,15 +11,24 @@
     -fx-font-style: italic;
     -fx-font-family: "Arial";
     -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20;
+
+}
+.label-labelOfPronounce {
+    -fx-font-style: italic;
+    -fx-font-family: "Arial";
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20;
 }
 .label-labelDescription {
     -fx-text-fill: #FFFFFF;
-    -fx-font-size: 20;
+    -fx-font-size: 18;
 }
 
 .label-labelWeight {
     -fx-font-family: "Arial";
     -fx-text-fill: #FFFFFF;
+    -fx-font-size: 30;
 }
 .radio-button {
     -fx-background-color: transparent;
@@ -34,7 +43,7 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-background-image: url("../image/edit-word.png");
-    -fx-background-size: cover;
+    -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
@@ -43,15 +52,16 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-background-image: url("../image/edit-word.gif");
-    -fx-background-size: cover;
+    -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
+
 .remove_image {
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-background-image: url("../image/remove-word.png");
-    -fx-background-size: cover;
+    -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
@@ -60,7 +70,7 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
     -fx-background-image: url("../image/remove-word.gif");
-    -fx-background-size: cover;
+    -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }

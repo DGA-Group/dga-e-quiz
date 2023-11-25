@@ -1,20 +1,28 @@
 .label-labelOfWord {
     -fx-font-size: 30;
     -fx-text-fill: #FFFFFF;
-    -fx-background-color: transparent;
+    -fx-background-color: rgb(29, 30, 61);
 }
 
 .text-area-taPronounceDescription {
     -fx-font-size: 18;
-    -fx-text-fill: #FFFFFF;
     -fx-background-radius: 10;
     -fx-control-inner-background: rgb(29, 30, 61);
-    -fx-background-color: transparent;
-    -fx-control-inner-text-fill: #FFFFFF;
+    -fx-control-inner-text-fill: transparent;
     -fx-prompt-text-fill: #FFFFFF;
 
 }
-
+.check_image {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-image: url("../image/check-word.gif");
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+.button-check {
+    -fx-background-color: transparent;
+}
 .text-area-taPronounceDescription:hover:focused {
     -fx-font-size: 18;
     -fx-text-fill: #FFFFFF;
@@ -24,7 +32,7 @@
 
 .tab-pane-addPane {
     -fx-background-color: #0B1021;
-    -fx-background-radius: 10px;
+    -fx-border-radius: 20;
 
 }
 
@@ -47,7 +55,7 @@
     -fx-text-fill: #A5A8B6;
 }
 
-.button-confirm:hover {
+.button-confirm:pressed {
     -fx-background-color: linear-gradient(to bottom right, #6387FF, #F1A4EB);
     -fx-text-fill: white;
     -fx-font-weight: bold;

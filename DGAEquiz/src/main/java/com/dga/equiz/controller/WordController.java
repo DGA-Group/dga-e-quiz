@@ -14,6 +14,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -33,6 +37,7 @@ public class WordController {
     @FXML
     private VBox vBox;
     private Word currentWord;
+
     public void setupWordView(Word word, String textOfWord, String partOfSpeech, String textOfPhonetic, String soundPath) {
         this.currentWord = word;
         this.labelWord.setText(textOfWord);
@@ -58,19 +63,13 @@ public class WordController {
         int cntEx = 0;
         int cntDef = 0;
         for (var def : definitions) {
-            Label definitionsLabel = new Label();
+            TextFlow definitionsLabel = aLabel(720, "Definition: " + def.getDefinition());
             vBox.getChildren().add(definitionsLabel);
-            definitionsLabel.setWrapText(true);
-            definitionsLabel.setText("Definition:  " + def.getDefinition());
-            definitionsLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
             if (def.getExample() == null) {
                 cntDef++;
             } else {
-                Label exampleLabel = new Label();
+                TextFlow exampleLabel = aLabel(720, "Example: " + def.getExample());
                 vBox.getChildren().add(exampleLabel);
-                exampleLabel.setWrapText(true);
-                exampleLabel.setText("Example:  " + def.getExample());
-                exampleLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
                 cntEx++;
                 cntDef++;
             }
@@ -78,10 +77,6 @@ public class WordController {
                 break;
             }
         }
-        Label synonymLabel = new Label();
-        Label antonymLabel = new Label();
-        vBox.getChildren().add(synonymLabel);
-        vBox.getChildren().add(antonymLabel);
         String synonyms = "";
         for (int k = 0; k < word.getMeanings().size(); k++) {
             if (!word.getMeanings().get(k).getSynonyms().isEmpty()) {
@@ -94,11 +89,8 @@ public class WordController {
         if (synonyms.length() > 0) {
             synonyms = synonyms.substring(0, synonyms.length() - 1) + '.';
         }
-
-        synonymLabel.setText("Synonyms : " + synonyms);
-        synonymLabel.setWrapText(true);
-        synonymLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
-
+        TextFlow synonymLabel = aLabel(720, "Synonyms: " + synonyms);
+        vBox.getChildren().add(synonymLabel);
         String antonyms = "";
         for (int k = 0; k < word.getMeanings().size(); k++) {
             if (!word.getMeanings().get(k).getAntonyms().isEmpty()) {
@@ -111,11 +103,10 @@ public class WordController {
         if (antonyms.length() > 1) {
             antonyms = antonyms.substring(0, antonyms.length() - 1) + '.';
         }
-
-        antonymLabel.setText("Antonyms : "+ antonyms);
-        antonymLabel.setWrapText(true);
-        antonymLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
+        TextFlow antonymLabel = aLabel(720, "Antonyms: " + antonyms);
+        vBox.getChildren().add(antonymLabel);
     }
+
     public String getMeaning(Word word) {
         int i = 0;
         while (word.getMeanings().get(i).getDefinitions().isEmpty()) {
@@ -123,6 +114,7 @@ public class WordController {
         }
         return word.getMeanings().get(i).getDefinitions().get(0).getDefinition();
     }
+
     public void onClickSave() throws SQLException {
         ResultSet resultSet = null;
         Statement statement = null;
@@ -149,6 +141,20 @@ public class WordController {
                 DBHelper.closeQuery(resultSet, statement, connection);
             }
         }
+    }
+
+    private TextFlow aLabel(int maxWidth, String... pString) {
+        TextFlow textFlowLabel = new TextFlow();
+        textFlowLabel.setMaxWidth(maxWidth);
+        textFlowLabel.setPrefWidth(maxWidth);
+        textFlowLabel.setTextAlignment(TextAlignment.LEFT);
+        for (String aString : pString) {
+            Text text = new Text(aString);
+            text.setFill(Color.WHITE);
+            textFlowLabel.getChildren().add(text);
+        }
+        textFlowLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
+        return textFlowLabel;
     }
 }
 

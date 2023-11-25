@@ -218,11 +218,22 @@ public class EquizUtils {
         return new Image(new ByteArrayInputStream(imageData));
     }
 
+    // Convert binary String to Image by using username.
+    public static Image toImage(String username) throws SQLException {
+        String sqlQuery = "SELECT * FROM `information` WHERE username = '" + username + "';";
+        ResultSet resultSet = DBHelper.executeQuery(sqlQuery);
+        byte[] imageData = new byte[0];
+        if (resultSet.next()) {
+            imageData =  resultSet.getBytes("link_ava_test");
+        }
+        return new Image(new ByteArrayInputStream(imageData));
+    }
+
     // Connect socket
     public static boolean connectServer() {
         boolean success;
         try {
-            Socket socket = new Socket("127.0.0.1", 54321);
+            Socket socket = new Socket("171.244.62.163", 54321);
             ApplicationData.getInstance().socket = socket;
             Profile profile = ApplicationData.getInstance().profile;
             int id = profile.getID();

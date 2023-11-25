@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox fx:id="vBox" fillWidth="false" maxWidth="720.0" prefWidth="720.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
+<VBox fx:id="vBox" maxWidth="-Infinity" prefWidth="720.0" spacing="1.0" styleClass="scroll-pane" stylesheets="@../css/wordDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.WordController">
    <children>
       <HBox prefHeight="67.0" prefWidth="691.0">
          <children>
@@ -23,9 +23,9 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="502.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="33.0" prefWidth="497.0">
                <children>
-                  <Button fx:id="btnSave" minWidth="53.0" mnemonicParsing="false" onAction="#onClickSave" prefHeight="59.0" prefWidth="59.0" styleClass="save_image" />
+                  <Button fx:id="btnSave" minWidth="42.0" mnemonicParsing="false" onAction="#onClickSave" prefHeight="35.0" prefWidth="35.0" styleClass="save_image" />
                </children>
             </HBox>
          </children>
