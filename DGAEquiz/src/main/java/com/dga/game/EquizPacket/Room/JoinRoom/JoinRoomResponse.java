@@ -7,8 +7,10 @@ import java.io.Serial;
 
 public class JoinRoomResponse implements EquizPacket {
     @Serial
-    private static final long serialVersionUID = -7887831732206286341L;
+    private static final long serialVersionUID = -8736847754734395185L;
     public PacketResponse status;
+    public int userId;
+    public String username;
     public String message;
     public String roomId;
     public int playerCount;
@@ -18,8 +20,11 @@ public class JoinRoomResponse implements EquizPacket {
 
     }
 
-    public JoinRoomResponse(PacketResponse status, String message, String roomId, int playerCount, int playerLimit) {
+    public JoinRoomResponse(PacketResponse status, int userId, String username,
+                            String message, String roomId, int playerCount, int playerLimit) {
         this.status = status;
+        this.userId = userId;
+        this.username = username;
         this.message = message;
         this.roomId = roomId;
         this.playerCount = playerCount;

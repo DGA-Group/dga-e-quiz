@@ -106,7 +106,7 @@ public class Room implements Runnable {
                 // =============Announce the player =============
                 MessageResponse winnerMessage = new MessageResponse(PacketResponse.OK,
                         0, "server", "Server",
-                        "Time's up! The winner is " + currentWinner.name);
+                        "Time's up! " + currentWinner.name + " won the game!");
                 broadcast(winnerMessage, null);
                 endGame();
             }

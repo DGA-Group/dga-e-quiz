@@ -23,6 +23,12 @@ public class BlueTea extends TeaGame {
     private volatile boolean isRunning = true;
     private volatile Map<String, Integer> playerPoint;
 
+    public static final String BLUE_TEA_RULES =
+            "Goal: Find the longest word containing the group of 3 letters indicated.\n"
+                    + "You can't reuse a word already played.\n"
+                    + "Who reach 5 point first will be the final winner!\n"
+                    + "The game will start in 5 seconds!";
+
     public BlueTea(Room hostRoom) {
         this.hostRoom = hostRoom;
     }
@@ -44,7 +50,8 @@ public class BlueTea extends TeaGame {
             // Send response to client
             MessageResponse response = new MessageResponse(PacketResponse.OK,
                     0, "server", "Server",
-                    "The winner of this round is " + currentRoundWinner.name);
+                    currentRoundWinner.name + " won 1 points. Total point: "
+                            + playerPoint.get(currentRoundWinner.username));
             try {
                 hostRoom.broadcast(response, null);
             } catch (Exception e) {
@@ -60,14 +67,22 @@ public class BlueTea extends TeaGame {
 
     @Override
     public void play() throws IOException, InterruptedException {
+        MessageResponse messageResponse = null;
         playerPoint = new HashMap<>();
         hostRoom.currentWinner = null;
         Thread.sleep(500);
+
+        // Send game rules to client
+        messageResponse = new MessageResponse(PacketResponse.OK, 0,
+                "server", "Server", BLUE_TEA_RULES);
+        hostRoom.broadcast(messageResponse, null);
+        Thread.sleep(5000);
+
         while (isRunning) {
             //Send word to the client.
             currentRoundWord = GameHelper.getRandomKeyword();
-            MessageResponse messageResponse = new MessageResponse(PacketResponse.OK, 0,
-                    "server", "Server", "Guess word: " + currentRoundWord);
+            messageResponse = new MessageResponse(PacketResponse.OK, 0,
+                    "server", "Server", "Type the longest word containing: " + currentRoundWord);
             hostRoom.broadcast(messageResponse, null);
 
             // Wait for player word.

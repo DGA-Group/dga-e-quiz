@@ -24,6 +24,12 @@ public class RedTea extends TeaGame {
     private volatile boolean isRunning = true;
     private volatile Map<String, Integer> playerPoint;
 
+    public static final String RED_TEA_RULES =
+            "Goal: Be the fastest to write a word containing the group of 3 letters indicated.\n"
+                    + "You can't reuse a word already played."
+                    + "Who reach 10 point first will be the final winner!\n"
+                    + "The game will start in 5 seconds!";
+
     public RedTea(Room hostRoom) {
         this.hostRoom = hostRoom;
     }
@@ -33,7 +39,7 @@ public class RedTea extends TeaGame {
 
             String winnerUsername = hostRoom.currentWinner.username;
             if (playerPoint.containsKey(winnerUsername)
-                    && playerPoint.get(winnerUsername) >= 5) {
+                    && playerPoint.get(winnerUsername) >= 10) {
                 isRunning = false;
             }
 
@@ -44,15 +50,22 @@ public class RedTea extends TeaGame {
 
     @Override
     public void play() throws IOException, InterruptedException {
+        MessageResponse messageResponse = null;
         playerPoint = new HashMap<>();
         hostRoom.currentWinner = null;
         Thread.sleep(500);
 
+        // Send game rules to client
+        messageResponse = new MessageResponse(PacketResponse.OK, 0,
+                "server", "Server", RED_TEA_RULES);
+        hostRoom.broadcast(messageResponse, null);
+        Thread.sleep(5000);
+
         while (isRunning) {
             //Send word to the client.
             currentRoundWord = GameHelper.getRandomKeyword();
-            MessageResponse messageResponse = new MessageResponse(PacketResponse.OK, 0,
-                    "server", "Server", "Guess word: " + currentRoundWord);
+            messageResponse = new MessageResponse(PacketResponse.OK, 0,
+                    "server", "Server", "Quickly type a word containing: " + currentRoundWord);
             hostRoom.broadcast(messageResponse, null);
 
             // Wait for player word.
@@ -97,7 +110,7 @@ public class RedTea extends TeaGame {
         // Send response to client
         MessageResponse response = new MessageResponse(PacketResponse.OK,
                 0, "server", "Server",
-                "The winner of this round is " + client.name);
+                 client.name + " won 1 points. Total point: " + playerPoint.get(client.username));
         hostRoom.broadcast(response, null);
         nextRound();
     }

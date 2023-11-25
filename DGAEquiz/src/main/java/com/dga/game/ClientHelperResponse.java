@@ -53,6 +53,7 @@ public class ClientHelperResponse {
     private static void handleMessageResponse(MessageResponse packet) {
         ChatRoomController chatRoomController = ControllerManager.getInstance().chatRoomController;
         chatRoomController.addMessage(packet);
+        chatRoomController.addPlayer(packet.username);
     }
 
     private static void handleOpenRoomResponse(OpenRoomResponse packet) {
@@ -76,6 +77,7 @@ public class ClientHelperResponse {
             ChatRoomController chatRoomController = ControllerManager.getInstance().chatRoomController;
             String currentPlayerCount = "Current player: " + packet.playerCount + '/' + packet.playerLimit;
             chatRoomController.updatePlayerCount(currentPlayerCount);
+            chatRoomController.addPlayer(packet.username);
             EquizUtils.callFuncDelay(() -> {
                 chatRoomController.addMyMessage(packet.message, MessageAlignment.Middle);
             }, 1000);
@@ -96,6 +98,7 @@ public class ClientHelperResponse {
         String currentPlayerCount = "Current player: " + packet.playerCount + '/' + packet.playerLimit;
         chatRoomController.updatePlayerCount(currentPlayerCount);
         chatRoomController.addMyMessage(packet.message, MessageAlignment.Middle);
+        chatRoomController.removePlayer(packet.username);
     }
 
     public static void handleStartRoomResponse(StartRoomResponse packet) {

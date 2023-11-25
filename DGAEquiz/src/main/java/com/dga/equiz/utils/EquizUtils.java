@@ -218,6 +218,17 @@ public class EquizUtils {
         return new Image(new ByteArrayInputStream(imageData));
     }
 
+    // Convert binary String to Image by using username.
+    public static Image toImage(String username) throws SQLException {
+        String sqlQuery = "SELECT * FROM `information` WHERE username = '" + username + "';";
+        ResultSet resultSet = DBHelper.executeQuery(sqlQuery);
+        byte[] imageData = new byte[0];
+        if (resultSet.next()) {
+            imageData =  resultSet.getBytes("link_ava_test");
+        }
+        return new Image(new ByteArrayInputStream(imageData));
+    }
+
     // Connect socket
     public static boolean connectServer() {
         boolean success;

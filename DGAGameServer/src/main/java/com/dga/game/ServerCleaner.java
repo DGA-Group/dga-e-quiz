@@ -35,8 +35,9 @@ public class ServerCleaner extends Thread {
         for (Room room : roomList) {
             room.playerList.removeIf(x -> {
                 if (x.socket.isClosed()) {
-                    EquizPacket packet = new LeaveRoomResponse(x.userId, "User " + x.name + " has left the room."
-                            , room.playerList.size() - 1, room.roomPlayerLimits);
+                    EquizPacket packet = new LeaveRoomResponse(x.userId, x.username,
+                            "User " + x.name + " has left the room.",
+                            room.playerList.size() - 1, room.roomPlayerLimits);
                     try {
                         room.broadcast(packet, x);
                     } catch (IOException e) {
