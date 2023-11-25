@@ -278,6 +278,11 @@
             </ImageView>
             <Button layoutX="14.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="facebook" />
             <Button layoutX="74.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="instagram" />
+            <Label layoutX="218.0" layoutY="446.0" styleClass="label-group" text="DGAEquiz">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
          </children></Pane>
    </center>
 </BorderPane>
