@@ -10,32 +10,20 @@
     src: url("../font/Inter-SemiBold.ttf");
 }
 
-.root {
-    black: #000000;
-    white: #FFFFFF;
-    whitesmoke: #F5F8FA;
-    lightskyblue: #C9E6FF;
-    aquamarine: #B4DDD3;
-    goldenrod: #FFC75A;
-    godenrod10: #FFC75A 10%;
-    lightgray: #C4C4C4;
-    darkblue: #5D8DBF;
-    midnightblue: #444766;
-    progressbartrack: #E8F1FA;
-    lightred: #FFBFBF;
-}
-
 /* ===================================== Button ===================================== */
 .learn-button {
     -fx-font-family: "Inter";
     -fx-font-size: 16px;
-    -fx-text-fill: #F5F8FA;
-    -fx-border-radius: 15px;
-    -fx-background-radius: 15px;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
     -fx-stroke-width: 5px, 5px, 5px, 0px;
-    -fx-background-color: #FFC75A;
-    -fx-effect: dropshadow(gaussian, #FBD48C, 20, 0, 0, 0);
+    -fx-background-color: #1D1E3D;
+    -fx-effect: dropshadow(gaussian, #333450, 20, 0, 0, 0);
     -fx-alignment: CENTER;
+
+    -fx-border-color: linear-gradient(to bottom right, #f1a4eb, #6387ff);
+    -fx-border-width: 1 1 1 1;
 }
 
 .learn-button:pressed {
@@ -43,22 +31,22 @@
 }
 
 .learn-button:disabled {
-    -fx-background-color: #C4C4C4;
+    -fx-background-color: #A5A8B6;
 }
 
 .learn-button:hover {
-    -fx-background-color: #FFDB99;
+    -fx-background-color: #333450;
 }
 
 .button-correct-answer {
     -fx-font-family: "Inter";
     -fx-font-size: 16px;
     -fx-text-fill: #F5F8FA;
-    -fx-border-radius: 15px;
-    -fx-background-radius: 15px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
     -fx-stroke-width: 5px, 5px, 5px, 0px;
-    -fx-background-color: #B4DDD3;
-    -fx-effect: dropshadow(gaussian, #C8EAE2, 20, 0, 0, 0);
+    -fx-background-color: #5e47ff;
+    -fx-border-color: linear-gradient(to bottom right, #f1a4eb, #6387ff);
     -fx-translate-y: 2px;
     -fx-alignment: CENTER;
 }
@@ -67,11 +55,11 @@
     -fx-font-family: "Inter";
     -fx-font-size: 16px;
     -fx-text-fill: #000000;
-    -fx-border-radius: 15px;
-    -fx-background-radius: 15px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
     -fx-stroke-width: 5px, 5px, 5px, 0px;
     -fx-background-color: #FFBFBF;
-    -fx-effect: dropshadow(gaussian, #D8ADAD, 20, 0, 0, 0);
+    -fx-border-color: linear-gradient(to bottom right, #f1a4eb, #6387ff);
     -fx-translate-y: 2px;
     -fx-alignment: CENTER;
 }
@@ -100,7 +88,7 @@
 }
 
 .progress-bar > .bar {
-    -fx-background-color: #95CBF8;
+    -fx-background-color: linear-gradient(to bottom right, #f1a4eb, #6387ff);
     -fx-background-insets: 0;
     -fx-padding: 0.4%;
 }
@@ -111,6 +99,7 @@
 
 .progress-label {
     -fx-font-family: "Inter";
+    -fx-text-fill: #FFFFFF;
     -fx-font-size: 13px;
 }
 
@@ -118,22 +107,20 @@
 .label-content {
     -fx-font-family: "Inter";
     -fx-font-size: 16px;
+    -fx-text-fill: #FFFFFF;
 }
 
 /* ===================================== Pane ===================================== */
 .upper {
-    -fx-background-color: #F5F8FA;
-    -fx-background-radius: 0% 0% 5% 5%;
-    -fx-effect: dropshadow(gaussian, #E3F2FF, 10, 0, 0, 15);
+    -fx-background-color: #0B1021;
 }
 
 .footer {
-    -fx-background-color: #B4DDD3;
-    -fx-background-radius: 15% 15% 0% 0%;
+    -fx-background-color: #5e47ff;
 }
 
 .message-pane-correct {
-    -fx-background-color: #B4DDD3;
+    -fx-background-color: #5e47ff;
 }
 
 .message-pane-wrong {
@@ -141,11 +128,17 @@
 }
 
 .message-border {
-    -fx-background-radius: 15% 15% 0% 0%;
 }
 
 .question-pane {
-    -fx-background-color: #F5F8FA;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-background-color: #333450;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+/* ===================================== Pane ===================================== */
+.home-item {
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-background-color: #1D1E3D;
 }

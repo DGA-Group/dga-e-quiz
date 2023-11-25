@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="556.0" style="-fx-background-color: #F5F8FA;" styleClass="question-pane" stylesheets="@../../css/learnDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.ListeningQuestionController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="268.0" prefWidth="556.0" styleClass="question-pane" stylesheets="@../../css/learnDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.question.ListeningQuestionController">
    <center>
       <Button fx:id="buttonPlaySound" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" BorderPane.alignment="CENTER">
          <graphic>

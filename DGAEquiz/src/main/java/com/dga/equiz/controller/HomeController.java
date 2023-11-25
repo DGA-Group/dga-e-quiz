@@ -1,22 +1,26 @@
 package com.dga.equiz.controller;
 
 import com.dga.equiz.controller.campaign.CampaignController;
-import com.dga.equiz.controller.campaign.CampaignPickerController;
 import com.dga.equiz.controller.campaign.FinishCampaignController;
+import com.dga.equiz.controller.login.RankController;
 import com.dga.equiz.model.Campaign;
 import com.dga.equiz.model.Lesson;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.event.IEventLong;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.DBHelper;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.model.nodeObject.NodeObject;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -30,6 +34,21 @@ public class HomeController implements Initializable {
 
     @FXML
     private VBox vBCampaignList;
+
+    @FXML
+    private Label lbUserName;
+
+    @FXML
+    private Rectangle rectUserAvatar;
+
+    @FXML
+    private Label lbPoint;
+
+    @FXML
+    private Label lbRankTop;
+
+    @FXML
+    private Label lbFlashCard;
     //endregion
 
     // region Model
@@ -44,6 +63,7 @@ public class HomeController implements Initializable {
     // region Event
     public IEventLong onFinishCampaign = campaignNumber -> {
         Profile profile = ApplicationData.getInstance().profile;
+        int userId = profile.getID();
         String username = profile.getUsername();
         int currentPoint = profile.getScore();
         long currentCampaign = profile.getCurrentCampaign();
@@ -60,6 +80,11 @@ public class HomeController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            RankController rankController = ControllerManager.getInstance().rankController;
+            String userNewRank = "Top " + rankController.findUserRank(userId);
+            setUserPoints(newPoint + "");
+            setRank(userNewRank);
+            ControllerManager.getInstance().rankController.reloadRank();
         }
 
         if (campaignNumber == currentCampaign && campaignNumber < totalCampaign) {
@@ -77,6 +102,9 @@ public class HomeController implements Initializable {
 
             // Unlock next campaign
             nextCampaignController.setUnlockCampaign();
+
+            // Switch to finish view
+            switchToPanel(finishView);
         }
     };
 
@@ -85,6 +113,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().homeController = this;
         setupHome();
         setupCampaignList();
         setupCampaignPickerView();
@@ -93,7 +122,28 @@ public class HomeController implements Initializable {
     }
 
     private void setupHome() {
-
+        Profile profile = ApplicationData.getInstance().profile;
+        int userId = profile.getID();
+        String name = profile.getName();
+        try {
+            Image userAva = EquizUtils.toImage(userId);
+            rectUserAvatar.setFill(new ImagePattern(userAva));
+            rectUserAvatar.setOnMouseClicked(mouseEvent -> {
+                MyApplicationController controller = ControllerManager.getInstance().myApplicationController;
+                controller.onClickSwitchToProfile();
+            });
+            lbUserName.setText(name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        RankController rankController = ControllerManager.getInstance().rankController;
+        FlashCardController flashCardController = ControllerManager.getInstance().flashCardController;
+        String userPoints = rankController.findUserPoint(userId) + " points";
+        String userRank = "Top " + rankController.findUserRank(userId);
+        String flashCards = flashCardController.findUserFlashCards(userId) + " cards";
+        setUserPoints(userPoints);
+        setRank(userRank);
+        setFlashCard(flashCards);
     }
 
     private void setupCampaignList() {
@@ -111,10 +161,11 @@ public class HomeController implements Initializable {
                 controller.buttonStartCampaign.setOnAction(event -> {
                     LearnController learnController = learnView.getController();
                     Lesson lesson = campaign.getLesson();
-                    learnController.setLesson(lesson, campaignId);
                     learnController.onFinishCampaign = onFinishCampaign;
-                    switchToPanel(campaignPickerView);
+                    learnController.setLesson(lesson, campaignId);
+                    switchToPanel(learnView);
                 });
+
 
                 if (campaignId <= currentCampaign) {
                     controller.setUnlockCampaign();
@@ -145,10 +196,6 @@ public class HomeController implements Initializable {
         try {
             // Add campaign picker panel to home.
             campaignPickerView = EquizUtils.Instantiate("/view/campaign/CampaignPickerView.fxml", panelHome, AnchorType.FitToParent);
-            CampaignPickerController controller = campaignPickerView.getController();
-
-            controller.buttonLearn.setOnAction(event -> switchToPanel(learnView));
-
             campaignPickerView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -178,5 +225,17 @@ public class HomeController implements Initializable {
         if (currentPanel != null) {
             currentPanel.setVisible(true);
         }
+    }
+
+    public void setUserPoints(String points) {
+        lbPoint.setText(points);
+    }
+
+    public void setRank(String rank) {
+        lbRankTop.setText(rank);
+    }
+
+    public void setFlashCard(String flashCard) {
+        lbFlashCard.setText(flashCard);
     }
 }

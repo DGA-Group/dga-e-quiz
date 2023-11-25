@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.FinishCampaignController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1030.0" style="-fx-background-color: #0B1021;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.FinishCampaignController">
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnToHome" layoutX="371.0" layoutY="539.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="287.0" text="ToHome" />
-            <Label layoutX="501.0" layoutY="236.0" text="Goodjob" />
+            <Button fx:id="btnToHome" layoutX="371.0" layoutY="539.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="287.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Back to dashboard" />
+            <Label layoutX="142.0" layoutY="68.0" prefHeight="354.0" prefWidth="745.0" styleClass="label_what3" stylesheets="@../../css/editSelectDesign.css" text="Nice, you have just pass this campaign!" textFill="WHITE" wrapText="true" />
          </children>
       </AnchorPane>
    </center>

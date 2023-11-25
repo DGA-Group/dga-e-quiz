@@ -1,9 +1,11 @@
 package com.dga.equiz.controller;
 
+import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.word.Definition;
-import com.dga.equiz.model.word.Meaning;
-import com.dga.equiz.model.word.Phonetic;
 import com.dga.equiz.model.word.Word;
+import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.DBHelper;
+import com.dga.equiz.utils.EquizUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,8 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class WordController {
@@ -27,8 +32,9 @@ public class WordController {
     private Button buttonPlaySound;
     @FXML
     private VBox vBox;
-
+    private Word currentWord;
     public void setupWordView(Word word, String textOfWord, String partOfSpeech, String textOfPhonetic, String soundPath) {
+        this.currentWord = word;
         this.labelWord.setText(textOfWord);
         this.labelPartOfSpeech.setText(partOfSpeech);
         this.labelTextOfPhonetic.setText(textOfPhonetic);
@@ -110,7 +116,40 @@ public class WordController {
         antonymLabel.setWrapText(true);
         antonymLabel.setStyle("-fx-text-fill: #FFFFFF;-fx-font-size: 18");
     }
-
+    public String getMeaning(Word word) {
+        int i = 0;
+        while (word.getMeanings().get(i).getDefinitions().isEmpty()) {
+            i++;
+        }
+        return word.getMeanings().get(i).getDefinitions().get(0).getDefinition();
+    }
+    public void onClickSave() throws SQLException {
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+        String savedOnlineWord = labelWord.getText();
+        String savedOnlineMeaning = getMeaning(currentWord);
+        Profile profile = ApplicationData.getInstance().profile;
+        int profileID = profile.getID();
+        String query = "SELECT * FROM flashcard WHERE id = '" + profileID
+                + "' AND word = '" + savedOnlineWord + "' AND meaning = '" + savedOnlineMeaning + "';";
+        resultSet = DBHelper.executeQuery(query);
+        statement = resultSet.getStatement();
+        connection = statement.getConnection();
+        if (resultSet.next()) {
+            EquizUtils.showAlert("Already Exist !");
+        } else {
+            String updateQuery = "INSERT INTO flashcard (id, word, meaning) VALUES ("
+                    + profileID + ",'" + savedOnlineWord + "','" + savedOnlineMeaning + "');";
+            try {
+                DBHelper.executeUpdate(updateQuery);
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            }
+        }
+    }
 }
 
 

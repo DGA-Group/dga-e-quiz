@@ -49,14 +49,16 @@ public class MyApplicationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().myApplicationController = this;
         ApplicationData.getInstance().loadAllData();
-        setupHomeView();
         setupDictionaryView();
         setupProfileView();
         setupGameView();
         setupOfflineDictionaryView();
         setupRankView();
         setupFlashCardView();
+        setupHomeView();
+
         EquizUtils.callFuncDelay(this::setupButton, 1000);
 
         // Set default panel to home
@@ -101,6 +103,7 @@ public class MyApplicationController implements Initializable {
         try {
             homeView = EquizUtils.Instantiate("/view/HomeView.fxml", panelHolder, AnchorType.FitToParent);
             homeView.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -4,6 +4,8 @@ import com.dga.equiz.model.FlashCard;
 import com.dga.equiz.model.PairWord;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.ControllerManager;
+import com.dga.equiz.utils.DBHelper;
 import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -14,7 +16,10 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -49,7 +54,11 @@ public class FlashCardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Profile profile = ApplicationData.getInstance().profile;
+        ControllerManager.getInstance().flashCardController = this;
+        reloadFlashCard();
+    }
+
+    public void reloadFlashCard() {
         titleLabel.setVisible(true);
 
         try {
@@ -100,7 +109,6 @@ public class FlashCardController implements Initializable {
             curLabel.setVisible(false);
             wordLabel.setVisible(false);
         }
-
     }
 
     public void rotatePane() {
@@ -133,6 +141,7 @@ public class FlashCardController implements Initializable {
         fade.setToValue(1);
         fade.play();
     }
+
     private void left_trans() {
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(400), FlashCardPane);
         translateTransition.setFromX(-FlashCardPane.getWidth());
@@ -147,6 +156,7 @@ public class FlashCardController implements Initializable {
         }
         translateTransition.play();
     }
+
     private void right_trans() {
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(400), FlashCardPane);
         translateTransition.setFromX(FlashCardPane.getWidth());
@@ -175,6 +185,31 @@ public class FlashCardController implements Initializable {
         } else {
             nextButton.setVisible(true);
         }
+    }
+
+    public int findUserFlashCards(int id) {
+        String sql = "SELECT COUNT(*) as flashcard_count FROM flashcard WHERE id ='" + id + "';";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+        try {
+            resultSet = DBHelper.executeQuery(sql);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            } catch (Exception ignore) {
+            }
+        }
+        return 0;
     }
 
 }

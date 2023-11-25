@@ -7,6 +7,7 @@ import com.dga.equiz.model.event.IEventLong;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.EquizUtils;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -72,46 +73,48 @@ public class LearnController implements Initializable {
     }
 
     public void setLesson(Lesson lesson, long campaignId) {
-        linkedListQuestions.clear();
-        paneQuestion.getChildren().clear();
-        this.campaignId = campaignId;
-        List<Long> image_questions_id = lesson.getImage_questions_id();
-        for (var questionId : image_questions_id) {
-            addImageQuestion(questionId);
-        }
-        List<Long> fill_questions_id = lesson.getFill_questions_id();
-        for (var questionId : fill_questions_id) {
-            addFillQuestion(questionId);
-        }
-        List<Long> listening_questions_id = lesson.getListening_questions_id();
-        for (var questionId : listening_questions_id) {
-            addListeningQuestion(questionId);
-        }
-        List<Long> translate_questions_id = lesson.getTranslate_questions_id();
-        for (var questionId : translate_questions_id) {
-            addTranslateQuestion(questionId);
-        }
+        Platform.runLater(() -> {
+            linkedListQuestions.clear();
+            paneQuestion.getChildren().clear();
+            this.campaignId = campaignId;
+            List<Long> image_questions_id = lesson.getImage_questions_id();
+            for (var questionId : image_questions_id) {
+                addImageQuestion(questionId);
+            }
+            List<Long> fill_questions_id = lesson.getFill_questions_id();
+            for (var questionId : fill_questions_id) {
+                addFillQuestion(questionId);
+            }
+            List<Long> listening_questions_id = lesson.getListening_questions_id();
+            for (var questionId : listening_questions_id) {
+                addListeningQuestion(questionId);
+            }
+            List<Long> translate_questions_id = lesson.getTranslate_questions_id();
+            for (var questionId : translate_questions_id) {
+                addTranslateQuestion(questionId);
+            }
 
-        if (linkedListQuestions.isEmpty()) {
-            System.out.println("There is no question in this campaign!");
-            return;
-        }
+            if (linkedListQuestions.isEmpty()) {
+                System.out.println("There is no question in this campaign!");
+                return;
+            }
 
-        // Reset variable
-        totalQuestionCount = linkedListQuestions.size();
+            // Reset variable
+            totalQuestionCount = linkedListQuestions.size();
 
-        // Reset view
-        paneMessageHolder.setVisible(false);
-        buttonSubmit.setDisable(true);
-        buttonSubmit.setVisible(true);
-        buttonContinue.setVisible(false);
-        pgbarLessonProgress.setProgress(0);
-        labelPercent.setText("0%");
+            // Reset view
+            paneMessageHolder.setVisible(false);
+            buttonSubmit.setDisable(true);
+            buttonSubmit.setVisible(true);
+            buttonContinue.setVisible(false);
+            pgbarLessonProgress.setProgress(0);
+            labelPercent.setText("0%");
 
-        // Show the first question.
-        Collections.shuffle(linkedListQuestions);
-        currentQuestion = linkedListQuestions.getFirst();
-        currentQuestion.show();
+            // Show the first question.
+            Collections.shuffle(linkedListQuestions);
+            currentQuestion = linkedListQuestions.getFirst();
+            currentQuestion.show();
+        });
 
     }
 
@@ -228,8 +231,6 @@ public class LearnController implements Initializable {
             if (onGoToFinishView != null) {
                 onGoToFinishView.handle();
             }
-            onFinishCampaign = null;
-            onGoToFinishView = null;
             return;
         }
 

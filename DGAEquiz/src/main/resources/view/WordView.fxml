@@ -25,7 +25,7 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="502.0">
                <children>
-                  <Button fx:id="btnSave" minWidth="53.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="59.0" styleClass="save_image" />
+                  <Button fx:id="btnSave" minWidth="53.0" mnemonicParsing="false" onAction="#onClickSave" prefHeight="59.0" prefWidth="59.0" styleClass="save_image" />
                </children>
             </HBox>
          </children>

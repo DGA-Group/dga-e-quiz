@@ -6,10 +6,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="960.0" styleClass="campaign-item" stylesheets="@../../css/campaignDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.CampaignController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="960.0" styleClass="campaign-item" stylesheets="@../../css/campaignDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.campaign.CampaignController">
    <children>
       <HBox alignment="CENTER" prefHeight="238.0" prefWidth="960.0">
          <children>
@@ -49,7 +52,23 @@
          <children>
             <HBox alignment="CENTER" prefHeight="480.0" prefWidth="960.0">
                <children>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-lock" iconSize="300" wrappingWidth="283.60003185272217" />
+                  <FontIcon iconLiteral="fth-lock" iconSize="300" wrappingWidth="283.60003185272217">
+                     <iconColor>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="0.9450980424880981" green="0.6431372761726379" blue="0.9215686321258545" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="0.38823530077934265" green="0.529411792755127" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </iconColor></FontIcon>
                </children>
             </HBox>
          </children>

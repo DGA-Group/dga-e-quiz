@@ -3,29 +3,47 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.RoomItemController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="725.0" styleClass="question-pane" stylesheets="@../../css/learnDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.game.RoomItemController">
    <children>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="180.0">
+      <HBox alignment="CENTER_LEFT" layoutX="31.0" layoutY="14.0" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="689.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="lbRoomId" alignment="CENTER" prefHeight="67.0" prefWidth="180.0" text="2202" />
+            <VBox alignment="CENTER" prefHeight="90.0" prefWidth="191.0">
+               <children>
+                  <Label fx:id="lbRoomId" alignment="CENTER" contentDisplay="CENTER" prefHeight="67.0" prefWidth="121.0" text="18" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="35.0" />
+               </HBox.margin>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="90.0" prefWidth="182.0">
+               <children>
+                  <Label fx:id="lbRoomName" alignment="CENTER" prefHeight="50.0" prefWidth="246.0" text="Phong cua chinh phu hoa ki" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="190.0" layoutY="10.0" prefHeight="200.0" prefWidth="180.0">
+               <children>
+                  <Label fx:id="lbNumberOfPlayer" alignment="CENTER" prefHeight="50.0" prefWidth="261.0" text="10 / 25" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <Button fx:id="btnJoinRoom" mnemonicParsing="false" onAction="#onClickJoinRoom" prefHeight="46.0" prefWidth="105.0" styleClass="learn-button" stylesheets="@../../css/learnDesign.css" text="Join" />
          </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="180.0">
-         <children>
-            <Label fx:id="lbRoomName" alignment="CENTER" prefHeight="50.0" prefWidth="246.0" text="Phong cua Duong" />
-         </children>
-      </VBox>
-      <VBox alignment="CENTER" layoutX="190.0" layoutY="10.0" prefHeight="200.0" prefWidth="180.0">
-         <children>
-            <Label fx:id="lbNumberOfPlayer" alignment="CENTER" prefHeight="50.0" prefWidth="261.0" text="2/10" />
-         </children>
-      </VBox>
-      <Button fx:id="btnJoinRoom" mnemonicParsing="false" onAction="#onClickJoinRoom" prefHeight="46.0" prefWidth="78.0" text="Join" />
+      </HBox>
    </children>
-   <padding>
-      <Insets left="20.0" right="10.0" />
-   </padding>
-</HBox>
+</AnchorPane>

@@ -12,12 +12,17 @@
     -fx-text-fill: white;
 }
 
+.loading-img {
+    -fx-background-image: url("../image/loading.gif");
+}
+
 .tab-pane-logo {
     -fx-background-image: url('../image/imagegroup.png');
     -fx-background-size: contain;
     -fx-background-position: center top;
     -fx-background-repeat: no-repeat;
 }
+
 .label-logo {
     -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
     -fx-font-weight: bold;

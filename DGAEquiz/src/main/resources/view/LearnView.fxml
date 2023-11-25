@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane prefHeight="520.0" prefWidth="1030.0" style="-fx-background-color: #E3F2FF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
+<BorderPane maxHeight="720.0" maxWidth="1030.0" prefHeight="720.0" prefWidth="1030.0" style="-fx-background-color: #0B1021;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.LearnController">
    <top>
       <AnchorPane prefHeight="62.0" styleClass="upper" stylesheets="@../css/learnDesign.css" BorderPane.alignment="CENTER">
          <children>
@@ -53,7 +53,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <FontIcon iconLiteral="fth-thumbs-up" iconSize="30" layoutX="27.0" layoutY="33.0" wrappingWidth="29.600006103515625" />
+                  <FontIcon fill="WHITE" iconLiteral="fth-thumbs-up" iconSize="30" layoutX="27.0" layoutY="33.0" wrappingWidth="29.600006103515625" />
                </children>
             </AnchorPane>
             <StackPane alignment="BOTTOM_CENTER" prefHeight="102.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

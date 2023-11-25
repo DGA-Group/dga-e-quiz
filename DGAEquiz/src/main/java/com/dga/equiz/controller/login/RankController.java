@@ -1,5 +1,6 @@
 package com.dga.equiz.controller.login;
 
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.DBHelper;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,6 +46,11 @@ public class RankController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().rankController = this;
+        reloadRank();
+    }
+
+    public void reloadRank() {
         String query = "SELECT username, score FROM information ORDER BY score DESC LIMIT 5";
         ResultSet resultSet = null;
         Statement statement = null;
@@ -62,10 +68,11 @@ public class RankController implements Initializable {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }  finally {
+        } finally {
             try {
                 DBHelper.closeQuery(resultSet, statement, connection);
-            }catch (Exception ignore) {}
+            } catch (Exception ignore) {
+            }
         }
     }
 
@@ -106,6 +113,56 @@ public class RankController implements Initializable {
     public void setRank(Label labelUsername, Label labelScore, String username, String score) {
         labelUsername.setText(username);
         labelScore.setText(score);
+    }
+
+    public int findUserRank(int id) {
+        String sql = "select rank from ( select id, username, rank() over (order by score desc) as rank from information ) t where id = '" + id + "';";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+        try {
+            resultSet = DBHelper.executeQuery(sql);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            } catch (Exception ignore) {
+            }
+        }
+        return 10000;
+    }
+
+    public int findUserPoint(int id){
+        String sql = "select score from information where id = '" + id + "';";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+        try {
+            resultSet = DBHelper.executeQuery(sql);
+            statement = resultSet.getStatement();
+            connection = statement.getConnection();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                DBHelper.closeQuery(resultSet, statement, connection);
+            } catch (Exception ignore) {
+            }
+        }
+        return 0;
     }
 
 }
