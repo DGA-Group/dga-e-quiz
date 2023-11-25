@@ -18,8 +18,6 @@ public class Profile {
     private String password;
 
     private String username;
-
-
     private int score;
 
     private int currentCampaign;

@@ -16,6 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -23,10 +25,12 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.URI;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDate;
@@ -39,6 +43,15 @@ import java.util.ResourceBundle;
 import static com.dga.equiz.utils.EquizUtils.showAlert;
 
 public class LoginController implements Initializable {
+
+    @FXML
+    private Button close;
+
+    @FXML
+    private Button buttonFacebook;
+
+    @FXML
+    private Button buttonInstagram;
 
     @FXML
     private Button buttonAcc_go;
@@ -83,9 +96,6 @@ public class LoginController implements Initializable {
     private CheckBox checkLogin_pass;
 
     @FXML
-    private DatePicker dateRegister_dob;
-
-    @FXML
     private StackPane stackPane;
 
     @FXML
@@ -117,6 +127,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField tfAcc_confirmPassShow;
+
+    @FXML
+    private TextField tfRegister_date;
 
     @FXML
     private PasswordField pfAcc_confirmPass;
@@ -264,9 +277,6 @@ public class LoginController implements Initializable {
                     paneConfirmAcc.setVisible(true);
                 } else {
                     showAlert("Please give our your USERNAME, PASSWORD AND MAIL to create a new account.");
-                    System.out.println(tfRegister_username.getText());
-                    System.out.println(tfRegister_pass.getText());
-                    System.out.println(tfRegister_mail.getText());
                 }
 
             } catch (Exception e1) {
@@ -408,6 +418,23 @@ public class LoginController implements Initializable {
         setButtonAction(buttonAcc_back, paneRegister);
         setButtonAction(buttonForgot_back, paneLogin);
         setButtonAction(buttonPass_back, paneForgotPass);
+        close.setOnAction((ActionEvent e) -> {
+            StageManager.getInstance().loginStage.close();
+        });
+        buttonFacebook.setOnAction((ActionEvent e) -> {
+            openBrowser("https://www.facebook.com/tunduong0105");
+        });
+        buttonInstagram.setOnAction((ActionEvent e) -> {
+            openBrowser("https://www.instagram.com/denday.cpp/");
+        });
+    }
+
+    private void openBrowser(String url) {
+        try {
+            Desktop.getDesktop().browse(new URI(url));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void setButtonAction(Button button, BorderPane pane1) {
@@ -422,8 +449,8 @@ public class LoginController implements Initializable {
         if (!tfRegister_username.getText().isEmpty() && !tfRegister_pass.getText().isEmpty()) {
 
             String myFormattedDate = "0001-01-01";
-            if (dateRegister_dob.getValue() != null) {
-                LocalDate myDate = dateRegister_dob.getValue();
+            if (!tfRegister_date.getText().isEmpty()) {
+                LocalDate myDate = LocalDate.parse(tfRegister_date.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 myFormattedDate = myDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             }
 

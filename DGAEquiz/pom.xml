@@ -103,13 +103,6 @@
             <artifactId>commons-email</artifactId>
             <version>1.5</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>${javafx.version}</version> <!-- Thay version bằng phiên bản JavaFX bạn đang sử dụng -->
-        </dependency>
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
