@@ -21,9 +21,9 @@
          <children>
             <HBox prefHeight="80.0" prefWidth="1030.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="80.0" prefWidth="251.0">
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="381.0">
                      <children>
-                        <Label alignment="CENTER" prefHeight="92.0" prefWidth="247.0" text="Dashboard" textAlignment="CENTER">
+                        <Label alignment="CENTER" prefHeight="70.0" prefWidth="266.0" text="Dashboard" textAlignment="CENTER">
                            <font>
                               <Font size="48.0" />
                            </font>
@@ -48,7 +48,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT" prefHeight="80.0" prefWidth="784.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="71.0" prefWidth="383.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="373.0">
                            <children>
                               <Rectangle fx:id="rectUserAvatar" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="51.0" strokeType="INSIDE" strokeWidth="2.0" width="53.0">
                                  <stroke>
@@ -68,7 +68,7 @@
                                     </LinearGradient>
                                  </stroke>
                               </Rectangle>
-                              <Label fx:id="lbUserName" prefHeight="17.0" prefWidth="286.0" text="Nguyen Tuan Duong" textFill="WHITE">
+                              <Label fx:id="lbUserName" prefHeight="32.0" prefWidth="287.0" text="Nguyen Tuan Duong" textFill="WHITE">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -135,7 +135,23 @@
                   <Insets left="35.0" right="10.0" />
                </padding>
             </HBox>
-            <Line endX="100.0" startX="-853.1515502929688" startY="-0.8001880049705505" stroke="WHITE" />
+            <Line endX="100.0" startX="-853.1515502929688" startY="-0.8001880049705505">
+               <stroke>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.9450980424880981" green="0.6431372761726379" blue="0.9215686321258545" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.38823530077934265" green="0.529411792755127" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </stroke></Line>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="658.0" prefWidth="1030.0" style="-fx-background-color: #0B1021;" vbarPolicy="NEVER">
                <content>
                   <VBox fx:id="vBCampaignList" alignment="TOP_CENTER" spacing="50.0" style="-fx-background-color: #0B1021;">

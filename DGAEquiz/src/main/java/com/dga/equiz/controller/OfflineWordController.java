@@ -35,13 +35,13 @@ public class OfflineWordController implements Initializable {
     private Button btnDelete;
     @FXML
     private Button btnSave;
-    private ChangeWordController changeWordController;
+    private OfflineChangeWordController changeWordController;
     private OfflineDictionaryController dictionaryController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            NodeObject changeWordView = EquizUtils.Instantiate("/view/ChangeWordView.fxml");
+            NodeObject changeWordView = EquizUtils.Instantiate("/view/OfflineChangeWordView.fxml");
             this.changeWordController = changeWordView.getController();
             Scene changeWordScene = new Scene((Parent) changeWordView.getNode());
             Stage changeWordViewStage = StageManager.getInstance().changeWordStage = new Stage();
@@ -67,7 +67,7 @@ public class OfflineWordController implements Initializable {
         String changedWord = labelOfWord.getText();
         String changedPronounce = labelOfPronounce.getText();
         String changedDescription = labelOfDescription.getText();
-        changeWordController.setupChangeWordView(changedWord, changedPronounce, changedDescription);
+        changeWordController.setupChangeWordView(changedWord, changedPronounce, changedDescription, dictionaryController);
         StageManager.getInstance().changeWordStage.show();
     }
 
