@@ -2,6 +2,7 @@ package com.dga.equiz.utils;
 
 import com.dga.equiz.model.Campaign;
 import com.dga.equiz.model.Lesson;
+import com.dga.equiz.model.PairWord;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.question.FillQuestion;
 import com.dga.equiz.model.question.ImageQuestion;
@@ -18,6 +19,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -235,7 +238,8 @@ public class ApplicationData {
                 String description = resultSet.getString(3);
                 String lesson_data = resultSet.getString(4);
                 Lesson lesson = new ObjectMapper().readValue(lesson_data, Lesson.class);
-                Campaign newCampaign = new Campaign(id, title, description, lesson);
+                String campaignAvatar = resultSet.getString(5);
+                Campaign newCampaign = new Campaign(id, title, description, lesson, campaignAvatar);
                 campaignData.put(id, newCampaign);
             }
         } catch (Exception e) {
@@ -249,6 +253,31 @@ public class ApplicationData {
             } catch (SQLException e) {
                 System.out.println("Unable to close connection!");
             }
+        }
+    }
+
+    public void loadAllUserFlashCards() throws SQLException {
+        Profile profile = ApplicationData.getInstance().profile;
+        ArrayList<PairWord> flashCards = profile.getFlashCards();
+        flashCards.clear();
+        String sqlQuery = "SELECT * FROM `flashcard` WHERE id = '" + profile.getID() + "';";
+        ResultSet resultSet = null;
+        Statement statement = null;
+        Connection connection = null;
+
+        resultSet = DBHelper.executeQuery(sqlQuery);
+        statement = resultSet.getStatement();
+        connection = statement.getConnection();
+        try {
+            while (resultSet.next()) {
+                PairWord pairWord = new PairWord(resultSet.getString(2), resultSet.getString(3));
+                flashCards.add(pairWord);
+            }
+            Collections.shuffle(flashCards);
+        } catch (SQLException e) {
+
+        } finally {
+            DBHelper.closeQuery(resultSet, statement, connection);
         }
     }
 }

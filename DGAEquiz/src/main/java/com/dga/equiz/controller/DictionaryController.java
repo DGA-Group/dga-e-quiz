@@ -120,9 +120,7 @@ public class DictionaryController implements Initializable {
     private void displayWords(List<Word> resWord) throws IOException {
         wordsBox.getChildren().clear();
         for (var wor : resWord) {
-            NodeObject wordView = EquizUtils.Instantiate("/view/WordView.fxml");
-            wordsBox.getChildren().add(wordView.getNode());
-            WordController controller = wordView.getController();
+            boolean foundWord = false;
             List<Meaning> meanings = wor.getMeanings();
             List<Phonetic> phonetics = wor.getPhonetics();
             String pathOfSpeech = "";
@@ -130,19 +128,29 @@ public class DictionaryController implements Initializable {
             for (Meaning mean : meanings) {
                 if (!mean.getPartOfSpeech().isEmpty()) {
                     pathOfSpeech += mean.getPartOfSpeech();
+                    foundWord = true;
                     break;
                 }
             }
             for (Phonetic phone : phonetics) {
                 if (!phone.getAudio().isEmpty()) {
                     pathOfAudio += phone.getAudio();
+                    foundWord = true;
                     break;
                 }
             }
+
+            if (foundWord) {
+                NodeObject wordView = EquizUtils.Instantiate("/view/WordView.fxml");
+                wordsBox.getChildren().add(wordView.getNode());
+                WordController controller = wordView.getController();
+                controller.setupWordView(wor, wor.getWord(), pathOfSpeech, wor.getPhonetic(), pathOfAudio);
+            }
+
             if (pathOfSpeech.isEmpty() || pathOfAudio.isEmpty()) {
                 return;
             }
-            controller.setupWordView(wor, wor.getWord(), pathOfSpeech, wor.getPhonetic(), pathOfAudio);
+
         }
 
 

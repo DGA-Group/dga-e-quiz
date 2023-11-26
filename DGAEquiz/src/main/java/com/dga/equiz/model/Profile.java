@@ -3,6 +3,8 @@ package com.dga.equiz.model;
 import com.dga.equiz.utils.EquizUtils;
 import javafx.scene.image.Image;
 
+import java.util.ArrayList;
+
 public class Profile {
     private int ID;
 
@@ -28,6 +30,8 @@ public class Profile {
 
     private Image userAva;
 
+    private ArrayList<PairWord> flashCards = new ArrayList<>();
+
     public int getCurrentCampaign() {
         return currentCampaign;
     }
@@ -43,7 +47,6 @@ public class Profile {
     public void setScore(int score) {
         this.score = score;
     }
-
 
     public String getUsername() {
         return username;
@@ -126,5 +129,9 @@ public class Profile {
             }
         }
         return userAva;
+    }
+
+    public ArrayList<PairWord> getFlashCards() {
+        return flashCards;
     }
 }

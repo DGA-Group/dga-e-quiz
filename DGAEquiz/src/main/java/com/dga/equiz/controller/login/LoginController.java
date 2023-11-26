@@ -29,6 +29,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.Socket;
 import java.net.URI;
 import java.net.URL;
@@ -455,8 +456,12 @@ public class LoginController implements Initializable {
             }
 
             try (Connection connection = DriverManager.getConnection(DBHelper.MysqlURL, SecretKey.USERNAME, SecretKey.PASSWORD)) {
-                File imageFile = new File("C:\\Users\\ASUS\\OneDrive\\Pictures\\Saved Pictures\\test.jpg");
-                FileInputStream fis = new FileInputStream(imageFile);
+                //File imageFile = new File("C:\\Users\\ASUS\\OneDrive\\Pictures\\Saved Pictures\\test.jpg");
+                //FileInputStream fis = new FileInputStream(imageFile);
+
+                String imagePath = "/image/test.jpg";
+
+                InputStream inputStream = getClass().getResourceAsStream(imagePath);
 
                 String query = "INSERT INTO information (name, mail, dob, phone, github, username, password, link_ava_test, score, current_campaign) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -468,7 +473,8 @@ public class LoginController implements Initializable {
                     preparedStatement.setString(5, tfRegister_github.getText());
                     preparedStatement.setString(6, tfRegister_username.getText());
                     preparedStatement.setString(7, tfRegister_pass.getText());
-                    preparedStatement.setBinaryStream(8, fis, (int) imageFile.length());
+                    //preparedStatement.setBinaryStream(8, fis, (int) imageFile.length());
+                    preparedStatement.setBinaryStream(8, inputStream, inputStream.available());
                     preparedStatement.setInt(9, 0);
                     preparedStatement.setInt(10, 1);
 
@@ -476,12 +482,12 @@ public class LoginController implements Initializable {
                     System.out.println("Data inserted successfully.");
                 }
 
-                fis.close();
+                // fis.close();
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
                 return;
             }
-            runMain(tfRegister_username.getText());
+//            runMain(tfRegister_username.getText());
             stackPane.getChildren().forEach(pane -> pane.setVisible(false));
             paneConfirmAcc.setVisible(true);
         } else {
@@ -538,6 +544,8 @@ public class LoginController implements Initializable {
                 profile.setScore(resultSet.getInt(10));
                 profile.setCurrentCampaign(resultSet.getInt(11));
             }
+
+            ApplicationData.getInstance().loadAllUserFlashCards();
 
             if (!EquizUtils.connectServer()) {
                 showAlert("Cannot connect to server");

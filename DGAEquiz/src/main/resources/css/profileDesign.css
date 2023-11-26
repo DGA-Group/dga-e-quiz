@@ -17,7 +17,7 @@
 
 .label {
     -fx-font-family: "Trebuchet MS";
-    -fx-text-fill : #FFFFFF;
+    -fx-text-fill: #FFFFFF;
 }
 
 .name_label {
@@ -33,6 +33,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
+
 .phone_image {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -68,6 +69,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
+
 .pen:hover {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -76,6 +78,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
 }
+
 .setting {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -106,11 +109,25 @@
 
 .quote {
     -fx-font-family: "Georgia";
-    -fx-text-fill : #FFFFFF;
+    -fx-text-fill: #FFFFFF;
 }
+
 .rectangle {
     -fx-fill: #A5A8B6;
     -fx-background-radius: 50px;
     -fx-border-radius: 50px;
     /*-fx-background-radius: 10px;*/
+}
+
+.github-label {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 20px;
+}
+
+
+.github-label:hover {
+    -fx-font-family: "Trebuchet MS";
+    -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
+    -fx-font-size: 20px;
 }

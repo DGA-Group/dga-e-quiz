@@ -34,7 +34,7 @@
       <Pane layoutX="538.0" layoutY="453.0" prefHeight="215.0" prefWidth="340.0" styleClass="pane" stylesheets="@../../css/editInforDesign.css">
          <children>
             <Label alignment="CENTER" layoutX="48.0" layoutY="32.0" prefHeight="47.0" prefWidth="270.0" styleClass="label_main" stylesheets="@../../css/editInforDesign.css" text="Birthday" />
-            <TextField fx:id="date" layoutX="75.0" layoutY="108.0" prefHeight="43.0" prefWidth="234.0" promptText="yyyy/mm/dd" styleClass="text_field" stylesheets="@../../css/editInforDesign.css" />
+            <TextField fx:id="date" layoutX="75.0" layoutY="108.0" prefHeight="43.0" prefWidth="234.0" promptText="yyyy-mm-dd" styleClass="text_field" stylesheets="@../../css/editInforDesign.css" />
          </children></Pane>
       <Circle fx:id="circle" fill="DODGERBLUE" layoutX="511.0" layoutY="430.0" radius="112.0" stroke="BLACK" strokeType="INSIDE" />
       <Pane layoutX="143.0" layoutY="23.0" prefHeight="123.0" prefWidth="736.0" styleClass="pane" stylesheets="@../../css/editInforDesign.css">

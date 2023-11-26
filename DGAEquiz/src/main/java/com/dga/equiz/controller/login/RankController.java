@@ -116,7 +116,9 @@ public class RankController implements Initializable {
     }
 
     public int findUserRank(int id) {
-        String sql = "SELECT RANK() OVER (ORDER BY score) AS `rank` FROM information WHERE id = '" + id + "';";
+        //String sql = "SELECT RANK() OVER (ORDER BY score) AS `rank` FROM information WHERE id = '" + id + "';";
+        String sql = "SELECT user_rank FROM (SELECT id, RANK() OVER (ORDER BY score DESC)"
+                + " AS user_rank FROM information) ranked_users WHERE id = '" + id + "';";
         ResultSet resultSet = null;
         Statement statement = null;
         Connection connection = null;

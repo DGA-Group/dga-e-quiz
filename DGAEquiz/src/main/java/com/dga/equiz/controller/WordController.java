@@ -1,9 +1,11 @@
 package com.dga.equiz.controller;
 
+import com.dga.equiz.model.PairWord;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.word.Definition;
 import com.dga.equiz.model.word.Word;
 import com.dga.equiz.utils.ApplicationData;
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.DBHelper;
 import com.dga.equiz.utils.EquizUtils;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WordController {
@@ -140,6 +143,9 @@ public class WordController {
             } finally {
                 DBHelper.closeQuery(resultSet, statement, connection);
             }
+            ArrayList<PairWord> flashCards = profile.getFlashCards();
+            flashCards.add(new PairWord(savedOnlineWord, savedOnlineMeaning));
+            ControllerManager.getInstance().flashCardController.reloadFlashCard();
         }
     }
 

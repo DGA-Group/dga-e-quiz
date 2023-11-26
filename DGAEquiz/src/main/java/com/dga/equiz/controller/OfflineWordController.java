@@ -1,10 +1,9 @@
 package com.dga.equiz.controller;
 
+import com.dga.equiz.model.PairWord;
+import com.dga.equiz.model.Profile;
 import com.dga.equiz.model.nodeObject.NodeObject;
-import com.dga.equiz.utils.ApplicationData;
-import com.dga.equiz.utils.DBHelper;
-import com.dga.equiz.utils.EquizUtils;
-import com.dga.equiz.utils.StageManager;
+import com.dga.equiz.utils.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -20,6 +19,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class OfflineWordController implements Initializable {
@@ -89,6 +89,7 @@ public class OfflineWordController implements Initializable {
         ResultSet resultSet = null;
         Statement statement = null;
         Connection connection = null;
+        Profile profile = ApplicationData.getInstance().profile;
         String savedWord = labelOfWord.getText();
         String savedDescription = labelOfDescription.getText();
         int userID = ApplicationData.getInstance().profile.getID();
@@ -109,6 +110,9 @@ public class OfflineWordController implements Initializable {
             } finally {
                 DBHelper.closeQuery(resultSet, statement, connection);
             }
+            ArrayList<PairWord> flashCards = profile.getFlashCards();
+            flashCards.add(new PairWord(savedWord, savedDescription));
+            ControllerManager.getInstance().flashCardController.reloadFlashCard();
         }
     }
 }

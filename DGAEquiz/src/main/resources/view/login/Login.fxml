@@ -10,6 +10,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -17,7 +20,7 @@
    <right>
       <StackPane fx:id="stackPane" prefHeight="720.0" prefWidth="640.0" styleClass="pane" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0" visible="false">
+            <BorderPane fx:id="paneLogin" prefHeight="430.0" prefWidth="324.0">
                <center>
                   <Pane prefHeight="720.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                      <children>
@@ -51,13 +54,55 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Line endX="47.0" layoutX="461.0" layoutY="512.0" startX="-105.0" startY="1.5" />
+                        <Line endX="47.0" layoutX="460.0" layoutY="538.0" startX="-105.0" startY="1.5">
+                           <stroke>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.9450980424880981" green="0.6431372761726379" blue="0.9215686321258545" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006729475100942127">
+                                       <color>
+                                          <Color red="0.9450980424880981" green="0.6431372761726379" blue="0.9215686321258545" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.38823530077934265" green="0.529411792755127" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke></Line>
                         <Label layoutX="305.0" layoutY="523.0" prefWidth="50.0" styleClass="normal_field" text="OR">
                            <font>
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Line endX="57.0" layoutX="241.0" layoutY="514.0" startX="-100.0" />
+                        <Line endX="57.0" layoutX="240.0" layoutY="540.0" startX="-100.0">
+                           <stroke>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.9450980424880981" green="0.6431372761726379" blue="0.9215686321258545" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="0.006729475100942127">
+                                       <color>
+                                          <Color red="0.9450980424880981" green="0.6431372761726379" blue="0.9215686321258545" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="0.38823530077934265" green="0.529411792755127" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke></Line>
                         <Label alignment="CENTER" layoutX="158.0" layoutY="583.0" prefHeight="30.0" prefWidth="324.0" styleClass="normal_field" text="Register Account">
                            <font>
                               <Font size="20.0" />
@@ -117,7 +162,7 @@
                         <Button fx:id="buttonRegister_back" layoutX="17.0" layoutY="26.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="46.0" styleClass="back" />
                         <Label layoutX="126.0" layoutY="610.0" styleClass="userLabel" text="Date Of Birth" />
                         <Button fx:id="buttonRegister_next" layoutX="575.0" layoutY="655.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="51.0" styleClass="next" />
-                        <TextField fx:id="tfRegister_date" layoutX="126.0" layoutY="640.0" prefHeight="40.0" prefWidth="370.0" promptText="yyyy/mm/dd" styleClass="button1">
+                        <TextField fx:id="tfRegister_date" layoutX="126.0" layoutY="640.0" prefHeight="40.0" prefWidth="370.0" promptText="yyyy-mm-dd" styleClass="button1">
                            <font>
                               <Font size="20.0" />
                            </font>

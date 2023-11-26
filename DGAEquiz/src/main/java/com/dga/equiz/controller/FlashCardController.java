@@ -1,6 +1,5 @@
 package com.dga.equiz.controller;
 
-import com.dga.equiz.model.FlashCard;
 import com.dga.equiz.model.PairWord;
 import com.dga.equiz.model.Profile;
 import com.dga.equiz.utils.ApplicationData;
@@ -18,12 +17,9 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import static com.dga.equiz.model.FlashCard.ListFlashCard;
 
 public class FlashCardController implements Initializable {
 
@@ -45,9 +41,6 @@ public class FlashCardController implements Initializable {
     @FXML
     private Label atlertLabel;
 
-    @FXML
-    private Label titleLabel;
-
     private boolean isFront = true;
     private String selected = "";
     private int index = 1;
@@ -55,64 +48,45 @@ public class FlashCardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ControllerManager.getInstance().flashCardController = this;
+        atlertLabel.setVisible(true);
+        prevButton.setVisible(false);
+        nextButton.setVisible(false);
+        curLabel.setVisible(false);
+        wordLabel.setVisible(false);
+        initFlashCard();
+    }
+
+    private void initFlashCard() {
+        Profile profile = ApplicationData.getInstance().profile;
+        ArrayList<PairWord> flashCards = profile.getFlashCards();
+        nextButton.setOnMouseClicked(event -> {
+            if (index < flashCards.size()) {
+                isFront = true;
+                right_trans(flashCards);
+                index++;
+                showButton(flashCards);
+                selected = flashCards.get(index - 1).getWordName();
+                wordLabel.setText(selected);
+                curLabel.setText(index + " / " + flashCards.size());
+            }
+        });
+
+        prevButton.setOnMouseClicked(event -> {
+            if (index > 1) {
+                isFront = true;
+                left_trans(flashCards);
+                index--;
+                showButton(flashCards);
+                selected = flashCards.get(index - 1).getWordName();
+                wordLabel.setText(selected);
+                curLabel.setText(index + " / " + flashCards.size());
+            }
+        });
+
         reloadFlashCard();
     }
 
-    public void reloadFlashCard() {
-        titleLabel.setVisible(true);
-
-        try {
-            ListFlashCard = (ArrayList<PairWord>) FlashCard.getListFlashCard();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        if (!ListFlashCard.isEmpty()) {
-            atlertLabel.setVisible(false);
-            wordLabel.setText(ListFlashCard.get(0).getWordName());
-            curLabel.setText(index + " / " + ListFlashCard.size());
-            FlashCardPane.setOnMouseClicked(event -> {
-                wordLabel.setVisible(false);
-                rotatePane();
-            });
-            if (index == 1) {
-                prevButton.setVisible(false);
-            } else {
-                prevButton.setVisible(true);
-            }
-
-            nextButton.setOnMouseClicked(event -> {
-                if (index < ListFlashCard.size()) {
-                    isFront = true;
-                    right_trans();
-                    index++;
-                    showButton(index);
-                    selected = ListFlashCard.get(index - 1).getWordName();
-                    wordLabel.setText(selected);
-                    curLabel.setText(index + " / " + ListFlashCard.size());
-                }
-            });
-            prevButton.setOnMouseClicked(event -> {
-                if (index > 1) {
-                    isFront = true;
-                    left_trans();
-                    index--;
-                    showButton(index);
-                    selected = ListFlashCard.get(index - 1).getWordName();
-                    wordLabel.setText(selected);
-                    curLabel.setText(index + " / " + ListFlashCard.size());
-                }
-            });
-        } else {
-            atlertLabel.setVisible(true);
-            prevButton.setVisible(false);
-            nextButton.setVisible(false);
-            curLabel.setVisible(false);
-            wordLabel.setVisible(false);
-        }
-    }
-
-    public void rotatePane() {
-
+    public void rotatePane(ArrayList<PairWord> flashCards) {
         RotateTransition rotateTransition = new RotateTransition(Duration.seconds(0.3), FlashCardPane);
         rotateTransition.setAxis(Rotate.Y_AXIS);
         rotateTransition.setFromAngle(0);
@@ -126,7 +100,7 @@ public class FlashCardController implements Initializable {
         rotate.setOnFinished(e -> {
             if (isFront) {
                 selected = wordLabel.getText();
-                wordLabel.setText(ListFlashCard.get(index - 1).getMeaning());
+                wordLabel.setText(flashCards.get(index - 1).getMeaning());
             } else {
                 wordLabel.setText(selected);
             }
@@ -142,7 +116,7 @@ public class FlashCardController implements Initializable {
         fade.play();
     }
 
-    private void left_trans() {
+    private void left_trans(ArrayList<PairWord> flashCards) {
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(400), FlashCardPane);
         translateTransition.setFromX(-FlashCardPane.getWidth());
         translateTransition.setToX(0);
@@ -150,14 +124,14 @@ public class FlashCardController implements Initializable {
         fadeTrans();
         if (!isFront) {
             selected = wordLabel.getText();
-            wordLabel.setText(ListFlashCard.get(index - 1).getMeaning());
+            wordLabel.setText(flashCards.get(index - 1).getMeaning());
         } else {
             wordLabel.setText(selected);
         }
         translateTransition.play();
     }
 
-    private void right_trans() {
+    private void right_trans(ArrayList<PairWord> flashCards) {
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(400), FlashCardPane);
         translateTransition.setFromX(FlashCardPane.getWidth());
         translateTransition.setToX(0);
@@ -165,7 +139,7 @@ public class FlashCardController implements Initializable {
         fadeTrans();
         if (!isFront) {
             selected = wordLabel.getText();
-            wordLabel.setText(ListFlashCard.get(index - 1).getMeaning());
+            wordLabel.setText(flashCards.get(index - 1).getMeaning());
         } else {
             wordLabel.setStyle("-fx-font-size: 25px;-fx-font-weight: bold;");
             wordLabel.setText(selected);
@@ -173,17 +147,28 @@ public class FlashCardController implements Initializable {
         translateTransition.play();
     }
 
-    public void showButton(int pt) {
-        if (pt == 1) {
-            prevButton.setVisible(false);
-        } else {
-            prevButton.setVisible(true);
-        }
+    public void showButton(ArrayList<PairWord> flashCards) {
+        prevButton.setVisible(index != 1);
+        nextButton.setVisible(index != flashCards.size());
+    }
 
-        if (pt == ListFlashCard.size()) {
-            nextButton.setVisible(false);
-        } else {
-            nextButton.setVisible(true);
+    public void reloadFlashCard() {
+        Profile profile = ApplicationData.getInstance().profile;
+        HomeController homeController = ControllerManager.getInstance().homeController;
+        ArrayList<PairWord> flashCards = profile.getFlashCards();
+        if (!flashCards.isEmpty()) {
+            atlertLabel.setVisible(false);
+            wordLabel.setVisible(true);
+            wordLabel.setText(flashCards.get(0).getWordName());
+            curLabel.setText(index + " / " + flashCards.size());
+            FlashCardPane.setOnMouseClicked(event -> {
+                wordLabel.setVisible(false);
+                rotatePane(flashCards);
+            });
+        }
+        showButton(flashCards);
+        if (homeController != null) {
+            homeController.setFlashCard(String.valueOf(flashCards.size()));
         }
     }
 

@@ -233,7 +233,7 @@ public class EquizUtils {
     public static boolean connectServer() {
         boolean success;
         try {
-            Socket socket = new Socket("171.244.62.163", 54321);
+            Socket socket = new Socket(SecretKey.HOST, SecretKey.GAMEPORT);
             ApplicationData.getInstance().socket = socket;
             Profile profile = ApplicationData.getInstance().profile;
             int id = profile.getID();

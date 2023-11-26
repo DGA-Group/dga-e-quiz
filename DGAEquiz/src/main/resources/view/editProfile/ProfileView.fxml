@@ -18,22 +18,22 @@
                   <Button layoutX="54.0" layoutY="164.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="dob_image" stylesheets="@../../css/profileDesign.css" />
                   <Button layoutX="54.0" layoutY="244.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="phone_image" stylesheets="@../../css/profileDesign.css" />
                   <Button layoutX="54.0" layoutY="324.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="github_image" stylesheets="@../../css/profileDesign.css" />
-                  <Label fx:id="labelMail" layoutX="152.0" layoutY="70.0" prefHeight="60.0" prefWidth="300.0" text="mailghi">
+                  <Label fx:id="labelMail" layoutX="152.0" layoutY="70.0" prefHeight="60.0" prefWidth="300.0" text="Mail">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelDOB" layoutX="152.0" layoutY="160.0" prefHeight="60.0" prefWidth="300.0" text="dofghi">
+                  <Label fx:id="labelDOB" layoutX="152.0" layoutY="160.0" prefHeight="60.0" prefWidth="300.0" text="DoB">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelPhone" layoutX="152.0" layoutY="236.0" prefHeight="60.0" prefWidth="300.0" text="phoneghi">
+                  <Label fx:id="labelPhone" layoutX="152.0" layoutY="236.0" prefHeight="60.0" prefWidth="300.0" text="Phone">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Hyperlink fx:id="link_Github" layoutX="152.0" layoutY="327.0" prefHeight="51.0" prefWidth="188.0" styleClass="label" stylesheets="@../../css/profileDesign.css" text="Link">
+                  <Hyperlink fx:id="link_Github" layoutX="152.0" layoutY="327.0" prefHeight="51.0" prefWidth="188.0" styleClass="github-label" stylesheets="@../../css/profileDesign.css" text="Link">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -50,7 +50,7 @@
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="labelName" alignment="CENTER" contentDisplay="TOP" layoutX="-9.0" layoutY="143.0" prefHeight="72.0" prefWidth="536.0" stylesheets="@../../css/profileDesign.css" text="name" textFill="WHITE">
+            <Label fx:id="labelName" alignment="CENTER" contentDisplay="TOP" layoutX="20.0" layoutY="110.0" prefHeight="125.0" prefWidth="520.0" stylesheets="@../../css/profileDesign.css" text="Name" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="System Bold" size="50.0" />
                </font>

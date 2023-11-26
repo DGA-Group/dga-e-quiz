@@ -68,7 +68,8 @@ public class HomeController implements Initializable {
         int currentPoint = profile.getScore();
         long currentCampaign = profile.getCurrentCampaign();
         int totalCampaign = ApplicationData.getInstance().getCampaignData().size();
-
+        CampaignController currentCampaignController = campaigns.get(currentCampaign);
+        currentCampaignController.setFinishCampaign();
         // Add point
         if (campaignNumber == currentCampaign) {
             int rewardPoints = 10;
@@ -168,6 +169,9 @@ public class HomeController implements Initializable {
 
 
                 if (campaignId <= currentCampaign) {
+                    if (campaignId < currentCampaign) {
+                        controller.setFinishCampaign();
+                    }
                     controller.setUnlockCampaign();
                 }
 

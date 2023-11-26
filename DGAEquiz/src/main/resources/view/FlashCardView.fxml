@@ -22,12 +22,12 @@
    <center>
       <StackPane fx:id="FlashCardPane" prefHeight="396.0" prefWidth="630.0" styleClass="pane" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="wordLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="170.0" prefWidth="387.0" styleClass="normal_field" text="Word" textAlignment="CENTER" visible="false">
+            <Label fx:id="wordLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="170.0" prefWidth="387.0" styleClass="normal_field" text="Word" textAlignment="CENTER" visible="false" wrapText="true">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
-            <Label fx:id="atlertLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="222.0" prefWidth="502.0" styleClass="normal_field" text="You don't have any flash card." textAlignment="CENTER">
+            <Label fx:id="atlertLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="502.0" styleClass="normal_field" text="You don't have any flash card." textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="30.0" />
                </font>

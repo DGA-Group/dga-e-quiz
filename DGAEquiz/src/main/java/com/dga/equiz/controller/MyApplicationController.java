@@ -1,5 +1,6 @@
 package com.dga.equiz.controller;
 
+import com.dga.equiz.model.FlashCard;
 import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.utils.ApplicationData;
 import com.dga.equiz.utils.ApplicationEnum.AnchorType;
