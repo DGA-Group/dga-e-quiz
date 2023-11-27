@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
@@ -34,22 +33,6 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSwitchToDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Dictionary" textFill="WHITE">
-               <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-book" iconSize="20" />
-               </graphic>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickSwitchToProfile" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Profile" textFill="WHITE">
-               <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-user" iconSize="20" />
-               </graphic>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
             <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Game" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" iconSize="20" />
@@ -58,7 +41,15 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="OffDic" textFill="WHITE">
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSwitchToDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Online Dictionary" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-book" iconSize="20" />
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Offline Dictionary" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-book-open" iconSize="20" />
                </graphic>
@@ -77,6 +68,14 @@
             <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Rank" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-bar-chart-2" iconSize="20" />
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickSwitchToProfile" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Profile" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-user" iconSize="20" />
                </graphic>
                <font>
                   <Font size="20.0" />

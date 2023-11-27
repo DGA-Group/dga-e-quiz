@@ -71,5 +71,5 @@
 .label- {
     -fx-text-fill: linear-gradient(to bottom right, #6387FF, #F1A4EB);
     -fx-font-weight: Bold;
-    -fx-font-style: italic;
+    -fx-font-family: "Inter Light";
 }
