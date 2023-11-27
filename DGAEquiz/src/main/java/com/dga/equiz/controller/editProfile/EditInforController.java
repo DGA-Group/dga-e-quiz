@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -106,25 +107,31 @@ public class EditInforController implements Initializable {
 
         LocalDate myDate = LocalDate.parse(date.getText(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         String myFormattedDate = myDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String email = tfMail.getText();
+        if (EquizUtils.patternMatches(email,"^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
+            String query = "UPDATE `dga_data`.`information`";
+            query += "SET " + "`name`" + " = '" + tfName.getText() + "' ,";
+            query += "`mail`" + " = '" + email + "' ,";
+            query += "`phone`" + " = '" + tfPhone.getText() + "' ,";
+            query += "`github`" + " = '" + tfGithub.getText() + "' ,";
+            query += "`dob`" + " = '" + myFormattedDate + "' ";
+            query += "WHERE (`id` = '" + id + "')";
 
-        String query = "UPDATE `dga_data`.`information`";
-        query += "SET " + "`name`" + " = '" + tfName.getText() + "' ,";
-        query += "`mail`" + " = '" + tfMail.getText() + "' ,";
-        query += "`phone`" + " = '" + tfPhone.getText() + "' ,";
-        query += "`github`" + " = '" + tfGithub.getText() + "' ,";
-        query += "`dob`" + " = '" + myFormattedDate + "' ";
-        query += "WHERE (`id` = '" + id + "')";
+            DBHelper.executeUpdate(query);
 
-        DBHelper.executeUpdate(query);
+            Profile profile = ApplicationData.getInstance().profile;
+            profile.setName(tfName.getText());
+            profile.setMail(tfMail.getText());
+            profile.setPhone(tfPhone.getText());
+            profile.setGithub(tfGithub.getText());
+            profile.setDob(myFormattedDate);
 
-        Profile profile = ApplicationData.getInstance().profile;
-        profile.setName(tfName.getText());
-        profile.setMail(tfMail.getText());
-        profile.setPhone(tfPhone.getText());
-        profile.setGithub(tfGithub.getText());
-        profile.setDob(myFormattedDate);
+            ControllerManager.getInstance().profileController.setLabel(profile.getID());
+        } else {
+            EquizUtils.showAlert("Email is invalid", null,"Please enter different email", Alert.AlertType.ERROR);
+        }
 
-        ControllerManager.getInstance().profileController.setLabel(profile.getID());
     }
 
     public void changeImage(ActionEvent event) throws SQLException, IOException {

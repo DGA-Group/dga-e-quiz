@@ -269,6 +269,9 @@ public class LoginController implements Initializable {
                 if (resultSet.next()) {
                     showAlert("Username đã tồn tại vui lòng nhập username khác.");
                     return;
+                } else if (!EquizUtils.patternMatches(tfRegister_mail.getText(),"^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                        + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
+                    showAlert("Email is invalid", null, "Please enter email again", AlertType.ERROR);
                 } else if (tfRegister_username.getText().isEmpty() == false && tfRegister_pass.getText().isEmpty() == false && tfRegister_mail.getText().isEmpty() == false) {
                     Random random = new Random();
                     code[0] = 1000 + random.nextInt(9000);
@@ -333,6 +336,9 @@ public class LoginController implements Initializable {
                     tfForgot_mail.getText().isEmpty() || tfForgot_confNpass.getText().isEmpty()) {
                 showAlert("Vui lòng điền đầy đủ thông tin");
                 return;
+            } else if (!EquizUtils.patternMatches(tfForgot_mail.getText(),"^(?=.{1,64}@)[A-Za-z0-9_-]+(\\.[A-Za-z0-9_-]+)*@"
+                    + "[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$")) {
+                showAlert("Email is invalid", null, "Please enter email again", AlertType.ERROR);
             } else {
                 boolean flag = true;
                 String sqlQuery = "SELECT mail FROM `information` WHERE username = '" + tfForgot_username.getText() + "';";
