@@ -22,12 +22,20 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToHome" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Dashboard" textFill="WHITE">
+            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToHome" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Home" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-home" iconSize="20" />
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Game" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" iconSize="20" />
                </graphic>
                <font>
                   <Font size="20.0" />
@@ -44,14 +52,6 @@
             <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Offline Dictionary" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-book-open" iconSize="20" />
-               </graphic>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Game" textFill="WHITE">
-               <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" iconSize="20" />
                </graphic>
                <font>
                   <Font size="20.0" />

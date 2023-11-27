@@ -327,6 +327,11 @@
             <Button fx:id="buttonFacebook" layoutX="14.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="facebook" />
             <Button fx:id="buttonInstagram" layoutX="74.0" layoutY="655.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="53.0" styleClass="instagram" />
             <Button fx:id="close" layoutX="7.0" layoutY="14.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="34.0" styleClass="off" />
+            <Label alignment="CENTER" layoutX="159.0" layoutY="446.0" prefHeight="72.0" prefWidth="250.0" styleClass="label-group" text="DGA-EQUIZ" textAlignment="CENTER">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
          </children></Pane>
    </center>
 </BorderPane>
