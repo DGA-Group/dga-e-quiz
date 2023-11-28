@@ -11,9 +11,9 @@
 
 <BorderPane prefHeight="720.0" prefWidth="1280.0" styleClass="rounded-application" stylesheets="@../css/applicationDesign.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dga.equiz.controller.MyApplicationController">
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="250.0" styleClass="box" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER">
+      <VBox fx:id="vBoxButtonTab" alignment="TOP_CENTER" prefHeight="720.0" prefWidth="250.0" styleClass="box" stylesheets="@../css/applicationDesign.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="157.0" prefWidth="250.0" styleClass="tab-pane-logo" stylesheets="@../css/applicationDesign.css">
+            <AnchorPane fx:id="paneLogo" prefHeight="157.0" prefWidth="250.0" styleClass="tab-pane-logo" stylesheets="@../css/applicationDesign.css">
                <children>
                   <Label alignment="CENTER" layoutX="2.0" layoutY="111.0" prefHeight="45.0" prefWidth="250.0" styleClass="label-logo" text="DGAEquiz" textAlignment="CENTER">
                      <font>
@@ -22,7 +22,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToHome" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Dashboard" textFill="WHITE">
+            <Button fx:id="btnDashboard" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToHome" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Dashboard" textFill="WHITE">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -33,7 +33,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSwitchToDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Online Dictionary" textFill="WHITE">
+            <Button fx:id="btnOnlineDictionary" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClickSwitchToDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Online Dictionary" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-book" iconSize="20" />
                </graphic>
@@ -41,7 +41,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Offline Dictionary" textFill="WHITE">
+            <Button fx:id="btnOfflineDictionary" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#onClickSwitchToOfflineDictionary" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Offline Dictionary" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-book-open" iconSize="20" />
                </graphic>
@@ -49,7 +49,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Game" textFill="WHITE">
+            <Button fx:id="btnGame" alignment="TOP_LEFT" layoutX="10.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickSwitchToGame" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Game" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-airplay" iconSize="20" />
                </graphic>
@@ -57,7 +57,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickSwitchToFlashCard" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Flash Card" textFill="WHITE">
+            <Button fx:id="btnFlashcard" alignment="TOP_LEFT" layoutX="11.0" layoutY="221.0" mnemonicParsing="false" onAction="#onClickSwitchToFlashCard" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Flash Card" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-clipboard" iconSize="20" />
                </graphic>
@@ -65,7 +65,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Rank" textFill="WHITE">
+            <Button fx:id="btnRank" alignment="TOP_LEFT" layoutX="11.0" layoutY="194.0" mnemonicParsing="false" onAction="#onClickSwitchToRank" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Rank" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-bar-chart-2" iconSize="20" />
                </graphic>
@@ -73,7 +73,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button alignment="TOP_LEFT" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickSwitchToProfile" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Profile" textFill="WHITE">
+            <Button fx:id="btnProfile" alignment="TOP_LEFT" layoutX="10.0" layoutY="36.0" mnemonicParsing="false" onAction="#onClickSwitchToProfile" prefHeight="50.0" prefWidth="250.0" styleClass="button_menu" stylesheets="@../css/applicationDesign.css" text="Profile" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fth-user" iconSize="20" />
                </graphic>

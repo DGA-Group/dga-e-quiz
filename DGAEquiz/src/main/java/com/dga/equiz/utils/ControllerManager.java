@@ -1,8 +1,6 @@
 package com.dga.equiz.utils;
 
-import com.dga.equiz.controller.FlashCardController;
-import com.dga.equiz.controller.HomeController;
-import com.dga.equiz.controller.MyApplicationController;
+import com.dga.equiz.controller.*;
 import com.dga.equiz.controller.editProfile.EditAccController;
 import com.dga.equiz.controller.editProfile.EditInforController;
 import com.dga.equiz.controller.editProfile.ProfileController;
@@ -37,4 +35,6 @@ public class ControllerManager {
     public HomeController homeController;
     public RankController rankController;
     public FlashCardController flashCardController;
+    public DictionaryController dictionaryController;
+    public OfflineDictionaryController offlineDictionaryController;
 }

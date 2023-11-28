@@ -49,7 +49,7 @@
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="buttonLogin_login" layoutX="219.0" layoutY="432.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="210.0" styleClass="button1" text="Start">
+                        <Button fx:id="buttonLogin_login" layoutX="139.0" layoutY="438.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="150.0" styleClass="button1" text="Start">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -103,12 +103,12 @@
                                  </stops>
                               </LinearGradient>
                            </stroke></Line>
-                        <Label alignment="CENTER" layoutX="158.0" layoutY="583.0" prefHeight="30.0" prefWidth="324.0" styleClass="normal_field" text="Register Account">
+                        <Label alignment="CENTER" layoutX="158.0" layoutY="583.0" prefHeight="30.0" prefWidth="324.0" styleClass="normal_field" text="Offline Mode">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button fx:id="buttonLogin_signUp" layoutX="219.0" layoutY="639.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" styleClass="button1" text="Sign Up">
+                        <Button fx:id="buttonLogin_signUp" layoutX="366.0" layoutY="438.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="150.0" styleClass="button1" text="Sign Up">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -116,6 +116,11 @@
                         <Label layoutX="144.0" layoutY="154.0" styleClass="userLabel" text="Username" />
                         <Label layoutX="141.0" layoutY="251.0" styleClass="userLabel" text="Password" />
                         <PasswordField fx:id="pfLogin_password" layoutX="139.0" layoutY="285.0" prefHeight="45.0" prefWidth="370.0" styleClass="button1" />
+                        <Button fx:id="buttonLogin_offline" layoutX="176.0" layoutY="621.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="309.0" styleClass="button1" text="Go Offline">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
                      </children>
                   </Pane>
                </center>

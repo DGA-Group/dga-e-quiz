@@ -1,6 +1,7 @@
 package com.dga.equiz.controller;
 
 import com.dga.equiz.model.nodeObject.NodeObject;
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.DBHelper;
 import com.dga.equiz.utils.EquizUtils;
 import com.dga.equiz.utils.StageManager;
@@ -47,6 +48,7 @@ public class OfflineDictionaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().offlineDictionaryController = this;
         onStartup();
         onEnterSearch();
         try {

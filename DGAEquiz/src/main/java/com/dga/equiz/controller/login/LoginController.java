@@ -186,6 +186,9 @@ public class LoginController implements Initializable {
     @FXML
     private TextField tfRegister_username;
 
+    @FXML
+    public Button buttonLogin_offline;
+
     public List<EventHandler<ActionEvent>> onCompleteSave = new ArrayList<>();
 
 
@@ -237,7 +240,7 @@ public class LoginController implements Initializable {
                     passOutput = resultSet.getString(1);
                 }
             } catch (SQLException ex) {
-                    showAlert("Error", null, "Unable to connect to server", AlertType.ERROR);
+                showAlert("Error", null, "Unable to connect to server", AlertType.ERROR);
             } finally {
                 try {
                     DBHelper.closeQuery(resultSet, statement, connection);
@@ -371,7 +374,7 @@ public class LoginController implements Initializable {
                     tfForgot_confNpass.setText(null);
                     tfForgot_Npass.setText(null);
                     return;
-                } else if (flag){
+                } else if (flag) {
                     stackPane.getChildren().forEach(pane -> pane.setVisible(false));
                     paneConfirmPass.setVisible(true);
                     Random random = new Random();
@@ -380,7 +383,7 @@ public class LoginController implements Initializable {
                     Mailer.send("tuankoi921@gmail.com", "uvyt ehsf ufew uyru", tfForgot_mail.getText(), "Confirm Acc DGAEQuiz", message);
                 }
             }
-            });
+        });
 
         // Pass
         buttonPass_go.setOnAction((ActionEvent e) -> {
@@ -428,7 +431,12 @@ public class LoginController implements Initializable {
         buttonInstagram.setOnAction((ActionEvent e) -> {
             openBrowser("https://www.instagram.com/denday.cpp/");
         });
+
+        buttonLogin_offline.setOnAction(event -> {
+            runOfflineApplication();
+        });
     }
+
 
     private void openBrowser(String url) {
         try {
@@ -518,7 +526,9 @@ public class LoginController implements Initializable {
         scene.getStylesheets().add(String.valueOf(Main.class.getResource(cssPath)));
     }
 
-    private void runMain(String username) {
+    private void loadUserData() {
+        Profile profile = ApplicationData.getInstance().profile;
+        String username = profile.getUsername();
         String sqlQuery = "SELECT * FROM `information` WHERE username = '" + username + "';";
         ResultSet resultSet = null;
         Statement statement = null;
@@ -529,7 +539,6 @@ public class LoginController implements Initializable {
             statement = resultSet.getStatement();
             connection = statement.getConnection();
 
-            Profile profile = ApplicationData.getInstance().profile;
 
             if (resultSet.next()) {
                 profile.setID(resultSet.getInt(1));
@@ -563,14 +572,47 @@ public class LoginController implements Initializable {
         }
 
 
+    }
+
+    private void runMain(String username) {
+        Profile profile = ApplicationData.getInstance().profile;
+        String profileUsername = profile.getUsername();
+        if (profileUsername != null && profileUsername.equals(username)) {
+            loadUserData();
+        }
+
         // Initialize application view
         try {
-            NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
-            Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 1280, 720, Color.TRANSPARENT);
-            Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
-            addStyle(myApplicationScene, "/css/learnDesign.css");
-            myApplicationStage.initStyle(StageStyle.TRANSPARENT);
-            myApplicationStage.setScene(myApplicationScene);
+            if (ControllerManager.getInstance().myApplicationController == null) {
+                NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
+                Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 1280, 720, Color.TRANSPARENT);
+                Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
+                addStyle(myApplicationScene, "/css/learnDesign.css");
+                myApplicationStage.initStyle(StageStyle.TRANSPARENT);
+                myApplicationStage.setScene(myApplicationScene);
+            }
+            ControllerManager.getInstance().myApplicationController.loadOnlineProgram();
+            ControllerManager.getInstance().myApplicationController.onClickSwitchToHome();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
+        StageManager.getInstance().myApplicationStage.show();
+        StageManager.getInstance().loginStage.hide();
+    }
+
+    private void runOfflineApplication() {
+        try {
+            if (ControllerManager.getInstance().myApplicationController == null) {
+                NodeObject applicationView = EquizUtils.Instantiate("/view/MyApplication.fxml");
+                Scene myApplicationScene = new Scene((Parent) applicationView.getNode(), 1280, 720, Color.TRANSPARENT);
+                Stage myApplicationStage = StageManager.getInstance().myApplicationStage = new Stage();
+                addStyle(myApplicationScene, "/css/learnDesign.css");
+                myApplicationStage.initStyle(StageStyle.TRANSPARENT);
+                myApplicationStage.setScene(myApplicationScene);
+            }
+            ControllerManager.getInstance().myApplicationController.loadOfflineProgram();
+            ControllerManager.getInstance().myApplicationController.onClickSwitchToOfflineDictionary();
         } catch (Exception e) {
             e.printStackTrace();
             return;

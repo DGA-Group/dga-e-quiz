@@ -4,6 +4,7 @@ import com.dga.equiz.model.nodeObject.NodeObject;
 import com.dga.equiz.model.word.Meaning;
 import com.dga.equiz.model.word.Phonetic;
 import com.dga.equiz.model.word.Word;
+import com.dga.equiz.utils.ControllerManager;
 import com.dga.equiz.utils.EquizUtils;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -74,6 +75,7 @@ public class DictionaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ControllerManager.getInstance().dictionaryController = this;
         onStartup();
         onEnterSearch();
     }

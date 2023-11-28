@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,6 +35,33 @@ public class MyApplicationController implements Initializable {
     @FXML
     private Button logOutButton;
 
+    @FXML
+    private VBox vBoxButtonTab;
+
+    @FXML
+    private Button btnDashboard;
+
+    @FXML
+    private Button btnOnlineDictionary;
+
+    @FXML
+    private Button btnOfflineDictionary;
+
+    @FXML
+    private Button btnGame;
+
+    @FXML
+    private Button btnFlashcard;
+
+    @FXML
+    private Button btnRank;
+
+    @FXML
+    private Button btnProfile;
+
+    @FXML
+    private AnchorPane paneLogo;
+
     //endregion
 
     private NodeObject homeView = null;
@@ -51,21 +79,30 @@ public class MyApplicationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ControllerManager.getInstance().myApplicationController = this;
+    }
+
+    public void loadOnlineProgram() {
         ApplicationData.getInstance().loadAllData();
+
         setupDictionaryView();
+
         setupProfileView();
+
         setupGameView();
+
         setupOfflineDictionaryView();
+
         setupRankView();
+
         setupFlashCardView();
+
         setupHomeView();
 
         EquizUtils.callFuncDelay(this::setupButton, 1000);
-
         // Set default panel to home
         currentPanel = homeView;
 
-        logOutButton.setOnAction((ActionEvent e) -> {
+        logOutButton.setOnAction(event -> {
             StageManager.getInstance().myApplicationStage.hide();
             StageManager.getInstance().loginStage.show();
             ControllerManager.getInstance().loginController.tfLogin_username.setText(null);
@@ -77,7 +114,7 @@ public class MyApplicationController implements Initializable {
                 if (socket.isConnected()) {
                     socket.close();
                     ObjectOutputStream oos = ClientHelperRequest.objectOutputStream;
-                    if(oos != null){
+                    if (oos != null) {
                         oos.close();
                     }
                     ClientHelperRequest.objectOutputStream = null;
@@ -85,6 +122,23 @@ public class MyApplicationController implements Initializable {
             } catch (Exception ignore) {
             }
         });
+
+        loadTabButton(true);
+    }
+
+    public void loadOfflineProgram() {
+        setupOfflineDictionaryView();
+        offlineDictionaryView.show();
+
+        logOutButton.setOnAction(event -> {
+            StageManager.getInstance().myApplicationStage.hide();
+            StageManager.getInstance().loginStage.show();
+        });
+
+        EquizUtils.callFuncDelay(this::setupButton, 1000);
+        // Set default panel to home
+        currentPanel = offlineDictionaryView;
+        loadTabButton(false);
     }
 
     public void setupButton() {
@@ -102,7 +156,9 @@ public class MyApplicationController implements Initializable {
     private void setupHomeView() {
         // Add home panel to application.
         try {
-            homeView = EquizUtils.Instantiate("/view/HomeView.fxml", panelHolder, AnchorType.FitToParent);
+            if (ControllerManager.getInstance().homeController == null) {
+                homeView = EquizUtils.Instantiate("/view/HomeView.fxml", panelHolder, AnchorType.FitToParent);
+            }
             homeView.show();
 
         } catch (Exception e) {
@@ -112,7 +168,9 @@ public class MyApplicationController implements Initializable {
 
     private void setupDictionaryView() {
         try {
-            dictionaryView = EquizUtils.Instantiate("/view/DictionaryView.fxml");
+            if (ControllerManager.getInstance().dictionaryController == null) {
+                dictionaryView = EquizUtils.Instantiate("/view/DictionaryView.fxml");
+            }
             panelHolder.getChildren().add(dictionaryView.getNode());
             dictionaryView.hide();
         } catch (Exception e) {
@@ -122,7 +180,9 @@ public class MyApplicationController implements Initializable {
 
     private void setupOfflineDictionaryView() {
         try {
-            offlineDictionaryView = EquizUtils.Instantiate("/view/OfflineDictionaryView.fxml", panelHolder, AnchorType.FitToParent);
+            if (ControllerManager.getInstance().offlineDictionaryController == null) {
+                offlineDictionaryView = EquizUtils.Instantiate("/view/OfflineDictionaryView.fxml", panelHolder, AnchorType.FitToParent);
+            }
             offlineDictionaryView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -132,7 +192,9 @@ public class MyApplicationController implements Initializable {
     private void setupProfileView() {
         try {
             // Load profile here.
-            profileView = EquizUtils.Instantiate("/view/ProfileContainerView.fxml", panelHolder, AnchorType.FitToParent);
+            if (ControllerManager.getInstance().profileController == null) {
+                profileView = EquizUtils.Instantiate("/view/ProfileContainerView.fxml", panelHolder, AnchorType.FitToParent);
+            }
             profileView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +204,9 @@ public class MyApplicationController implements Initializable {
     private void setupGameView() {
         try {
             // Load profile here.
-            gameView = EquizUtils.Instantiate("/view/game/GameView.fxml", panelHolder, AnchorType.FitToParent);
+            if (ControllerManager.getInstance().gameController == null) {
+                gameView = EquizUtils.Instantiate("/view/game/GameView.fxml", panelHolder, AnchorType.FitToParent);
+            }
             gameView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,7 +216,9 @@ public class MyApplicationController implements Initializable {
     private void setupRankView() {
         try {
             // Load profile here.
-            rankView = EquizUtils.Instantiate("/view/login/RankView.fxml", panelHolder, AnchorType.FitToParent);
+            if (ControllerManager.getInstance().rankController == null) {
+                rankView = EquizUtils.Instantiate("/view/login/RankView.fxml", panelHolder, AnchorType.FitToParent);
+            }
             rankView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,7 +228,9 @@ public class MyApplicationController implements Initializable {
     private void setupFlashCardView() {
         try {
             // Load profile here.
-            flashCardView = EquizUtils.Instantiate("/view/FlashCardView.fxml", panelHolder, AnchorType.FitToParent);
+            if (ControllerManager.getInstance().flashCardController == null) {
+                flashCardView = EquizUtils.Instantiate("/view/FlashCardView.fxml", panelHolder, AnchorType.FitToParent);
+            }
             flashCardView.hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -207,6 +275,26 @@ public class MyApplicationController implements Initializable {
 
     public void onClickSwitchToFlashCard() {
         switchToPanel(flashCardView);
+    }
+
+    private void loadTabButton(boolean isOnline) {
+        vBoxButtonTab.getChildren().clear();
+        vBoxButtonTab.getChildren().add(paneLogo);
+        if (isOnline) {
+            vBoxButtonTab.getChildren().add(btnDashboard);
+            vBoxButtonTab.getChildren().add(btnOnlineDictionary);
+            vBoxButtonTab.getChildren().add(btnOfflineDictionary);
+            vBoxButtonTab.getChildren().add(btnGame);
+            vBoxButtonTab.getChildren().add(btnFlashcard);
+            vBoxButtonTab.getChildren().add(btnRank);
+            vBoxButtonTab.getChildren().add(btnProfile);
+            vBoxButtonTab.getChildren().add(logOutButton);
+            vBoxButtonTab.getChildren().add(btnClose);
+        } else {
+            vBoxButtonTab.getChildren().add(btnOfflineDictionary);
+            vBoxButtonTab.getChildren().add(logOutButton);
+            vBoxButtonTab.getChildren().add(btnClose);
+        }
     }
 }
 
