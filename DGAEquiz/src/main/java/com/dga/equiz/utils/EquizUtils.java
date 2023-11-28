@@ -31,6 +31,7 @@ import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class EquizUtils {
     /**
@@ -250,5 +251,11 @@ public class EquizUtils {
             success =  false;
         }
         return success;
+    }
+
+    public static boolean patternMatches(String emailAddress, String regexPattern) {
+        return Pattern.compile(regexPattern)
+                .matcher(emailAddress)
+                .matches();
     }
 }
